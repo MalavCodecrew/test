@@ -5,7 +5,7 @@
     <div class="main-sub-acc">
       <div class="acc-img">
         {% if block.settings.image_with_acc != blank %}
-          <img src="{{ block.settings.image_with_acc | img_url: '' }}">
+          <img src="{{ block.settings.image_with_acc | img_url: '' }}"> 
         {% else %}
           {{ 'image' | placeholder_svg_tag }}
         {% endif %}
