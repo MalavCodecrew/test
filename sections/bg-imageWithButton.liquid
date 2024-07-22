@@ -3,7 +3,7 @@
 <div class="main">
   <div class="bg-img">
     {% if section.settings.image_with_text_image != blank %}
-      <img src="{{ section.settings.image_with_text_image | img_url: '' }}">heyy
+      <img src="{{ section.settings.image_with_text_image | img_url: '' }}">
     {% else %}
       {{ 'image' | placeholder_svg_tag }}
     {% endif %}
