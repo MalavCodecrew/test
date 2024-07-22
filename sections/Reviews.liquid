@@ -1,0 +1,80 @@
+{{ 'Reviews.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'reviews.js' | asset_url }}" defer="defer"></script>
+<div class="main-review">
+  <div class="review-heading">
+    <h1>{{ section.settings.title }}</h1>
+  </div>
+  <div class="main-card">
+    {% for block in section.blocks %}
+      <div class="card">
+        <span class="star-icon" style="color: gold;">
+          {{- block.settings['star-icon'] }}
+          ★★★★★
+          <!-- Filled star icon --></span
+        ><br>
+        <strong>
+          {{ block.settings['card-title'] }}
+        </strong>
+        <p>{{ block.settings['card-reviews'] }}</p>
+        <strong>{{ block.settings.name }}</strong>
+        <p>{{ block.settings.date_picker | date: '%d-%m-%Y' }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+       {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+
+  ],
+   "blocks": [
+    {
+      "type": "text",
+      "name": "text",
+      "settings": [
+          {
+          "type": "text",
+          "id": "star-icon",
+          "label": "Stars"
+        },
+        {
+          "type": "text",
+          "id": "card-title",
+          "label": "Review"
+        },
+        {
+          "type": "text",
+          "id": "card-reviews",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+         {
+            "type": "text",
+            "id": "date_picker",
+            "label": "Choose date",
+            "default": "24-12-2022",
+            "info": "e.g. dd-mm-yyyy"
+        }
+      ]
+
+     }
+  ],
+
+   "presets": [
+  {
+    "name": "Reviews"
+  }
+]
+}
+{% endschema %}

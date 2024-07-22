@@ -1,0 +1,111 @@
+{% style %}
+  .main-btn-img{
+        margin-bottom: 60px;
+  }
+        .image-steps-list{
+          display:flex;
+          text-align:center;
+          justify-content: space-around;
+          margin-top: 5%;
+          margin-bottom: 5%;
+          width: 85%;
+        margin-left: 7%;
+      }
+        }
+        .main-steps{
+          text-align:center;
+        }
+        .main-btn-title{
+          text-align:center;
+        }
+        .btn-img-list{
+          background-color:transparent;
+          color:black;
+          border-color:blanchedalmond;
+          padding: 10px 20px;
+  }
+        }
+         .image-steps-list img{
+             height: 75%;
+              width: 85%;
+         }
+    .main-btn-title h1{
+      font-family:timesnewroman
+    }
+      @media only screen and (max-width: 425px) {
+      .image-steps-list{
+          display:contents;
+      }
+         .btn-img-list{
+           margin-bottom:10px;
+         }
+    }
+{% endstyle %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="main-btn-img">
+  <div class="main-btn-title">
+    <h1>{{ section.settings['ilashuk-title'] }}</h1>
+    <a href="{{ section.settings.btn_link }}">
+      <button class="btn-img-list">{{ section.settings.btn_text }}</button></a
+    >
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "steps-images-btn",
+  "settings": [
+        {
+          "type": "text",
+          "id": "ilashuk-title",
+          "label": "Title"
+        },
+     {
+       "type": "url",
+        "id": "btn_link",
+        "label": "Button link"
+     },
+     {
+       "type": "text",
+        "id": "btn_text",
+        "label": "Button link",
+       "default":"VIEW ALL"
+     }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_with_text_ilash",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "ilashuk-image-title",
+          "label": "image-Title"
+        },
+        {
+          "type": "text",
+          "id": "ilashuk-name",
+          "label": "Name"
+        }
+      ]
+
+     }
+  ],
+
+  "presets": [
+  {
+    "name": "steps-images-btn",
+    "blocks": [
+      {
+         "type":"text"
+      }
+    ]
+  }
+]
+}
+{% endschema %}

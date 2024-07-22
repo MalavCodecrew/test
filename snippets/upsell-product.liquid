@@ -1,0 +1,31 @@
+<script src="{{ 'quickview.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'add-cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+
+<div class="upsell-main">
+  {% for collection in collections %}
+    {% for upsell-product in collection.products %}
+      <div class="upsell-img">
+        <img
+          src="{{ upsell-product.featured_image | img_url: 'medium'  }}"
+        >
+      </div>
+      <div class="upsell-title">{{ upsell-product.title }}</div>
+      <div class="upsell-price">{{ upsell-product.price | money }}</div>
+      <div class="custom-buy-btn">
+        {%- render 'upsell-buy-btn',
+          block: block,
+          product: upsell-product,
+          product_form_id: product_form_id,
+          section_id: section.id
+        -%}
+      </div>
+    {% endfor %}
+  {% endfor %}
+</div>

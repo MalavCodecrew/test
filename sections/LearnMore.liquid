@@ -1,0 +1,51 @@
+{{ 'LearnMore.css' | asset_url | stylesheet_tag }}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="main">
+  <div class="title-1">
+    <h1>{{ section.settings.title }}</h1>
+  </div>
+  <div class="desc">
+    <p>{{ section.settings.Description }}</p>
+  </div>
+  <div class="btn1">
+    <a href="{{ section.settings.button_link1 }}">
+      <button class="button">{{ section.settings.button_text1 }}</button></a
+    >
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Learnmore",
+  "settings": [
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+
+       {
+        "type": "text",
+        "id": "Description",
+        "label": "Description"
+      },
+     {
+     "type": "url",
+      "id": "button_link1",
+      "label": "Button link"
+   },
+   {
+     "type": "text",
+      "id": "button_text1",
+      "label": "Button Text",
+     "default":"SHOW ME MORE"
+   }
+  ],
+
+  "presets": [
+    {
+      "name": "Learnmore"
+    }
+  ]
+}
+{% endschema %}

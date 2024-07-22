@@ -1,0 +1,172 @@
+{{ 'customcollection.css' | asset_url | stylesheet_tag }}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+{{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}
+{{ 'upsell-product.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'quickview.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'add-cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'popup.js' | asset_url }}" defer="defer"></script>
+{% if section.settings.image_zoom == 'hover' %}
+  <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
+{% endif %}
+{%- if request.design_mode -%}
+  <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<div class="quick-main">
+  {% if section.settings.collection != blank %}
+    <div class="collection-grid">
+      {%- for product in section.settings.collection.products %}
+        <div class="item">
+          <div class="image">
+            <img src="{{product.featured_media | img_url: '' }} " class="primary-image">
+            {% if product.media.size > 1 %}
+              <img src="{{ product.media[1] | img_url: '' }}" class="secondary-image">
+            {% endif %}
+            <div class="quick-view-btn">
+              <a class="button" id="{{ product.id }}">Quick View</a>
+            </div>
+          </div>
+          <div class="collection-text">
+            {% if product.title != blank %}
+              <p>{{ product.title }}</p>
+            {% endif %}
+            {% if product.price != blank %}
+              <p>{{ product.price | money_with_currency }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <div class="quickpopup">
+    {%- assign product_form_id = 'product-form-' | append: section.id -%}
+    {%- for product in section.settings.collection.products %}
+      <section class="custom-popup" id="popup-{{ product.id }}">
+        <div class="popup__content">
+          <div class="close">
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="grid__item product__media-wrapper">
+            <div class="quick-img">
+              {% if product.media.size > 1 %}
+                <img src="{{ product.media[1] | img_url: '' }}">
+              {% endif %}
+              <div class="variant-images">
+                {%- for variant in product.variants %}
+                  {%- if variant.image -%}
+                    <div class="variant-block">
+                      <img src="{{ variant.image | img_url: ''  }}">
+                      <span class="variant-title"> {{ variant.title }}</span>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <!-- {% render 'product-media-gallery', product: product ,variant_images %} -->
+            </div>
+          </div>
+          <div class="popup2">
+            <div class="ProductItem__Sizes">
+              {%- for variant in product.variants -%}
+                {%- if variant.available -%}
+                  <span class="ProductItem__Size">{{ variant.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            <div class="card__information">
+              <h3
+                class="card__heading"
+                {% if product.featured_media == null and settings.card_style == 'standard' %}
+                  id="title-{{ section_id }}-{{ product.id }}"
+                {% endif %}
+              >
+                <!--
+                  <a
+                    href="{{ product.url }}"
+                    id="StandardCardNoMediaLink-{{ section_id }}-{{ product.id }}"
+                    class="full--custom-unstyled-link"
+                    aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ product.id }} NoMediaStandardBadge-{{ section_id }}-{{ product.id }}"
+                  >
+                -->
+                {{ product.title | escape }}
+                <!-- </a> -->
+              </h3>
+              <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                {%- render 'price',
+                  product: product,
+                  use_variant: true,
+                  show_badges: true,
+                  price_class: 'price--large'
+                -%}
+              </div>
+            </div>
+
+            <modal-opener
+              class="product-popup-modal__opener quick-add-hidden"
+              data-modal="#PopupModal-{{ block.id }}"
+              {{ block.shopify_attributes }}
+            >
+              <button
+                id="ProductPopup-{{ block.id }}"
+                class="product-popup-modal__button link"
+                type="button"
+                aria-haspopup="dialog"
+              >
+                {{ block.settings.text | default: block.settings.page.title | escape }}
+              </button>
+            </modal-opener>
+
+            {% liquid
+              assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
+              render 'share-button', block: block, share_link: share_url
+            %}
+
+            {%- render 'custom-buy-button',
+              block: block,
+              product: product,
+              product_form_id: product_form_id,
+              section_id: section.id,
+              show_pickup_availability: true
+            -%}
+          </div>
+        </div>
+      </section>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "customcollection",
+  "settings": [
+    {
+  "type": "collection",
+  "id": "collection",
+  "label": "Collection"
+}
+
+  ],
+  "presets": [
+  {
+    "name": "customcollection"
+  }
+]
+}
+{% endschema %}

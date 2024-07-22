@@ -1,0 +1,24 @@
+.main {
+  text-align: center;
+  font-family: Times New Roman;
+  color: #7a2323;
+}
+.btn1 button {
+  background-color: #dbc6c6;
+  color: white;
+  padding: 15px 20px;
+  font-family: timesnewroman;
+  border: none;
+}
+.title-1 h1 {
+  font-family: timesnewroman;
+  color: #7a2323;
+}
+.desc p {
+  font-size: x-large;
+}
+@media only screen and (max-width: 320px) {
+  .title-1 h1 {
+    font-size: 20px;
+  }
+}

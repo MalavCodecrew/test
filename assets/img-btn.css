@@ -1,0 +1,34 @@
+.main-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.img img {
+  height: 100%;
+  width: 100%;
+}
+
+.img-btn {
+  position: absolute;
+  bottom: 10%;
+}
+.img-bnt-btn {
+  background-color: transparent;
+  border-color: white;
+  padding: 15px 60px;
+  color: white;
+  cursor: pointer;
+}
+@media screen and (max-width: 425px) {
+  .img-bnt-btn {
+    padding: 10px 10px;
+    font-size: 10px;
+  }
+}

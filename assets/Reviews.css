@@ -1,0 +1,26 @@
+.main-review {
+  margin-bottom: 100px;
+}
+.card {
+  padding: 30px 60px;
+  cursor: grab;
+}
+.main-card {
+  display: flex;
+  overflow: hidden;
+}
+.slick-dots {
+  bottom: -7px;
+}
+.review-heading h1 {
+  font-family: timesnewroman;
+  text-align: center;
+  color: #783f3f;
+  margin-top: 100px;
+}
+.slick-slide.slick-current.slick-active.slick-center {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transform: scale(1.1);
+  z-index: 10;
+}

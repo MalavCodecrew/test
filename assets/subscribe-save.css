@@ -1,0 +1,135 @@
+.main1 {
+  text-align: left;
+  font-family: Times New Roman;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #fffef5;
+  color: #5f412c;
+  width: 80%;
+  margin-left: 9%;
+  padding: 50px 100px;
+  margin-top: 50px;
+  font-size: 0.9375em;
+  position: relative;
+}
+.sub-1 {
+  position: absolute;
+  width: 40%;
+  left: 3%;
+  top: 30%;
+}
+.sub-2 {
+  position: relative;
+  left: 27%;
+  width: 50%;
+}
+.img-1 img {
+  position: relative;
+  max-width: 90%;
+}
+
+.img-2 img {
+  position: absolute;
+  bottom: 8%;
+  left: 85%;
+  width: 25%;
+}
+.discount-label label {
+  padding: 5px 15px;
+  background-color: #ded2c6;
+  position: absolute;
+  bottom: 95%;
+  left: 77%;
+  color: white;
+}
+.title h3 {
+  font-family: Times New Roman;
+  color: brown;
+  font-size: 1.35em;
+  letter-spacing: 0.3em;
+  line-height: 1.2;
+}
+.desc p {
+  font-size: 19px;
+  line-height: normal;
+}
+.sub-btn {
+  padding: 15px 40px;
+  background-color: lightgrey;
+  color: white;
+  font-family: timesnewroman;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+}
+@media only screen and (max-width: 1024px) {
+  .img-1 img {
+    width: 100%;
+  }
+  .discount-label label {
+    left: 61%;
+  }
+  .img-2 img {
+    width: 32%;
+  }
+  .sub-1 {
+    top: 10%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .img-1 img {
+    width: 100%;
+  }
+  .discount-label label {
+    left: 54%;
+  }
+  .img-2 img {
+    left: 84%;
+    bottom: 8%;
+    width: 44%;
+  }
+
+  .desc p {
+    font-size: smaller;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .main1 {
+    display: inline-block;
+    width: 85%;
+    height: 100%;
+    padding: 0px;
+  }
+  .sub-1 {
+    top: 10%;
+    position: relative;
+    width: 100%;
+  }
+  .img-1 img {
+    width: 65%;
+    margin-top: 10px;
+  }
+  .discount-label label {
+    left: 48%;
+    bottom: 77%;
+  }
+  .img-2 img {
+    left: 54%;
+    width: 25%;
+  }
+  .sub-2 {
+    position: relative;
+    left: 4%;
+    width: 100%;
+    margin-top: 25px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .sub-2 {
+    margin-top: 32px;
+  }
+  .discount-label label {
+    left: 30%;
+  }
+}

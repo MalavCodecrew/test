@@ -1,0 +1,42 @@
+div#CartDrawer {
+  display: flex;
+}
+
+.cart-product-image .card-wrapper .card {
+  display: contents !important;
+}
+
+.upsell-product {
+  overflow: scroll;
+  background-color: white;
+  text-align: -webkit-center;
+  padding: 35px 0px;
+}
+.custom-buy-btn {
+  width: 60%;
+}
+.cart-product-image .ProductItem__Size {
+  display: none;
+}
+.cart-product-image .new-label {
+  display: none;
+}
+.cart-product-image .new-label2 {
+  display: none;
+}
+.cart-product-image .card__badge {
+  display: none;
+}
+.product-form__input.product-form__input--dropdown .select {
+  display: block !important;
+}
+.discount1 {
+  background-color: floralwhite;
+  padding: 1px 20px;
+  color: darkmagenta;
+}
+.discount2 {
+  background-color: floralwhite;
+  padding: 1px 20px;
+  color: darkmagenta;
+}

@@ -1,0 +1,79 @@
+.popup-overlay {
+  background-color: #00000070;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: block;
+  z-index: 1;
+}
+a#HeaderMenu-inails {
+  color: #d8ade8;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+}
+
+.switch input[type="checkbox"]:checked ~ .include {
+  display: none;
+}
+
+.switch input[type="checkbox"]:checked ~ .exclude {
+  display: block;
+}
+
+.switch input[type="checkbox"]:not(:checked) ~ .include {
+  display: block;
+}
+
+.switch label {
+  cursor: pointer;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.switch label::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+.switch input[type="checkbox"]:checked + label {
+  background: blue;
+}
+
+.switch input[type="checkbox"]:checked + label::after {
+  left: 22px;
+}
+.switch input#toggleAll {
+  display: none;
+}
+
+.includevat {
+  display: none;
+}
+.compareincludevat {
+  display: none;
+}
+.regularwithvat {
+  display: none;
+}

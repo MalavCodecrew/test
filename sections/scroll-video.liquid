@@ -1,0 +1,53 @@
+{{ 'scroll.css' | asset_url | stylesheet_tag }}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="main-scroll">
+  <!--
+    <div class="scroll-container">
+      <div class="scroll-text">
+        <span>{{ section.settings['scroll-text'] }}</span>
+        <span>{{ section.settings['scroll-text'] }}</span>
+      </div>
+    </div>
+  -->
+  <div class="scrolling-text-container">
+    <div class="scrolling-text-inner" style="--marquee-speed: 40s; --direction:scroll-left " role="marquee">
+      <div class="scrolling-text">
+        <span class="scrolling-text-item">{{ section.settings['scroll-text'] }}</span>
+        <span class="scrolling-text-item">{{ section.settings['scroll-text'] }}</span>
+        <span class="scrolling-text-item">{{ section.settings['scroll-text'] }}</span>
+        <span class="scrolling-text-item">{{ section.settings['scroll-text'] }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="video">
+    {% if section.settings.video != blank %}
+      <video autoplay muted loop src="{{section.settings.video.sources[1].url }}  ">
+        {{ section.settings.video }}
+      </video>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "scroll-video",
+  "settings": [
+          {
+        "type": "text",
+        "id": "scroll-text",
+        "label": "Title"
+      },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "A Shopify-hosted video"
+    }
+
+  ],
+  "presets": [
+  {
+    "name": "scroll-video"
+  }
+]
+}
+{% endschema %}

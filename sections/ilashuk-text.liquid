@@ -1,0 +1,71 @@
+{% style %}
+  .main-ilash{
+    text-align:center;
+    width: 86%;
+    margin:0 auto;
+    color:#5f412c;
+  }
+  .title1 h4{
+    font-family: timesnewroman;
+    font-size: 20px;
+  }
+  .description p{
+      font-family: timesnewroman;
+    line-height: normal;
+     }
+
+  .title2 h2{
+    font-size:40px;
+    font-family: timesnewroman;
+    color: #5f412c;
+  }
+{% endstyle %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="main-ilash">
+  <div class="title1">
+    <h4>{{ section.settings['ilashuk-title'] }}</h4>
+  </div>
+  <div class="title2">
+    <h2>{{ section.settings['ilashuk-title2'] }}</h2>
+  </div>
+  <div class="description">
+    <p>{{ section.settings.textarea }}</p>
+  </div>
+  <div class="title3">
+    <p>{{ section.settings['ilashuk-title3'] }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ilashuk-text",
+  "settings": [
+         {
+          "type": "text",
+          "id": "ilashuk-title",
+          "label": "Title"
+        },
+
+         {
+          "type": "text",
+          "id": "ilashuk-title2",
+          "label": "Title2"
+        },
+        {
+          "type": "text",
+          "id": "textarea",
+          "label": "Descrption"
+        },
+        {
+          "type": "text",
+          "id": "ilashuk-title3",
+          "label": "Title3"
+        }
+  ],
+  "presets": [
+  {
+    "name": "ilashuk-text"
+  }
+]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+{{ 'acc-img.css' | asset_url | stylesheet_tag }}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="main-acc">
+  {% for block in section.blocks %}
+    <div class="main-sub-acc">
+      <div class="acc-img">
+        {% if block.settings.image_with_acc != blank %}
+          <img src="{{ block.settings.image_with_acc | img_url: '' }}">
+        {% else %}
+          {{ 'image' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+      <div class="img-acc-btn">
+        <p>{{ block.settings['acc-title'] }}</p>
+        <a href="{{ block.settings.btn_link }}"
+          ><button class="img-acc-btn-lnk">{{ block.settings.btn_text }}</button></a
+        >
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "acc-img-btn",
+
+  "settings": [
+
+  ],
+    "blocks": [
+    {
+      "type": "text",
+      "name": "text",
+      "settings": [
+         {
+  "type": "image_picker",
+  "id": "image_with_acc",
+  "label": "Image"
+},
+    {
+          "type": "text",
+          "id": "acc-title",
+          "label": "Title"
+        },
+     {
+       "type": "url",
+        "id": "btn_link",
+        "label": "Button link"
+     },
+     {
+       "type": "text",
+        "id": "btn_text",
+        "label": "Button link",
+       "default":"SHOP HERE"
+     }
+
+      ]
+
+     }
+  ],
+  "presets": [
+  {
+    "name": "acc-img-btn","blocks": [
+      {
+         "type":"text"
+      }
+    ]
+  }
+]
+}
+{% endschema %}

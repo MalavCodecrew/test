@@ -1,0 +1,17 @@
+{% for block in section.blocks %}
+  {% if item.product.tags contains 'shoes' %}
+    {% if block.settings.shop_link == '/collections/shoes' %}
+      <a href="{{ block.settings.shop_link }}">{{ section.settings.title_1 }}</a>
+    {%- endif %}
+  {%- endif %}
+  {% if item.product.tags contains 'Watch' %}
+    {% if block.settings.shop_link == '/collections/premium-watches' %}
+      <a href="{{ block.settings.shop_link }}">{{ section.settings.title_1 }}</a>
+    {%- endif %}
+  {%- endif %}
+  {% if item.product.tags contains 'lashes' %}
+    {% if block.settings.shop_link == '/collections/ilash' %}
+      <a href="{{ block.settings.shop_link }}">{{ section.settings.title_1 }}</a>
+    {%- endif %}
+  {% endif %}
+{% endfor %}

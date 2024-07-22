@@ -1,0 +1,172 @@
+.bg-img img {
+  height: 100%;
+  width: 100%;
+}
+.main-text {
+  position: absolute;
+  top: 25%;
+  z-index: 2;
+  text-align: center;
+  left: 5%;
+  font-family: "Merienda", cursive;
+  font-size: 25px;
+}
+
+.button1 a {
+  background-color: white;
+  color: #c13030;
+  font-weight: bold;
+  font-family: timesnewroman;
+  width: 35%;
+  font-size: 25px;
+}
+.title1 h1 {
+  font-family: Merienda, cursive;
+  color: #ffeded;
+  font-size: 35px;
+}
+
+.title2 h1 {
+  font-family: timesnewroman;
+  font-size: 100px;
+}
+
+.title3 h1 {
+  font-family: cursive;
+  font-size: 100px;
+}
+.brown-title h1 {
+  color: #762828;
+}
+.textarea1 p {
+  font-family: Merienda, cursive;
+}
+
+.textarea2 p {
+  font-family: Merienda, cursive;
+}
+.textarea {
+  width: 100%;
+  text-align: -webkit-center;
+  margin-top: 165px;
+}
+.textarea1 {
+  width: 60%;
+}
+.textarea2 {
+  width: 59%;
+}
+.button:after,
+.shopify-challenge__button:after,
+.customer button:after,
+.shopify-payment-button__button--unbranded:after {
+  content: "";
+  position: absolute;
+  top: var(--buttons-border-width);
+  right: var(--buttons-border-width);
+  bottom: var(--buttons-border-width);
+  left: var(--buttons-border-width);
+  z-index: 1;
+  box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
+      rgba(255, 255, 255, calc(1 - 1)),
+    0 0 0 var(--buttons-border-width) rgb(255 255 255);
+  transition: box-shadow var(--duration-short) ease;
+}
+h1 span {
+  font-family: Homemade Apple, cursive;
+  position: absolute;
+  top: 39%;
+  left: 21%;
+}
+@media only screen and (max-width: 1024px) {
+  .main-text {
+    top: 31%;
+  }
+  .title2 h1 {
+    font-size: 60px;
+  }
+  h1 span {
+    left: 35%;
+  }
+  .title3 h1 {
+    font-size: 60px;
+  }
+  .textarea {
+    margin-top: 100px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .main-text {
+    top: 17%;
+    left: 0%;
+  }
+  .title1 h1 {
+    font-family: Merienda, cursive;
+    color: #ffeded;
+    font-size: 25px;
+  }
+  .title2 h1 {
+    font-size: 40px;
+  }
+  .title3 h1 {
+    font-size: 40px;
+  }
+  h1 span {
+    left: 37%;
+    top: 32%;
+  }
+  .textarea {
+    margin-top: 52px;
+    font-size: 20px;
+  }
+  .button1 a {
+    font-size: 24px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .title h1 {
+    font-size: 14px;
+  }
+  .main-text {
+    font-size: 25px;
+    top: 15%;
+  }
+  h1 span {
+    left: 42%;
+    top: 30%;
+  }
+  .textarea {
+    margin-top: -4px;
+    font-size: 10px;
+  }
+  .button1 a {
+    font-size: 15px;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .main-text {
+    top: 12%;
+    font-size: 8px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .main-text {
+    top: 11%;
+    font-size: 6px;
+  }
+  .button {
+    font-size: 12px;
+  }
+  .title h1 {
+    font-size: 10px;
+  }
+  .textarea {
+    font-size: 8px;
+  }
+  .button1 a {
+    font-size: 10px;
+    width: 49%;
+  }
+}
