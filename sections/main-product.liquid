@@ -85,7 +85,7 @@
               <img src="{{ product_variant_custom |img_url: '100x100' }}">
             </a>
           -->
-          {{ product.metafields.custom.product.value.handle }}
+          {{ product.metafields.custom.product.value }}
           {% for product_variant in product.metafields.custom.product -%}
             <a href="https://{{ shop.domain }}/products/{{ product_variant.handle }}">
               <img src="{{ product_variant.image | img_url: '100x100' }}">
