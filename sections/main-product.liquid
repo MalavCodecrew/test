@@ -82,6 +82,7 @@
           {%- assign product = product.metafields.custom.product -%}
 
           <img src="{{ product |img_url: '100x100' }}">
+
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when '@app' -%}
