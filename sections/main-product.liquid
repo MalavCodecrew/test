@@ -81,34 +81,16 @@
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
           <!--
-            {%- assign product_variant_custom = product.metafields.custom.product.value -%}
-            {% for i in product_variant_custom %}
-              <a href="https://{{ shop.domain }}/products/{{ i.handle }}">
-                <img src="{{ i | img_url: '100x100' }}">
-              </a>
-            {% endfor %}
-          -->
-
-          <!--
             {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-            {% for icolor in product_variant_custom_color %}
-              <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
-            {% endfor %}
-
             {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
-            {% for icolor2 in product_variant_custom_color_2 %}
-              <div class="swatch" style="background-color: {{ icolor2 }}; border-radius:50%;">&nbsp</div>
-            {% endfor %}
+
+            {%- assign length_1 = product_variant_custom_color.size -%}
+            {%- assign length_2 = product_variant_custom_color_2.size -%}
+
+            {%- assign max_length = length_1 | plus: length_2 | divided_by: 2 -%}
+            {%- assign max_index = max_length | minus: 1 -%}
+            <!-- Compute the max index excluding the last one
           -->
-          {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-          {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
-
-          {%- assign length_1 = product_variant_custom_color.size -%}
-          {%- assign length_2 = product_variant_custom_color_2.size -%}
-
-          {%- assign max_length = length_1 | plus: length_2 | divided_by: 2 -%}
-          {%- assign max_index = max_length | minus: 1 -%}
-          <!-- Compute the max index excluding the last one -->
 
           {%- for i in (0..max_index) -%}
             {%- assign color_1 = product_variant_custom_color[i] | default: '#ffffff' -%}
@@ -120,28 +102,30 @@
               &nbsp
             </div>
           {% endfor %}
+          -->
 
-          <!--
-            {%- assign product_variant_custom = product.metafields.custom.product.value -%}
-            {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-            <div class="custom-swatch" style="display:flex">
-              {% for i in product_variant_custom %}
-                {% assign icolor = product_variant_custom_color[forloop.index0] %}
-                <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
+          {%- assign product_variant_custom = product.metafields.custom.product.value -%}
+          {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
+          {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
+          <div class="custom-swatch" style="display:flex">
+            {% for i in product_variant_custom %}
+              {% assign icolor = product_variant_custom_color[forloop.index0] %}
+              {% assign icolor2 = product_variant_custom_color_2[forloop.index0] %}
+
+              <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
+                {%- for i in (0..max_index) -%}
+                  {%- assign color_1 = product_variant_custom_color[i] | default: '#ffffff' -%}
+                  {%- assign color_2 = product_variant_custom_color_2[i] | default: '#ffffff' -%}
                   <div
                     class="swatch"
-                    style="
-                        background-color: {{ icolor }};border-radius: 0;
-                        border: 1px solid black;
-                      margin-right:5px;
-                    "
+                    style="background: linear-gradient(to right, {{ color_1 }}, {{ color_2 }}); border-radius:50%;"
                   >
                     &nbsp
                   </div>
-                </a>
-              {% endfor %}
-            </div>
-          -->
+                {% endfor %}
+              </a>
+            {% endfor %}
+          </div>
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
