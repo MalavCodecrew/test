@@ -115,7 +115,7 @@
               {% assign product_handle = product_variant_custom[i] %}
               {% assign icolor = product_variant_simple_color[i] %}
               {% if product_handle and icolor %}
-                <a href="https://{{ shop.domain }}/products/{{ i.handle }}">
+                <a href="https://{{ shop.domain }}/products/{{ product_handle }}">
                   <div class="swatch" style="background-color: {{ icolor }}">&nbsp;</div>
                 </a>
               {% endif %}
