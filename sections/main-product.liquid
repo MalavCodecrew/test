@@ -88,7 +88,7 @@
           {%- assign product_variant_custom = product.metafields.custom.product.value -%}
           {% for product_variant in product_variant_custom -%}
             -------
-            <a href="https://{{ shop.domain }}/products/{{ product_variant.value.handle }}">
+            <a href="https://{{ shop.domain }}/products/{{ product_variant.handle }}">
               <img src="{{ product_variant |img_url: '100x100' }}">
             </a>
           {% endfor %}
