@@ -112,8 +112,9 @@
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
 
           {% if product_variant_custom and product_variant_custom_color %}
-            {% assign custom_count = product_variant_custom.size %}
-            {% for i in (0..custom_count-1) %}
+            {%- assign custom_count = product_variant_custom | size -%}
+            {%- assign custom_count_minus_one = custom_count | minus: 1 -%}
+            {% for i in (0..custom_count_minus_one) %}
               {% assign product_handle = product_variant_custom[i].handle %}
               {% assign icolor = product_variant_custom_color[i] %}
 
