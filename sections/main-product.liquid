@@ -100,6 +100,11 @@
                     </h2>
                   </a>
                 </div>
+                {% for product in product.metafields.custom.product %}
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.selected_or_first_available_variant.featured_media | image_url }}">
+                  </a>
+                {% endfor %}
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
