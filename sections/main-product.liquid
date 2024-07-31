@@ -79,12 +79,9 @@
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
-          <img src="{{product.metafields.custom.product | img_url: '100x100' }}">
-          {{ product.metafields.custom.product.url }}-------------------
+          <!-- <img src="{{product.metafields.custom.product | img_url: '100x100' }}"> -->
           {% for product in product.metafields.custom.product -%}
-            <a href="{{ product.url }}">
-              <img src="{{ product |img_url: '100x100' }}">
-            </a>
+            <img src="{{ product |img_url: '100x100' }}">
           {% endfor %}
           {%- for block in section.blocks -%}
             {%- case block.type -%}
