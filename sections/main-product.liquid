@@ -88,7 +88,13 @@
           {% endfor %}
 
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
+          {{ product.metafields.custom.custom_colour }}
           {% for icolor in product_variant_custom_color %}
+            <div class="color-swatch">
+              <a href="{{ product.metafields.custom.color_link }}">
+                <div class="swatch" style="background-color: {{ product_variant_custom_color }}"></div>
+              </a>
+            </div>
             <div class="swatch" style="background-color: {{ icolor }}"></div>
             <a href="https://{{ shop.domain }}/products/{{ icolor.handle }}">
               <img src="{{ icolor | img_url: '100x100' }}">
