@@ -108,14 +108,15 @@
           {% if product.metafields.custom.simple_colour.value %}
             {%- assign product_variant_custom = product.metafields.custom.product.value -%}
             {%- assign product_variant_custom_color = product.metafields.custom.simple_colour.value -%}
+            <div class="custom1-swatch" style="display:flex">
+              {% for i in product_variant_custom %}
+                {% assign icolor = product_variant_custom_color[forloop.index0] %}
 
-            {% for i in product_variant_custom %}
-              {% assign icolor = product_variant_custom_color[forloop.index0] %}
-
-              <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
-                <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
-              </a>
-            {% endfor %}
+                <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
+                  <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
+                </a>
+              {% endfor %}
+            </div>
           {% endif %}
 
           {%- for block in section.blocks -%}
