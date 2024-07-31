@@ -89,9 +89,8 @@
 
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
           {% for icolor in product_variant_custom_color %}
-            <a href="https://{{ shop.domain }}/products/{{ icolor.handle }}">
-              <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
-            </a>
+            <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
+            <a href="https://{{ shop.domain }}/products/{{ icolor.handle }}"> </a>
           {% endfor %}
 
           {%- for block in section.blocks -%}
