@@ -116,9 +116,8 @@
               {% assign icolor = product_variant_simple_color[i] %}
 
               {% if product_handle and icolor %}
-                <div class="swatch" style="background-color: {{ icolor }}">
-                  <a href="https://{{ shop.domain }}/products/{{ product_handle }}"> </a>
-                </div>
+                <div class="swatch" style="background-color: {{ icolor }}">&nbsp</div>
+                <a href="https://{{ shop.domain }}/products/{{ product_handle }}"> </a>
               {% endif %}
             {% endfor %}
           {% endif %}
