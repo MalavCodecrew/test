@@ -93,6 +93,23 @@
             <a href="https://{{ shop.domain }}/products/{{ icolor.handle }}"> </a>
           {% endfor %}
 
+          {%- assign product_variant_custom = product.metafields.custom.product.value -%}
+          {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
+
+          {%- assign product_variant_custom_length = product_variant_custom.size | minus: 1 -%}
+
+          {% for i in (0..product_variant_custom_length) %}
+            <div>
+              <a href="https://{{ shop.domain }}/products/{{ product_variant_custom[i].handle }}">
+                <img src="{{ product_variant_custom[i] | img_url: '100x100' }}">
+              </a>
+              <div class="swatch" style="background-color: {{ product_variant_custom_color[i] }}; border-radius:50%;">
+                &nbsp;
+              </div>
+              <a href="https://{{ shop.domain }}/products/{{ product_variant_custom_color[i].handle }}"> </a>
+            </div>
+          {% endfor %}
+
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when '@app' -%}
