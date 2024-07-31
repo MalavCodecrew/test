@@ -107,8 +107,7 @@
           ooooooooooooooooooooo
           {%- assign product_variant_custom = product.metafields.custom.product.value -%}
           {%- assign product_variant_simple_color = product.metafields.custom.simple_colour.value -%}
-          {{ product_variant_custom }}
-          {{ product_variant_simple_color }}
+
           {% if product_variant_custom and product_variant_simple_color %}
             {%- assign custom_count = product_variant_custom | size -%}
             {%- assign custom_count_minus_one = custom_count | minus: 1 -%}
