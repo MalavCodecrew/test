@@ -98,9 +98,8 @@
           {%- assign product_variant_custom = product.metafields.custom.product.value -%}
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
 
-          {% for index in (0..product_variant_custom.size) %}
-            {%- assign i = product_variant_custom[index] -%}
-            {%- assign icolor = product_variant_custom_color[index] -%}
+          {% for i in product_variant_custom %}
+            {% assign icolor = product_variant_custom_color[forloop.index0] %}
 
             <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
             <a href="https://{{ shop.domain }}/products/{{ i.handle }}"> </a>
