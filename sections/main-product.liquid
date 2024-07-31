@@ -94,7 +94,7 @@
               {%- when 'title' -%}
                 {% for product in product.metafields.custom.product %}
                   <a href="{{ product.url }}">
-                    <img src="{{ product.selected_or_first_available_variant.featured_media |image_url: '100x100' }}">
+                    <img src="{{ product.images |image_url: '100x100' }}">
                   </a>
                 {% endfor %}
                 <div class="product__title" {{ block.shopify_attributes }}>
