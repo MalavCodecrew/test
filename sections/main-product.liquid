@@ -79,7 +79,7 @@
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
-          {{ product.metafields.custom.product.value }}
+          {{ product.metafields.custom.product.value }}-------------------
           {% for product in product.metafields.custom.product.value -%}
             <a href="{{ product.url }}">
               <img src="{{ product.selected_or_first_available_variant.featured_media |img_url: '100x100' }}">
