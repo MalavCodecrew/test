@@ -79,7 +79,7 @@
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
-<!-- 
+
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
           {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
 
@@ -99,31 +99,30 @@
             >
               &nbsp
             </div>
-          {% endfor %} -->
+          {% endfor %}
 
-                      {%- assign product_variant_custom = product.metafields.custom.product.value -%}
-            {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-             {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
-            <div class="custom-swatch" style="display:flex">
-              {% for i in product_variant_custom %}
-                {% assign icolor = product_variant_custom_color[forloop.index0] %}
-                 {% assign icolor2 = product_variant_custom_color_2[forloop.index0] %}
-                
-                <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
-                  <div
-                    class="swatch"
-                    style="
-                        style="background: linear-gradient(to right, {{ color_1 }}, {{ color_2 }}); border-radius:50%;"
-                        border: 1px solid black;
-                      margin-right:5px;
-                    "
-                  >
-                    &nbsp
-                  </div>
-                </a>
-              {% endfor %}
-            </div>
-         
+          {%- assign product_variant_custom = product.metafields.custom.product.value -%}
+          {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
+          {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
+          <div class="custom-swatch" style="display:flex">
+            {% for i in product_variant_custom %}
+              {% assign icolor = product_variant_custom_color[forloop.index0] %}
+              {% assign icolor2 = product_variant_custom_color_2[forloop.index0] %}
+
+              <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
+                <div
+                  class="swatch"
+                  style="
+                      background: linear-gradient(to right, {{ color_1 }}, {{ color_2 }}); border-radius:50%;
+                      border: 1px solid black;
+                    margin-right:5px;
+                  "
+                >
+                  &nbsp
+                </div>
+              </a>
+            {% endfor %}
+          </div>
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
