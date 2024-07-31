@@ -108,12 +108,12 @@
 
           {%- assign max_length = length_1 | plus: length_2 | divided_by: 2 -%}
 
-          {%- for i in (0..max_length-2) -%}
-            {%- assign color1 = product_variant_custom_color[i] | default: '#ffffff' -%}
-            {%- assign color2 = product_variant_custom_color_2[i] | default: '#ffffff' -%}
+          {%- for i in (0..max_length) -%}
+            {%- assign color_1 = product_variant_custom_color[i] | default: '#ffffff' -%}
+            {%- assign color_2 = product_variant_custom_color_2[i] | default: '#ffffff' -%}
             <div
               class="swatch"
-              style="background: linear-gradient(to right, {{ color1 }}, {{ color2 }}); border-radius:50%;"
+              style="background: linear-gradient(to right, {{ color_1 }}, {{ color_2 }}); border-radius:50%;"
             >
               &nbsp
             </div>
