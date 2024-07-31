@@ -89,14 +89,38 @@
             {% endfor %}
           -->
 
-          {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-          {% for icolor in product_variant_custom_color %}
-            <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
-          {% endfor %}
+          <!--
+            {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
+            {% for icolor in product_variant_custom_color %}
+              <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
+            {% endfor %}
 
+            {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
+            {% for icolor2 in product_variant_custom_color_2 %}
+              <div class="swatch" style="background-color: {{ icolor2 }}; border-radius:50%;">&nbsp</div>
+            {% endfor %}
+          -->
+          {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
           {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
-          {% for icolor2 in product_variant_custom_color_2 %}
-            <div class="swatch" style="background-color: {{ icolor2 }}; border-radius:50%;">&nbsp</div>
+
+          {%- assign length_1 = product_variant_custom_color.size -%}
+          {%- assign length_2 = product_variant_custom_color_2.size -%}
+
+          {%- if length_1 > length_2 -%}
+            {%- assign max_length = length_1 -%}
+          {%- else -%}
+            {%- assign max_length = length_2 -%}
+          {%- endif -%}
+
+          {%- for i in (0..max_length-1) -%}
+            {%- assign color1 = product_variant_custom_color[i] | default: '#ffffff' -%}
+            {%- assign color2 = product_variant_custom_color_2[i] | default: '#ffffff' -%}
+            <div
+              class="swatch"
+              style="background: linear-gradient(to right, {{ color1 }}, {{ color2 }}); border-radius:50%;"
+            >
+              &nbsp
+            </div>
           {% endfor %}
 
           <!--
