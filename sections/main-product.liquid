@@ -102,7 +102,7 @@
                 </div>
                 {% for product in product.metafields.custom.product %}
                   <a href="{{ product.url }}">
-                    <img src="{{ product.selected_or_first_available_variant.featured_media | image_url }}">
+                    <img src="{{ product.selected_or_first_available_variant.featured_media |img_url: '100x100' }}">
                   </a>
                 {% endfor %}
               {%- when 'price' -%}
