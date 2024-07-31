@@ -108,27 +108,12 @@
           {%- assign product_variant_custom = product.metafields.custom.product.value -%}
           {%- assign product_variant_custom_color = product.metafields.custom.simple_colour.value -%}
 
-          {% if product_variant_custom and product_variant_custom_color %}
-            {%- assign custom_count = product_variant_custom | size -%}
-            {%- assign custom_count_minus_one = custom_count | minus: 1 -%}
-            {% for i in (0..custom_count_minus_one) %}
-              {% assign product_handle = product_variant_custom[i].handle %}
-              {% assign icolor = product_variant_custom_color[i] %}
+          {% for i in product_variant_custom %}
+            {% assign icolor = product_variant_custom_color[forloop.index0] %}
 
-              {% if product_handle and icolor %}
-                <div class="swatch" style="background-color: {{ icolor }};">
-                  <a
-                    href="/products/{{ product_handle }}"
-                    title="View Product"
-                    aria-label="View Product"
-                    class="swatch-link"
-                  >
-                    <!-- Add optional text or image inside the swatch here if needed -->
-                  </a>
-                </div>
-              {% endif %}
-            {% endfor %}
-          {% endif %}
+            <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
+            <a href="https://{{ shop.domain }}/products/{{ i.handle }}"> </a>
+          {% endfor %}
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
