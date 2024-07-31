@@ -88,7 +88,6 @@
           {% endfor %}
 
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-          {{ product.metafields.custom.custom_colour }}
           {% for icolor in product_variant_custom_color %}
             <div class="swatch" style="background-color: {{ icolor }}"></div>
             <a href="https://{{ shop.domain }}/products/{{ icolor.handle }}">
