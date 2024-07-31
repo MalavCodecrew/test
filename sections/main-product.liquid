@@ -95,7 +95,6 @@
           {% endfor %}
 
           {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
-          custom.custom_colour2
           {% for icolor2 in product_variant_custom_color_2 %}
             <div class="swatch" style="background-color: {{ icolor2 }}; border-radius:50%;">&nbsp</div>
           {% endfor %}
