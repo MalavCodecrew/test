@@ -83,7 +83,12 @@
           {{ product_variant_custom.value | json }}
           ==============
           {{ product_variant_custom.value.src }}
-          <img src="{{ product_variant_custom |img_url: '100x100' }}">
+
+          {{ shop.domain }}
+
+          <a href="https://<your website domain>/products/{{ product_variant_custom.value.handle }}">
+            <img src="{{ product_variant_custom |img_url: '100x100' }}">
+          </a>
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
