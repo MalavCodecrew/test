@@ -102,13 +102,10 @@
 
           {% for i in (0..product_variant_custom_length) %}
             <div>
-              <a href="https://{{ shop.domain }}/products/{{ product_variant_custom[i].handle }}">
-                <img src="{{ product_variant_custom[i] | img_url: '100x100' }}">
-              </a>
+              <a href="https://{{ shop.domain }}/products/{{ product_variant_custom[i].handle }}"> </a>
               <div class="swatch" style="background-color: {{ product_variant_custom_color[i] }}; border-radius:50%;">
-                &nbsp;
+                &nbsp; <a href="https://{{ shop.domain }}/products/{{ product_variant_custom[i].handle }}"> </a>
               </div>
-              <a href="https://{{ shop.domain }}/products/{{ product_variant_custom_color[i].handle }}"> </a>
             </div>
           {% endfor %}
 
