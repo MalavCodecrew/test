@@ -116,8 +116,15 @@
               {% assign icolor = product_variant_custom_color[i] %}
 
               {% if product_handle and icolor %}
-                <div class="swatch" style="background-color: {{ icolor }}">
-                  <a href="https://{{ shop.domain }}/products/{{ product_handle }}"> </a>
+                <div class="swatch" style="background-color: {{ icolor }};">
+                  <a
+                    href="/products/{{ product_handle }}"
+                    title="View Product"
+                    aria-label="View Product"
+                    class="swatch-link"
+                  >
+                    <!-- Add optional text or image inside the swatch here if needed -->
+                  </a>
                 </div>
               {% endif %}
             {% endfor %}
