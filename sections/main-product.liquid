@@ -95,16 +95,35 @@
             {% endfor %}
           -->
 
+          <!--
+            {%- assign product_variant_custom = product.metafields.custom.product.value -%}
+            {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
+
+            {% for i in product_variant_custom %}
+              {% assign icolor = product_variant_custom_color[forloop.index0] %}
+
+              <div class="swatch" style="background-color: {{ icolor }}">
+                <a href="https://{{ shop.domain }}/products/{{ i.handle }}"> </a>
+              </div>
+            {% endfor %}
+          -->
+
           {%- assign product_variant_custom = product.metafields.custom.product.value -%}
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
 
-          {% for i in product_variant_custom %}
-            {% assign icolor = product_variant_custom_color[forloop.index0] %}
+          {% if product_variant_custom and product_variant_custom_color %}
+            {% assign custom_count = product_variant_custom.size %}
+            {% for i in (0..custom_count-1) %}
+              {% assign product_handle = product_variant_custom[i].handle %}
+              {% assign icolor = product_variant_custom_color[i] %}
 
-            <div class="swatch" style="background-color: {{ icolor }}">
-              <a href="https://{{ shop.domain }}/products/{{ i.handle }}"> </a>
-            </div>
-          {% endfor %}
+              {% if product_handle and icolor %}
+                <div class="swatch" style="background-color: {{ icolor }}">
+                  <a href="https://{{ shop.domain }}/products/{{ product_handle }}"> </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
