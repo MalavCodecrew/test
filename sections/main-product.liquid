@@ -88,7 +88,6 @@
 
           {%- assign product_variant_custom = product.metafields.custom.product.value -%}
           {% for i in product_variant_custom %}
-            {{ i.handle }}
             <a href="https://{{ shop.domain }}/products/{{ i.handle }}">
               <img src="{{ i | img_url: '100x100' }}">
             </a>
