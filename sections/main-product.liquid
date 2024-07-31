@@ -101,9 +101,9 @@
           {% for i in product_variant_custom %}
             {% assign icolor = product_variant_custom_color[forloop.index0] %}
 
-            <div class="swatch" style="background-color: {{ icolor }}">
-              <a href="https://{{ shop.domain }}/products/{{ i.handle }}"> </a>
-            </div>
+            <a href="https://{{ shop.domain }}/products/{{ i.handle }}">
+              <div class="swatch" style="background-color: {{ icolor }}">&nbsp</div>
+            </a>
           {% endfor %}
 
           {%- for block in section.blocks -%}
