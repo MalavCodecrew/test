@@ -78,17 +78,19 @@
           data-url="{{ product.url }}"
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
         >
-          {%- assign product_form_id = 'product-form-' | append: section.id -%}
+          <!--
+            {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
-          {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-          {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
+            {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
+            {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
 
-          {%- assign length_1 = product_variant_custom_color.size -%}
-          {%- assign length_2 = product_variant_custom_color_2.size -%}
+            {%- assign length_1 = product_variant_custom_color.size -%}
+            {%- assign length_2 = product_variant_custom_color_2.size -%}
 
-          {%- assign max_length = length_1 | plus: length_2 | divided_by: 2 -%}
-          {%- assign max_index = max_length | minus: 1 -%}
-          <!-- Compute the max index excluding the last one -->
+            {%- assign max_length = length_1 | plus: length_2 | divided_by: 2 -%}
+            {%- assign max_index = max_length | minus: 1 -%}
+            <!-- Compute the max index excluding the last one
+          -->
 
           {%- for i in (0..max_index) -%}
             {%- assign color_1 = product_variant_custom_color[i] | default: '#ffffff' -%}
@@ -100,7 +102,7 @@
               &nbsp
             </div>
           {% endfor %}
-
+          -->
           {%- assign product_variant_custom = product.metafields.custom.product.value -%}
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
           {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
