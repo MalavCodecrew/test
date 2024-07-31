@@ -87,7 +87,7 @@
           -->
 
           {%- assign product_variant_custom = product.metafields.custom.product.value -%}
-          {{ product_variant_custom }}
+          {{ product_variant_custom.handle }}
           <!--
             {% for product_variant in product.metafields.custom.product -%}
               <a href="https://{{ shop.domain }}/products/{{ product_variant.handle }}">
