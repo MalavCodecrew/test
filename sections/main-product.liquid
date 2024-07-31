@@ -102,7 +102,7 @@
             {% assign icolor = product_variant_custom_color[forloop.index0] %}
 
             <a href="https://{{ shop.domain }}/products/{{ i.handle }}">
-              <div class="swatch" style="background-color: {{ icolor }}">&nbsp</div>
+              <div class="swatch" style="background-color: {{ icolor }}; text-decoration: none;">&nbsp</div>
             </a>
           {% endfor %}
 
