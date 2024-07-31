@@ -89,27 +89,15 @@
             {% endfor %}
           -->
 
-          <!--
-            {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-            {% for icolor in product_variant_custom_color %}
-              <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
-            {% endfor %}
-
-            {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
-            {% for icolor2 in product_variant_custom_color_2 %}
-              <div class="swatch" style="background-color: {{ icolor2 }}; border-radius:50%;">&nbsp</div>
-            {% endfor %}
-          -->
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
+          {% for icolor in product_variant_custom_color %}
+            <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
+          {% endfor %}
+
           {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
-          {%- if product_variant_custom_color and product_variant_custom_color_2 -%}
-            <div
-              class="swatch"
-              style="background: linear-gradient(to right, {{ product_variant_custom_color }}, {{ product_variant_custom_color_2 }}); border-radius:50%; width: 40px; height: 40px; display: inline-block;"
-            >
-              &nbsp;
-            </div>
-          {%- endif -%}
+          {% for icolor2 in product_variant_custom_color_2 %}
+            <div class="swatch" style="background-color: {{ icolor2 }}; border-radius:50%;">&nbsp</div>
+          {% endfor %}
 
           <!--
             {%- assign product_variant_custom = product.metafields.custom.product.value -%}
