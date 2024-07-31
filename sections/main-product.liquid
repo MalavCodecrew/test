@@ -80,8 +80,8 @@
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
           {%- assign product_variant_custom = product.metafields.custom.product -%}
-
-          <img src="{{ product_variant_custom |img_url: '100x100' | json}}">
+          {{ product_variant_custom.handle }}
+          <img src="{{ product_variant_custom |img_url: '100x100' }}">
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
