@@ -87,33 +87,34 @@
                 <img src="{{ i | img_url: '100x100' }}">
               </a>
             {% endfor %}
-
-            {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-            {% for icolor in product_variant_custom_color %}
-              <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
-              <a href="https://{{ shop.domain }}/products/{{ icolor.handle }}"> </a>
-            {% endfor %}
           -->
 
-          {%- assign product_variant_custom = product.metafields.custom.product.value -%}
           {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
-          <div class="custom-swatch" style="display:flex">
-            {% for i in product_variant_custom %}
-              {% assign icolor = product_variant_custom_color[forloop.index0] %}
-              <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
-                <div
-                  class="swatch"
-                  style="
-                      background-color: {{ icolor }};border-radius: 0;
-                      border: 1px solid black;
-                    margin-right:5px;
-                  "
-                >
-                  &nbsp
-                </div>
-              </a>
-            {% endfor %}
-          </div>
+          {% for icolor in product_variant_custom_color %}
+            <div class="swatch" style="background-color: {{ icolor }}; border-radius:50%;">&nbsp</div>
+          {% endfor %}
+
+          <!--
+            {%- assign product_variant_custom = product.metafields.custom.product.value -%}
+            {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
+            <div class="custom-swatch" style="display:flex">
+              {% for i in product_variant_custom %}
+                {% assign icolor = product_variant_custom_color[forloop.index0] %}
+                <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
+                  <div
+                    class="swatch"
+                    style="
+                        background-color: {{ icolor }};border-radius: 0;
+                        border: 1px solid black;
+                      margin-right:5px;
+                    "
+                  >
+                    &nbsp
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          -->
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
