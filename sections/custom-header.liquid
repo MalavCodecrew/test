@@ -15,14 +15,12 @@
           <ul>
             {% for block in section.blocks %}
               <div class="cc-main-menu-container">
-                {% for i in (1..2) %}
-                  <div class="cc-main-menu-{{ i }}">
-                    <div class="megamenu4-title">
-                      <a href="{{ block.settings.url }}">{{ block.settings.title }}</a>
-                    </div>
-                    {% render 'icon-caret' %}
+                <div class="cc-main-menu-{{ forloop.index }}">
+                  <div class="megamenu4-title">
+                    <a href="{{ block.settings.url }}">{{ block.settings.title }}</a>
                   </div>
-                {% endfor %}
+                  {% render 'icon-caret' %}
+                </div>
                 <div class="sub-menu">
                   {%- for link in block.settings.menu.links -%}
                     <li>
