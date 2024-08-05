@@ -1,6 +1,95 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% comment %}
+  Custom Header Section
+{% endcomment %}
+
+<div class="custom-header">
+  <div class="container">
+    <div class="header-inner">
+      <!-- Logo -->
+      <div class="header-logo">
+        <a href="{{ shop.url }}">
+          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}">
+        </a>
+      </div>
+
+      <!-- Navigation Menu -->
+      <div class="header-navigation">
+        <nav class="main-nav">
+          <ul>
+            {% for link in linklists['main-menu'].links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="header-search">
+        <form action="{{ routes.search_url }}" method="get" class="search-form">
+          <input type="text" name="q" placeholder="Search our store" class="search-input">
+          <button type="submit" class="search-button">
+            <i class="icon-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-header {
+    background-color: #f8f8f8;
+    padding: 10px 0;
   }
-{% endschema %}
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo img {
+    max-height: 50px;
+  }
+
+  .header-navigation .main-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-navigation .main-nav ul li {
+    margin-right: 20px;
+  }
+
+  .header-navigation .main-nav ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  .header-search .search-form {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-search .search-input {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 3px;
+  }
+
+  .header-search .search-button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .header-search .icon-search:before {
+    content: "\f002";
+    font-family: FontAwesome;
+  }
+</style>
