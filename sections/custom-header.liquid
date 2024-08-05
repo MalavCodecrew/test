@@ -9,7 +9,7 @@
       <div class="header-navigation">
         <nav class="main-nav">
           <ul>
-            {% for link in linklists['main-menu'].links %}
+            {% for link in section.settings.menu.links %}
               <li>
                 <a href="{{ link.url }}">{{ link.title }}</a>
               </li>
@@ -88,7 +88,23 @@
 {
   "name": "custom header",
     "class": "section-header",
-  "settings": [],
+  "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "parent_link_handle",
+          "label": "Parent Link Handle",
+          "info": "Handle of the grandchild link this link belongs to."
+        }],
    "presets": [
   {
     "name": "custom-header"
