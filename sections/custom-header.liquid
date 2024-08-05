@@ -231,12 +231,14 @@
   </div>
 </div>
 <script>
+  {% for block in section.blocks %}
   $(document).ready(function () {
      $(".icon-caret").click(function () {
-      $('.cc-main-menu').toggleClass("active");
+      $('.cc-main-menu-{{ forloop.index }}').toggleClass("active");
       $(this).toggleClass("down");
   })
   })
+  {% endfor %}
 </script>
 
 {% schema %}
