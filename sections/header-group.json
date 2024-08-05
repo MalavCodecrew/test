@@ -87,21 +87,11 @@
             "url": "",
             "menu": "footer"
           }
-        },
-        "text_PjdjCd": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "title": "test3",
-            "url": "",
-            "menu": "footer"
-          }
         }
       },
       "block_order": [
         "text_nffmxB",
-        "text_czR8XF",
-        "text_PjdjCd"
+        "text_czR8XF"
       ],
       "settings": {
       }
