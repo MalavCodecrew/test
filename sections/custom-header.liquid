@@ -10,8 +10,7 @@
         <nav class="main-nav">
           <ul>
             {% for block in section.blocks %}
-              <a href="{{ block.settings.url }}">{{ block.settings.title }}</a
-              ><a href="#"><div class="fa fa-chevron-right rotate"></div></a>
+              <a href="{{ block.settings.url }}">{{ block.settings.title }}</a> {% render 'icon-caret' %}
               <div class="sub-menu">
                 {% for link in block.settings.menu.links %}
                   <li>
@@ -37,76 +36,81 @@
   </div>
 </div>
 <script>
-   $(".rotate").click(function () {
+  $(".icon-caret").click(function () {
       $(this).toggleClass("down");
   })
 </script>
 <style>
-        .sub-menu{
-        display:none
-        }
+      .sub-menu{
+      display:none
+      }
 
-      .rotate {
-      -moz-transition: all .5s linear;
+      .icon-caret {
       -webkit-transition: all .5s linear;
       transition: all .5s linear;
   }
-  .rotate.down {
+  . .icon-caret .down {
       -moz-transform:rotate(90deg);
       -webkit-transform:rotate(90deg);
       transform:rotate(90deg);
   }
-
-        .custom-header {
-          background-color: #f8f8f8;
-          padding: 10px 0;
+        .icon-caret{
+         position: sticky;
+         height: .6rem;
+         top:12px;
+          cursor:pointer
         }
 
-        .header-inner {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
+      .custom-header {
+        background-color: #f8f8f8;
+        padding: 10px 0;
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
 
-        .header-navigation .main-nav ul {
-          list-style: none;
-          display: flex;
-          margin: 0;
-          padding: 0;
-        }
+      .header-navigation .main-nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
 
-        .header-navigation .main-nav ul li {
-          margin-right: 20px;
-        }
+      .header-navigation .main-nav ul li {
+        margin-right: 20px;
+      }
 
-        .header-navigation .main-nav ul li a {
-          text-decoration: none;
-          color: #333;
-        }
+      .header-navigation .main-nav ul li a {
+        text-decoration: none;
+        color: #333;
+      }
 
-        .header-search .search-form {
-          display: flex;
-          align-items: center;
-        }
+      .header-search .search-form {
+        display: flex;
+        align-items: center;
+      }
 
-        .header-search .search-input {
-          border: 1px solid #ccc;
-          padding: 5px 10px;
-          border-radius: 3px;
-        }
+      .header-search .search-input {
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        border-radius: 3px;
+      }
 
-        .header-search .search-button {
-          background: none;
-          border: none;
-          padding: 5px;
-          cursor: pointer;
-        }
+      .header-search .search-button {
+        background: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+      }
 
-        .header-search .icon-search:before {
-          content: "\f002";
-          font-family: FontAwesome;
-        }
+      .header-search .icon-search:before {
+        content: "\f002";
+        font-family: FontAwesome;
+      }
 </style>
 
 {% schema %}
