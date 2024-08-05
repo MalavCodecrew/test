@@ -1,10 +1,10 @@
 {% comment %}
-  Custom Header Section
-{% endcomment %}
+    Custom Header Section
 
-{% for i in (1..2) %}
-  {% assign cc_index = i %}
-{% endfor %}
+  {% for i in (1..2) %}
+    {% assign cc_index = i %}
+  {% endfor %}
+{% endcomment %}
 
 <div class="custom-header">
   <div class="container">
@@ -15,12 +15,14 @@
           <ul>
             {% for block in section.blocks %}
               <div class="cc-main-menu-container">
-                <div class="cc-main-menu-{{ cc_index }}">
-                  <div class="megamenu4-title">
-                    <a href="{{ block.settings.url }}">{{ block.settings.title }}</a>
+                {% for i in (1..2) %}
+                  <div class="cc-main-menu-{{ i }}">
+                    <div class="megamenu4-title">
+                      <a href="{{ block.settings.url }}">{{ block.settings.title }}</a>
+                    </div>
+                    {% render 'icon-caret' %}
                   </div>
-                  {% render 'icon-caret' %}
-                </div>
+                {% endfor %}
                 <div class="sub-menu">
                   {%- for link in block.settings.menu.links -%}
                     <li>
