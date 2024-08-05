@@ -142,7 +142,9 @@
   $(document).ready(function () {
      $(".icon-caret").click(function () {
       $(this).toggleClass("down");
-  })
+  });
+       $("body").click(function () {
+      $(this).removeClass("down");
   })
 </script>
 <style>
