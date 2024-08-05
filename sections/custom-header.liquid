@@ -10,7 +10,7 @@
         <nav class="main-nav">
           <ul>
             {% for block in section.blocks %}
-              <a href="{{ block.settings.url }}">{{ block.settings.title }}</a>
+              <a href="{{ block.settings.url }}">{{ block.settings.title }}</a> {% render 'icon-caret' %}
             {%- endfor %}
             {% for link in section.settings.menu.links %}
               <li>
