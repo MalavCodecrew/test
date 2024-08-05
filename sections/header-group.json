@@ -76,7 +76,7 @@
           "type": "text",
           "settings": {
             "title": "test",
-            "url": "",
+            "url": "shopify:\/\/collections",
             "menu": "footer"
           }
         },
