@@ -71,10 +71,38 @@
     },
     "custom_header_CqpLB9": {
       "type": "custom-header",
+      "blocks": {
+        "text_nffmxB": {
+          "type": "text",
+          "settings": {
+            "title": "test",
+            "url": "",
+            "menu": ""
+          }
+        },
+        "text_czR8XF": {
+          "type": "text",
+          "settings": {
+            "title": "test2",
+            "url": "",
+            "menu": ""
+          }
+        },
+        "text_PjdjCd": {
+          "type": "text",
+          "settings": {
+            "title": "test3",
+            "url": "",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "text_nffmxB",
+        "text_czR8XF",
+        "text_PjdjCd"
+      ],
       "settings": {
-        "title": "menu",
-        "url": "shopify:\/\/pages\/home1",
-        "parent_link_handle": "menu"
       }
     }
   },
