@@ -1,10 +1,10 @@
 {% comment %}
-    Custom Header Section
-
-  {% for i in (1..2) %}
-    {% assign cc_index = i %}
-  {% endfor %}
+  Custom Header Section
 {% endcomment %}
+
+{% for block in section.blocks %}
+  {% assign cc_index = forloop.index %}
+{% endfor %}
 
 <div class="custom-header">
   <div class="container">
@@ -173,9 +173,9 @@
             transform:rotate(180deg);
               }
 
-      .cc-main-menu.active + .sub-menu {
-        display: block;
-      }
+            .cc-main-menu-{{ cc_index }}.active + .sub-menu {
+              display: block;
+            }
               .icon-caret{
                position: relative;
                height: .6rem;
@@ -201,10 +201,10 @@
               margin: 0;
               padding: 0;
 
-                  width: 100%;
-    gap: 10px;
-    padding: 15px;
-    text-transform: capitalize;
+              width: 100%;
+              gap: 10px;
+              padding: 15px;
+              text-transform: capitalize;
             }
 
             .header-navigation .main-nav ul li {
