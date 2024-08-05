@@ -139,11 +139,22 @@
   </div>
 </div>
 <script>
-  $(document).ready(function () {
-     $(".icon-caret").click(function () {
+   $(document).ready(function () {
+    $(".icon-caret").click(function () {
+      // Close all sub-menus
+      $(".sub-menu").hide();
+      // Remove 'down' class from all carets
+      $(".icon-caret").removeClass("down");
+
+      // Open the clicked sub-menu
       $(this).toggleClass("down");
+      if ($(this).hasClass("down")) {
+        $(this).next(".sub-menu").show();
+      } else {
+        $(this).next(".sub-menu").hide();
+      }
+    });
   });
-  })
 </script>
 <style>
    .sub-menu ul.list-unstyled {
