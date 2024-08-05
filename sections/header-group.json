@@ -82,7 +82,6 @@
         },
         "text_czR8XF": {
           "type": "text",
-          "disabled": true,
           "settings": {
             "title": "test2",
             "url": "",
