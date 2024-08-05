@@ -73,6 +73,24 @@
                               >
                                 {{ grandchildlink.title | escape }}
                               </a>
+                              {%- if grandchildlink.links != blank -%}
+                                <ul class="list-unstyled" role="list">
+                                  {%- for greatgrandchildlink in grandchildlink.links -%}
+                                    <li>
+                                      <a
+                                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}-{{ greatgrandchildlink.handle }}"
+                                        href="{{ greatgrandchildlink.url }}"
+                                        class="mega-menu__link link{% if greatgrandchildlink.current %} mega-menu__link--active{% endif %}"
+                                        {% if greatgrandchildlink.current %}
+                                          aria-current="page"
+                                        {% endif %}
+                                      >
+                                        {{ greatgrandchildlink.title | escape }}
+                                      </a>
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              {%- endif -%}
                             </li>
                           {%- endfor -%}
                         </ul>
