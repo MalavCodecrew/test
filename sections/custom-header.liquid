@@ -10,7 +10,9 @@
         <nav class="main-nav">
           <ul>
             {% for block in section.blocks %}
-              <a href="{{ block.settings.url }}">{{ block.settings.title }}</a> {% render 'icon-caret' %}
+              <div class="megamenu4-title">
+                <a href="{{ block.settings.url }}">{{ block.settings.title }}</a> {% render 'icon-caret' %}
+              </div>
               <div class="sub-menu">
                 {%- for link in block.settings.menu.links -%}
                   <li>
