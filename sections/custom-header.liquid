@@ -12,7 +12,7 @@
             {% for block in section.blocks %}
               <a href="{{ block.settings.url }}">{{ block.settings.title }}</a> {% render 'icon-caret' %}
               <div class="sub-menu">
-                {%- for link in section.settings.menu.links -%}
+                {%- for link in block.settings.menu.links -%}
                   <li>
                     {%- if link.links != blank -%}
                       <header-menu>
