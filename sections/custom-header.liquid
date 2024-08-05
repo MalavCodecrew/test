@@ -11,12 +11,12 @@
           <ul>
             {% for block in section.blocks %}
               <a href="{{ block.settings.url }}">{{ block.settings.title }}</a> {% render 'icon-caret' %}
+              {% for link in section.settings.menu.links %}
+                <li>
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
             {%- endfor %}
-            {% for link in section.settings.menu.links %}
-              <li>
-                <a href="{{ link.url }}">{{ link.title }}</a>
-              </li>
-            {% endfor %}
           </ul>
         </nav>
       </div>
