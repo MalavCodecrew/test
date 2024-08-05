@@ -77,11 +77,12 @@
           "settings": {
             "title": "test",
             "url": "",
-            "menu": ""
+            "menu": "footer"
           }
         },
         "text_czR8XF": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "title": "test2",
             "url": "",
@@ -90,6 +91,7 @@
         },
         "text_PjdjCd": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "title": "test3",
             "url": "",
