@@ -16,7 +16,9 @@
 a#HeaderMenu-inails {
   color: #d8ade8;
 }
-
+.section-header {
+  position: relative;
+}
 .switch {
   display: flex;
   align-items: center;
