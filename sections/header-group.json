@@ -72,6 +72,9 @@
     "custom_header_CqpLB9": {
       "type": "custom-header",
       "settings": {
+        "title": "menu",
+        "url": "shopify:\/\/pages\/home1",
+        "parent_link_handle": "menu"
       }
     }
   },
