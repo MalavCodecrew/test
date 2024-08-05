@@ -12,7 +12,7 @@
             {% for block in section.blocks %}
               {% for i in (1..block.length) %}
                 <div class="cc-main-menu-container">
-                  <div class="cc-main-menu">
+                  <div class="cc-main-menu-{{ i }}">
                     <div class="megamenu4-title">
                       <a href="{{ block.settings.url }}">{{ block.settings.title }}</a>
                     </div>
