@@ -9,7 +9,7 @@
       <div class="header-navigation">
         <nav class="main-nav">
           <ul>
-            <a href="{{ link.url }}">{{ link.title }}</a>
+            <a href="{{ section.settings.url }}">{{ section.settings.title }}</a>
             {% for link in section.settings.menu.links %}
               <li>
                 <a href="{{ link.url }}">{{ link.title }}</a>
@@ -104,7 +104,30 @@
       "type": "link_list",
       "id": "menu",
       "label": "t:sections.header.settings.menu.label"
-    }],
+    }],"blocks": [
+    {
+      "type": "greatgrandchild_link",
+      "name": "Great Grandchild Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "parent_link_handle",
+          "label": "Parent Link Handle",
+          "info": "Handle of the grandchild link this link belongs to."
+        }
+      ]
+    }
+  ],
    "presets": [
   {
     "name": "custom-header"
