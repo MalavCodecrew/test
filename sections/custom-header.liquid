@@ -144,7 +144,7 @@
 <script>
   $(document).ready(function () {
      $(".icon-caret").click(function () {
-      $('.cc-main-menu-container').toggleClass("active");
+      $('.cc-main-menu').toggleClass("active");
       $(this).toggleClass("down");
   })
   })
@@ -169,7 +169,7 @@
             transform:rotate(180deg);
               }
 
-      .cc-main-menu-container.active + .sub-menu {
+      .cc-main-menu.active + .sub-menu {
         display: block;
       }
               .icon-caret{
