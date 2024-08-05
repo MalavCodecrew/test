@@ -9,7 +9,9 @@
       <div class="header-navigation">
         <nav class="main-nav">
           <ul>
-            <a href="{{ section.settings.url }}">{{ section.settings.title }}</a>
+            {% for block in section.blocks %}
+              <a href="{{ block.settings.url }}">{{ block.settings.title }}</a>
+            {%- endfor %}
             {% for link in section.settings.menu.links %}
               <li>
                 <a href="{{ link.url }}">{{ link.title }}</a>
