@@ -9,6 +9,7 @@
       <div class="header-navigation">
         <nav class="main-nav">
           <ul>
+            <a href="{{ link.url }}">{{ link.title }}</a>
             {% for link in section.settings.menu.links %}
               <li>
                 <a href="{{ link.url }}">{{ link.title }}</a>
