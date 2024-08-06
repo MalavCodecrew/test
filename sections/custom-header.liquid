@@ -138,21 +138,6 @@
     </div>
   </div>
 </div>
-<script>
-   $(document).ready(function () {
-    $(".icon-caret").click(function () {
-      $(".sub-menu").hide()
-      $(".icon-caret").removeClass("down");
-      $(this).toggleClass("down");
-      if ($(this).hasClass("down")) {
-        $(this).next(".sub-menu").show();
-      } else {
-        $(this).next(".sub-menu").hide();
-      }
-    });
-  });
-</script>
-
 {% schema %}
 {
   "name": "custom header",
