@@ -172,12 +172,6 @@ a#HeaderMenu-inails {
   font-family: FontAwesome;
 }
 @media only screen and (max-width: 768px) {
-  .container {
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   .header-inner {
     background-color: #36383f;
     border-radius: 40px;
