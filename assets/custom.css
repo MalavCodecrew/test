@@ -177,12 +177,8 @@ a#HeaderMenu-inails {
     height: 600px;
   }
   .header-navigation {
-    border: 1px solid #36383f;
-    border-radius: 20px;
     width: 94%;
     height: 91%;
-    background-color: #f5f6fa;
-    overflow: hidden;
   }
   nav {
     background-color: #1e1e23;
