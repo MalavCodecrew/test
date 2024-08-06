@@ -172,21 +172,38 @@ a#HeaderMenu-inails {
   font-family: FontAwesome;
 }
 @media only screen and (max-width: 768px) {
+  .container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .header-inner {
-    width: 78px;
-    height: 57px;
+    background-color: #36383f;
+    border-radius: 40px;
+    width: 300px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 30px 50px 100px #85888c;
   }
   .header-navigation {
-    width: 100%;
-    background-color: #dfe3e8;
+    border: 1px solid #36383f;
+    border-radius: 20px;
+    width: 94%;
+    height: 91%;
+    background-color: #f5f6fa;
     overflow: hidden;
   }
   nav {
-    background-color: #f4f6f8;
+    background-color: #1e1e23;
     height: 65px;
   }
 
   #menuToggle {
+    display: flex;
+    flex-direction: column;
     position: relative;
     top: 25px;
     left: 25px;
@@ -211,7 +228,7 @@ a#HeaderMenu-inails {
     height: 2px;
     margin-bottom: 5px;
     position: relative;
-    background: #000;
+    background: #ffffff;
     border-radius: 3px;
     z-index: 1;
     transform-origin: 5px 0px;
