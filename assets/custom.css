@@ -178,6 +178,9 @@ a#HeaderMenu-inails {
   display: none;
 }
 @media only screen and (max-width: 768px) {
+  .sub-menu {
+    display: relative;
+  }
   .header-inner {
     width: 153px;
     height: 50px;
