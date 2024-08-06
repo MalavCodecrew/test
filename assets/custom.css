@@ -249,8 +249,8 @@ a#HeaderMenu-inails {
 
   #menu {
     position: absolute;
-    width: 180px;
-    height: 180px;
+    width: max-content;
+    height: max-content;
     margin: -50px 0 0 -50px;
     padding: 50px;
     padding-top: 125px;
