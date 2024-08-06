@@ -88,6 +88,9 @@ a#HeaderMenu-inails {
 .sub-menu .mega-menu[open] .mega-menu__content {
   display: contents;
 }
+.megamenu4-title {
+  font-family: cursive;
+}
 
 .sub-menu {
   display: none;
@@ -95,7 +98,6 @@ a#HeaderMenu-inails {
   position: absolute;
   top: 100%;
   z-index: 999999;
-  font-family: cursive;
 }
 
 .icon-caret {
