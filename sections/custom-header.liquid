@@ -75,7 +75,7 @@
                                       {%- if childlink.links != blank -%}
                                         <ul class="list-unstyled" role="list">
                                           {%- for grandchildlink in childlink.links -%}
-                                            <li>
+                                            <li class="main-3li">
                                               <a
                                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                                 href="{{ grandchildlink.url }}"
@@ -89,7 +89,7 @@
                                               {%- if grandchildlink.links != blank -%}
                                                 <ul class="list-unstyled" role="list">
                                                   {%- for greatgrandchildlink in grandchildlink.links -%}
-                                                    <li>
+                                                    <li main-4li>
                                                       <a
                                                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}-{{ greatgrandchildlink.handle }}"
                                                         href="{{ greatgrandchildlink.url }}"
