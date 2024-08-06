@@ -264,4 +264,7 @@ a#HeaderMenu-inails {
   #menuToggle input:checked ~ ul {
     transform: none;
   }
+  .sub-menu {
+    width: 100%;
+  }
 }
