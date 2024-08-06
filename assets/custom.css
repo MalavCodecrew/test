@@ -245,11 +245,9 @@ a#HeaderMenu-inails {
     position: absolute;
     width: 180px;
     height: 400px;
-    box-shadow: 0 0 10px #85888c;
     margin: -50px 0 0 -50px;
     padding: 50px;
     padding-top: 125px;
-    background-color: #f5f6fa;
     -webkit-font-smoothing: antialiased;
     transform-origin: 0% 0%;
     transform: translate(-100%, 0);
