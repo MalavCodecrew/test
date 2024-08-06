@@ -137,7 +137,6 @@ a#HeaderMenu-inails {
   display: flex;
   margin: 0;
   padding: 0;
-
   width: 100%;
   gap: 10px;
   padding: 15px;
@@ -261,14 +260,11 @@ a#HeaderMenu-inails {
   }
 
   #menu li {
-    padding: 10px 0;
+    padding: 15px 60px;
     transition-delay: 2s;
   }
 
   #menuToggle input:checked ~ ul {
     transform: none;
-  }
-  .sub-menu {
-    width: 100%;
   }
 }
