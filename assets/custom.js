@@ -1,6 +1,4 @@
 // 4th level megamenu dropdown js-------------------------------------------------
-
-
 $(document).ready(function () {
   $(".icon-caret").click(function (event) {
     // Prevent the document click event from firing
