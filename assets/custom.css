@@ -180,6 +180,7 @@ a#HeaderMenu-inails {
 @media only screen and (max-width: 768px) {
   .sub-menu {
     position: relative;
+    background: cornsilk;
   }
   .header-inner {
     width: 153px;
