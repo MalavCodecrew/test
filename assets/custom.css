@@ -88,8 +88,9 @@ a#HeaderMenu-inails {
 .sub-menu .mega-menu[open] .mega-menu__content {
   display: contents;
 }
-.megamenu4-title {
-  font-family: cursive;
+.megamenu4-title a{
+  font-family: cursive
+  text-decoration:none;
 }
 
 .sub-menu {
