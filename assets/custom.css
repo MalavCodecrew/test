@@ -174,7 +174,7 @@ a#HeaderMenu-inails {
 @media only screen and (max-width: 768px) {
   .header-inner {
     width: 153px;
-    height: 600px;
+    height: 70px;
   }
   .header-navigation {
     width: 100%;
