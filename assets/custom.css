@@ -95,6 +95,7 @@ a#HeaderMenu-inails {
   position: absolute;
   top: 100%;
   z-index: 999999;
+  font-family: cursive;
 }
 
 .icon-caret {
