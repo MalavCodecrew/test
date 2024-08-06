@@ -260,11 +260,14 @@ a#HeaderMenu-inails {
   }
 
   #menu li {
-    padding: 15px 60px;
+    padding: 10px 0;
     transition-delay: 2s;
   }
 
   #menuToggle input:checked ~ ul {
     transform: none;
+  }
+  .sub-menu {
+    width: 100%;
   }
 }
