@@ -173,14 +173,8 @@ a#HeaderMenu-inails {
 }
 @media only screen and (max-width: 768px) {
   .header-inner {
-    background-color: #36383f;
-    border-radius: 40px;
-    width: 300px;
+    width: 153px;
     height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 30px 50px 100px #85888c;
   }
   .header-navigation {
     border: 1px solid #36383f;
