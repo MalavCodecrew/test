@@ -24,8 +24,7 @@ function buildBlock(product) {
   `
   return html
 }
-
-fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedid }}&limit=3")
+  fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedid }}&limit=3")
   .then(response => response.json())
   .then(({ products }) => {
     products.forEach(product => {
