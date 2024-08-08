@@ -33,3 +33,7 @@ fetch('{url}', {
     mode: 'cors'
 })
     .then(response => console.log(response,"url"));
+fetch('https://quickstart-06ab4342.myshopify.com//en/recommendations/products.json?product_id=12345&intent=buy')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
