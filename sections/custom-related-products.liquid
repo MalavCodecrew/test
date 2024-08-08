@@ -4,9 +4,12 @@
     <div class="custom-related-products"></div>
   </div>
 </div>
+{% if cart.item_count > 0 %}
+  {% assign relatedId = cart.items[0].product_id %}
+{% endif %}
 
 <script>
-  fetch(window.Shopify.routes.root + "recommendations/products.json?product_id=1234567890123&limit=4&intent=related")
+  fetch(window.Shopify.routes.root + "recommendations/products.json?product_id=1234567890123")
   .then(response => response.json())
   .then(({ products }) => {
     if (products.length > 0) {
