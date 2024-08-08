@@ -79,7 +79,7 @@ a#HeaderMenu-inails {
 .regularwithvat {
   display: none;
 }
-.custom-related.grid__item {
+.custom-related .grid__item {
   list-style-type: none;
 }
 /* //4th level megamenu css ------------------------*/
