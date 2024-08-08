@@ -67,7 +67,7 @@ function buildBlock(product) {
   return html
 }
 
-fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ product.id }}&limit=3")
+fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ product.id }}&limit=4")
   .then(response => response.json())
   .then(({ products }) => {
     products.forEach(product => {
