@@ -1,21 +1,11 @@
 <div class="related">
   <div class="width">
     <h2>Recommendations</h2>
-
     <div class="related-product" id="custom-product"></div>
   </div>
 </div>
-{{ product.id }}----
-{% if cart.item_count > 0 %}
-  {% assign relatedId = cart.items[0].product_id %}
-  console.log()
-{% else %}
-  {% assign relatedId = 9513927016726 %}
-{% endif %}
 
 <script>
-
-
 function formatMoney(cents, format) {
     if (typeof cents == 'string') { cents = cents.replace('.',''); }
     var value = '';
