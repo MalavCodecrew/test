@@ -11,26 +11,57 @@
 {% endif %}
 
 <script>
-function buildblock(product){
- const html = `<a class="related-product" href='${product.url}'>
- <img src='${product.images[0]}' />
- <h3>${product.title}</h3>
- <span>${product.price}</span>                                                                                                             
- </a>
- `
+
+function buildBlock(product) {
+  const formattedPrice = formatMoney(product.price, "{{ shop.money_format }}")
+
+  const html = `
+    <a class="related-product" href="${product.url}">
+      <img src="${product.images[0]}" />
+      <h3>${product.title}</h3>
+      <span>${product.price}</span>
+      </form>
+    </a>
+  `
+
   return html
 }
+
+fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedId }}&limit=3")
+  .then(response => response.json())
+  .then(({ products }) => {
+    products.forEach(product => {
+      const html = buildBlock(product)
+      document.querySelector('.related-products').innerHTML += html
+    })
+  }
+);
+
+
+
+
+
   
-    fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}")
-    .then(response => response.json())
-    .then(({ products }) => {
-        products.forEach(product=>{
-          const html = buildblock(product)
-          document.querySelector(".related-products").innerHTML =+ html
+// function buildblock(product){
+//  const html = `<a class="related-product" href='${product.url}'>
+//  <img src='${product.images[0]}' />
+//  <h3>${product.title}</h3>
+//  <span>${product.price}</span>                                                                                                             
+//  </a>
+//  `
+//   return html
+// }
+  
+//     fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}")
+//     .then(response => response.json())
+//     .then(({ products }) => {
+//         products.forEach(product=>{
+//           const html = buildblock(product)
+//           document.querySelector(".related-products").innerHTML =+ html
           
-        })
-    }
-  );
+//         })
+//     }
+//   );
 </script>
 {% schema %}
 {
