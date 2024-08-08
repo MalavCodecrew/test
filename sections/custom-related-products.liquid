@@ -7,9 +7,9 @@
 </div>
 
 {% if cart.item_count > 0 %}
-  {% assign relatedId = cart.items[0].product_id %}
+  {% assign relatedid = cart.items[0].product_id %}
 {% else %}
-  {% assign relatedId = 48903798325526 %}
+  {% assign relatedid = 48903798325526 %}
 {% endif %}
 
 <script>
@@ -32,7 +32,7 @@ function buildBlock(product) {
   return html
 }
 
-fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedId }}&limit=3")
+fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedid }}&limit=3")
   .then(response => response.json())
   .then(({ products }) => {
     products.forEach(product => {
