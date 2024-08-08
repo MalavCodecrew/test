@@ -29,5 +29,6 @@ $(document).ready(function () {
 });
 
 // -------------------practice api--------------------------------------------
-fetch('{url}')
+fetch('{url}',{ method:post
+})
     .then(response => console.log(response,"url"));
