@@ -32,7 +32,7 @@ fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ 
   .then(response => response.json())
   .then(({ products }) => {
     products.forEach(product => {
-      console.log(prod)
+      console.log(product);
       const html = buildBlock(product)
       document.querySelector('.related-products').innerHTML += html
     })
