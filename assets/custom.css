@@ -292,4 +292,9 @@ a#HeaderMenu-inails {
 .related-products img {
   border-radius: 16px;
   margin-bottom: 20px;
+  color: #111;
+}
+.related-products h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
 }
