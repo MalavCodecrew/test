@@ -11,7 +11,7 @@
 {% endif %}
 
 <script>
-    fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}")
+    fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}&limit=3")
     .then(response => response.json())
     .then(({ products }) => {
      console.log(products,"products")
