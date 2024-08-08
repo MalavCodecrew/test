@@ -1,26 +1,29 @@
-<product-recommendations
-  class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
->
-  {{ recommendations.products_count }}
-  {% if recommendations.products_count > 0 and recommendations.performed %}
-    {% for product in recommendations.products %}
-      <div class="custom-related">
-        <li class="grid__item">
-          {% render 'card-product',
-            card_product: product,
-            media_aspect_ratio: section.settings.image_ratio,
-            image_shape: section.settings.image_shape,
-            show_secondary_image: section.settings.show_secondary_image,
-            show_vendor: section.settings.show_vendor,
-            show_rating: section.settings.show_rating
-          %}
-        </li>
-      </div>
-    {% endfor %}
-  {% endif %}
-</product-recommendations>
+<div>
+  You may like:
 
+  <product-recommendations
+    class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
+  >
+    {{ recommendations.products_count }}
+    {% if recommendations.products_count > 0 and recommendations.performed %}
+      {% for product in recommendations.products %}
+        <div class="custom-related">
+          <li class="grid__item">
+            {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: section.settings.image_ratio,
+              image_shape: section.settings.image_shape,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating
+            %}
+          </li>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </product-recommendations>
+</div>
 {% schema %}
 {
   "name": "custom-related-products",
