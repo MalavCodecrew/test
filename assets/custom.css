@@ -285,7 +285,9 @@ a#HeaderMenu-inails {
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
 }
-
+#custom-product2 {
+  text-decoration: none;
+}
 #custom-product2 img {
   border-radius: 16px;
   margin-bottom: 20px;
