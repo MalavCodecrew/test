@@ -30,4 +30,4 @@ $(document).ready(function () {
 
 // -------------------practice api--------------------------------------------
 fetch('{url}')
-    .then(response => console.log(response));
+    .then(response => console.log(response,"url"));
