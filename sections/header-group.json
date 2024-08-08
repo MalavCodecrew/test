@@ -95,11 +95,17 @@
       ],
       "settings": {
       }
+    },
+    "custom_related_products_T36CQ4": {
+      "type": "custom-related-products",
+      "settings": {
+      }
     }
   },
   "order": [
     "announcement-bar",
     "header",
-    "custom_header_CqpLB9"
+    "custom_header_CqpLB9",
+    "custom_related_products_T36CQ4"
   ]
 }
