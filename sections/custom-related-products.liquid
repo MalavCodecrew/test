@@ -69,6 +69,7 @@ function buildBlock(product) {
       <span>${formattedPrice}</span>
       <form method="post" action="/cart/add">
         <input name="id" type="hidden" value="${product.variants[0].id}" />
+        <button type="submit">Add to cart</button>
       </form>
     </a>
   `
