@@ -22,7 +22,7 @@ function buildBlock(product){
   return html
 }
   
-    fetch(window.Shopify.routes.root + "recommendations/product.json?product_id={{relatedid}}")
+    fetch(window.Shopify.routes.root + "recommendations/product.custom.json?product_id={{relatedid}}")
     .then(response => response.json())
     .then(({ products }) => {
       console.log(products)
