@@ -21,7 +21,7 @@ function buildBlock(product) {
     <a class="related-product" href="${product.url}">
       <img src="${product.images[0]}" />
       <h3>${product.title}</h3>
-      <span>${product.price}</spa
+      <span>${product.price}</span>
     </a>
   `
 
@@ -32,8 +32,8 @@ fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ 
   .then(response => response.json())
   .then(({ products }) => {
     products.forEach(product => {
-      console.log(products);
       const html = buildBlock(product)
+      console.log(html);
       document.querySelector('.related-products').innerHTML += html
     })
   }
