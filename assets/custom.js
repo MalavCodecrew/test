@@ -28,6 +28,6 @@ $(document).ready(function () {
   });
 });
 
-
+// -------------------practice api--------------------------------------------
 fetch('{url}')
     .then(response => console.log(response));
