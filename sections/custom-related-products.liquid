@@ -1,11 +1,7 @@
-{% if recommendations.performed -%}
-  {% if recommendations.products_count > 0 %}
-    {% for product in recommendations.products %}
-      {{ product.title | link_to: product.url }}
-    {% endfor %}
-  {% endif %}
-{% else %}
-  <div class="placeholder">Placeholder animation</div>
+{% if recommendations.products_count > 0 %}
+  {% for product in recommendations.products %}
+    {{ product.title | link_to: product.url }}
+  {% endfor %}
 {% endif %}
 
 {% schema %}
