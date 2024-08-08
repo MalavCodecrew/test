@@ -15,17 +15,12 @@
 <script>
   
 function buildBlock(product) {
-  const formattedPrice = formatMoney(product.price, "{{ shop.money_format }}")
 
   const html = `
     <a class="related-product" href="${product.url}">
       <img src="${product.images[0]}" />
       <h3>${product.title}</h3>
-      <span>${formattedPrice}</span>
-      <form method="post" action="/cart/add">
-        <input name="id" type="hidden" value="${product.variants[0].id}" />
-        <button type="submit">Add to cart</button>
-      </form>
+      <span>${product.price}</span>
     </a>
   `
 
