@@ -1,59 +1,46 @@
 <div class="related">
   <div class="width">
-    <h2>{{ section.settings.heading }}</h2>
-
-    <div class="related-product"></div>
+    <h1>You may like:</h1>
+    <div id="related-products"></div>
   </div>
 </div>
-
 {% if cart.item_count > 0 %}
-  {% assign relatedId = cart.items[0].product_id %}
+  {% assign relatedid = cart.items[0].product_id %}
 {% else %}
-  {% assign relatedId = 9514178511126 %}
+  {% assign relatedid = 9556924432662 %}
 {% endif %}
 
 <script>
   
-
-function buildBlock(product) {
-
-  const html = `
-    <a class="related-product" href="${product.url}">
-      <img src="${product.images}" />
-      <h3>${product.title}</h3>
-      <span>${product.price}</span>
-    </a>
-  `
-
+function buildBlock(product){
+ const html = `<a class="related-product" href='${product.url}'>
+ <img src='${product.images[0]}' />
+ <h3>${product.title}</h3>
+ <span>${product.price}</span>                                                                                                             
+ </a>
+ `
   return html
 }
-
-fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedId }}")
-  .then(response => response.json())
-  .then(({ products }) => {
-    products.forEach(product => {
-      const html = buildBlock(product)
-      console.log(html);
-      document.querySelector('.related-product').innerHTML += html
-    })
-  }
-);
+  
+    fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}")
+    .then(response => response.json())
+    .then(({ products }) => {
+      console.log(products)
+        products.forEach(product=>{
+          const html = buildBlock(product)
+          document.querySelector("#related-products").innerHTML =+ html
+          
+        })
+    }
+  );
 </script>
-
 {% schema %}
 {
-  "name": "Related products",
-  "settings": [
+  "name": "custom-related-products",
+  "settings": [],
+   "presets": [
     {
-      "type": "text",
-      "label": "Heading",
-      "id": "heading",
-      "default": "You may also like"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Related products"
+      "name": "custom-related-products"
     }
   ]
 }
