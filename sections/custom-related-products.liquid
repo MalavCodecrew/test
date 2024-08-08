@@ -6,21 +6,17 @@
 </div>
 {% if cart.item_count > 0 %}
   {% assign relatedId = cart.items[0].product_id %}
+{% else %}
+  {% assign relatedId = 48903798325526 %}
 {% endif %}
 
 <script>
-  fetch(window.Shopify.routes.root + "recommendations/products.json?product_id=48903798325526")
-  .then(response => response.json())
-  .then(({ products }) => {
-    if (products.length > 0) {
-      const firstRecommendedProduct = products[0];
-
-      alert(
-        `The title of the first recommended product is: ${firstRecommendedProduct.title}`
-      );
+    fetch(window.Shopify.routes.root + "recommendations/products.json?product_id=48903798325526")
+    .then(response => response.json())
+    .then(({ products }) => {
+     console.log(products,"products")
     }
-  }
-);
+  );
 </script>
 {% schema %}
 {
