@@ -1,7 +1,7 @@
 <div class="related">
   <div class="width">
     <h2>You may like:</h2>
-    <div class="custom-related-products"></div>
+    <div class="related-products"></div>
   </div>
 </div>
 {% if cart.item_count > 0 %}
@@ -24,7 +24,11 @@ function buildblock(product){
     fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}&limit=3")
     .then(response => response.json())
     .then(({ products }) => {
-     console.log(products,"products")
+        products.foreach(product=>{
+          const html = buildblock(product)
+          document.queryselector(.related-product)
+          
+        })
     }
   );
 </script>
