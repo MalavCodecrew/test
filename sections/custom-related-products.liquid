@@ -1,38 +1,46 @@
 <div class="related">
   <div class="width">
-    <h1>You may like:</h1>
-    <div class="custom-related-products"></div>
+    <h2>{{ section.settings.heading }}</h2>
+
+    <div class="related-products"></div>
   </div>
 </div>
+
 {% if cart.item_count > 0 %}
-  {% assign relatedid = cart.items[0].product_id %}
+  {% assign relatedId = cart.items[0].product_id %}
 {% else %}
-  {% assign relatedid = 48903798325526 %}
+  {% assign relatedId = 48903798325526 %}
 {% endif %}
 
 <script>
   
-function buildBlock(product){
- const html = `<a class="custom-related-product" href='${product.url}'>
- <img src='${product.images[0]}' />
- <h3>${product.title}</h3>
- <span>${product.price}</span>                                                                                                             
- </a>
- `
+function buildBlock(product) {
+  const formattedPrice = formatMoney(product.price, "{{ shop.money_format }}")
+
+  const html = `
+    <a class="related-product" href="${product.url}">
+      <img src="${product.images[0]}" />
+      <h3>${product.title}</h3>
+      <span>${formattedPrice}</span>
+      <form method="post" action="/cart/add">
+        <input name="id" type="hidden" value="${product.variants[0].id}" />
+        <button type="submit">Add to cart</button>
+      </form>
+    </a>
+  `
+
   return html
 }
-  
-    fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}")
-    .then(response => response.json())
-    .then(({ products }) => {
-      console.log(products)
-        products.forEach(product=>{
-          const html = buildBlock(product)
-          document.querySelector(".custom-related-products").innerHTML =+ html
-          
-        })
-    }
-  );
+
+fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedId }}&limit=3")
+  .then(response => response.json())
+  .then(({ products }) => {
+    products.forEach(product => {
+      const html = buildBlock(product)
+      document.querySelector('.related-products').innerHTML += html
+    })
+  }
+);
 </script>
 {% schema %}
 {
