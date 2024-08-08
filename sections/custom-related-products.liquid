@@ -5,9 +5,10 @@
     <div class="related-product" id="custom-product"></div>
   </div>
 </div>
-
+{{ product.title }}----
 {% if cart.item_count > 0 %}
   {% assign relatedId = cart.items[0].product_id %}
+  console.log()
 {% else %}
   {% assign relatedId = 9513927016726 %}
 {% endif %}
