@@ -29,10 +29,5 @@ $(document).ready(function () {
 });
 
 // -------------------practice api--------------------------------------------
-fetch('{url}', {
-    headers: {
-        'Authorization': 'Basic {token}'
-    }
-})
+fetch('{url}?var1=value1&var2=value2')
     .then(response => console.log(response,"url"));
-
