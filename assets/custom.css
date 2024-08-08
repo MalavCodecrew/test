@@ -283,23 +283,23 @@ a#HeaderMenu-inails {
   padding: 60px 0;
 }
 
-.related-products {
+.related-product {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
 }
 
-.related-products img {
+.related-product img {
   border-radius: 16px;
   margin-bottom: 20px;
 }
-.related-products h1 {
+.related-product h1 {
   font-size: 24px;
   margin-bottom: 5px;
   color: #111;
 }
 
-.related-products span {
+.related-product span {
   color: #5e5e5e;
   font-size: 18px;
 }
