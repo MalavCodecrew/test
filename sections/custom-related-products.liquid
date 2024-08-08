@@ -16,9 +16,9 @@ function buildblock(product){
  <img src='${product.images[0]}' />
  <h3>${product.title}</h3>
  <span>${product.price}</span>
- 
  </a>
  `
+  return html
 }
   
     fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}&limit=3")
