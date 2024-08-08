@@ -1,38 +1,39 @@
 <div class="related">
   <div class="width">
-    <h1>You may like:</h1>
-    <div class="related-products"></div>
+    <h2>Recommendations</h2>
+
+    <div class="related-product" id="custom-product"></div>
   </div>
 </div>
+
 {% if cart.item_count > 0 %}
   {% assign relatedid = cart.items[0].product_id %}
 {% else %}
-  {% assign relatedid = 9556924432662 %}
+  {% assign relatedid = 48903798325526 %}
 {% endif %}
 
 <script>
   
-function buildBlock(product){
- const html = `<a class="related-product" href='${product.url}'>
- <img src='${product.images[0]}' />
- <h3>${product.title}</h3>
- <span>${product.price}</span>                                                                                                             
- </a>
- `
+function buildBlock(product) {
+ 
+  const html = `
+    <a class="related-product" href="${product.url}"  id="custom-product2">
+      <img src="${product.images[0]}" />
+      <h3>${product.title}</h3>
+    </a>
+  `
   return html
 }
-  
-    fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}")
-    .then(response => response.json())
-    .then(({ products }) => {
-      console.log(products)
-        products.forEach(product=>{
-          const html = buildBlock(product)
-          document.querySelector(".related-products").innerHTML =+ html
-          
-        })
-    }
-  );
+  fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedid }}&limit=3")
+  .then(response => response.json())
+  .then(({ products }) => {
+    products.forEach(product => {
+      const html = buildBlock(product)
+      console.log(html)
+      document.querySelector('.related-product').innerHTML += html
+    })
+  }
+);
 </script>
 {% schema %}
 {
