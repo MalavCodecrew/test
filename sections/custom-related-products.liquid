@@ -26,24 +26,11 @@ function buildblock(product){
     .then(({ products }) => {
         products.forEach(product=>{
           const html = buildblock(product)
-          document.queryselector(".related-products").innerhtml =+ html
+          document.querySelector(".related-products").innerHTML =+ html
           
         })
     }
   );
-
-
-
-
-fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedId }}&limit=3")
-  .then(response => response.json())
-  .then(({ products }) => {
-    products.forEach(product => {
-      const html = buildBlock(product)
-      document.querySelector('.related-products').innerHTML += html
-    })
-  }
-);
 </script>
 {% schema %}
 {
