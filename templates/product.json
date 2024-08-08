@@ -118,11 +118,6 @@
         "padding_bottom": 28
       }
     },
-    "custom_related_products_EdaRyq": {
-      "type": "custom-related-products",
-      "settings": {
-      }
-    },
     "17204382683a104c9b": {
       "type": "apps",
       "blocks": {
@@ -138,12 +133,17 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "custom_related_products_TbfwEp": {
+      "type": "custom-related-products",
+      "settings": {
+      }
     }
   },
   "order": [
     "main",
     "related-products",
-    "custom_related_products_EdaRyq",
-    "17204382683a104c9b"
+    "17204382683a104c9b",
+    "custom_related_products_TbfwEp"
   ]
 }
