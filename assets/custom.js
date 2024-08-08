@@ -29,9 +29,10 @@ $(document).ready(function () {
 });
 
 // -------------------practice api--------------------------------------------
-
-
 fetch('{url}', {
-    method: 'post'
+    headers: {
+        'Authorization': 'Basic {token}'
+    }
 })
-    .then(response => console.log(response));
+    .then(response => console.log(response,"url"));
+
