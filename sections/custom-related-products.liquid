@@ -1,12 +1,16 @@
 ------------------------------------------
 {{ recommendations.products_count }}
-
-{{ recommendations.performed }}
-{% if recommendations.products_count > 0 %}
-  {% for product in recommendations.products %}
-    <div class="custom-recomend-title">{{ product.title | link_to: product.url }}</div>
-  {% endfor %}
-{% endif %}
+<product-recommendations
+  class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
+>
+  {{ recommendations.performed }}
+  {% if recommendations.products_count > 0 %}
+    {% for product in recommendations.products %}
+      <div class="custom-recomend-title">{{ product.title | link_to: product.url }}</div>
+    {% endfor %}
+  {% endif %}
+</product-recommendations>
 
 {% schema %}
 {
