@@ -26,7 +26,7 @@ function buildblock(product){
     .then(({ products }) => {
         products.foreach(product=>{
           const html = buildblock(product)
-          document.queryselector(.related-products)
+          document.queryselector(".related-products").innerhtml =+ html
           
         })
     }
