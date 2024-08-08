@@ -4,7 +4,7 @@
 >
   {% if recommendations.products_count > 0 and recommendations.performed %}
     {% for product in recommendations.products %}
-      <li class="custom_grid__item1">
+      <li class="grid__item">
         {% render 'card-product',
           card_product: product,
           media_aspect_ratio: section.settings.image_ratio,
