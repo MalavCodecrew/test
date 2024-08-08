@@ -25,6 +25,7 @@ function buildblock(product){
     fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}")
     .then(response => response.json())
     .then(({ products }) => {
+      console.log(products)
         products.forEach(product=>{
           const html = buildblock(product)
           document.querySelector(".related-products").innerHTML =+ html
