@@ -15,7 +15,7 @@ function buildblock(product){
  const html = `<a class="related-product" href='${product.url}'>
  <img src='${product.images[0]}' />
  <h3>${product.title}</h3>
- <span>${product.price}</span>
+ <span>${product.price}</span>                                                                                                             
  </a>
  `
   return html
@@ -24,13 +24,26 @@ function buildblock(product){
     fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}&limit=3")
     .then(response => response.json())
     .then(({ products }) => {
-        products.foreach(product=>{
+        products.forEach(product=>{
           const html = buildblock(product)
           document.queryselector(".related-products").innerhtml =+ html
           
         })
     }
   );
+
+
+
+
+fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ relatedId }}&limit=3")
+  .then(response => response.json())
+  .then(({ products }) => {
+    products.forEach(product => {
+      const html = buildBlock(product)
+      document.querySelector('.related-products').innerHTML += html
+    })
+  }
+);
 </script>
 {% schema %}
 {
