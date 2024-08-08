@@ -11,6 +11,15 @@
 {% endif %}
 
 <script>
+function buildblock(product){
+ const html = `<a class="related-product" href='${product.url}'>
+ <img src='${product.images[0]}' />
+ <h3>${product.title}</h3>
+ 
+ </a>
+ `
+}
+  
     fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}&limit=3")
     .then(response => response.json())
     .then(({ products }) => {
