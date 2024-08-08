@@ -7,44 +7,17 @@
 </div>
 
 {% if cart.item_count > 0 %}
-  {% assign relatedid = cart.items[0].product_id %}
+  {% assign relatedId = cart.items[0].product_id %}
 {% else %}
-  {% assign relatedid = 48903798325526 %}
+  {% assign relatedId = 48903798325526 %}
 {% endif %}
 
 <script>
-function buildblock(product){
- const html = `<a class="related-product" href='${product.url}'>
- <img src='${product.images[0]}' />
- <h3>${product.title}</h3>
- <span>${product.price}</span>                                                                                                             
- </a>
- `
-  return html
-}
-  
-    fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}&limit=3")
-    .then(response => response.json())
-    .then(({ products }) => {
-        products.foreach(product=>{
-          const html = buildblock(product)
-          document.queryselector(".related-products").innerhtml =+ html
-          
-        })
-    }
-  );
-
-
-
-
-
-
-
 function buildBlock(product) {
   const formattedPrice = formatMoney(product.price, "{{ shop.money_format }}")
 
   const html = `
-    <a class="related-product" href="${product.url}">
+    <a class="related-products" href="${product.url}">
       <img src="${product.images[0]}" />
       <h3>${product.title}</h3>
       <span>${formattedPrice}</span>
