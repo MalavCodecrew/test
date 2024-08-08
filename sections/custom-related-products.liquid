@@ -28,7 +28,7 @@ function buildblock(product){
       console.log(products)
         products.forEach(product=>{
           const html = buildblock(product)
-          document.querySelector(".related-products").innerHTML += html
+          document.querySelector(".related-products").innerHTML =+ html
           
         })
     }

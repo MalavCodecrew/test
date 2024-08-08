@@ -29,25 +29,3 @@ $(document).ready(function () {
 });
 
 // -------------------practice api--------------------------------------------
-
-function buildblock(product){
- const html = `<a class="related-product" href='${product.url}'>
- <img src='${product.images[0]}' />
- <h3>${product.title}</h3>
- <span>${product.price}</span>                                                                                                             
- </a>
- `
-  return html
-}
-  
-    fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{relatedid}}")
-    .then(response => response.json())
-    .then(({ products }) => {
-      console.log(products)
-        products.forEach(product=>{
-          const html = buildblock(product)
-          document.querySelector(".related-products").innerHTML += html
-          
-        })
-    }
-  );
