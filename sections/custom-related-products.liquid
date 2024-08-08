@@ -2,7 +2,7 @@
   class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
 >
-  {{ recommendations.products.size }}
+  {{ recommendations.products_count }}
   {% if recommendations.products_count > 0 and recommendations.performed %}
     {% for product in recommendations.products %}
       <div class="custom-related">
