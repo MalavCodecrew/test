@@ -34,3 +34,5 @@ fetch('https://quickstart-06ab4342.myshopify.com')
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(error => console.error('Error:', error));
+fetch('https://quickstart-06ab4342.myshopify.com')
+    .then(response => console.log(response,"data"));
