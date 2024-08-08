@@ -30,7 +30,7 @@ $(document).ready(function () {
 
 // -------------------practice api--------------------------------------------
 
-fetch('https://quickstart-06ab4342.myshopify.com//en/recommendations/products.json')
+fetch('https://quickstart-06ab4342.myshopify.com//en/recommendations/products')
   .then(response => response.json())
   .then(data => console.log(data,"data"))
   .catch(error => console.error('Error:', error));
