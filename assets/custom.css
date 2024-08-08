@@ -288,3 +288,8 @@ a#HeaderMenu-inails {
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
 }
+
+.related-products img {
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
