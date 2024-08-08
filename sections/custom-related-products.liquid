@@ -1,4 +1,5 @@
-{% if recommendations.performed %}
+{% if recommendations.performed -%}
+  {{- recommendations }}--------
   {% if recommendations.products_count > 0 %}
     {% for product in recommendations.products %}
       {{ product.title | link_to: product.url }}
