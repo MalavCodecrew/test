@@ -30,5 +30,15 @@ $(document).ready(function () {
 
 // -------------------practice api--------------------------------------------
 
-fetch('https://quickstart-06ab4342.myshopify.com')
-    .then(response => console.log(response,"data"));
+fetch(window.Shopify.routes.root + "recommendations/products.json?product_id=1234567890123&limit=4&intent=related")
+  .then(response => response.json())
+  .then(({ products }) => {
+    if (products.length > 0) {
+      const firstRecommendedProduct = products[0];
+
+      alert(
+        `The title of the first recommended product is: ${firstRecommendedProduct.title}`
+      );
+    }
+  }
+);
