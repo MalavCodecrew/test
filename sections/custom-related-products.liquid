@@ -60,7 +60,8 @@ function formatMoney(cents, format) {
   };
 
 function buildBlock(product) {
- 
+   const formattedPrice = formatMoney(product.price, "{{ shop.money_format }}")
+
   const html = `
     <a class="related-product" href="${product.url}"  id="custom-product2">
       <img src="${product.images[0]}" />
