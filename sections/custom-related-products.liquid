@@ -12,8 +12,8 @@
 
 <script>
   
-function buildblock(product){
- const html = `<a class="related-product" href='${product.url}'>
+function buildBlock(product){
+ const html = `<a class="custom-related-product" href='${product.url}'>
  <img src='${product.images[0]}' />
  <h3>${product.title}</h3>
  <span>${product.price}</span>                                                                                                             
@@ -27,7 +27,7 @@ function buildblock(product){
     .then(({ products }) => {
       console.log(products)
         products.forEach(product=>{
-          const html = buildblock(product)
+          const html = buildBlock(product)
           document.querySelector(".custom-related-products").innerHTML =+ html
           
         })
