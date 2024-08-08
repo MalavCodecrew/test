@@ -2,7 +2,7 @@
   <div class="width">
     <h2>Recommendations</h2>
 
-    <div class="related-products"></div>
+    <div class="related-product"></div>
   </div>
 </div>
 
@@ -16,7 +16,7 @@
 function buildBlock(product) {
  
   const html = `
-    <a class="related-products" href="${product.url}">
+    <a class="related-product" href="${product.url}">
       <img src="${product.images[0]}" />
       <h3>${product.title}</h3>
       <span>${product.price}</span>
@@ -32,7 +32,7 @@ fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ 
     products.forEach(product => {
       const html = buildBlock(product)
       console.log(html)
-      document.querySelector('.related-products').innerHTML += html
+      document.querySelector('.related-product').innerHTML += html
     })
   }
 );
