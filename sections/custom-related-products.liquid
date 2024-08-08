@@ -1,7 +1,7 @@
 <div class="related">
   <div class="width">
-    <h2>You may like:</h2>
-    <div class="related-products"></div>
+    <h1>You may like:</h1>
+    <div class="custom-related-products"></div>
   </div>
 </div>
 {% if cart.item_count > 0 %}
@@ -28,7 +28,7 @@ function buildblock(product){
       console.log(products)
         products.forEach(product=>{
           const html = buildblock(product)
-          document.querySelector(".related-products").innerHTML =+ html
+          document.querySelector(".custom-related-products").innerHTML =+ html
           
         })
     }
