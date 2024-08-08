@@ -29,5 +29,7 @@ $(document).ready(function () {
 });
 
 // -------------------practice api--------------------------------------------
-fetch('{url}?var1=value1&var2=value2')
+fetch('{url}', {
+    mode: 'cors'
+})
     .then(response => console.log(response,"url"));
