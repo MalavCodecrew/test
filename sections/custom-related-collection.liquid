@@ -7,6 +7,21 @@
   </div>
 </div>
 
+<script>
+fetch(window.Shopify.routes.root + "recommendations/collection.json?collection_id=480222478614&limit=3")
+  .then(response => response.json())
+  .then(({ collection }) => {
+    if (collections.length > 0) {
+      const firstRecommendedcollection = collection[0];
+
+      alert(
+        `The title of the first recommended product is: ${firstRecommendedcollection}`
+      );
+    }
+  }
+);
+</script>
+
 {% schema %}
 {
   "name": "Custom-related-collection",
