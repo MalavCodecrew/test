@@ -6,26 +6,32 @@
 </div>
 
 <script>
+  // Function to build the HTML for each related collection block
+  function buildBlock2(collection) {
+    const html = `
+      <a class="related-collection-item" href="${collection.url}" id="custom-collection2">
+        <img src="${collection.image ? collection.image.src : 'default-image-url.jpg'}" />
+        <h3>${collection.title}</h3>
+      </a>
+    `;
+    return html;
+  }
 
-function buildBlock2(collection) {
-  const html = `
-    <a class="related-collection-item" href="${collection.url}" id="custom-collection2">
-      <img src="${collection.image ? collection.image.src : 'default-image-url.jpg'}" />
-      <h3>${collection.title}</h3>
-    </a>
-  `;
-  return html;
-}
-
-fetch(`${window.Shopify.routes.root}collections.json?collection_id={{ collection.id }}&limit=3`)
-  .then(response => response.json())
-  .then(data => {
-    data.collections.forEach(collection => {
-      const html = buildBlock2(collection);
-      document.querySelector('.related-collections').innerHTML += html;
-    });
-  })
-  .catch(error => console.error('Error fetching collections:', error));
+  // Fetch the related collections, filtering out the current collection
+  fetch(`${window.Shopify.routes.root}collections.json?limit=3`)
+    .then(response => response.json())
+    .then(data => {
+      // Assuming the current collection ID is available in `window.currentCollectionId`
+      const currentCollectionId = {{ collection.id }};
+      
+      data.collections
+        .filter(collection => collection.id !== currentCollectionId) // Filter out the current collection
+        .forEach(collection => {
+          const html = buildBlock2(collection);
+          document.querySelector('.related-collections').innerHTML += html;
+        });
+    })
+    .catch(error => console.error('Error fetching collections:', error));
 </script>
 
 {% schema %}
