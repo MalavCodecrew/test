@@ -340,4 +340,5 @@ button.product-btn-test {
   background: #006fbb;
   border: none;
   padding: 10px 10px;
+  cursor: pointer;
 }
