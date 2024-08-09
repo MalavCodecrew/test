@@ -529,7 +529,8 @@
                   {{ addition.addition }}
                 {% endif %}
 
-                {% assign additional = product.metafields.custom.metaobject.value %}
+                {% assign additional = product.metafields.custom.metaobject.value -%}
+                {{- additional | json }}
                 {% if additional %}
                   {{ additional.color }}
                 {% endif %}
