@@ -6,6 +6,14 @@
 </div>
 
 <script>
+ <div class="custom-related-collection">
+  <div class="width-collection">
+    <h2>Related Collections</h2>
+    <div class="related-collections" id="custom-collection"></div>
+  </div>
+</div>
+
+<script>
   // Function to build the HTML for each related collection block
   function buildBlock2(collection) {
     const html = `
@@ -17,21 +25,25 @@
     return html;
   }
 
-  // Fetch the related collections, filtering out the current collection
-  fetch(`${window.Shopify.routes.root}collections.json?limit=3`)
+  // Fetch the related collections, including an extra one to account for filtering
+  fetch(`${window.Shopify.routes.root}collections.json?limit=4`)
     .then(response => response.json())
     .then(data => {
       // Assuming the current collection ID is available in `window.currentCollectionId`
       const currentCollectionId = {{ collection.id }};
       
-      data.collections
-        .filter(collection => collection.id !== currentCollectionId) // Filter out the current collection
-        .forEach(collection => {
-          const html = buildBlock2(collection);
-          document.querySelector('.related-collections').innerHTML += html;
-        });
+      // Filter out the current collection and ensure we show exactly 3 collections
+      const filteredCollections = data.collections
+        .filter(collection => collection.id !== currentCollectionId)
+        .slice(0, 3); // Get the first 3 collections after filtering
+
+      filteredCollections.forEach(collection => {
+        const html = buildBlock2(collection);
+        document.querySelector('.related-collections').innerHTML += html;
+      });
     })
     .catch(error => console.error('Error fetching collections:', error));
+</script>
 </script>
 
 {% schema %}
