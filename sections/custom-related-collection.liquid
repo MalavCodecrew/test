@@ -8,7 +8,7 @@
 </div>
 
 <script>
-fetch(window.Shopify.routes.root + "recommendations/collections.json?collection_id=480222478614&limit=3")
+fetch(window.Shopify.routes.root + "recommendations/collections.json?collection_id=480222478614")
   .then(response => response.json())
   .then(({ collection }) => {
     console.log(collection,"collection")
