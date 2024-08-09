@@ -16,7 +16,7 @@
         "padding_bottom": 28
       }
     },
-    "testimonial_L9NHTm": {
+    "testimonial_xP6XjW": {
       "type": "testimonial",
       "settings": {
       }
@@ -24,6 +24,6 @@
   },
   "order": [
     "main",
-    "testimonial_L9NHTm"
+    "testimonial_xP6XjW"
   ]
 }
