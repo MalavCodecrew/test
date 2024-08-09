@@ -6,7 +6,7 @@
 </div>
 
 <script>
-  fetch(`${window.Shopify.routes.root}collections.json`)
+  fetch(`${window.Shopify.routes.root}collections.json?collection_id={{ collection.id }}`)
   .then(response => response.json())
   .then(data => {
     console.log(data.collections, "Collections List");
