@@ -9,7 +9,7 @@
 
 <script>
     fetch(window.Shopify.routes.root + "
-  /admin/api/2024-07/collection_listings.json")
+  admin/api/2024-07/collection_listings.json")
       .then(response => response.json())
       .then(({ collection }) => {
         console.log(collection,"collection")
