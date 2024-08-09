@@ -7,7 +7,7 @@
 
 <script>
 
-function buildBlock(collection) {
+function buildBlock2(collection) {
 
   const html = `
     <a class="related-collection" href="${collection.url}"  id="custom-collection2">
@@ -25,7 +25,7 @@ function buildBlock(collection) {
   .then(response => response.json())
   .then(data => {
     data.collections.forEach(collection => {
-      const html = buildBlock(collection)
+      const html = buildBlock2(collection)
       document.querySelector('.related-collection').innerHTML += html
     })
   })
