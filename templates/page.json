@@ -20,12 +20,24 @@
       "type": "testimonial",
       "settings": {
         "product-title": "Shoes",
-        "image_product": "shopify:\/\/shop_images\/shoes3_dda1e11a-096b-4009-8ba4-fd452d934d88.png"
+        "image_product": "shopify:\/\/shop_images\/shoes3_dda1e11a-096b-4009-8ba4-fd452d934d88.png",
+        "btn_link": "",
+        "btn_test": "Show More"
+      }
+    },
+    "testimonial_9w8kDX": {
+      "type": "testimonial",
+      "settings": {
+        "product-title": "Watch",
+        "image_product": "shopify:\/\/shop_images\/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg",
+        "btn_link": "",
+        "btn_test": "Show More"
       }
     }
   },
   "order": [
     "main",
-    "testimonial_L9NHTm"
+    "testimonial_L9NHTm",
+    "testimonial_9w8kDX"
   ]
 }
