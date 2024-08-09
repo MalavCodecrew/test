@@ -529,7 +529,9 @@
                   {{ addition.addition }}
                 {% endif %}
 
-                {{ product.metafields.custom.metaobject.value | json }}
+                {% assign additional = product.metafields.custom.metaobject.value %}
+                {% if additional %}
+                {% endif %}
 
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
