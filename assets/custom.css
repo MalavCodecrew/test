@@ -303,3 +303,23 @@ a#HeaderMenu-inails {
   color: #5e5e5e;
   font-size: 12px;
 }
+
+/* related-collection-----------------------> */
+#custom-collection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+#custom-collection2 {
+  text-decoration: none;
+  text-align: center;
+}
+#custom-collection2 img {
+  border-radius: 16px;
+  width: 80%;
+}
+#custom-collection2 h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+  color: #111;
+}
