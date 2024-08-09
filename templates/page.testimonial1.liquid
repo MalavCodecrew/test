@@ -4,7 +4,11 @@
       <div class="product-title">{{ test.name }}</div>
       <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
       <div class="product-description">{{ test.description }}</div>
-      <a href="{{ test.url }}"> <button class="product-btn-test">Go Back</button></a>
+      <a href="#" onclick="goBack()"> <button class="product-btn-test">Go Back</button></a>
     </div>
   {% endfor %}
 </div>
+
+<script>
+  function goBack() {history.go(-1);}
+</script>
