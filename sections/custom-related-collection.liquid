@@ -8,12 +8,13 @@
 </div>
 
 <script>
-  fetch(window.Shopify.routes.root + "collections.json")
-    .then(response => response.json())
-    .then(({ collection }) => {
-      console.log(collection,"collection")
-    }
-  );
+    fetch(window.Shopify.routes.root + "
+  /admin/api/2024-07/collection_listings.json")
+      .then(response => response.json())
+      .then(({ collection }) => {
+        console.log(collection,"collection")
+      }
+    );
 </script>
 
 {% schema %}
