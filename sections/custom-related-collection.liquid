@@ -17,7 +17,7 @@ function buildBlock2(collection) {
   return html;
 }
 
-fetch(`${window.Shopify.routes.root}collections.json&limit=3`)
+fetch(`${window.Shopify.routes.root}collections.json?collection_id={{ collection.id }}&limit=3`)
   .then(response => response.json())
   .then(data => {
     data.collections.forEach(collection => {
