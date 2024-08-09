@@ -9,8 +9,13 @@
 */
 {
   "sections": {
+    "testimonial_mTyaED": {
+      "type": "testimonial",
+      "settings": {
+      }
+    }
   },
   "order": [
-
+    "testimonial_mTyaED"
   ]
 }
