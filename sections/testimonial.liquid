@@ -2,7 +2,7 @@
   {{ shop.metaobjects.card.values | json }}
   {% for test in shop.metaobjects.card.values %}
     <div class="product-title">{{ test.name }}</div>
-    <div class="product-image"><img src="{{ test.image | img_url: '' }}"></div>
+    <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
     <a href="{{ test.url }}"> <button class="product-btn-test">Show More</button></a>
   {% endfor %}
 </div>
