@@ -3,7 +3,7 @@
   {% for test in shop.metaobjects.card.values %}
     <div class="product-title">{{ test.name }}</div>
     <div class="product-image"><img src="{{ test.image }}"></div>
-    <a href=""> <button class="product-btn-test"></button></a>
+    <a href="{{ test.url }}"> <button class="product-btn-test"></button></a>
   {% endfor %}
 </div>
 
