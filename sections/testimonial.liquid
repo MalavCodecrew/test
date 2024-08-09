@@ -1,6 +1,8 @@
 <div class="product-title">{{ section.settings['product-title'] }}</div>
 <div class="product-image"><img src="{{ section.settings.image_product | img_url: '' }}"></div>
-
+<a href="{{ section.settings.btn_link }}">
+  <button class="product-btn-test">{{ section.settings.btn_test }}</button></a
+>
 {% schema %}
 {
   "name": "Testimonial",
@@ -15,6 +17,17 @@
   "id": "image_product",
   "label": "Image"
 },
+     {
+       "type": "url",
+        "id": "btn_link",
+        "label": "Button link"
+     },
+     {
+       "type": "text",
+        "id": "btn_test",
+        "label": "Button link",
+       "default":"VIEW ALL"
+     }
   ],
    "presets": [
   {
