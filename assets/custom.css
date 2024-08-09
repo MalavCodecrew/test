@@ -325,3 +325,7 @@ a#HeaderMenu-inails {
 }
 
 /* ----------------testimonial-------- */
+.product-test-card {
+  display: flex;
+  justify-content: center;
+}
