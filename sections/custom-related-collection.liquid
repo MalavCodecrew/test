@@ -24,7 +24,7 @@ function buildBlock(collection) {
   fetch(`${window.Shopify.routes.root}collections.json?collection_id={{ collection.id }}`)
   .then(response => response.json())
   .then(data => {
-    data.forEach(collection => {
+    data.collections.forEach(collection => {
       const html = buildBlock(collection)
       document.querySelector('.related-collection').innerHTML += html
     })
