@@ -528,7 +528,7 @@
                 {% if addition %}
                   {{ addition.addition }}
                 {% endif %}
-                {{ products.metafields.custom.metaobject }}
+                {{ products.metafields.custom.metaobject.value }}
 
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
