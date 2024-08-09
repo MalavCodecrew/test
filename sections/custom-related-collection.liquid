@@ -8,27 +8,24 @@
 <script>
 
 function buildBlock2(collection) {
-
   const html = `
-    <a class="related-collection" href="${collection.url}"  id="custom-collection2">
-      <img src="${collection.images[0]}" />
+    <a class="related-collection-item" href="${collection.url}" id="custom-collection2">
+      <img src="${collection.image ? collection.image.src : 'default-image-url.jpg'}" alt="${collection.title}" />
       <h3>${collection.title}</h3>
     </a>
-  `
-
-  return html
+  `;
+  return html;
 }
 
-
-  
-  fetch(`${window.Shopify.routes.root}collections.json?collection_id={{ collection.id }}`)
+fetch(`${window.Shopify.routes.root}collections.json`)
   .then(response => response.json())
   .then(data => {
     data.collections.forEach(collection => {
-      const html = buildBlock2(collection)
-      document.querySelector('.related-collection').innerHTML += html
-    })
+      const html = buildBlock2(collection);
+      document.querySelector('.related-collections').innerHTML += html;
+    });
   })
+  .catch(error => console.error('Error fetching collections:', error));
 </script>
 
 {% schema %}
