@@ -530,7 +530,6 @@
                 {% endif %}
 
                 {% assign additional = product.metafields.custom.metaobject.value -%}
-                {{- additional | json }}
                 {% if additional %}
                   <div class="metafield-color">Colors : {{ additional.color1 }}</div>
                   <div class="metafield-addition">Addition : {{ additional.name_2 }}</div>
