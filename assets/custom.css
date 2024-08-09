@@ -323,3 +323,8 @@ a#HeaderMenu-inails {
   margin-bottom: 5px;
   color: #111;
 }
+
+/* ----------------testimonial-------- */
+.product-image img {
+  width: 15%;
+}
