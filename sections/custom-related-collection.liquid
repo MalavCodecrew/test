@@ -10,7 +10,7 @@
 function buildBlock2(collection) {
   const html = `
     <a class="related-collection-item" href="${collection.url}" id="custom-collection2">
-      <img src="${collection.image ? collection.image.src : 'default-image-url.jpg'}" alt="${collection.title}" />
+      <img src="${collection.image }" />
       <h3>${collection.title}</h3>
     </a>
   `;
