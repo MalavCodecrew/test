@@ -334,3 +334,9 @@ a#HeaderMenu-inails {
   border: 1px solid black;
   margin: 30px;
 }
+button.product-btn-test {
+  color: white;
+  background: #006fbb;
+  border: none;
+  padding: 10px 10px;
+}
