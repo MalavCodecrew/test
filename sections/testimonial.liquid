@@ -1,4 +1,5 @@
 <div class="product-title">{{ section.settings['product-title'] }}</div>
+<div class="product-image">{{ section.settings.image_product }}</div>
 
 {% schema %}
 {
@@ -9,6 +10,11 @@
           "id": "product-title",
           "label": "Title"
         },
+     {
+  "type": "image_picker",
+  "id": "image_product",
+  "label": "Image"
+},
   ],
    "presets": [
   {
