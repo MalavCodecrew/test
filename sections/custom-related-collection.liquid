@@ -6,9 +6,9 @@
     <div class="related-collection" id="custom-collection"></div>
   </div>
 </div>
-
+/admin/api/2024-07/collection_listings.json
 <script>
-fetch(window.Shopify.routes.root + "collections.json?collection_id={{collection.id}}")
+fetch(window.Shopify.routes.root + "collections_listings.json?collection_id={{collection.id}}")
   .then(response => response.json())
   .then(({ collection }) => {
     console.log(collection,"collection")
