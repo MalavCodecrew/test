@@ -12,7 +12,7 @@ fetch(window.Shopify.routes.root + "collections.json?collection_id=479135465750"
   .then(response => response.json())
   .then(({ collection }) => {
     console.log(collection,"collection")
-    if (collections.length > 0) {
+    if (collection.length > 0) {
       const firstRecommendedcollection = collection[0];
 
       alert(
