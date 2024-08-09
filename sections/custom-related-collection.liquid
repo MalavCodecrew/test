@@ -6,12 +6,29 @@
 </div>
 
 <script>
+
+function buildBlock(collection) {
+
+  const html = `
+    <a class="related-collection" href="${collection.url}"  id="custom-collection2">
+      <img src="${collection.images[0]}" />
+      <h3>${collection.title}</h3>
+    </a>
+  `
+
+  return html
+}
+
+
+  
   fetch(`${window.Shopify.routes.root}collections.json?collection_id={{ collection.id }}`)
   .then(response => response.json())
   .then(data => {
-    console.log(data.collections, "Collections List");
+    products.forEach(product => {
+      const html = buildBlock(product)
+      document.querySelector('.related-product').innerHTML += html
+    })
   })
-  .catch(error => console.error('Error fetching collections:', error));
 </script>
 
 {% schema %}
