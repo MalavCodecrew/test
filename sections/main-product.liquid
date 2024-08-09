@@ -532,7 +532,7 @@
                 {% assign additional = product.metafields.custom.metaobject.value -%}
                 {{- additional | json }}
                 {% if additional %}
-                  {{ additional.color }}
+                  {{ additional.color1 }}
                 {% endif %}
 
               {%- when 'variant_picker' -%}
