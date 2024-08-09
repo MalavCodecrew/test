@@ -15,9 +15,15 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "testimonial_TBVbbd": {
+      "type": "testimonial",
+      "settings": {
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "testimonial_TBVbbd"
   ]
 }
