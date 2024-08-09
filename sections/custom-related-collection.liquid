@@ -5,8 +5,8 @@
   </div>
 </div>
 
+{{ collection.url }}
 <script>
-  // Function to build the HTML for each related collection block
   function buildBlock2(collection) {
     const html = `
       <a class="related-collection-item" href="${collection.url}" id="custom-collection2">
@@ -17,14 +17,11 @@
     return html;
   }
 
-  // Fetch the related collections, including an extra one to account for filtering
+ 
   fetch(`${window.Shopify.routes.root}collections.json?limit=4`)
     .then(response => response.json())
     .then(data => {
-      // Assuming the current collection ID is available in `window.currentCollectionId`
       const currentCollectionId = {{ collection.id }};
-      
-      // Filter out the current collection and ensure we show exactly 3 collections
       const filteredCollections = data.collections
         .filter(collection => collection.id !== currentCollectionId)
         .slice(0, 3); // Get the first 3 collections after filtering
