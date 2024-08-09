@@ -329,3 +329,8 @@ a#HeaderMenu-inails {
   display: flex;
   justify-content: center;
 }
+.main-test {
+  padding: 100px 50px;
+  border: 1px solid black;
+  margin: 30px;
+}
