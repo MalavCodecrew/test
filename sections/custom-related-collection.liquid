@@ -10,6 +10,7 @@
 <script>
   fetch(window.Shopify.routes.root + "recommendations/collections.json?collection_id=479135465750")
     .then(response => response.json())
+    console.log(collections.json,"collectionsss")
     .then(({ collection }) => {
       console.log(collection,"collection")
     }
