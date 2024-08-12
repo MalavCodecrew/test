@@ -95,24 +95,11 @@
       ],
       "settings": {
       }
-    },
-    "testimonial_redirect_ayEWwj": {
-      "type": "testimonial-redirect",
-      "settings": {
-        "title": "{{ localization.market.metafields.custom.title.value.name.value }}",
-        "name": "{{ localization.market.metafields.custom.title.value.name.value }}",
-        "author": "",
-        "image_with": "shopify:\/\/shop_images\/22.webp",
-        "paragraph": "",
-        "destigation": "",
-        "button_text": "Click me"
-      }
     }
   },
   "order": [
     "announcement-bar",
     "header",
-    "custom_header_CqpLB9",
-    "testimonial_redirect_ayEWwj"
+    "custom_header_CqpLB9"
   ]
 }
