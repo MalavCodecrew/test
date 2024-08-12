@@ -13,9 +13,22 @@
       "type": "testimonial",
       "settings": {
       }
+    },
+    "testimonial_redirect_GRMPKm": {
+      "type": "testimonial-redirect",
+      "settings": {
+        "title": "{{ metaobject.name.value }}",
+        "name": "",
+        "author": "",
+        "image_with": "{{ metaobject.image.value }}",
+        "paragraph": "<p>{{ metaobject.description | metafield_tag }}<\/p>",
+        "destigation": "",
+        "button_text": "Click me"
+      }
     }
   },
   "order": [
-    "testimonial_mTyaED"
+    "testimonial_mTyaED",
+    "testimonial_redirect_GRMPKm"
   ]
 }
