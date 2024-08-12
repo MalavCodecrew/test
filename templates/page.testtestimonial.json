@@ -20,10 +20,22 @@
       "type": "testimonial",
       "settings": {
       }
+    },
+    "testimonial_redirect_w6QMLz": {
+      "type": "testimonial-redirect",
+      "settings": {
+        "title": "{{ page.metafields.custom.card | metafield_text: field: 'name' }}",
+        "name": "",
+        "author": "Welcome to Custom Selection",
+        "paragraph": "",
+        "destigation": "",
+        "button_text": "Click me"
+      }
     }
   },
   "order": [
     "main",
-    "testimonial_TBVbbd"
+    "testimonial_TBVbbd",
+    "testimonial_redirect_w6QMLz"
   ]
 }
