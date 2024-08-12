@@ -17,13 +17,11 @@
     },
     "testimonial_redirect_GRMPKm": {
       "type": "testimonial-redirect",
+      "disabled": true,
       "settings": {
         "title": "{{ metaobject.name.value }}",
-        "name": "",
-        "author": "",
         "image_with": "{{ metaobject.image.value }}",
         "paragraph": "<p>{{ metaobject.description | metafield_tag }}<\/p>",
-        "destigation": "",
         "button_text": "Click me"
       }
     }
