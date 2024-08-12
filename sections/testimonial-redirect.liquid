@@ -2,18 +2,15 @@
   <div class="main-container-cc">
     <div class="testimonial-container">
       <div class="testimonial-cards1">
-        <div class="image-container1-go">
-          <img
-            src="{{ section.settings.image_with | img_url: '' }}"
-            class="testimonial-image-go"
-            alt="Testimonial Image"
-          >
-        </div>
         <div class="content-container1">
           <h2>{{ section.settings.title }}</h2>
-          <p>{{ section.settings.destigation }}</p>
-          <h2>{{ section.settings.name }}</h2>
-
+          <div class="image-container1-go">
+            <img
+              src="{{ section.settings.image_with | img_url: '' }}"
+              class="testimonial-image-go"
+              alt="Testimonial Image"
+            >
+          </div>
           <p>{{ section.settings.paragraph }}</p>
           <a class="button1" id="goBackButton" {{ section.settings.button_text }}>Go Back</a>
         </div>
