@@ -1,12 +1,24 @@
+{% comment %}
+  <div class="product-test-card1">
+    {% for test in shop.metaobjects.card.values %}
+      <div class="main-test">
+        <div class="product-title">{{ test.name }}</div>
+        <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
+        <div class="product-description">{{ test.description }}</div>
+        <a href="#" onclick="goBack()"> <button class="product-btn-test">Go Back</button></a>
+      </div>
+    {% endfor %}
+  </div>
+{% endcomment %}
+
 <div class="product-test-card1">
-  {% for test in shop.metaobjects.card.values %}
-    <div class="main-test">
-      <div class="product-title">{{ test.name }}</div>
-      <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
-      <div class="product-description">{{ test.description }}</div>
-      <a href="#" onclick="goBack()"> <button class="product-btn-test">Go Back</button></a>
-    </div>
-  {% endfor %}
+  {% assign test = shop.metaobjects.card.values %}
+  <div class="main-test">
+    <div class="product-title">{{ test.name }}</div>
+    <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
+    <div class="product-description">{{ test.description }}</div>
+    <a href="#" onclick="goBack()"> <button class="product-btn-test">Go Back</button></a>
+  </div>
 </div>
 
 <script>
