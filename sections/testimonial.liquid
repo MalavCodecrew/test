@@ -1,23 +1,9 @@
-{% comment %}
-  <div class="product-test-card">
-    {% for test in shop.metaobjects.card.values %}
-      <div class="main-test">
-        <div class="product-title">{{ test.name }}</div>
-        <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
-        <a href="{{ test.url }}"> <button class="product-btn-test">Show More</button></a>
-      </div>
-    {% endfor %}
-  </div>
-{% endcomment %}
 <div class="product-test-card">
   {% for test in shop.metaobjects.card.values %}
     <div class="main-test">
       <div class="product-title">{{ test.name }}</div>
       <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
-      <!-- Generating a unique URL using the test's handle or ID -->
-      <a href="{{ test.url }}">
-        <button class="product-btn-test">Show More</button>
-      </a>
+      <a href="{{ test.url }}"> <button class="product-btn-test">Show More</button></a>
     </div>
   {% endfor %}
 </div>

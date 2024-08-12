@@ -1,30 +1,13 @@
-{% comment %}
-  <div class="product-test-card1">
-    {% for test in shop.metaobjects.card.values %}
-      <div class="main-test">
-        {{ test.handle }}
-        <div class="product-title">{{ test.name }} rrrr</div>
-        <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
-        <div class="product-description">{{ test.description }}</div>
-        <a href="#" onclick="goBack()"> <button class="product-btn-test">Go Back</button></a>
-      </div>
-    {% endfor %}
-  </div>
-{% endcomment %}
 <div class="product-test-card1">
-  {% assign test = shop.metaobjects.card.values | where: 'handle', request.params.handle | first %}
-  {% if test %}
+  {% for test in shop.metaobjects.card.values %}
     <div class="main-test">
-      <div class="product-title">{{ test.name }}</div>
+      {{ test.handle }}
+      <div class="product-title">{{ test.name }} rrrr</div>
       <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
       <div class="product-description">{{ test.description }}</div>
-      <a href="javascript:void(0);" onclick="goBack()">
-        <button class="product-btn-test">Go Back</button>
-      </a>
+      <a href="#" onclick="goBack()"> <button class="product-btn-test">Go Back</button></a>
     </div>
-  {% else %}
-    <p>Product not found.</p>
-  {% endif %}
+  {% endfor %}
 </div>
 
 <script>
