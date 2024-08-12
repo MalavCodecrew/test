@@ -1,9 +1,9 @@
 <div class="product-test-card1">
   {% for test in shop.metaobjects.card.values %}
     <div class="main-test">
-      <div class="product-title">{{ test.name }}</div>
-      <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
-      <div class="product-description">{{ test.description }}</div>
+      <div class="product-title">{{ test.name[1] }}</div>
+      <div class="product-image"><img src="{{ test.image[1] | img_url: '100x100' }}"></div>
+      <div class="product-description">{{ test.description[1] }}</div>
       <a href="#" onclick="goBack()"> <button class="product-btn-test">Go Back</button></a>
     </div>
   {% endfor %}
