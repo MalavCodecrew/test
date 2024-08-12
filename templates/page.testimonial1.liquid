@@ -1,4 +1,5 @@
 <div class="product-test-card1">
+  {{ shop.metaobjects.card.values | json }}
   {% for test in shop.metaobjects.card.values %}
     <div class="main-test">
       <div class="product-title">{{ test.name }}</div>
