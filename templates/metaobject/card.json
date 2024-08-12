@@ -11,6 +11,7 @@
   "sections": {
     "testimonial_mTyaED": {
       "type": "testimonial",
+      "disabled": true,
       "settings": {
       }
     },
