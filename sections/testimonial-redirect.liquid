@@ -1,11 +1,84 @@
+<div class="metaobject">
+  <div class="main-container-cc">
+    <div class="testimonial-container">
+      <div class="testimonial-cards1">
+        <div class="image-container1-go">
+          <img
+            src="{{ section.settings.image_with | img_url: '' }}"
+            class="testimonial-image-go"
+            alt="Testimonial Image"
+          >
+        </div>
+        <div class="content-container1">
+          <h2>{{ section.settings.title }}</h2>
+          <p>{{ section.settings.destigation }}</p>
+          <h2>{{ section.settings.name }}</h2>
+
+          <p>{{ section.settings.paragraph }}</p>
+          <h2>Author:{{ section.settings.author }}</h2>
+          <a class="button1" id="goBackButton" {{ section.settings.button_text }}>Go Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $('#goBackButton').on('click', function() {
+      window.history.back();
+    });
+  });
+</script>
+
 {% schema %}
 {
-  "name": "redirect",
-  "settings": [],
+  "name": "codecrew Testimonial",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title",
+      "default": "Welcome to Custom Selection"
+    },  {
+      "type": "text",
+      "label": "name",
+      "id": "name",
+      "default": "Welcome to Custom Selection"
+    },
+     {
+      "type": "text",
+      "label": "Title",
+      "id": "author",
+      "default": "Welcome to Custom Selection"
+    },
+    {
+  "type": "image_picker",
+  "id": "image_with",
+  "label": "Image"
+},
+
+    {
+  "type": "richtext",
+  "id": "paragraph",
+  "label": "Paragraph"
+},    {
+  "type": "richtext",
+  "id": "destigation",
+  "label": "Paragraph"
+},
+
+    {
+      "type": "text",
+      "label": "Button Text",
+      "id": "button_text",
+      "default": "Click me"
+    }
+  ],
    "presets": [
-  {
-    "name": "redirect"
-  }
-]
+    {
+      "name": "codecrew Testimonial",
+      "category": "Custom"
+    }
+  ]
 }
 {% endschema %}
