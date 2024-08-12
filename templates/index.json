@@ -229,6 +229,11 @@
       "settings": {
         "title": "Over 105K followers and 2.3M likes on TikTok, see what our customers have to say:"
       }
+    },
+    "testimonial_ttBf6A": {
+      "type": "testimonial",
+      "settings": {
+      }
     }
   },
   "order": [
@@ -243,6 +248,7 @@
     "compare_images_UnfiQm",
     "subscribe_save_KQxpU3",
     "scroll_video_DP6Ltj",
-    "reviews_WbATDB"
+    "reviews_WbATDB",
+    "testimonial_ttBf6A"
   ]
 }
