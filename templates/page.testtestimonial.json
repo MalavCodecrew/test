@@ -26,7 +26,7 @@
       "settings": {
         "title": "{{ page.metafields.custom.card | metafield_text: field: 'name' }}",
         "name": "",
-        "author": "Welcome to Custom Selection",
+        "author": "",
         "paragraph": "",
         "destigation": "",
         "button_text": "Click me"
