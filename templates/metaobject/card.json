@@ -17,7 +17,6 @@
     },
     "testimonial_redirect_GRMPKm": {
       "type": "testimonial-redirect",
-      "disabled": true,
       "settings": {
         "title": "{{ metaobject.name.value }}",
         "image_with": "{{ metaobject.image.value }}",
