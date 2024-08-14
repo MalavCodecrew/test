@@ -149,7 +149,6 @@
               {% endfor %}
               {% if product.selected_or_first_available_variant %}
                 {% assign current_variant = product.selected_or_first_available_variant %}
-                <span>{{ current_variant.option1 }}</span>
               {% endif %}
               {% for value in size_values %}
                 {% if current_variant.option1 == value %}
