@@ -147,8 +147,6 @@
                   {% assign size_values = option.values %}
                 {% endif %}
               {% endfor %}
-
-              <!-- Now you can output or loop through size_values -->
               {% for value in size_values %}
                 {{ value }}
                 <div id="value">{{ value }} Inches</div>
