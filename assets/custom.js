@@ -29,29 +29,32 @@ $(document).ready(function () {
 });
 
 // -------------------toggle button from cm to inch--------------------------------------------
-  // Conversion function
-function convertValue() {
-    var val = parseFloat($('#value').text());
-    if($("#toggleConvert").is(":checked")) {
-        $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
+ // Conversion function
+function convertValue(val) {
+    if ($("#toggleConvert").is(":checked")) {
+        return (val * 2.54).toFixed(2) + ' Centimeters';
     } else {
-        $("#value").text((val / 2.54).toFixed(2) + ' Inches');
+        return (val / 2.54).toFixed(2) + ' Inches';
     }
 }
 
 // Event listener for the toggle switch
 $("#toggleConvert").change(function() {
-    convertValue();
+    var val = parseFloat($('#value').text());
+    $("#value").text(convertValue(val));
 });
 
 // Event listener for variant change
-$(document).on('variantChange', function(event, selectedVariant) {
-    // Example: Extract the variant's size value (adjust to your needs)
-    var variantSize = parseFloat(selectedVariant.size); // Assuming you have a size field
+$(document).on('change', '[name="id"]', function() {
+    var selectedVariant = $(this).val(); // This assumes you're using a dropdown or similar for variant selection
 
-    $('#value').text(variantSize); // Set the value
-    convertValue(); // Perform conversion
+    // Update the value element with the new variant value
+    var variantSize = parseFloat(selectedVariant); // Adjust this to extract the correct size value for your use case
+
+    $('#value').text(variantSize); // Set the new value
+    $("#value").text(convertValue(variantSize)); // Perform conversion
 });
+
 
 // $("#toggleConvert").change(function() {
 //       var val = parseFloat($('#value1').text());
