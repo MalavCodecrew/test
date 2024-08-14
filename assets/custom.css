@@ -421,4 +421,5 @@ button.product-btn-test {
   position: absolute;
   left: 7px;
   bottom: 40%;
+  transform: rotate(270deg);
 }
