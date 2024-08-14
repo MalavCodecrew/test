@@ -349,27 +349,27 @@ button.product-btn-test {
   align-items: center;
 }
  */
-.product-test-card .label-inch,
+.convertcmtoinch .label-inch,
 .label-cm {
   margin: 0 10px;
   font-size: 16px;
   font-weight: bold;
 }
 
-.product-test-card .switch {
+.convertcmtoinch .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
 }
 
-.product-test-card .switch input {
+.convertcmtoinch .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.product-test-card .slider {
+.convertcmtoinch .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -381,7 +381,7 @@ button.product-btn-test {
   border-radius: 34px;
 }
 
-.product-test-card .slider:before {
+.convertcmtoinch .slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -393,11 +393,11 @@ button.product-btn-test {
   border-radius: 50%;
 }
 
-.product-test-card input:checked + .slider {
+.convertcmtoinch input:checked + .slider {
   background-color: #2196f3;
 }
 
-.product-test-card input:checked + .slider:before {
+.convertcmtoinch input:checked + .slider:before {
   transform: translateX(26px);
 }
 
