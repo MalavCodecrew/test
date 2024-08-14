@@ -343,14 +343,7 @@ button.product-btn-test {
   cursor: pointer;
   border-radius: 5px;
 }
-button#ConvertInchCm {
-  height: 100%;
-  padding: 5px 15px;
-}
-.convertcmtoinch {
-  height: 100%;
-}
-
+/* --------------------------------togglebutton cm to inch */
 .product-test-card .switch {
   position: relative;
   display: inline-block;
