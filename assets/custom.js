@@ -29,7 +29,7 @@ $(document).ready(function () {
 });
 
 // -------------------toggle button from cm to inch--------------------------------------------
- // Conversion function
+// Conversion function
 function convertValue(val) {
     if ($("#toggleConvert").is(":checked")) {
         return (val * 2.54).toFixed(2) + ' Centimeters';
