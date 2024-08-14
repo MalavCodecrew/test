@@ -53,11 +53,11 @@ $(document).on('variantChange', function(event, selectedVariant) {
     convertValue(); // Perform conversion
 });
 
-$("#toggleConvert").change(function() {
-      var val = parseFloat($('#value1').text());
-      if($(this).is(":checked")) {
-          $("#value1").text((val * 2.54).toFixed(2) + ' Centimeters');
-      } else {
-          $("#value1").text((val / 2.54).toFixed(2) + ' Inches');
-      }
-  });
+// $("#toggleConvert").change(function() {
+//       var val = parseFloat($('#value1').text());
+//       if($(this).is(":checked")) {
+//           $("#value1").text((val * 2.54).toFixed(2) + ' Centimeters');
+//       } else {
+//           $("#value1").text((val / 2.54).toFixed(2) + ' Inches');
+//       }
+//   });
