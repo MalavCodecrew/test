@@ -72,6 +72,7 @@
         {% render 'product-media-gallery', variant_images: variant_images %}
         {% if product.tags contains 'size' %}
           <div class="vl">&nbsp</div>
+          <hr class="hr">
           <div class="hr-val">
             {% assign product_options = product.options_with_values %}
             {% for option in product_options %}
@@ -88,7 +89,6 @@
               {% endif %}
             {% endfor %}
           </div>
-          <hr class="hr">
         {% endif %}
       </div>
 
