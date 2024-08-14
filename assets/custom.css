@@ -417,3 +417,8 @@ button.product-btn-test {
 .hr-val {
   text-align: center;
 }
+.vr-val {
+  position: absolute;
+  left: 7px;
+  bottom: 40%;
+}
