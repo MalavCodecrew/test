@@ -29,14 +29,30 @@ $(document).ready(function () {
 });
 
 // -------------------toggle button from cm to inch--------------------------------------------
-  $("#toggleConvert").change(function() {
-      var val = parseFloat($('#value').text());
-      if($(this).is(":checked")) {
-          $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
-      } else {
-          $("#value").text((val / 2.54).toFixed(2) + ' Inches');
-      }
-  });
+  // Conversion function
+function convertValue() {
+    var val = parseFloat($('#value').text());
+    if($("#toggleConvert").is(":checked")) {
+        $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
+    } else {
+        $("#value").text((val / 2.54).toFixed(2) + ' Inches');
+    }
+}
+
+// Event listener for the toggle switch
+$("#toggleConvert").change(function() {
+    convertValue();
+});
+
+// Event listener for variant change
+$(document).on('variantChange', function(event, selectedVariant) {
+    // Example: Extract the variant's size value (adjust to your needs)
+    var variantSize = parseFloat(selectedVariant.size); // Assuming you have a size field
+
+    $('#value').text(variantSize); // Set the value
+    convertValue(); // Perform conversion
+});
+
 $("#toggleConvert").change(function() {
       var val = parseFloat($('#value1').text());
       if($(this).is(":checked")) {
