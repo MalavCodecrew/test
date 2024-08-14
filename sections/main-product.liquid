@@ -143,7 +143,8 @@
               <br>
               {% assign product_options = product.options_with_values %}
               {% for option in product_options %}
-                {% if option.name == 'Size' %}
+                {% if option.name == 'Size' -%}
+                  {{- option.value }}
                   {% assign size_values = option.values %}
                 {% endif %}
               {% endfor %}
