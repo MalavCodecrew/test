@@ -29,43 +29,21 @@ $(document).ready(function () {
 });
 
 // -------------------toggle button from cm to inch--------------------------------------------
-// Conversion function
-function convertValue(val) {
-    if ($("#toggleConvert").is(":checked")) {
-        return (val * 2.54).toFixed(2) + ' Centimeters';
-    } else {
-        return (val / 2.54).toFixed(2) + ' Inches';
-    }
-}
-
-// Event listener for the toggle switch
 $("#toggleConvert").change(function() {
-    var val = parseFloat($('#value').text());
-    if (!isNaN(val)) {
-        $("#value").text(convertValue(val));
-    }
-});
-
-// Event listener for variant change
-$(document).on('change', '[name="id"]', function() {
-    // Retrieve the selected variant's value (assuming it contains size or a numeric value you want to convert)
-    var selectedVariant = $(this).find(":selected").data('variant-value'); // Adjust if necessary
-
-    if (selectedVariant && !isNaN(parseFloat(selectedVariant))) {
-        $('#value').text(selectedVariant); // Set the raw variant value
-        $("#value").text(convertValue(parseFloat(selectedVariant))); // Convert and display it
-    } else {
-        console.log('Selected variant does not contain a numeric value to convert.');
-    }
-});
+      var val = parseFloat($('#value').text());
+      if($(this).is(":checked")) {
+          $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
+      } else {
+          $("#value").text((val / 2.54).toFixed(2) + ' Inches');
+      }
+  });
 
 
-
-// $("#toggleConvert").change(function() {
-//       var val = parseFloat($('#value1').text());
-//       if($(this).is(":checked")) {
-//           $("#value1").text((val * 2.54).toFixed(2) + ' Centimeters');
-//       } else {
-//           $("#value1").text((val / 2.54).toFixed(2) + ' Inches');
-//       }
-//   });
+$("#toggleConvert").change(function() {
+      var val = parseFloat($('#value1').text());
+      if($(this).is(":checked")) {
+          $("#value1").text((val * 2.54).toFixed(2) + ' Centimeters');
+      } else {
+          $("#value1").text((val / 2.54).toFixed(2) + ' Inches');
+      }
+  });
