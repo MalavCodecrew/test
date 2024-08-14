@@ -344,11 +344,11 @@ button.product-btn-test {
   border-radius: 5px;
 }
 /* --------------------------------togglebutton cm to inch */
-.product-test-card .convertcmtoinch {
+/* .product-test-card .convertcmtoinch {
   display: flex;
   align-items: center;
 }
-
+ */
 .product-test-card .label-inch,
 .label-cm {
   margin: 0 10px;
