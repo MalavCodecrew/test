@@ -344,68 +344,6 @@ button.product-btn-test {
   border-radius: 5px;
 }
 /* --------------------------------togglebutton cm to inch */
-.product-test-card .switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.product-test-card .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.product-test-card .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 34px;
-}
-
-.product-test-card .slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-.product-test-card input:checked + .slider {
-  background-color: #2196f3;
-}
-
-.product-test-card input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-/* Optional for showing text inside the toggle */
-.product-test-card .slider:after {
-  content: "CM";
-  color: white;
-  display: block;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 25%;
-  font-size: 10px;
-}
-
-.product-test-card input:checked + .slider:after {
-  content: "Inch";
-  left: 75%;
-}
-
 .product-test-card .convertcmtoinch {
   display: flex;
   align-items: center;
