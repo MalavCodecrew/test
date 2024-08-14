@@ -419,7 +419,7 @@ button.product-btn-test {
 }
 .vr-val {
   position: absolute;
-  left: 7px;
+  left: 13%;
   bottom: 40%;
   transform: rotate(270deg);
 }
