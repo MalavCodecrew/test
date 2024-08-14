@@ -41,19 +41,24 @@ function convertValue(val) {
 // Event listener for the toggle switch
 $("#toggleConvert").change(function() {
     var val = parseFloat($('#value').text());
-    $("#value").text(convertValue(val));
+    if (!isNaN(val)) {
+        $("#value").text(convertValue(val));
+    }
 });
 
 // Event listener for variant change
 $(document).on('change', '[name="id"]', function() {
-    var selectedVariant = $(this).val(); // This assumes you're using a dropdown or similar for variant selection
+    // Retrieve the selected variant's value (assuming it contains size or a numeric value you want to convert)
+    var selectedVariant = $(this).find(":selected").data('variant-value'); // Adjust if necessary
 
-    // Update the value element with the new variant value
-    var variantSize = parseFloat(selectedVariant); // Adjust this to extract the correct size value for your use case
-
-    $('#value').text(variantSize); // Set the new value
-    $("#value").text(convertValue(variantSize)); // Perform conversion
+    if (selectedVariant && !isNaN(parseFloat(selectedVariant))) {
+        $('#value').text(selectedVariant); // Set the raw variant value
+        $("#value").text(convertValue(parseFloat(selectedVariant))); // Convert and display it
+    } else {
+        console.log('Selected variant does not contain a numeric value to convert.');
+    }
 });
+
 
 
 // $("#toggleConvert").change(function() {
