@@ -71,6 +71,22 @@
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
         {% if product.tags contains 'size' %}
+          <div class="vr-val">
+            {% assign product_options = product.options_with_values %}
+            {% for option in product_options %}
+              {% if option.name == 'Size' -%}
+                {% assign size_values = option.values %}
+              {% endif %}
+            {% endfor %}
+            {% if product.selected_or_first_available_variant %}
+              {% assign current_variant = product.selected_or_first_available_variant %}
+            {% endif %}
+            {% for value in size_values %}
+              {% if current_variant.option1 == value %}
+                <div id="value">{{ value }} Inches</div>
+              {% endif %}
+            {% endfor %}
+          </div>
           <div class="vl">&nbsp</div>
           <hr class="hr">
           <div class="hr-val">
