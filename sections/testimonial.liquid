@@ -10,11 +10,10 @@
   {% endfor %}
 </div>
 <script>
-    var flag=false;
-  $("#ConvertInchCm").click(function(e){
+     $("#ConvertInchCm").click(function(e){
       e.stopPropagation();
       var val = $('#value').text()
-      if(flag && ($(this).text() == "Convert to CM"))
+      if(($(this).text() == "Convert to CM"))
       {
            $("#value").text(val*2.54);
            $(this).text("Convert to Inches");
@@ -24,7 +23,6 @@
           $("#value").text(val/2.54);
           $(this).text("Convert to CM");
       }
-         flag=!flag;
   });
 </script>
 {% schema %}
