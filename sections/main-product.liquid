@@ -147,16 +147,16 @@
                   {% assign size_values = option.values %}
                 {% endif %}
               {% endfor %}
+              {% if product.selected_or_first_available_variant %}
+                {% assign current_variant = product.selected_or_first_available_variant %}
+                <span>{{ current_variant.option1 }}</span>
+              {% endif %}
               {% for value in size_values %}
                 {% if current_variant.option1 == '{{ value }}' %}
                   <div id="value">{{ value }} Inches</div>
                 {% endif %}
               {% endfor %}
             </div>
-            {% if product.selected_or_first_available_variant %}
-              {% assign current_variant = product.selected_or_first_available_variant %}
-              <span>{{ current_variant.option1 }}</span>
-            {% endif %}
           {% endif %}
 
           {%- for block in section.blocks -%}
