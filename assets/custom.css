@@ -412,5 +412,8 @@ button.product-btn-test {
 .hr {
   width: 100%;
   text-align: left;
-  margin-left: 0;
+  margin: 0 auto;
+}
+.hr-val {
+  text-align: center;
 }
