@@ -4,9 +4,9 @@
       <div class="product-title">{{ test.name }}</div>
       <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
       <a href="{{ test.system.url }}"> <button class="product-btn-test">Show More</button></a>
+      <button id="ConvertInchCm">Convert to CM</button>
+      <div id="value">1</div>
     </div>
-    <button id="ConvertInchCm">Convert to CM</button>
-    <div id="value">1</div>
   {% endfor %}
 </div>
 <script>
