@@ -148,7 +148,9 @@
                 {% endif %}
               {% endfor %}
               {% for value in size_values %}
-                <div id="value">{{ value }} Inches</div>
+                {% if current_variant.option1 == '{{ value }}' %}
+                  <div id="value">{{ value }} Inches</div>
+                {% endif %}
               {% endfor %}
             </div>
             {% if product.selected_or_first_available_variant %}
