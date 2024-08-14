@@ -151,7 +151,9 @@
                 <div id="value">{{ value }} Inches</div>
               {% endfor %}
             </div>
-            {{ product.variants | json }}
+            {% for variant in product.variants %}
+              {{ variant.option1 }}
+            {% endfor %}
           {% endif %}
 
           {%- for block in section.blocks -%}
