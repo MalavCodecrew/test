@@ -28,4 +28,12 @@ $(document).ready(function () {
   });
 });
 
-// -------------------practice api--------------------------------------------
+// -------------------toggle button from cm to inch--------------------------------------------
+  $("#toggleConvert").change(function() {
+      var val = parseFloat($('#value').text());
+      if($(this).is(":checked")) {
+          $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
+      } else {
+          $("#value").text((val / 2.54).toFixed(2) + ' Inches');
+      }
+  });

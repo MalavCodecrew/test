@@ -17,16 +17,7 @@
     <div id="value">1 Inches</div>
   </div>
 </div>
-<script>
-   $("#toggleConvert").change(function() {
-      var val = parseFloat($('#value').text());
-      if($(this).is(":checked")) {
-          $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
-      } else {
-          $("#value").text((val / 2.54).toFixed(2) + ' Inches');
-      }
-  });
-</script>
+
 {% schema %}
 {
   "name": "Testimonial",
