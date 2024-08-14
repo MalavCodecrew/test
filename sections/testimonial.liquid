@@ -3,14 +3,6 @@
     <div class="main-test">
       <div class="product-title">{{ test.name }}</div>
       <div class="product-image"><img src="{{ test.image | img_url: '100x100' }}"></div>
-
-      <style>
-        .vl {
-          border-left: 1px solid #5e5e5e;
-          height: 500px;
-        }
-      </style>
-      <div class="vl">&nbsp</div>
       <a href="{{ test.system.url }}"> <button class="product-btn-test">Show More</button></a>
     </div>
   {% endfor %}
