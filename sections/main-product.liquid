@@ -152,7 +152,7 @@
                 <span>{{ current_variant.option1 }}</span>
               {% endif %}
               {% for value in size_values %}
-                {% if current_variant.option1 == '{{ value }}' %}
+                {% if current_variant.option1 == value %}
                   <div id="value">{{ value }} Inches</div>
                 {% endif %}
               {% endfor %}
