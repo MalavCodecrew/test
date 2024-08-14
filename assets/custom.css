@@ -408,3 +408,9 @@ button.product-btn-test {
   left: 84px;
   top: 377px;
 }
+
+.hr {
+  width: 100%;
+  text-align: left;
+  margin-left: 0;
+}
