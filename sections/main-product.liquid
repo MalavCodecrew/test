@@ -151,11 +151,10 @@
                 <div id="value">{{ value }} Inches</div>
               {% endfor %}
             </div>
-            {% for variant in product.variants %}
-              {% assign current_option1_value = variant.option1 %}
-              <!-- Use the current_option1_value here -->
-              {{ current_option1_value }}
-            {% endfor %}
+            {% if product.selected_or_first_available_variant %}
+              {% assign current_variant = product.selected_or_first_available_variant %}
+              <span>{{ current_variant.option1 }}</span>
+            {% endif %}
           {% endif %}
 
           {%- for block in section.blocks -%}
