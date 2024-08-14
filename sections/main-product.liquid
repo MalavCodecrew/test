@@ -75,6 +75,17 @@
           <hr class="hr">
         {% endif %}
         {{ product.options_with_values | json }}
+        {% assign product_options = product.options_with_values %}
+        {% for option in product_options %}
+          {% if option.name == 'Size' %}
+            {% assign size_values = option.values %}
+          {% endif %}
+        {% endfor %}
+
+        <!-- Now you can output or loop through size_values -->
+        {% for value in size_values %}
+          {{ value }}
+        {% endfor %}
       </div>
 
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
