@@ -343,3 +343,8 @@ button.product-btn-test {
   cursor: pointer;
   border-radius: 5px;
 }
+button#ConvertInchCm {
+  height: 100%;
+  width: 11%;
+  padding: 5px 15px;
+}
