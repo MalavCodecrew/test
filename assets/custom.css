@@ -400,3 +400,8 @@ button.product-btn-test {
 .product-test-card input:checked + .slider:before {
   transform: translateX(26px);
 }
+
+.vl {
+  border-left: 1px solid #5e5e5e;
+  height: 500px;
+}
