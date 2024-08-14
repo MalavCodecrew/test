@@ -151,17 +151,11 @@
                 <div id="value">{{ value }} Inches</div>
               {% endfor %}
             </div>
-            {% assign option1_values = '' %}
-
             {% for variant in product.variants %}
-              {% assign option1_values = option1_values | append: variant.option1 | append: ', ' %}
+              {% assign current_option1_value = variant.option1 %}
+              <!-- Use the current_option1_value here -->
+              {{ current_option1_value }}
             {% endfor %}
-
-            <!-- Remove the trailing comma and space -->
-            {% assign option1_values = option1_values | slice: 0, option1_values.size | minus: 2 %}
-
-            <!-- Output the collected option1 values -->
-            {{ option1_values }}
           {% endif %}
 
           {%- for block in section.blocks -%}
