@@ -47,3 +47,26 @@ $(document).ready(function () {
 //           $("#value1").text((val / 2.54).toFixed(2) + ' Inches');
 //       }
 //   });
+
+
+
+
+// Listen for variant change
+$(document).on('change', 'variant-selects', function() {
+    var val = parseFloat($('#value').text()); // Fetch the value from the element
+    if ($("#toggleConvert").is(":checked")) {
+        $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
+    } else {
+        $("#value").text((val / 2.54).toFixed(2) + ' Inches');
+    }
+});
+
+// Existing toggle switch logic
+$("#toggleConvert").change(function() {
+    var val = parseFloat($('#value').text());
+    if($(this).is(":checked")) {
+        $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
+    } else {
+        $("#value").text((val / 2.54).toFixed(2) + ' Inches');
+    }
+});
