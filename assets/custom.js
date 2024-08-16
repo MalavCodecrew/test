@@ -155,12 +155,12 @@ function handleConversion() {
         console.log('Converting to Centimeters:', convertedValue, convertedVal1);
 
         $("#value").text(convertedValue + ' Centimeters');
-        $("#val1").text(convertedVal1 + ' Centimeters');
+        $("#value1").text(convertedVal1 + ' Centimeters');
     } else {
         console.log('Converting to Inches:', originalValue.toFixed(2), originalVal1.toFixed(2));
 
         $("#value").text(originalValue.toFixed(2) + ' Inches');
-        $("#val1").text(originalVal1.toFixed(2) + ' Inches');
+        $("#vaue1").text(originalVal1.toFixed(2) + ' Inches');
     }
 
     // Update swatches based on the toggle state
