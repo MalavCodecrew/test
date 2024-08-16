@@ -420,6 +420,6 @@ button.product-btn-test {
 .vr-val {
   position: absolute;
   left: 11%;
-  bottom: 20%;
+  bottom: 40%;
   transform: rotate(270deg);
 }
