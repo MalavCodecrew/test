@@ -56,8 +56,14 @@ var originalValue; // Variable to store the original value
 // Listen for changes on the variant radio buttons
 $(document).on('change', 'input[name="Size"]', function() {
     console.log('Variant changed');
-    // Set the original value when a variant is selected
-    originalValue = parseFloat($('#value').text().replace(/[^0-9.-]+/g, ""));
+    
+    // Get the new value for the selected variant (you may need to adjust how you get this value)
+    originalValue = parseFloat($(this).val()); // Assuming the value of the radio button is the original number (e.g., 8, 10, or 12)
+    
+    // Update the displayed value without any conversion initially
+    $("#value").text(originalValue.toFixed(2) + ' Inches');
+    
+    // Apply conversion based on the current toggle state
     handleConversion();
 });
 
