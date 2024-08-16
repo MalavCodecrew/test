@@ -74,6 +74,7 @@ $("#toggleConvert").change(function() {
 function handleConversion() {
     if ((typeof originalValue === 'undefined' || isNaN(originalValue)) ||
         (typeof originalValue1 === 'undefined' || isNaN(originalValue1))) {
+      console.log(originalValue,originalValue1)
         console.error('Original value or value1 is not set or invalid');
         return;
     }
