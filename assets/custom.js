@@ -51,43 +51,40 @@ $(document).ready(function () {
 
 
 
+var originalValue; // Variable to store the original value
+
 // Listen for changes on the variant radio buttons
 $(document).on('change', 'input[name="Size"]', function() {
-    console.log('Variant changed');  // Log when variant changes
+    console.log('Variant changed');
+    // Set the original value when a variant is selected
+    originalValue = parseFloat($('#value').text().replace(/[^0-9.-]+/g, ""));
     handleConversion();
 });
 
 // Toggle switch change event
 $("#toggleConvert").change(function() {
-    console.log('Toggle switch changed');  // Log when toggle switch changes
+    console.log('Toggle switch changed');
     handleConversion();
 });
 
 // Function to handle conversion logic
 function handleConversion() {
-    var valueText = $('#value').text();
-    
-    // Extract numeric part from the text
-    var numericValue = parseFloat(valueText.replace(/[^0-9.-]+/g,""));
-    
-    // Debugging: Check if numericValue is correct
-    console.log('Extracted numeric value:', numericValue);
+    if (typeof originalValue === 'undefined') {
+        console.error('Original value is not set');
+        return;
+    }
 
     // Check if toggle is checked
     var isToggleChecked = $("#toggleConvert").is(":checked");
     console.log('Toggle state:', isToggleChecked);
-    
-    // If numeric value is valid, perform conversion
-    if (!isNaN(numericValue)) {
-        if (isToggleChecked) {
-            console.log('Converting to Centimeters');
-            $("#value").text((numericValue * 2.54).toFixed(2) + ' Centimeters');
-        } else {
-            console.log('Converting to Inches');
-            $("#value").text((numericValue / 2.54).toFixed(2) + ' Inches');
-        }
+
+    // Perform conversion based on the original value
+    if (isToggleChecked) {
+        console.log('Converting to Centimeters');
+        $("#value").text((originalValue * 2.54).toFixed(2) + ' Centimeters');
     } else {
-        console.error('Could not extract a valid number from:', valueText);
+        console.log('Converting to Inches');
+        $("#value").text(originalValue.toFixed(2) + ' Inches');
     }
 }
 
