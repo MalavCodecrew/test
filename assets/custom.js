@@ -127,7 +127,7 @@ $(document).on('change', 'input[name="Size"]', function() {
     }
 
     if (!isNaN(originalVal1)) {
-        $("#val1").text(originalVal1.toFixed(2) + ' Inches');
+        $("#value1").text(originalVal1.toFixed(2) + ' Inches');
         console.log('Displayed val1 updated to:', originalVal1.toFixed(2) + ' Inches');
     } else {
         console.error('Original val1 is not a valid number:', originalVal1);
@@ -162,12 +162,12 @@ function handleConversion() {
         console.log('Converting to Centimeters:', convertedValue, convertedVal1);
 
         $("#value").text(convertedValue + ' Centimeters');
-        $("#val1").text(convertedVal1 + ' Centimeters');
+        $("#value1").text(convertedVal1 + ' Centimeters');
     } else {
         console.log('Converting to Inches:', originalValue.toFixed(2), originalVal1.toFixed(2));
 
         $("#value").text(originalValue.toFixed(2) + ' Inches');
-        $("#val1").text(originalVal1.toFixed(2) + ' Inches');
+        $("#value1").text(originalVal1.toFixed(2) + ' Inches');
     }
 }
 
