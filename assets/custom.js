@@ -136,9 +136,8 @@ var originalValue; // Variable to store the original value for #value
 var originalValue1; // Variable to store the original value for #value1
 var originalSwatchValues = {}; // Object to store the original values for the swatches
 
-// Initialize on document ready
 $(document).ready(function() {
-    // Store swatch values and update based on initial toggle state
+    // Initialize the values and update the display based on the initial state of the toggle
     storeSwatchValues();
     handleConversion();
 
@@ -153,23 +152,17 @@ $(document).ready(function() {
         console.log('Original value set to:', originalValue);
         console.log('Original value1 set to:', originalValue1);
 
-        // Update the displayed values in Inches (initial state)
-        if (!isNaN(originalValue)) {
+        // Ensure values are valid before updating
+        if (!isNaN(originalValue) && !isNaN(originalValue1)) {
+            // Update the displayed values in Inches
             $("#value").text(originalValue.toFixed(2) + ' Inches');
-            console.log('Displayed value updated to:', originalValue.toFixed(2) + ' Inches');
-        } else {
-            console.error('Original value is not a valid number:', originalValue);
-        }
-
-        if (!isNaN(originalValue1)) {
             $("#value1").text(originalValue1.toFixed(2) + ' Inches');
-            console.log('Displayed value1 updated to:', originalValue1.toFixed(2) + ' Inches');
-        } else {
-            console.error('Original value1 is not a valid number:', originalValue1);
-        }
 
-        // Update swatches based on the toggle state
-        handleConversion();
+            // Call handleConversion to update based on toggle state
+            handleConversion();
+        } else {
+            console.error('Invalid values:', originalValue, originalValue1);
+        }
     });
 
     // Toggle switch change event
@@ -240,4 +233,3 @@ function updateSwatchLabels(isToggleChecked) {
         console.log('Updated swatch', id, 'to:', convertedSwatchValue);
     }
 }
-
