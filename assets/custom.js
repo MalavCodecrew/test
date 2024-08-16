@@ -52,7 +52,7 @@ $(document).ready(function () {
 
 
 // Listen for variant change
-$(document).on('change', '#template--23129586958614__main-1-0', function() {
+$(document).on('change', '', function() {
     var val = parseFloat($('#value').text()); // Fetch the value from the element
     if ($("#toggleConvert").is(":checked")) {
         $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
