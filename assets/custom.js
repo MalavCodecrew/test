@@ -51,8 +51,8 @@ $(document).ready(function () {
 
 
 
-// Listen for variant change
-$(document).on('change', '', function() {
+// Listen for changes on the variant radio buttons
+$(document).on('change', 'input[name="Size"]', function() {
     var val = parseFloat($('#value').text()); // Fetch the value from the element
     if ($("#toggleConvert").is(":checked")) {
         $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
