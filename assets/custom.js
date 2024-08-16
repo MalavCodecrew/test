@@ -82,7 +82,7 @@ function initializeSwatchValues() {
         if (!isNaN(swatchValue)) {
             originalSwatchValues[$(this).attr('id')] = {
                 value: swatchValue,
-                unit: 'in'
+                unit: 'in'  // Set default unit to inches
             };
         }
         
@@ -138,7 +138,7 @@ function storeSwatchValues() {
         if (!isNaN(swatchValue)) {
             originalSwatchValues[$(this).attr('id')] = {
                 value: swatchValue,
-                unit: 'in'
+                unit: 'in'  // Ensure unit is set to inches when storing
             };
         }
         
@@ -165,5 +165,3 @@ function updateSwatchLabels(isToggleChecked) {
         console.log('Updated swatch', id, 'to:', convertedSwatchValue);
     }
 }
-
-
