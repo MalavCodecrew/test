@@ -53,11 +53,13 @@ $(document).ready(function () {
 
 // Listen for changes on the variant radio buttons
 $(document).on('change', 'input[name="Size"]', function() {
+    console.log('Variant changed');  // Log when variant changes
     handleConversion();
 });
 
-// Existing toggle switch logic
+// Toggle switch change event
 $("#toggleConvert").change(function() {
+    console.log('Toggle switch changed');  // Log when toggle switch changes
     handleConversion();
 });
 
@@ -66,16 +68,22 @@ function handleConversion() {
     var valueText = $('#value').text();
     
     // Extract numeric part from the text
-    var numericValue = parseFloat(valueText);
+    var numericValue = parseFloat(valueText.replace(/[^0-9.-]+/g,""));
     
     // Debugging: Check if numericValue is correct
     console.log('Extracted numeric value:', numericValue);
 
+    // Check if toggle is checked
+    var isToggleChecked = $("#toggleConvert").is(":checked");
+    console.log('Toggle state:', isToggleChecked);
+    
     // If numeric value is valid, perform conversion
     if (!isNaN(numericValue)) {
-        if ($("#toggleConvert").is(":checked")) {
+        if (isToggleChecked) {
+            console.log('Converting to Centimeters');
             $("#value").text((numericValue * 2.54).toFixed(2) + ' Centimeters');
         } else {
+            console.log('Converting to Inches');
             $("#value").text((numericValue / 2.54).toFixed(2) + ' Inches');
         }
     } else {
