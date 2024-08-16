@@ -133,34 +133,20 @@ $(document).ready(function () {
 // }
 
 
+// Variables to store original values
 var originalValue; // Variable to store the original value for #value
-var originalValue1;  // Variable to store the original value for #value1
 var originalSwatchValues = {}; // Object to store the original values for the swatches
 
 // Listen for changes on the variant radio buttons
 $(document).on('change', 'input[name="Size"]', function() {
-    console.log('Variant changed');
-    
-    // Get the new values for the selected variant (assuming value is numeric)
     originalValue = parseFloat($(this).val());
-    originalValue1 = parseFloat($(this).val());
-
-    console.log('Original value set to:', originalValue);
-    console.log('Original value1 set to:', originalValue1);
-
+    console.log('Variant changed, originalValue:', originalValue);
+    
     // Update the displayed values in Inches (initial state)
     if (!isNaN(originalValue)) {
         $("#value").text(originalValue.toFixed(2) + ' Inches');
-        console.log('Displayed value updated to:', originalValue.toFixed(2) + ' Inches');
     } else {
-        console.error('Original value is not a valid number:', originalValue);
-    }
-
-    if (!isNaN(originalValue1)) {
-        $("#value1").text(originalValue1.toFixed(2) + ' Inches');
-        console.log('Displayed value1 updated to:', originalValue1.toFixed(2) + ' Inches');
-    } else {
-        console.error('Original value1 is not a valid number:', originalValue1);
+        $("#value").text('Invalid Value');
     }
 
     // Store and update swatches based on the toggle state
@@ -170,38 +156,30 @@ $(document).on('change', 'input[name="Size"]', function() {
 
 // Toggle switch change event
 $("#toggleConvert").change(function() {
-    console.log('Toggle switch changed');
     handleConversion();
 });
 
-// Function to handle conversion logic for #value, #value1, and swatches
+// Function to handle conversion logic for #value
 function handleConversion() {
     console.log('Handle Conversion Called');
     
-    if ((typeof originalValue === 'undefined' || isNaN(originalValue)) ||
-        (typeof originalValue1 === 'undefined' || isNaN(originalValue1))) {
-        console.error('Original value or value1 is not set or invalid');
+    if (typeof originalValue === 'undefined' || isNaN(originalValue)) {
+        console.error('Original value is not set or invalid');
         return;
     }
 
-    // Check if toggle is checked
     var isToggleChecked = $("#toggleConvert").is(":checked");
     console.log('Toggle state:', isToggleChecked);
 
-    // Perform conversion for #value and #value1
+    // Perform conversion based on toggle state
+    var displayValue;
     if (isToggleChecked) {
-        var convertedValue = (originalValue * 2.54).toFixed(2);
-        var convertedValue1 = (originalValue1 * 2.54).toFixed(2);
-        console.log('Converting to Centimeters:', convertedValue, convertedValue1);
-
-        $("#value").text(convertedValue + ' Centimeters');
-        $("#value1").text(convertedValue1 + ' Centimeters');
+        displayValue = (originalValue * 2.54).toFixed(2) + ' Centimeters';
     } else {
-        console.log('Converting to Inches:', originalValue.toFixed(2), originalValue1.toFixed(2));
-
-        $("#value").text(originalValue.toFixed(2) + ' Inches');
-        $("#value1").text(originalValue1.toFixed(2) + ' Inches');
+        displayValue = originalValue.toFixed(2) + ' Inches';
     }
+
+    $("#value").text(displayValue);
 
     // Update swatches based on the toggle state
     updateSwatchLabels(isToggleChecked);
@@ -238,6 +216,4 @@ function updateSwatchLabels(isToggleChecked) {
         $('label[for="' + id + '"]').text(convertedSwatchValue);
         console.log('Updated swatch', id, 'to:', convertedSwatchValue);
     }
-}
- }
 }
