@@ -164,16 +164,16 @@
             </div>
           {% endif %}
 
-          <!--
-            {% if product.tags contains 'size' %}
-              <div class="convertcmtoinch">
-                <span class="label-inch">Inches</span>
-                <label class="switch">
-                  <input type="checkbox" id="toggleConvert">
-                  <span class="slider round"></span>
-                </label>
-                <span class="label-cm">CM</span>
-                <br>
+          {% if product.tags contains 'size' %}
+            <div class="convertcmtoinch">
+              <span class="label-inch">Inches</span>
+              <label class="switch">
+                <input type="checkbox" id="toggleConvert">
+                <span class="slider round"></span>
+              </label>
+              <span class="label-cm">CM</span>
+              <br>
+              <!--
                 {% assign product_options = product.options_with_values %}
                 {% for option in product_options %}
                   {% if option.name == 'Size' -%}
@@ -188,9 +188,9 @@
                     <div id="value">{{ value }} Inches</div>
                   {% endif %}
                 {% endfor %}
-              </div>
-            {% endif %}
-          -->
+              -->
+            </div>
+          {% endif %}
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
