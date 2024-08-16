@@ -133,87 +133,43 @@ $(document).ready(function () {
 // }
 
 
-// Variables to store original values
-var originalValue; // Variable to store the original value for #value
-var originalSwatchValues = {}; // Object to store the original values for the swatches
+$(document).ready(function() {
+    // Variables to store original values
+    var originalValue;
 
-// Listen for changes on the variant radio buttons
-$(document).on('change', 'input[name="Size"]', function() {
-    originalValue = parseFloat($(this).val());
-    console.log('Variant changed, originalValue:', originalValue);
-    
-    // Update the displayed values in Inches (initial state)
-    if (!isNaN(originalValue)) {
-        $("#value").text(originalValue.toFixed(2) + ' Inches');
-    } else {
-        $("#value").text('Invalid Value');
-    }
-
-    // Store and update swatches based on the toggle state
-    storeSwatchValues();
-    handleConversion();
-});
-
-// Toggle switch change event
-$("#toggleConvert").change(function() {
-    handleConversion();
-});
-
-// Function to handle conversion logic for #value
-function handleConversion() {
-    console.log('Handle Conversion Called');
-    
-    if (typeof originalValue === 'undefined' || isNaN(originalValue)) {
-        console.error('Original value is not set or invalid');
-        return;
-    }
-
-    var isToggleChecked = $("#toggleConvert").is(":checked");
-    console.log('Toggle state:', isToggleChecked);
-
-    // Perform conversion based on toggle state
-    var displayValue;
-    if (isToggleChecked) {
-        displayValue = (originalValue * 2.54).toFixed(2) + ' Centimeters';
-    } else {
-        displayValue = originalValue.toFixed(2) + ' Inches';
-    }
-
-    $("#value").text(displayValue);
-
-    // Update swatches based on the toggle state
-    updateSwatchLabels(isToggleChecked);
-}
-
-// Store original swatch values
-function storeSwatchValues() {
-    console.log('Store Swatch Values Called');
-    $('input[name="Size"]').each(function() {
-        var swatchValue = parseFloat($(this).val());
-        if (!isNaN(swatchValue)) {
-            originalSwatchValues[$(this).attr('id')] = swatchValue;
-            console.log('Stored swatch value for', $(this).attr('id'), ':', swatchValue);
-        } else {
-            console.error('Swatch value is not a valid number for', $(this).attr('id'));
-        }
+    // Listen for changes on the variant radio buttons
+    $(document).on('change', 'input[name="Size"]', function() {
+        originalValue = parseFloat($(this).val());
+        console.log('Variant changed, originalValue:', originalValue);
+        
+        // Update the displayed value
+        updateDisplayValue();
     });
-}
 
-// Update swatch labels based on toggle state
-function updateSwatchLabels(isToggleChecked) {
-    console.log('Update Swatch Labels Called, Toggle Checked:', isToggleChecked);
-    for (var id in originalSwatchValues) {
-        var originalSwatchValue = originalSwatchValues[id];
-        var convertedSwatchValue;
+    // Toggle switch change event
+    $("#toggleConvert").change(function() {
+        updateDisplayValue();
+    });
 
-        if (isToggleChecked) {
-            convertedSwatchValue = (originalSwatchValue * 2.54).toFixed(2) + ' cm';
-        } else {
-            convertedSwatchValue = originalSwatchValue.toFixed(2) + ' in';
+    // Function to update the displayed value based on the toggle state
+    function updateDisplayValue() {
+        if (typeof originalValue === 'undefined' || isNaN(originalValue)) {
+            console.error('Original value is not set or invalid');
+            return;
         }
 
-        // Update the swatch label
-        $('label[for="' + id + '"]').text(convertedSwatchValue);
-        console.log('Updated swatch', id, 'to:', convertedSwatchValue);
+        var isToggleChecked = $("#toggleConvert").is(":checked");
+        console.log('Toggle state:', isToggleChecked);
+
+        // Perform conversion based on toggle state
+        var displayValue;
+        if (isToggleChecked) {
+            displayValue = (originalValue * 2.54).toFixed(2) + ' Centimeters';
+        } else {
+            displayValue = originalValue.toFixed(2) + ' Inches';
+        }
+
+        $("#value").text(displayValue);
+        console.log('Displayed value updated to:', displayValue);
     }
-}
+});
