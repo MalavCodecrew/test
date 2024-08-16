@@ -29,13 +29,10 @@ $(document).ready(function () {
 });
 
 // -------------------toggle button from cm to inch--------------------------------------------
-var originalValue; // Variable to store the original value for #value
-var originalValue1;  // Variable to store the original value for #value1
-var originalSwatchValues = {}; // Object to store the original values for the swatches
-
 $(document).ready(function() {
-    // Initialize swatch values when the page loads
+    // Initialize swatch values and toggle state when the page loads
     initializeSwatchValues();
+    applyToggleStateFromCookie();
 
     // Listen for changes on the variant radio buttons
     $(document).on('change', 'input[name="Size"]', function() {
@@ -72,6 +69,7 @@ $(document).ready(function() {
     $("#toggleConvert").change(function() {
         console.log('Toggle switch changed');
         handleConversion();
+        setToggleStateCookie($(this).is(":checked")); // Store toggle state in cookie
     });
 });
 
@@ -152,4 +150,31 @@ function updateSwatchLabels(isToggleChecked) {
         $('label[for="' + id + '"]').text(convertedSwatchValue);
         console.log('Updated swatch', id, 'to:', convertedSwatchValue);
     }
+}
+
+// Set a cookie for the toggle state
+function setToggleStateCookie(isChecked) {
+    var expiryDate = new Date();
+    expiryDate.setTime(expiryDate.getTime() + (365 * 24 * 60 * 60 * 1000)); // 1 year expiry
+    document.cookie = "toggleState=" + (isChecked ? "checked" : "unchecked") + "; expires=" + expiryDate.toUTCString() + "; path=/";
+}
+
+// Apply the toggle state from the cookie
+function applyToggleStateFromCookie() {
+    var name = "toggleState=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var cookieArray = decodedCookie.split(';');
+    for (var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) == 0) {
+            var cookieValue = cookie.substring(name.length, cookie.length);
+            if (cookieValue === "checked") {
+                $("#toggleConvert").prop("checked", true);
+            } else {
+                $("#toggleConvert").prop("checked", false);
+            }
+            break;
+        }
+    }
+    handleConversion(); // Apply conversion based on the cookie state
 }
