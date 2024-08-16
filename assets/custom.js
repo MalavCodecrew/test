@@ -72,9 +72,9 @@ $("#toggleConvert").change(function() {
 
 // Function to handle conversion logic for #value, #value1, and swatches
 function handleConversion() {
-    if ((typeof originalValue === 'undefined' || isNaN(originalValue)) ||
-        (typeof originalValue1 === 'undefined' || isNaN(originalValue1))) {
-        console.error('Original value or value1 is not set or invalid');
+    // if ((typeof originalValue === 'undefined' || isNaN(originalValue)) ||
+    //     (typeof originalValue1 === 'undefined' || isNaN(originalValue1))) {
+    //     console.error('Original value or value1 is not set or invalid');
         return;
     }
 
