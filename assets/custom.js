@@ -133,8 +133,6 @@ $(document).ready(function () {
 // }
 
 
-
-
 var originalValue; // Variable to store the original value for #value
 var originalValue1;  // Variable to store the original value for #value1
 var originalSwatchValues = {}; // Object to store the original values for the swatches
@@ -142,7 +140,7 @@ var originalSwatchValues = {}; // Object to store the original values for the sw
 // Listen for changes on the variant radio buttons
 $(document).on('change', 'input[name="Size"]', function() {
     console.log('Variant changed');
-
+    
     // Get the new values for the selected variant (assuming value is numeric)
     originalValue = parseFloat($(this).val());
     originalValue1 = parseFloat($(this).val());
@@ -178,6 +176,8 @@ $("#toggleConvert").change(function() {
 
 // Function to handle conversion logic for #value, #value1, and swatches
 function handleConversion() {
+    console.log('Handle Conversion Called');
+    
     if ((typeof originalValue === 'undefined' || isNaN(originalValue)) ||
         (typeof originalValue1 === 'undefined' || isNaN(originalValue1))) {
         console.error('Original value or value1 is not set or invalid');
@@ -209,23 +209,25 @@ function handleConversion() {
 
 // Store original swatch values
 function storeSwatchValues() {
+    console.log('Store Swatch Values Called');
     $('input[name="Size"]').each(function() {
         var swatchValue = parseFloat($(this).val());
-        var swatchLabel = $('label[for="' + $(this).attr('id') + '"]');
-        
-        // Store the original value in the object
-        originalSwatchValues[$(this).attr('id')] = swatchValue;
-        
-        console.log('Stored swatch value for', $(this).attr('id'), ':', swatchValue);
+        if (!isNaN(swatchValue)) {
+            originalSwatchValues[$(this).attr('id')] = swatchValue;
+            console.log('Stored swatch value for', $(this).attr('id'), ':', swatchValue);
+        } else {
+            console.error('Swatch value is not a valid number for', $(this).attr('id'));
+        }
     });
 }
 
 // Update swatch labels based on toggle state
 function updateSwatchLabels(isToggleChecked) {
+    console.log('Update Swatch Labels Called, Toggle Checked:', isToggleChecked);
     for (var id in originalSwatchValues) {
         var originalSwatchValue = originalSwatchValues[id];
         var convertedSwatchValue;
-        
+
         if (isToggleChecked) {
             convertedSwatchValue = (originalSwatchValue * 2.54).toFixed(2) + ' cm';
         } else {
@@ -236,4 +238,6 @@ function updateSwatchLabels(isToggleChecked) {
         $('label[for="' + id + '"]').text(convertedSwatchValue);
         console.log('Updated swatch', id, 'to:', convertedSwatchValue);
     }
+}
+ }
 }
