@@ -31,7 +31,7 @@ $(document).ready(function () {
 // -------------------toggle button from cm to inch--------------------------------------------
 var originalValue; // Variable to store the original value for #value
 var originalValue1;  // Variable to store the original value for #value1
-var originalSwatchValues = {}; // Object to store the original values for the swatches
+var originalSwatchValues = {}; // Object to store the original values for the swatches with units
 
 $(document).ready(function() {
     // Initialize swatch values when the page loads
@@ -79,9 +79,14 @@ $(document).ready(function() {
 function initializeSwatchValues() {
     $('input[name="Size"]').each(function() {
         var swatchValue = parseFloat($(this).val());
-        originalSwatchValues[$(this).attr('id')] = swatchValue;
+        if (!isNaN(swatchValue)) {
+            originalSwatchValues[$(this).attr('id')] = {
+                value: swatchValue,
+                unit: 'in'
+            };
+        }
         
-        console.log('Initial swatch value for', $(this).attr('id'), ':', swatchValue);
+        console.log('Initial swatch value for', $(this).attr('id'), ':', swatchValue, 'in');
     });
 
     // Set the initial value for #value and #value1 if needed
@@ -130,16 +135,23 @@ function handleConversion() {
 function storeSwatchValues() {
     $('input[name="Size"]').each(function() {
         var swatchValue = parseFloat($(this).val());
-        originalSwatchValues[$(this).attr('id')] = swatchValue;
+        if (!isNaN(swatchValue)) {
+            originalSwatchValues[$(this).attr('id')] = {
+                value: swatchValue,
+                unit: 'in'
+            };
+        }
         
-        console.log('Stored swatch value for', $(this).attr('id'), ':', swatchValue);
+        console.log('Stored swatch value for', $(this).attr('id'), ':', swatchValue, 'in');
     });
 }
 
 // Update swatch labels based on toggle state
 function updateSwatchLabels(isToggleChecked) {
     for (var id in originalSwatchValues) {
-        var originalSwatchValue = originalSwatchValues[id];
+        var originalSwatch = originalSwatchValues[id];
+        var originalSwatchValue = originalSwatch.value;
+        var originalSwatchUnit = originalSwatch.unit;
         var convertedSwatchValue;
         
         if (isToggleChecked) {
