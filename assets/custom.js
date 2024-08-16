@@ -56,13 +56,19 @@ var originalValue; // Variable to store the original value
 // Listen for changes on the variant radio buttons
 $(document).on('change', 'input[name="Size"]', function() {
     console.log('Variant changed');
-    
-    // Get the new value for the selected variant (you may need to adjust how you get this value)
-    originalValue = parseFloat($(this).val()); // Assuming the value of the radio button is the original number (e.g., 8, 10, or 12)
-    
-    // Update the displayed value without any conversion initially
-    $("#value").text(originalValue.toFixed(2) + ' Inches');
-    
+
+    // Get the new value for the selected variant (assuming value is numeric)
+    originalValue = parseFloat($(this).val());
+    console.log('Original value set to:', originalValue);
+
+    // Update the displayed value in Inches (initial state)
+    if (!isNaN(originalValue)) {
+        $("#value").text(originalValue.toFixed(2) + ' Inches');
+        console.log('Displayed value updated to:', originalValue.toFixed(2) + ' Inches');
+    } else {
+        console.error('Original value is not a valid number:', originalValue);
+    }
+
     // Apply conversion based on the current toggle state
     handleConversion();
 });
@@ -75,8 +81,8 @@ $("#toggleConvert").change(function() {
 
 // Function to handle conversion logic
 function handleConversion() {
-    if (typeof originalValue === 'undefined') {
-        console.error('Original value is not set');
+    if (typeof originalValue === 'undefined' || isNaN(originalValue)) {
+        console.error('Original value is not set or invalid');
         return;
     }
 
@@ -86,10 +92,11 @@ function handleConversion() {
 
     // Perform conversion based on the original value
     if (isToggleChecked) {
-        console.log('Converting to Centimeters');
-        $("#value").text((originalValue * 2.54).toFixed(2) + ' Centimeters');
+        var convertedValue = (originalValue * 2.54).toFixed(2);
+        console.log('Converting to Centimeters:', convertedValue);
+        $("#value").text(convertedValue + ' Centimeters');
     } else {
-        console.log('Converting to Inches');
+        console.log('Converting to Inches:', originalValue.toFixed(2));
         $("#value").text(originalValue.toFixed(2) + ' Inches');
     }
 }
