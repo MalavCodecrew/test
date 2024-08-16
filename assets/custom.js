@@ -119,7 +119,7 @@ $(document).on('change', 'input[name="Size"]', function() {
     }
 
     if (!isNaN(originalVal1)) {
-        $("#val1").text(originalVal1.toFixed(2) + ' Inches');
+        $("#value1").text(originalVal1.toFixed(2) + ' Inches');
         console.log('Displayed val1 updated to:', originalVal1.toFixed(2) + ' Inches');
     } else {
         console.error('Original val1 is not a valid number:', originalVal1);
