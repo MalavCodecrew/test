@@ -53,20 +53,33 @@ $(document).ready(function () {
 
 // Listen for changes on the variant radio buttons
 $(document).on('change', 'input[name="Size"]', function() {
-    var val = parseFloat($('#value').text()); // Fetch the value from the element
-    if ($("#toggleConvert").is(":checked")) {
-        $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
-    } else {
-        $("#value").text((val / 2.54).toFixed(2) + ' Inches');
-    }
+    handleConversion();
 });
 
 // Existing toggle switch logic
 $("#toggleConvert").change(function() {
-    var val = parseFloat($('#value').text());
-    if($(this).is(":checked")) {
-        $("#value").text((val * 2.54).toFixed(2) + ' Centimeters');
-    } else {
-        $("#value").text((val / 2.54).toFixed(2) + ' Inches');
-    }
+    handleConversion();
 });
+
+// Function to handle conversion logic
+function handleConversion() {
+    var valueText = $('#value').text();
+    
+    // Extract numeric part from the text
+    var numericValue = parseFloat(valueText);
+    
+    // Debugging: Check if numericValue is correct
+    console.log('Extracted numeric value:', numericValue);
+
+    // If numeric value is valid, perform conversion
+    if (!isNaN(numericValue)) {
+        if ($("#toggleConvert").is(":checked")) {
+            $("#value").text((numericValue * 2.54).toFixed(2) + ' Centimeters');
+        } else {
+            $("#value").text((numericValue / 2.54).toFixed(2) + ' Inches');
+        }
+    } else {
+        console.error('Could not extract a valid number from:', valueText);
+    }
+}
+
