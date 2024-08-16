@@ -33,48 +33,72 @@ var originalValue; // Variable to store the original value for #value
 var originalValue1;  // Variable to store the original value for #value1
 var originalSwatchValues = {}; // Object to store the original values for the swatches
 
-// Listen for changes on the variant radio buttons
-$(document).on('change', 'input[name="Size"]', function() {
-    console.log('Variant changed');
+$(document).ready(function() {
+    // Initialize swatch values when the page loads
+    initializeSwatchValues();
 
-    // Get the new values for the selected variant (assuming value is numeric)
-    originalValue = parseFloat($(this).val());
-    originalValue1 = parseFloat($(this).val());
+    // Listen for changes on the variant radio buttons
+    $(document).on('change', 'input[name="Size"]', function() {
+        console.log('Variant changed');
 
-    console.log('Original value set to:', originalValue);
-    console.log('Original value1 set to:', originalValue1);
+        // Get the new values for the selected variant (assuming value is numeric)
+        originalValue = parseFloat($(this).val());
+        originalValue1 = parseFloat($(this).val());
 
-    // Update the displayed values in Inches (initial state)
-    if (!isNaN(originalValue)) {
+        console.log('Original value set to:', originalValue);
+        console.log('Original value1 set to:', originalValue1);
+
+        // Update the displayed values in Inches (initial state)
+        if (!isNaN(originalValue)) {
+            $("#value").text(originalValue.toFixed(2) + ' Inches');
+            console.log('Displayed value updated to:', originalValue.toFixed(2) + ' Inches');
+        } else {
+            console.error('Original value is not a valid number:', originalValue);
+        }
+
+        if (!isNaN(originalValue1)) {
+            $("#value1").text(originalValue1.toFixed(2) + ' Inches');
+            console.log('Displayed value1 updated to:', originalValue1.toFixed(2) + ' Inches');
+        } else {
+            console.error('Original value1 is not a valid number:', originalValue1);
+        }
+
+        // Store and update swatches based on the toggle state
+        storeSwatchValues();
+        handleConversion();
+    });
+
+    // Toggle switch change event
+    $("#toggleConvert").change(function() {
+        console.log('Toggle switch changed');
+        handleConversion();
+    });
+});
+
+// Initialize swatch values based on the current variant
+function initializeSwatchValues() {
+    $('input[name="Size"]').each(function() {
+        var swatchValue = parseFloat($(this).val());
+        originalSwatchValues[$(this).attr('id')] = swatchValue;
+        
+        console.log('Initial swatch value for', $(this).attr('id'), ':', swatchValue);
+    });
+
+    // Set the initial value for #value and #value1 if needed
+    var initialValue = parseFloat($('input[name="Size"]:checked').val());
+    if (!isNaN(initialValue)) {
+        originalValue = initialValue;
+        originalValue1 = initialValue;
+
         $("#value").text(originalValue.toFixed(2) + ' Inches');
-        console.log('Displayed value updated to:', originalValue.toFixed(2) + ' Inches');
-    } else {
-        console.error('Original value is not a valid number:', originalValue);
-    }
-
-    if (!isNaN(originalValue1)) {
         $("#value1").text(originalValue1.toFixed(2) + ' Inches');
-        console.log('Displayed value1 updated to:', originalValue1.toFixed(2) + ' Inches');
-    } else {
-        console.error('Original value1 is not a valid number:', originalValue1);
     }
-
-    // Store and update swatches based on the toggle state
-    storeSwatchValues();
-    handleConversion();
-});
-
-// Toggle switch change event
-$("#toggleConvert").change(function() {
-    console.log('Toggle switch changed');
-    handleConversion();
-});
+}
 
 // Function to handle conversion logic for #value, #value1, and swatches
 function handleConversion() {
     if ((typeof originalValue === 'undefined' || isNaN(originalValue)) ||
         (typeof originalValue1 === 'undefined' || isNaN(originalValue1))) {
-      console.log(originalValue,originalValue1)
         console.error('Original value or value1 is not set or invalid');
         return;
     }
@@ -106,9 +130,6 @@ function handleConversion() {
 function storeSwatchValues() {
     $('input[name="Size"]').each(function() {
         var swatchValue = parseFloat($(this).val());
-        var swatchLabel = $('label[for="' + $(this).attr('id') + '"]');
-        
-        // Store the original value in the object
         originalSwatchValues[$(this).attr('id')] = swatchValue;
         
         console.log('Stored swatch value for', $(this).attr('id'), ':', swatchValue);
