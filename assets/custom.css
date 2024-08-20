@@ -403,7 +403,7 @@ button.product-btn-test {
 
 .vl {
   border-left: 1px solid #5e5e5e;
-  height: -webkit-fill-available;
+  height: 343px;
   position: absolute;
   left: 16%;
   top: 377px;
