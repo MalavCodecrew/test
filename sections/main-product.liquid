@@ -69,47 +69,49 @@
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
-        {% render 'product-media-gallery', variant_images: variant_images %}
-        {% if product.tags contains 'size' %}
-          <div class="vr-line">
-            <div class="vr-val">
-              {% assign product_options = product.options_with_values %}
-              {% for option in product_options %}
-                {% if option.name == 'Size' -%}
-                  {% assign size_values = option.values %}
+        <div class="line-container">
+          {% render 'product-media-gallery', variant_images: variant_images %}
+          {% if product.tags contains 'size' %}
+            <div class="vr-line">
+              <div class="vr-val">
+                {% assign product_options = product.options_with_values %}
+                {% for option in product_options %}
+                  {% if option.name == 'Size' -%}
+                    {% assign size_values = option.values %}
+                  {% endif %}
+                {% endfor %}
+                {% if product.selected_or_first_available_variant %}
+                  {% assign current_variant = product.selected_or_first_available_variant %}
                 {% endif %}
-              {% endfor %}
-              {% if product.selected_or_first_available_variant %}
-                {% assign current_variant = product.selected_or_first_available_variant %}
-              {% endif %}
-              {% for value in size_values %}
-                {% if current_variant.option1 == value %}
-                  <div id="value">{{ value }} Inches</div>
-                {% endif %}
-              {% endfor %}
+                {% for value in size_values %}
+                  {% if current_variant.option1 == value %}
+                    <div id="value">{{ value }} Inches</div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <div class="vl">&nbsp</div>
             </div>
-            <div class="vl">&nbsp</div>
-          </div>
-          <div class="hr-line">
-            <hr class="hr">
-            <div class="hr-val">
-              {% assign product_options = product.options_with_values %}
-              {% for option in product_options %}
-                {% if option.name == 'Size' -%}
-                  {% assign size_values = option.values %}
+            <div class="hr-line">
+              <hr class="hr">
+              <div class="hr-val">
+                {% assign product_options = product.options_with_values %}
+                {% for option in product_options %}
+                  {% if option.name == 'Size' -%}
+                    {% assign size_values = option.values %}
+                  {% endif %}
+                {% endfor %}
+                {% if product.selected_or_first_available_variant %}
+                  {% assign current_variant = product.selected_or_first_available_variant %}
                 {% endif %}
-              {% endfor %}
-              {% if product.selected_or_first_available_variant %}
-                {% assign current_variant = product.selected_or_first_available_variant %}
-              {% endif %}
-              {% for value in size_values %}
-                {% if current_variant.option1 == value %}
-                  <div id="value1">{{ value }} Inches</div>
-                {% endif %}
-              {% endfor %}
+                {% for value in size_values %}
+                  {% if current_variant.option1 == value %}
+                    <div id="value1">{{ value }} Inches</div>
+                  {% endif %}
+                {% endfor %}
+              </div>
             </div>
-          </div>
-        {% endif %}
+          {% endif %}
+        </div>
       </div>
 
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
