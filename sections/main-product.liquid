@@ -71,6 +71,7 @@
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
         {% if product.tags contains 'size' %}
+          <div class="vr-line"></div>
           <div class="vr-val">
             {% assign product_options = product.options_with_values %}
             {% for option in product_options %}
