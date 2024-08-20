@@ -401,14 +401,6 @@ button.product-btn-test {
   transform: translateX(26px);
 }
 
-.vl {
-  border-left: 1px solid #5e5e5e;
-  height: 343px;
-  position: absolute;
-  left: 16%;
-  top: 377px;
-}
-
 .hr {
   width: 100%;
   text-align: left;
@@ -422,4 +414,12 @@ button.product-btn-test {
   left: 11%;
   bottom: 40%;
   transform: rotate(270deg);
+}
+.vl {
+  transform: rotate(270deg);
+  position: relative;
+  right: 54%;
+  margin: 0 auto;
+  bottom: 185px;
+  width: 70%;
 }
