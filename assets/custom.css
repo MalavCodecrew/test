@@ -404,9 +404,9 @@ button.product-btn-test {
 .vl {
   border-left: 1px solid #5e5e5e;
   height: 343px;
-  position: absolute;
+  /* position: absolute;
   left: 16%;
-  top: 377px;
+  top: 377px; */
 }
 
 .hr {
@@ -418,8 +418,26 @@ button.product-btn-test {
   text-align: center;
 }
 .vr-val {
-  position: absolute;
+  /* position: absolute;
   left: 11%;
   bottom: 40%;
+  transform: rotate(270deg); */
+}
+
+.vr-line {
+  position: relative;
+  right: 5%;
+  bottom: 45%;
+}
+.vr-val {
+  position: relative;
   transform: rotate(270deg);
+  right: 60%;
+  bottom: 100%;
+  width: 100%;
+}
+
+.hr-line {
+  position: relative;
+  bottom: 43%;
 }
