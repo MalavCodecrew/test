@@ -185,10 +185,15 @@
       </div>
     </div>
   {%- endpaginate -%}
+  <div class="load-more">
+    <a class="button button--primary load-more_btn" href="javascript:void(0);" onclick="loadMoreProducts()">
+      LOAD MORE
+    </a>
+    <div class="load-more_spinner"></div>
+  </div>
   {% if section.settings.image_shape == 'arch' %}
     {% render 'mask-arch' %}
   {%- endif -%}
-  {{ collection.products }}
 </div>
 
 {% schema %}
