@@ -54,7 +54,7 @@
   margin: 0;
 }
 .ProductItem__Sizes {
-  display: none;
+  display: block;
   margin-top: 5px;
   text-decoration: none;
 }
