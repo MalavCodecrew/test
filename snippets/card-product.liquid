@@ -116,9 +116,6 @@
               {% endif %}
             {% endfor %}
           </div>
-        {%- endif -%}
-
-        <div class="card__content">
           <div class="ProductItem__Sizes">
             {%- for variant in card_product.variants -%}
               {%- if variant.available -%}
@@ -128,6 +125,9 @@
               {%- endif -%}
             {%- endfor -%}
           </div>
+        {%- endif -%}
+
+        <div class="card__content">
           <div class="card__information">
             <h3
               class="card__heading"
