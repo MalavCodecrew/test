@@ -15,7 +15,7 @@ div#CartDrawer {
 .custom-buy-btn {
   width: 60%;
 }
-/* .ProductItem__Sizes {
+.ProductItem__Sizes {
   display: none;
   margin-top: 5px;
   text-decoration: none;
@@ -39,7 +39,7 @@ div#CartDrawer {
 }
 .cart-product-image .ProductItem__Size {
   display: none;
-} */
+}
 .cart-product-image .new-label {
   display: none;
 }
