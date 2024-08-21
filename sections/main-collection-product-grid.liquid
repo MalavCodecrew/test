@@ -22,13 +22,15 @@
   <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-<script>
-    window.onscroll = function() {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-          loadMoreProducts()();
-      }
-  };
-</script>
+<!--
+  <script>
+      window.onscroll = function() {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+            loadMoreProducts();
+        }
+    };
+  </script>
+-->
 
 {%- style -%}
   .section-{{ section.id }}-padding {

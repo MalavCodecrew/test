@@ -1,4 +1,8 @@
-
+    window.onscroll = function() {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+          loadMoreProducts();
+      }
+  };
 var products_on_page = $('.products-onpage');
 var next_url = products_on_page.data('next-url');
 
