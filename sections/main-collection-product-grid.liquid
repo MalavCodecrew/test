@@ -178,10 +178,11 @@
                 </li>
               {%- endfor -%}
             </ul>
-
-            {%- if paginate.pages > 1 -%}
-              {% render 'pagination', paginate: paginate, anchor: '' %}
-            {%- endif -%}
+            {% if section.settings.display_products == 'pagination' %}
+              {%- if paginate.pages > 1 -%}
+                {% render 'pagination', paginate: paginate, anchor: '' %}
+              {%- endif -%}
+            {% endif %}
           </div>
         {%- endif -%}
       </div>
