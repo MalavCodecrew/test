@@ -415,15 +415,20 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     },
-     {
-      "type": "checkbox",
-      "id": "load-more",
-      "label": "Load More"
-    },
-     {
-      "type": "checkbox",
-      "id": "pagination",
-      "default": true,
+    {
+      "type": "select",
+      "id": "display_products",
+      "options": [
+        {
+          "value": "pagination",
+          "label": "Pagination"
+        },
+        {
+          "value": "load-more",
+          "label": "Load More"
+        },
+      ],
+      "default": "pagination",
       "label": "Pagination"
     }
   ]
