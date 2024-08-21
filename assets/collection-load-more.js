@@ -1,8 +1,12 @@
-    window.onscroll = function() {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-          loadMoreProducts();
-      }
-  };
+let isLoading = false; // Flag to prevent multiple triggers
+
+window.onscroll = function() {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        if (!isLoading) {
+            loadMore();
+        }
+    }
+};
 var products_on_page = $('.products-onpage');
 var next_url = products_on_page.data('next-url');
 
