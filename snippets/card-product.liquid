@@ -116,15 +116,6 @@
               {% endif %}
             {% endfor %}
           </div>
-          <div class="ProductItem__Sizes">
-            {%- for variant in card_product.variants -%}
-              {%- if variant.available -%}
-                <a href="{{ variant.url }}" class="Prod-title">
-                  <span class="availabe-variant">{{ variant.title }}</span>
-                </a>
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
         {%- endif -%}
 
         <div class="card__content">
@@ -632,4 +623,5 @@
       </div>
     </div>
   </div>
+  ggggg
 {%- endif -%}
