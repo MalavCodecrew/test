@@ -49,17 +49,16 @@
       assign ratio = 1
     endif
   -%}
-
+  <div class="ProductItem__Sizes">
+    {%- for variant in card_product.variants -%}
+      {%- if variant.available -%}
+        <a href="{{ variant.url }}" class="Prod-title">
+          <span class="availabe-variant">{{ variant.title }}</span>
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
   <div class="card-wrapper product-card-wrapper underline-links-hover">
-    <div class="ProductItem__Sizes">
-      {%- for variant in card_product.variants -%}
-        {%- if variant.available -%}
-          <a href="{{ variant.url }}" class="Prod-title">
-            <span class="availabe-variant">{{ variant.title }}</span>
-          </a>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
     <div
       class="
         card card--{{ settings.card_style }}
