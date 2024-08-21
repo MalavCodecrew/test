@@ -188,7 +188,7 @@
   {% if section.settings.image_shape == 'arch' %}
     {% render 'mask-arch' %}
   {%- endif -%}
-  {{ collections.first }}
+  {{ collection.all_products_count }}
 </div>
 
 {% schema %}
