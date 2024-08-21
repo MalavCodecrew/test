@@ -56,6 +56,7 @@
 .ProductItem__Sizes {
   display: none;
   margin-top: 5px;
+  text-decoration: none;
 }
 
 .card-wrapper:hover .ProductItem__Sizes {
