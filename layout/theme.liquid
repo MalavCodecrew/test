@@ -107,6 +107,9 @@
     {%- endif -%}
 
     {{ content_for_header }}
+    {% if template contains 'collection' %}
+      <script src="{{ 'collection-load-more.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
