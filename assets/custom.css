@@ -451,7 +451,7 @@ button.product-btn-test {
 /* lables on product -----------------------------> */
 
 .ProductItem__Sizes {
-  display: block;
+  display: none;
   margin-top: 5px;
   text-decoration: none;
 }
@@ -460,7 +460,7 @@ button.product-btn-test {
   display: block;
 }
 
-.ProductItem__Size {
+.Prod-title {
   display: inline-block;
   margin-right: 5px;
   padding: 2px 5px;
@@ -473,7 +473,7 @@ button.product-btn-test {
   text-decoration: none;
 }
 .cart-product-image .ProductItem__Size {
-  display: none;
+  display: block;
 }
 .cart-product-image .new-label {
   display: none;
