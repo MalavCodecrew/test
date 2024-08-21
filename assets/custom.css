@@ -444,3 +444,6 @@ button.product-btn-test {
     transform: rotate(360deg);
   }
 }
+.load-more {
+  text-align: center;
+}
