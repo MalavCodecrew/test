@@ -122,6 +122,7 @@
             {%- for variant in card_product.variants -%}
               {%- if variant.available -%}
                 {{ product.handle }}
+                {{ variant.id }}
                 <a href="{{ variant.id }}" class="ProductItem__Size" style="text-decoration:none;">
                   {{- variant.title -}}
                 </a>
