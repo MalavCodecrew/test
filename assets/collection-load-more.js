@@ -41,7 +41,7 @@ function loadMoreProducts() {
 
 // Trigger loadMoreProducts on scroll
 window.onscroll = function() {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) { 
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) { 
         // Adjust the offset as needed to trigger before reaching the absolute bottom
         loadMoreProducts();
     }
