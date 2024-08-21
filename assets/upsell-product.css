@@ -15,3 +15,15 @@ div#CartDrawer {
 .custom-buy-btn {
   width: 60%;
 }
+.cart-product-image .Prod-title {
+  display: block;
+}
+.cart-product-image .new-label {
+  display: none;
+}
+.cart-product-image .new-label2 {
+  display: none;
+}
+.cart-product-image .card__badge {
+  display: none;
+}

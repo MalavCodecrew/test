@@ -472,18 +472,7 @@ button.product-btn-test {
   margin-top: 20px;
   text-decoration: none;
 }
-.cart-product-image .Prod-title {
-  display: block;
-}
-.cart-product-image .new-label {
-  display: none;
-}
-.cart-product-image .new-label2 {
-  display: none;
-}
-.cart-product-image .card__badge {
-  display: none;
-}
+
 .product-form__input.product-form__input--dropdown .select {
   display: block !important;
 }
