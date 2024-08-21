@@ -456,7 +456,7 @@ button.product-btn-test {
   text-decoration: none;
 }
 
-.card-wrapper:hover .ProductItem__Sizes {
+.card-wrapper:hover.ProductItem__Sizes {
   display: block;
 }
 
