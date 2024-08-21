@@ -122,7 +122,7 @@
           <div class="ProductItem__Sizes">
             {%- for variant in card_product.variants -%}
               {%- if variant.available -%}
-                <a href="{{ variant.url }}" class="ProductItem__Size">
+                <a href="{{ variant.url }}" class="Prod-title">
                   <span class="availabe-variant">{{ variant.title }}</span>
                 </a>
               {%- endif -%}
