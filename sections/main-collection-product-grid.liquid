@@ -22,16 +22,6 @@
   <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-<!--
-  <script>
-      window.onscroll = function() {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-            loadMoreProducts();
-        }
-    };
-  </script>
--->
-
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -200,9 +190,7 @@
   {%- endpaginate -%}
   {% if section.settings.display_products == 'load-more' %}
     <div class="load-more">
-      <a class="button button--primary load-more_btn" href="javascript:void(0);" onclick="loadMoreProducts()">
-        LOAD MORE
-      </a>
+      <a class="button button--primary load-more_btn" href="javascript:void(0);"> LOAD MORE </a>
       <div class="load-more_spinner"></div>
     </div>
   {% endif %}
