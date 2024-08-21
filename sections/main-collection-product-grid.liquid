@@ -187,12 +187,12 @@
         {%- endif -%}
       </div>
     </div>
-    <!-- {%- endpaginate -%} -->
-    {% if section.settings.image_shape == 'arch' %}
-      {% render 'mask-arch' %}
-    {%- endif -%}
-    {{ collection.products }}
   {%- endpaginate %}
+  <!-- {%- endpaginate -%} -->
+  {% if section.settings.image_shape == 'arch' %}
+    {% render 'mask-arch' %}
+  {%- endif -%}
+  {{ collection.products }}
 </div>
 
 {% schema %}
