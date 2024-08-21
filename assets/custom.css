@@ -459,7 +459,7 @@ button.product-btn-test {
 }
 
 .practice:hover .ProductItem__Sizes {
-  opacity: 1;
+  display: block;
 }
 
 .Prod-title {
