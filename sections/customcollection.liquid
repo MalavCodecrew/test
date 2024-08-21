@@ -87,7 +87,7 @@
             <div class="ProductItem__Sizes">
               {%- for variant in product.variants -%}
                 {%- if variant.available -%}
-                  <a href="" class="ProductItem__Size">{{ variant.title }}</a>
+                  <a href="{{ product.url }}" class="ProductItem__Size">{{ variant.title }}</a>
                 {%- endif -%}
               {%- endfor -%}
             </div>
