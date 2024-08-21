@@ -190,7 +190,7 @@
   {%- endpaginate -%}
   {% if section.settings.display_products == 'load-more' %}
     <div class="load-more">
-      <a class="button button--primary load-more_btn" href="javascript:void(0);" onclick="loadMoreProducts()">
+      <a class="button button--primary load-more_btn" href="javascript:void(0);" onscroll="loadMoreProducts()">
         LOAD MORE
       </a>
       <div class="load-more_spinner"></div>
