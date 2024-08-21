@@ -451,14 +451,14 @@ button.product-btn-test {
 /* lables on product -----------------------------> */
 
 .ProductItem__Sizes {
-  display: none;
+  display: block;
   margin-top: 5px;
   text-decoration: none;
   position: absolute;
   z-index: 9;
 }
 
-.card-wrapper:hover.ProductItem__Sizes {
+.card-wrapper:hover .ProductItem__Sizes {
   display: block;
 }
 
