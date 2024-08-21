@@ -458,8 +458,8 @@ button.product-btn-test {
   z-index: 9;
 }
 
-.card-wrapper:hover .ProductItem__Sizes {
-  display: block;
+.practice:hover .ProductItem__Sizes {
+  opacity: 1;
 }
 
 .Prod-title {
