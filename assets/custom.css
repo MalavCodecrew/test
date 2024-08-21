@@ -454,7 +454,8 @@ button.product-btn-test {
   display: block;
   margin-top: 5px;
   text-decoration: none;
-  position: relative;
+  position: absolute;
+  z-index: 9;
 }
 
 .card-wrapper:hover .ProductItem__Sizes {
