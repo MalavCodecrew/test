@@ -15,6 +15,28 @@ div#CartDrawer {
 .custom-buy-btn {
   width: 60%;
 }
+.ProductItem__Sizes {
+  display: none;
+  margin-top: 5px;
+  text-decoration: none;
+}
+
+.card-wrapper:hover .ProductItem__Sizes {
+  display: block;
+}
+
+.ProductItem__Size {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 5px;
+  background: #ddd;
+  font-size: 11px;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
+  text-decoration: none;
+}
 .cart-product-image .ProductItem__Size {
   display: none;
 }
