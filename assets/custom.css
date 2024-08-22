@@ -541,3 +541,10 @@ button.product-btn-test {
 .header-menu-1 {
   color: #5f412cbf;
 }
+.product-swatches {
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  background: blue;
+}
