@@ -1,6 +1,7 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 {% for link in linklists['ilash-menu'].links %}
+  {{ link.handle }}
   {% for childlink in link.links %}
     {{ childlink.handle }}
     {{ childlink.title -}}
