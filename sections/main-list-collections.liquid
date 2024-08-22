@@ -3,12 +3,13 @@
 {% for link in linklists['ilash-menu'].links %}
   {% if link.handle == 'all-collection' %}
     {% for childlink in link.links %}
-      <div class="main-product-swatches"></div>
-      {% for grandchildlink in childlink.links %}
-        <a class="product-swatches" href="{{ grandchildlink.url }}">
-          <span>{{ grandchildlink.title }}</span>
-        </a>
-      {% endfor %}
+      <div class="main-product-swatches">
+        {% for grandchildlink in childlink.links %}
+          <a class="product-swatches" href="{{ grandchildlink.url }}">
+            <span>{{ grandchildlink.title }}</span>
+          </a>
+        {% endfor %}
+      </div>
     {%- endfor %}
   {% endif %}
 {% endfor %}
