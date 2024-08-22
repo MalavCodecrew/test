@@ -198,6 +198,7 @@
     {% render 'mask-arch' %}
   {%- endif -%}
 </div>
+{% assign collection_title = collection.metafields.custom.title %}
 {{ collection.metafields }}
 {% schema %}
 {
