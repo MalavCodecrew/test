@@ -209,7 +209,9 @@
 {% assign collectionque = collection.metafields.custom.que.value %}
 {% assign collectionans = collection.metafields.custom.ans.value %}
 {% for que in collectionque %}
+  {% assign que = collectionque[forloop.index0] %}
   {% assign ans = collectionans[forloop.index0] %}
+  {{ que }}
   {{ ans }}
 {% endfor %}
 {% schema %}
