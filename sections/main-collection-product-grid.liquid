@@ -207,14 +207,16 @@
   </div>
 </div>
 
-<div main-faq>
+<div class="main-faq">
   {% assign collectionque = collection.metafields.custom.que.value %}
   {% assign collectionans = collection.metafields.custom.ans.value %}
   {% for que in collectionque %}
     {% assign que = collectionque[forloop.index0] %}
     {% assign ans = collectionans[forloop.index0] %}
-    {{ que }}
-    {{ ans }}
+    <div class="faq1">
+      <div class="faq-que">{{ que }}</div>
+      <div class="faq-ans">{{ ans }}</div>
+    </div>
   {% endfor %}
 </div>
 {% schema %}
