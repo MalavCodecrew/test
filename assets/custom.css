@@ -591,3 +591,9 @@ button.product-btn-test {
   overflow: hidden;
   background-color: #f1f1f1;
 }
+.faq-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 60px;
+}
