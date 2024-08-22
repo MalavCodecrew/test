@@ -4,6 +4,9 @@
   {% if link.handle == 'all-collection' %}
     {% for childlink in link.links %}
       {{ childlink.title -}}
+      {% for grandchildlink in childlink.links %}
+        {{ grandchildlink.title }}
+      {% endfor %}
     {%- endfor %}
   {% endif %}
 {% endfor %}
