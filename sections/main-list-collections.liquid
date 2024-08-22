@@ -1,17 +1,17 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 {% for link in linklists['ilash-menu'].links %}
-  {% if link.handle == 'all-collection' %}
-    {% for childlink in link.links %}
-      <div class="main-product-swatches">
+  <div class="main-product-swatches">
+    {% if link.handle == 'all-collection' %}
+      {% for childlink in link.links %}
         {% for grandchildlink in childlink.links %}
           <a class="product-swatches" href="{{ grandchildlink.url }}">
             <span>{{ grandchildlink.title }}</span>
           </a>
         {% endfor %}
-      </div>
-    {%- endfor %}
-  {% endif %}
+      {%- endfor %}
+    {% endif %}
+  </div>
 {% endfor %}
 <div class="page-width">
   <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
