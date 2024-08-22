@@ -200,7 +200,11 @@
 </div>
 {% assign collection_title = collection.metafields.custom.title %}
 {% assign collection_desc = collection.metafields.custom.description %}
-{{ collection_title }}
+<div class="main-collection">
+  <div class="collection-title"></div>
+  {{ collection_title }}
+  {{ collection_desc }}
+</div>
 {% schema %}
 {
   "name": "t:sections.main-collection-product-grid.name",
