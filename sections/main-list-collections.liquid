@@ -3,6 +3,9 @@
 <div class="main-product-swatches">
   {% for link in linklists['ilash-menu'].links %}
     {% for childlink in link.links %}
+      <a class="product-swatches" href="{{ childlink.url }}">
+        <span>{{ childlink.title }}</span>
+      </a>
       {% for grandchildlink in childlink.links %}
         <a class="product-swatches" href="{{ grandchildlink.url }}">
           <span>{{ grandchildlink.title }}</span>
