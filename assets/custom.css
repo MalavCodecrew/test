@@ -563,3 +563,6 @@ button.product-btn-test {
 .main-collection {
   background: #afa7a7;
 }
+.collection-desc {
+  padding: 10px 20px;
+}
