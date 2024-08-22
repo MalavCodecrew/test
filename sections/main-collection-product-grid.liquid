@@ -214,7 +214,9 @@
     {% assign que = collectionque[forloop.index0] %}
     {% assign ans = collectionans[forloop.index0] %}
     <div class="faq1">
-      <div class="faq-que">{{ que }}</div>
+      <button type="button" class="collapsible">
+        <div class="faq-que">{{ que }}</div>
+      </button>
       <div class="faq-ans">{{ ans }}</div>
     </div>
   {% endfor %}
