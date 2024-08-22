@@ -201,9 +201,10 @@
 {% assign collection_title = collection.metafields.custom.title %}
 {% assign collection_desc = collection.metafields.custom.description %}
 <div class="main-collection">
-  <div class="collection-title"></div>
-  {{ collection_title }}
-  {{ collection_desc }}
+  <div class="collection-title">{{ collection_title }}</div>
+  <div class="collection-desc">
+    {{ collection_desc }}
+  </div>
 </div>
 {% schema %}
 {
