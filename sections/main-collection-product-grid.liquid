@@ -206,8 +206,8 @@
     {{ collection_desc }}
   </div>
 </div>
-{% assign collectionque = collection.metafields.custom.que %}
-{% assign collectionans = collection.metafields.custom.ans %}
+{% assign collectionque = collection.metafields.custom.que.value %}
+{% assign collectionans = collection.metafields.custom.ans.value %}
 {% for que in collectionque %}
   {% assign ans = collectionans[forloop.index0] %}
   {{ ans }}
