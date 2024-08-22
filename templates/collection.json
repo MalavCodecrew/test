@@ -42,19 +42,11 @@
       "type": "custom-related-collection",
       "settings": {
       }
-    },
-    "faq_TWxVJf": {
-      "type": "faq",
-      "settings": {
-        "title": "i-Lash",
-        "Description": "Understanding lash extension curls, thickness, length, and how each function can elevate your artistry. One of the best things about lash extension is its ability to customize to enhance the best facial feature of your client. "
-      }
     }
   },
   "order": [
     "banner",
     "product-grid",
-    "custom_related_collection_zewVKn",
-    "faq_TWxVJf"
+    "custom_related_collection_zewVKn"
   ]
 }
