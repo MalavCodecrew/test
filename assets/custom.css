@@ -570,7 +570,7 @@ button.product-btn-test {
 /* faqcollapsible-------------------------------> */
 .collapsible {
   background-color: white;
-  color: white;
+  color: black;
   cursor: pointer;
   padding: 18px;
   width: 100%;
