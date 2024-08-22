@@ -1,10 +1,11 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 {% for link in linklists['ilash-menu'].links %}
-  {% if link.handle == 'all-collection' %}{% endif %}
-  {% for childlink in link.links %}
-    {{ childlink.title -}}
-  {%- endfor %}
+  {% if link.handle == 'all-collection' %}
+    {% for childlink in link.links %}
+      {{ childlink.title -}}
+    {%- endfor %}
+  {% endif %}
 {% endfor %}
 <div class="page-width">
   <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
