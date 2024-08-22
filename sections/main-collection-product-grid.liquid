@@ -206,14 +206,17 @@
     {{ collection_desc }}
   </div>
 </div>
-{% assign collectionque = collection.metafields.custom.que.value %}
-{% assign collectionans = collection.metafields.custom.ans.value %}
-{% for que in collectionque %}
-  {% assign que = collectionque[forloop.index0] %}
-  {% assign ans = collectionans[forloop.index0] %}
-  {{ que }}
-  {{ ans }}
-{% endfor %}
+
+<div main-faq>
+  {% assign collectionque = collection.metafields.custom.que.value %}
+  {% assign collectionans = collection.metafields.custom.ans.value %}
+  {% for que in collectionque %}
+    {% assign que = collectionque[forloop.index0] %}
+    {% assign ans = collectionans[forloop.index0] %}
+    {{ que }}
+    {{ ans }}
+  {% endfor %}
+</div>
 {% schema %}
 {
   "name": "t:sections.main-collection-product-grid.name",
