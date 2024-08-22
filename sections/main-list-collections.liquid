@@ -4,7 +4,7 @@
   {% if link.handle == 'all-collection' %}
     {% for childlink in link.links %}
       {% for grandchildlink in childlink.links %}
-        <a href="{{ grandchildlink.url }}">
+        <a href="{{ grandchildlink.url }}" style="text-decoration:none;">
           <span>{{ grandchildlink.title }}</span>
         </a>
       {% endfor %}
