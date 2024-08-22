@@ -2,15 +2,15 @@
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 <div class="main-product-swatches">
   {% for link in linklists['ilash-menu'].links %}
-    {% if link.handle == 'all-collection' %}
-      {% for childlink in link.links %}
-        {% for grandchildlink in childlink.links %}
-          <a class="product-swatches" href="{{ grandchildlink.url }}">
-            <span>{{ grandchildlink.title }}</span>
-          </a>
-        {% endfor %}
-      {%- endfor %}
-    {% endif %}
+    <!-- {% if link.handle == 'all-collection' %} -->
+    {% for childlink in link.links %}
+      {% for grandchildlink in childlink.links %}
+        <a class="product-swatches" href="{{ grandchildlink.url }}">
+          <span>{{ grandchildlink.title }}</span>
+        </a>
+      {% endfor %}
+    {%- endfor %}
+    <!-- {% endif %} -->
   {% endfor %}
 </div>
 <div class="page-width">
