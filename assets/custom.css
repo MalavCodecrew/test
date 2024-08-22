@@ -545,11 +545,11 @@ button.product-btn-test {
 /*product swatches on top of collecton pages------------------------------->  */
 .product-swatches {
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 3px 3px;
   border-radius: 5px;
-  color: white;
-  background: blue;
-  margin-left: 20px;
+  color: #fff;
+  background: #00f;
+  margin-left: 8px;
 }
 .main-product-swatches {
   margin-top: 10px;
