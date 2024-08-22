@@ -42,11 +42,19 @@
       "type": "custom-related-collection",
       "settings": {
       }
+    },
+    "faq_TWxVJf": {
+      "type": "faq",
+      "settings": {
+        "title": "i-Lash",
+        "Description": "sfdfsfsfdsfsffdsdf"
+      }
     }
   },
   "order": [
     "banner",
     "product-grid",
-    "custom_related_collection_zewVKn"
+    "custom_related_collection_zewVKn",
+    "faq_TWxVJf"
   ]
 }
