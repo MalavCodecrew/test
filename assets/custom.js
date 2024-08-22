@@ -212,7 +212,7 @@ $(document).ready(function () {
 
 
 // Accordion Action
-const accordionItem = document.getElementsByClassName("collapsible");
+const accordionItem = document.getElementsByClassName("faq1");
 
 accordionItem.forEach((el) =>
   el.addEventListener("click", () => {
