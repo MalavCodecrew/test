@@ -611,6 +611,7 @@ button.product-btn-test {
 .faq-que span {
   font-weight: bold;
   font-size: 20px;
+  color: #0a2541;
 }
 .faq-que i.fas.fa-chevron-down {
   float: right;
