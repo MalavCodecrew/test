@@ -606,7 +606,7 @@ button.product-btn-test {
   margin: 0 auto;
   width: 98%;
 }
-.faq-que {
+.faq-que span {
   font-weight: bold;
   font-size: 20px;
 }
