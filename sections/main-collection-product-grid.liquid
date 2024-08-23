@@ -214,6 +214,7 @@
   {% for que in collectionque %}
     {% assign que = collectionque[forloop.index0] %}
     {% assign ans = collectionans[forloop.index0] %}
+    <hr>
     <div class="faq1">
       <div class="collapsible">
         <div class="faq-que">
@@ -223,6 +224,7 @@
       </div>
       <div class="faq-ans">{{ ans }}</div>
     </div>
+    <hr>
   {% endfor %}
 </div>
 
