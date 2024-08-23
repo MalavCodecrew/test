@@ -199,38 +199,38 @@
   {%- endif -%}
 </div>
 
-<div class="main-div-collection"></div>
-{% assign collection_title = collection.metafields.custom.title %}
-{% assign collection_desc = collection.metafields.custom.description %}
-<div class="main-collection">
-  <div class="collection-title">{{ collection_title }}</div>
-  <div class="collection-desc">
-    {{ collection_desc }}
+<div class="main-div-collection">
+  {% assign collection_title = collection.metafields.custom.title %}
+  {% assign collection_desc = collection.metafields.custom.description %}
+  <div class="main-collection">
+    <div class="collection-title">{{ collection_title }}</div>
+    <div class="collection-desc">
+      {{ collection_desc }}
+    </div>
+  </div>
+
+  <div class="main-faq">
+    <div class="faq-title">FAQ(Frequently Asked Questions)</div>
+    {% assign collectionque = collection.metafields.custom.que.value %}
+    {% assign collectionans = collection.metafields.custom.ans.value %}
+    <hr>
+    {% for que in collectionque %}
+      {% assign que = collectionque[forloop.index0] %}
+      {% assign ans = collectionans[forloop.index0] %}
+
+      <div class="faq1">
+        <div class="collapsible">
+          <div class="faq-que">
+            <span>{{ que }}</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="faq-ans">{{ ans }}</div>
+      </div>
+      <hr>
+    {% endfor %}
   </div>
 </div>
-
-<div class="main-faq">
-  <div class="faq-title">FAQ(Frequently Asked Questions)</div>
-  {% assign collectionque = collection.metafields.custom.que.value %}
-  {% assign collectionans = collection.metafields.custom.ans.value %}
-  <hr>
-  {% for que in collectionque %}
-    {% assign que = collectionque[forloop.index0] %}
-    {% assign ans = collectionans[forloop.index0] %}
-
-    <div class="faq1">
-      <div class="collapsible">
-        <div class="faq-que">
-          <span>{{ que }}</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-      </div>
-      <div class="faq-ans">{{ ans }}</div>
-    </div>
-    <hr>
-  {% endfor %}
-</div>
-
 {% schema %}
 {
   "name": "t:sections.main-collection-product-grid.name",
