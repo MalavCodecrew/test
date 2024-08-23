@@ -588,11 +588,12 @@ button.product-btn-test {
 }
 
 .faq-ans {
-  padding: 0 18px;
   display: none;
   overflow: hidden;
   background-color: white;
   color: #0a2541;
+  padding: 18px 18px;
+  padding-top: 0;
 }
 
 .faq-title {
