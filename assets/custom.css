@@ -599,6 +599,6 @@ button.product-btn-test {
   margin-top: 60px;
 }
 
-.active.faq-que i {
+.active .faq-que i {
   transform: rotate(180deg);
 }
