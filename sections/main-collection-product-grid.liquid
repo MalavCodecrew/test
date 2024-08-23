@@ -211,6 +211,7 @@
   <div class="faq-title">FAQ(Frequently Asked Questions)</div>
   {% assign collectionque = collection.metafields.custom.que.value %}
   {% assign collectionans = collection.metafields.custom.ans.value %}
+  <hr>
   {% for que in collectionque %}
     {% assign que = collectionque[forloop.index0] %}
     {% assign ans = collectionans[forloop.index0] %}
