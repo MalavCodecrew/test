@@ -548,7 +548,7 @@ button.product-btn-test {
   padding: 3px 3px;
   border-radius: 5px;
   color: #fff;
-  background: #00f;
+  background: white;
   margin-left: 8px;
 }
 .main-product-swatches {
@@ -561,7 +561,7 @@ button.product-btn-test {
   text-align: center;
 }
 .main-collection {
-  background: #afa7a7;
+  background: white;
 }
 .collection-desc {
   padding: 10px 20px;
