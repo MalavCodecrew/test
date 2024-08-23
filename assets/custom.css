@@ -602,3 +602,6 @@ button.product-btn-test {
 .active .faq-que i {
   transform: rotate(180deg);
 }
+.main-faq hr {
+  margin: 0 auto;
+}
