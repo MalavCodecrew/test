@@ -566,6 +566,7 @@ button.product-btn-test {
 }
 .collection-desc {
   padding: 10px 20px;
+  color: #0a2541;
 }
 
 /* faqcollapsible-------------------------------> */
@@ -598,7 +599,6 @@ button.product-btn-test {
   text-align: left;
   font-weight: bold;
   font-size: 30px;
-  margin-top: 60px;
   margin-left: 20px;
 }
 
