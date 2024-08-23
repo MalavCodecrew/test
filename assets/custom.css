@@ -598,5 +598,5 @@ button.product-btn-test {
   margin-top: 60px;
 
 .active.faq-que i{
-  transform: rotate(270deg);
+  transform: rotate(180deg);
 }
