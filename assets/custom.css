@@ -597,7 +597,8 @@ button.product-btn-test {
   font-weight: bold;
   font-size: 30px;
   margin-top: 60px;
+}
 
-.active.faq-que i{
+.active.faq-que i {
   transform: rotate(180deg);
 }
