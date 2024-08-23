@@ -216,8 +216,10 @@
     {% assign ans = collectionans[forloop.index0] %}
     <div class="faq1">
       <div class="collapsible">
-        <div class="faq-que">{{ que }}</div>
-        <i class="fas fa-chevron-down"></i>
+        <div class="faq-que">
+          {{ que }}
+          <i class="fas fa-chevron-down"></i>
+        </div>
       </div>
       <div class="faq-ans">{{ ans }}</div>
     </div>
