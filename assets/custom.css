@@ -558,7 +558,7 @@ button.product-btn-test {
 .collection-title {
   font-weight: bold;
   font-size: 30px;
-  text-align: center;
+  text-align: left;
 }
 .main-collection {
   background: white;
@@ -593,7 +593,7 @@ button.product-btn-test {
 }
 
 .faq-title {
-  text-align: center;
+  text-align: left;
   font-weight: bold;
   font-size: 30px;
   margin-top: 60px;
