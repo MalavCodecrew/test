@@ -605,3 +605,6 @@ button.product-btn-test {
 .main-faq hr {
   margin: 0 auto;
 }
+.faq-que {
+  font-weight: bold;
+}
