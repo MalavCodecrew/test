@@ -207,3 +207,79 @@ for (i = 0; i < coll.length; i++) {
     }
   });
 }
+
+
+
+// blocks-pagination--------------------------------------------------------------->
+document.addEventListener("DOMContentLoaded", function() {
+  const blocksPerPage = 2;
+  const blocks = document.querySelectorAll('.block-main');
+  const totalPages = Math.ceil(blocks.length / blocksPerPage);
+  const paginationContainer = document.querySelector('.pagination');
+
+  let currentPage = 1;
+
+  function showPage(page) {
+    // Hide all blocks
+    blocks.forEach(block => block.style.display = 'none');
+
+    // Calculate the starting and ending index
+    const startIndex = (page - 1) * blocksPerPage;
+    const endIndex = startIndex + blocksPerPage;
+
+    // Show only the blocks for the current page
+    for (let i = startIndex; i < endIndex && i < blocks.length; i++) {
+      blocks[i].style.display = 'block';
+    }
+
+    // Update pagination links
+    updatePaginationLinks(page);
+  }
+
+  function updatePaginationLinks(page) {
+    paginationContainer.innerHTML = '';
+
+    // Previous button
+    if (page > 1) {
+      const prevLink = document.createElement('a');
+      prevLink.href = "#";
+      prevLink.textContent = "Previous";
+      prevLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showPage(page - 1);
+      });
+      paginationContainer.appendChild(prevLink);
+    }
+
+    // Page number links
+    for (let i = 1; i <= totalPages; i++) {
+      const pageLink = document.createElement('a');
+      pageLink.href = "#";
+      pageLink.textContent = i;
+      if (i === page) {
+        pageLink.classList.add('active');
+      }
+      pageLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showPage(i);
+      });
+      paginationContainer.appendChild(pageLink);
+    }
+
+    // Next button
+    if (page < totalPages) {
+      const nextLink = document.createElement('a');
+      nextLink.href = "#";
+      nextLink.textContent = "Next";
+      nextLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showPage(page + 1);
+      });
+      paginationContainer.appendChild(nextLink);
+    }
+  }
+
+  // Initial page load
+  showPage(currentPage);
+});
+
