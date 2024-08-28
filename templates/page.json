@@ -51,13 +51,21 @@
             "title_block": "title4",
             "desc_block": "i want to get the title"
           }
+        },
+        "text_AwVEKq": {
+          "type": "text",
+          "settings": {
+            "title_block": "title5",
+            "desc_block": "i want to get title5"
+          }
         }
       },
       "block_order": [
         "text_grmYXb",
         "text_8fpUcy",
         "text_RixVe9",
-        "text_GR7cty"
+        "text_GR7cty",
+        "text_AwVEKq"
       ],
       "settings": {
       }
