@@ -30,10 +30,18 @@
             "title_block": "title-1",
             "desc_block": "i want to get the title 1"
           }
+        },
+        "text_8fpUcy": {
+          "type": "text",
+          "settings": {
+            "title_block": "title2",
+            "desc_block": "i want to get the title"
+          }
         }
       },
       "block_order": [
-        "text_grmYXb"
+        "text_grmYXb",
+        "text_8fpUcy"
       ],
       "settings": {
       }
