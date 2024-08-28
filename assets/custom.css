@@ -621,3 +621,11 @@ button.product-btn-test {
 .main-div-collection {
   color: #0a2541;
 }
+
+/* block-pagination css ------------------------------->*/
+.block-main {
+  border: solid;
+  padding: 10px;
+  border-radius: 10px;
+  width: 10%;
+}
