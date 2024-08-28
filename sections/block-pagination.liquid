@@ -23,11 +23,11 @@
 {%- endif -%}
 
 {% assign start_index = blocks_per_page | times: current_page | minus: blocks_per_page %}
-{% assign end_index = blocks_per_page | times: current_page %}
+{% assign end_index = start_index | plus: blocks_per_page %}
 
 <div class="main-parent">
   {% for block in section.blocks %}
-    {% if forloop.index > start_index and forloop.index <= end_index %}
+    {% if forloop.index0 >= start_index and forloop.index0 < end_index %}
       <div class="block-main">
         <div class="block-title">
           {{ block.settings.title_block }}
@@ -55,6 +55,7 @@
     <a href="?page={{ current_page | plus: 1 }}">Next</a>
   {% endif %}
 </div>
+
 {% schema %}
   {
     "name": "block-pagination",
