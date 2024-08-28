@@ -631,4 +631,5 @@ button.product-btn-test {
 }
 .main-parent {
   display: flex;
+  gap: 20px;
 }
