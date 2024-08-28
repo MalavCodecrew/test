@@ -633,3 +633,6 @@ button.product-btn-test {
   display: flex;
   gap: 20px;
 }
+.pagination a {
+  text-decoration: none;
+}
