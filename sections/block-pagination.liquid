@@ -1,6 +1,33 @@
+{% comment %}
+  <div class="main-parent">
+    {%- paginate section.blocks by 2 -%}
+      {% for block in section.blocks %}
+        <div class="block-main">
+          <div class="block-title">
+            {{ block.settings.title_block }}
+          </div>
+          <div class="block-desc">
+            {{ block.settings.desc_block }}
+          </div>
+        </div>
+        {% render 'pagination', paginate: paginate, anchor: '' %}
+      {% endfor %}
+    {% endpaginate %}
+  </div>
+{% endcomment %}
+{% assign blocks_per_page = 2 %}
+{% assign current_page = 1 %}
+
+{%- if request.query.page != blank -%}
+  {% assign current_page = request.query.page | plus: 0 %}
+{%- endif -%}
+
+{% assign start_index = blocks_per_page | times: current_page | minus: blocks_per_page %}
+{% assign end_index = blocks_per_page | times: current_page %}
+
 <div class="main-parent">
-  {%- paginate section.blocks by 2 -%}
-    {% for block in section.blocks %}
+  {% for block in section.blocks %}
+    {% if forloop.index > start_index and forloop.index <= end_index %}
       <div class="block-main">
         <div class="block-title">
           {{ block.settings.title_block }}
@@ -9,11 +36,25 @@
           {{ block.settings.desc_block }}
         </div>
       </div>
-      {% render 'pagination', paginate: paginate, anchor: '' %}
-    {% endfor %}
-  {% endpaginate %}
+    {% endif %}
+  {% endfor %}
 </div>
 
+<div class="pagination">
+  {% assign total_pages = section.blocks.size | divided_by: blocks_per_page | ceil %}
+
+  {% if current_page > 1 %}
+    <a href="?page={{ current_page | minus: 1 }}">Previous</a>
+  {% endif %}
+
+  {% for i in (1..total_pages) %}
+    <a href="?page={{ i }}" class="{% if i == current_page %}active{% endif %}">{{ i }}</a>
+  {% endfor %}
+
+  {% if current_page < total_pages %}
+    <a href="?page={{ current_page | plus: 1 }}">Next</a>
+  {% endif %}
+</div>
 {% schema %}
   {
     "name": "block-pagination",
