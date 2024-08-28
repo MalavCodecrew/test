@@ -9,8 +9,8 @@
           {{ block.settings.desc_block }}
         </div>
       </div>
+      {% render 'pagination', paginate: paginate, anchor: '' %}
     {% endfor %}
-    {% render 'pagination', paginate: paginate, anchor: '' %}
   {% endpaginate %}
 </div>
 
