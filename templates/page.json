@@ -20,10 +20,28 @@
       "type": "testimonial",
       "settings": {
       }
+    },
+    "block_pagination_F9ew6q": {
+      "type": "block-pagination",
+      "blocks": {
+        "text_grmYXb": {
+          "type": "text",
+          "settings": {
+            "title_block": "title-1",
+            "desc_block": "i want to get the title 1"
+          }
+        }
+      },
+      "block_order": [
+        "text_grmYXb"
+      ],
+      "settings": {
+      }
     }
   },
   "order": [
     "main",
-    "testimonial_TBVbbd"
+    "testimonial_TBVbbd",
+    "block_pagination_F9ew6q"
   ]
 }
