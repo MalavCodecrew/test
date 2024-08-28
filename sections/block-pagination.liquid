@@ -1,6 +1,6 @@
 <div class="main-parent">
-  {% for block in section.blocks %}
-    {%- paginate block by 2 -%}
+  {%- paginate section.blocks by 2 -%}
+    {% for block in section.blocks %}
       <div class="block-main">
         <div class="block-title">
           {{ block.settings.title_block }}
@@ -10,8 +10,8 @@
         </div>
       </div>
       {% render 'pagination', paginate: paginate, anchor: '' %}
-    {% endpaginate %}
-  {% endfor %}
+    {% endfor %}
+  {% endpaginate %}
 </div>
 
 {% schema %}
