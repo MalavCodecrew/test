@@ -13,5 +13,12 @@
     "b2b": true
   },
   "sections": {
+    "bg_image_with_button_DMpwGM": {
+      "disabled": true,
+      "settings": {
+      },
+      "blocks": {
+      }
+    }
   }
 }
