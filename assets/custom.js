@@ -220,26 +220,22 @@ document.addEventListener("DOMContentLoaded", function() {
   let currentPage = 1;
 
   function showPage(page) {
-    // Hide all blocks
+  
     blocks.forEach(block => block.style.display = 'none');
 
-    // Calculate the starting and ending index
+   
     const startIndex = (page - 1) * blocksPerPage;
     const endIndex = startIndex + blocksPerPage;
 
-    // Show only the blocks for the current page
+  
     for (let i = startIndex; i < endIndex && i < blocks.length; i++) {
       blocks[i].style.display = 'block';
     }
-
-    // Update pagination links
     updatePaginationLinks(page);
   }
 
   function updatePaginationLinks(page) {
     paginationContainer.innerHTML = '';
-
-    // Previous button
     if (page > 1) {
       const prevLink = document.createElement('a');
       prevLink.href = "#";
@@ -249,10 +245,8 @@ document.addEventListener("DOMContentLoaded", function() {
         showPage(page - 1);
       });
       paginationContainer.appendChild(prevLink);
-    }
-
-    // Page number links
-    for (let i = 1; i <= totalPages; i++) {
+    }  
+  for (let i = 1; i <= totalPages; i++) {
       const pageLink = document.createElement('a');
       pageLink.href = "#";
       pageLink.textContent = i;
@@ -265,8 +259,6 @@ document.addEventListener("DOMContentLoaded", function() {
       });
       paginationContainer.appendChild(pageLink);
     }
-
-    // Next button
     if (page < totalPages) {
       const nextLink = document.createElement('a');
       nextLink.href = "#";
@@ -278,8 +270,6 @@ document.addEventListener("DOMContentLoaded", function() {
       paginationContainer.appendChild(nextLink);
     }
   }
-
-  // Initial page load
   showPage(currentPage);
 });
 
