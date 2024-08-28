@@ -1,6 +1,24 @@
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
+    "name": "block-pagination",
+    "settings": [],
+     "blocks": [
+    {"type": "text",
+     "name": "Menu",
+      "settings": [{
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },]
+    }],
+     "presets": [
+  {
+    "name": "block-pagination","blocks": [
+      {
+         "type":"text"
+      }
+    ]
+  }
+]
   }
 {% endschema %}
