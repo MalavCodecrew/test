@@ -80,7 +80,7 @@ h1 span {
 }
 @media only screen and (max-width: 1024px) {
   .main-text {
-    top: 31%;
+    top: 40%;
   }
   .title2 h1 {
     font-size: 60px;
