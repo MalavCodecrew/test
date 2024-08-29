@@ -206,12 +206,6 @@
         "settings": {
         }
       },
-      "17828154360508871270": {
-        "type": "shopify:\/\/apps\/scriptinjector\/blocks\/front_script\/3d325123-1cba-4c06-9955-d7a555188c9c",
-        "disabled": false,
-        "settings": {
-        }
-      },
       "3847134708050210359": {
         "type": "shopify:\/\/apps\/transcy\/blocks\/switcher_embed_block\/bce4f1c0-c18c-43b0-b0b2-a1aefaa44573",
         "disabled": false,
