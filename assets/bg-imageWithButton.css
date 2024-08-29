@@ -147,7 +147,7 @@ h1 span {
 
 @media only screen and (max-width: 375px) {
   .main-text {
-    top: 12%;
+    top: 20%;
     font-size: 8px;
   }
 }
