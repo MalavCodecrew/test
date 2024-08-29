@@ -211,6 +211,12 @@
         "disabled": false,
         "settings": {
         }
+      },
+      "10533623496951086041": {
+        "type": "shopify:\/\/apps\/criteo-sales-growth-ads\/blocks\/theme-extension\/b74e0e19-7ecc-4a61-b469-888ea2cdf8f5",
+        "disabled": false,
+        "settings": {
+        }
       }
     },
     "color_schemes": {
