@@ -274,44 +274,46 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //----------------------------------- GWP-JS-------------------------------------------->
-document.addEventListener('DOMContentLoaded', function() {
-
+$(document).ready(function() {
   function checkCartAndAddGift() {
-    fetch('/cart.js')
-      .then(response => response.json())
-      .then(cart => {
-        if (cart.total_price >= 5000) { // Example condition: $50 (5000 cents)
-          let hasGift = cart.items.some(item => item.title === "Free Gift Product");
+    $.getJSON('/cart.js', function(cart) {
+      if (cart.total_price >= 5000) { // Example condition: $50 (5000 cents)
+        var hasGift = cart.items.some(function(item) {
+          return item.title === "Free Gift Product";
+        });
 
-          if (!hasGift) {
-            // Add gift product to cart (replace 'GIFT_PRODUCT_VARIANT_ID' with your gift product variant ID)
-            fetch('/cart/add.js', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-              },
-              body: JSON.stringify({
-                id: '9681446502678',
-                quantity: 1
-              })
-            })
-            .then(response => response.json())
-            .then(data => {
+        if (!hasGift) {
+          // Add gift product to cart (replace 'GIFT_PRODUCT_VARIANT_ID' with your gift product variant ID)
+          $.ajax({
+            url: '/cart/add.js',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+              id: 'GIFT_PRODUCT_VARIANT_ID',
+              quantity: 1
+            }),
+            success: function(data) {
               console.log('Gift added:', data);
               // Optionally, refresh the cart to show updated contents
               location.reload();
-            })
-            .catch(error => console.error('Error adding gift:', error));
-          }
+            },
+            error: function(xhr, status, error) {
+              console.error('Error adding gift:', error);
+            }
+          });
         }
-      })
-      .catch(error => console.error('Error fetching cart:', error));
+      }
+    }).fail(function(xhr, status, error) {
+      console.error('Error fetching cart:', error);
+    });
   }
 
   // Run the function on page load
   checkCartAndAddGift();
 
   // Optional: Recheck when cart updates (if using AJAX updates)
-  document.addEventListener('cart:updated', checkCartAndAddGift);
+  $(document).on('cart:updated', function() {
+    checkCartAndAddGift();
+  });
 });
