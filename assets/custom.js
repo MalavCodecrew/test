@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //----------------------------------- GWP-JS-------------------------------------------->
 document.addEventListener('DOMContentLoaded', function() {
-  console.log("hweee")
+
   function checkCartAndAddGift() {
     fetch('/cart.js')
       .then(response => response.json())
