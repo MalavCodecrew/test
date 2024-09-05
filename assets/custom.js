@@ -274,44 +274,49 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //----------------------------------- GWP-JS-------------------------------------------->
+var isUpdating = false;
+
 $(document).ready(function() {
   function checkCartAndAddGift() {
+    if (isUpdating) return; // Prevent concurrent updates
+
+    isUpdating = true; // Lock cart updates
     console.log("Checking cart...");
 
-    setTimeout(function() { // Delay to ensure cart data is fully loaded
-      $.getJSON('/cart.js', function(cart) {
-        if (cart.total_price >= 1500) {
-          var hasGift = cart.items.some(function(item) {
-            return item.title === "Free Gift Product";
-          });
+    $.getJSON('/cart.js', function(cart) {
+      if (cart.total_price >= 1500) {
+        var hasGift = cart.items.some(function(item) {
+          return item.title === "Free Gift Product";
+        });
 
-          if (!hasGift) {
-            $.ajax({
-              url: '/cart/add.js',
-              type: 'POST',
-              dataType: 'json',
-              contentType: 'application/json',
-              data: JSON.stringify({
-                id: 49055053381910,
-                quantity: 1
-              }),
-              success: function(data) {
-                console.log('Gift added:', data);
-              },
-              error: function(xhr, status, error) {
-                console.error('Error adding gift:', xhr.responseText);
-              }
-            });
-          } else {
-            console.log("Gift already in cart.");
-          }
+        if (!hasGift) {
+          $.ajax({
+            url: '/cart/add.js',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+              id: 49055053381910,
+              quantity: 1
+            }),
+            success: function(data) {
+              console.log('Gift added:', data);
+            },
+            error: function(xhr, status, error) {
+              console.error('Error adding gift:', xhr.responseText);
+            }
+          });
         } else {
-          console.log("Cart total is less than $15.");
+          console.log("Gift already in cart.");
         }
-      }).fail(function(xhr, status, error) {
-        console.error('Error fetching cart:', xhr.responseText);
-      });
-    }, 500); // 500ms delay to ensure cart updates
+      } else {
+        console.log("Cart total is less than $15.");
+      }
+      isUpdating = false; // Unlock cart updates
+    }).fail(function(xhr, status, error) {
+      console.error('Error fetching cart:', xhr.responseText);
+      isUpdating = false; // Unlock cart updates in case of error
+    });
   }
 
   checkCartAndAddGift();
@@ -320,4 +325,3 @@ $(document).ready(function() {
     checkCartAndAddGift();
   });
 });
-
