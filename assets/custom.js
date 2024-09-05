@@ -281,7 +281,7 @@ $(document).ready(function() {
     $.getJSON('/cart.js', function(cart) {
       if (cart.total_price >= 1500) { // Example condition: $15 (1500 cents)
         var hasGift = cart.items.some(function(item) {
-          return item.title === "Free Gift Product";
+          return item.title === "Free Gift Product"; // Make sure the title matches exactly
         });
 
         if (!hasGift) {
@@ -292,12 +292,12 @@ $(document).ready(function() {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({
-              id: 49055053381910, // Correct numeric variant ID
+              id: 9876543210, // Correct numeric variant ID
               quantity: 1
             }),
             success: function(data) {
               console.log('Gift added:', data);
-              location.reload();
+              // No need to reload the page, you can update the cart dynamically if needed
             },
             error: function(xhr, status, error) {
               console.error('Error adding gift:', xhr.responseText);
