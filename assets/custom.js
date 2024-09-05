@@ -298,11 +298,12 @@ $(document).ready(function() {
               dataType: 'json',
               contentType: 'application/json',
               data: JSON.stringify({
-                id: giftItem.id, // Use the existing variant ID from the cart
+                id: giftItem.id,
                 quantity: 1
               }),
               success: function(data) {
                 console.log('Gift quantity adjusted to 1:', data);
+                triggerCartUpdate(); // Force update or reload cart
               },
               error: function(xhr, status, error) {
                 console.error('Error adjusting gift quantity:', xhr.responseText);
@@ -312,18 +313,19 @@ $(document).ready(function() {
             console.log("Gift already in cart with correct quantity.");
           }
         } else {
-          // Add the gift product to the cart
+          // Add gift product
           $.ajax({
             url: '/cart/add.js',
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({
-              id: 49055053381910, // Correct numeric variant ID
+              id: 49055053381910,
               quantity: 1
             }),
             success: function(data) {
               console.log('Gift added:', data);
+              triggerCartUpdate(); // Ensure the cart is updated after adding
             },
             error: function(xhr, status, error) {
               console.error('Error adding gift:', xhr.responseText);
@@ -340,11 +342,21 @@ $(document).ready(function() {
     });
   }
 
+  // Function to trigger cart update or refresh
+  function triggerCartUpdate() {
+    // Option 1: Trigger an update event (if using AJAX cart)
+    $(document).trigger('cart:updated');
+
+    // Option 2: Force page reload (if cart display doesn't update)
+    // location.reload();
+  }
+
   // Run the function on page load
   checkCartAndAddGift();
 
-  // Recheck when cart updates (if using AJAX updates)
+  // Recheck when cart updates
   $(document).on('cart:updated', function() {
     checkCartAndAddGift();
   });
 });
+
