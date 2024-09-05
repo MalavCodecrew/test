@@ -276,9 +276,10 @@ document.addEventListener("DOMContentLoaded", function() {
 //----------------------------------- GWP-JS-------------------------------------------->
 $(document).ready(function() {
   function checkCartAndAddGift() {
-    console.log("hwloo")
+    console.log("Checking cart...");
+
     $.getJSON('/cart.js', function(cart) {
-      if (cart.total_price >= 15) { // Example condition: $50 (5000 cents)
+      if (cart.total_price >= 1500) { // Example condition: $15 (1500 cents)
         var hasGift = cart.items.some(function(item) {
           return item.title === "Free Gift Product";
         });
@@ -291,7 +292,7 @@ $(document).ready(function() {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({
-              id: '/products/9681446502678',
+              id: '9681446502678', // Replace this with the actual numeric variant ID
               quantity: 1
             }),
             success: function(data) {
@@ -303,7 +304,11 @@ $(document).ready(function() {
               console.error('Error adding gift:', xhr.responseText); // Detailed error message
             }
           });
+        } else {
+          console.log("Gift already in cart.");
         }
+      } else {
+        console.log("Cart total is less than $15.");
       }
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart:', xhr.responseText); // Detailed error message
