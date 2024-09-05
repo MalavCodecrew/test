@@ -276,7 +276,8 @@ document.addEventListener("DOMContentLoaded", function() {
 //----------------------------------- GWP-JS-------------------------------------------->
 $(document).ready(function() {
   var isUpdating = false;
-
+  
+  // Function to check and add gift product
   function checkCartAndAddGift() {
     if (isUpdating) return; // Prevent concurrent updates
 
@@ -284,7 +285,7 @@ $(document).ready(function() {
     console.log("Checking cart...");
 
     $.getJSON('/cart.js', function(cart) {
-      console.log('Cart contents:', cart); // Log the cart for troubleshooting
+      console.log('Cart contents:', cart); // Log cart contents for troubleshooting
 
       if (cart.total_price >= 1500) {
         var giftItem = cart.items.find(function(item) {
@@ -302,21 +303,20 @@ $(document).ready(function() {
               dataType: 'json',
               contentType: 'application/json',
               data: JSON.stringify({
-                id: giftItem.id,
+                id: 49055053381910,
                 quantity: 1
               }),
               success: function(data) {
                 console.log('Gift quantity adjusted to 1:', data);
-                sessionStorage.setItem('giftUpdated', 'true'); // Set flag
-                if (!sessionStorage.getItem('giftReloaded')) {
-                  sessionStorage.setItem('giftReloaded', 'true'); // Set reload flag
-                  location.reload(); // Reload page to update the cart
-                }
+                // Instead of reloading, update the cart UI if possible
+                updateCartUI();
               },
               error: function(xhr, status, error) {
                 console.error('Error adjusting gift quantity:', xhr.responseText);
               }
             });
+          } else {
+            console.log("Gift already in cart with correct quantity.");
           }
         } else {
           // Add gift product
@@ -333,11 +333,8 @@ $(document).ready(function() {
             }),
             success: function(data) {
               console.log('Gift added:', data);
-              sessionStorage.setItem('giftUpdated', 'true'); // Set flag
-              if (!sessionStorage.getItem('giftReloaded')) {
-                sessionStorage.setItem('giftReloaded', 'true'); // Set reload flag
-                location.reload(); // Reload page to update the cart
-              }
+              // Instead of reloading, update the cart UI if possible
+              updateCartUI();
             },
             error: function(xhr, status, error) {
               console.error('Error adding gift:', xhr.responseText);
@@ -354,9 +351,16 @@ $(document).ready(function() {
     });
   }
 
-  // Clear session storage flags on page load
-  if (sessionStorage.getItem('giftReloaded')) {
-    sessionStorage.removeItem('giftReloaded');
+  // Function to update the cart UI
+  function updateCartUI() {
+    // Here you can add logic to manually update the cart UI.
+    // For example, you could re-fetch the cart contents and update the display.
+    // This is a placeholder for your specific cart update logic.
+    console.log('Updating cart UI...');
+    $.get('/cart', function(cartHtml) {
+      // Example of updating a cart container
+      $('#cart-container').html(cartHtml);
+    });
   }
 
   // Run the function on page load
