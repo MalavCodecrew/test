@@ -323,7 +323,7 @@ $(document).ready(function() {
       contentType: 'application/json',
       data: JSON.stringify({
         id: 49055053381910,
-        quantity: quantity
+        quantity: 1
       }),
       success: function(data) {
         console.log('Gift quantity adjusted to 1:', data);
