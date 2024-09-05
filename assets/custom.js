@@ -277,7 +277,6 @@ document.addEventListener("DOMContentLoaded", function() {
 $(document).ready(function() {
   var isUpdating = false;
   var giftVariantId = 49055053381910; // Ensure this is correct for your store
-  var giftTitle = "Free Gift Product"; // Ensure this matches your gift product title exactly
 
   function checkCartAndManageGift() {
     if (isUpdating) return;
@@ -285,28 +284,21 @@ $(document).ready(function() {
     console.log("Checking cart...");
 
     $.getJSON('/cart.js', function(cart) {
-      console.log('Cart contents:', cart);
       var cartTotal = cart.total_price;
       var giftInCart = cart.items.find(item => item.variant_id === giftVariantId);
-
-      console.log('Cart total:', cartTotal);
-      console.log('Gift in cart:', giftInCart);
 
       if (cartTotal >= 1500) {
         if (!giftInCart) {
           addGiftToCart();
         } else if (giftInCart.quantity !== 1) {
-          console.log('Gift quantity incorrect. Adjusting to 1.');
           updateGiftQuantity(giftVariantId, 1);
         } else {
-          console.log("Gift is already in cart with correct quantity.");
           updateCartUI(cart);
           isUpdating = false;
         }
       } else if (giftInCart) {
         removeGiftFromCart();
       } else {
-        console.log("Cart is in correct state.");
         updateCartUI(cart);
         isUpdating = false;
       }
@@ -317,7 +309,6 @@ $(document).ready(function() {
   }
 
   function addGiftToCart() {
-    console.log("Adding gift product...");
     $.ajax({
       url: '/cart/add.js',
       type: 'POST',
@@ -327,7 +318,6 @@ $(document).ready(function() {
         quantity: 1
       },
       success: function(data) {
-        console.log('Gift added:', data);
         checkCartAndManageGift(); // Recheck cart after adding gift
       },
       error: function(xhr, status, error) {
@@ -344,10 +334,9 @@ $(document).ready(function() {
       dataType: 'json',
       data: {
         id: variantId,
-        quantity: 1
+        quantity: quantity
       },
       success: function(cart) {
-        console.log('Gift quantity adjusted:', cart);
         updateCartUI(cart); // Update UI with adjusted quantity
         isUpdating = false;
       },
@@ -367,9 +356,8 @@ $(document).ready(function() {
         id: giftVariantId,
         quantity: 0
       },
-      success: function(data) {
-        console.log('Gift removed:', data);
-        updateCartUI(data);
+      success: function(cart) {
+        updateCartUI(cart);
         isUpdating = false;
       },
       error: function(xhr, status, error) {
@@ -380,7 +368,6 @@ $(document).ready(function() {
   }
 
   function updateCartUI(cart) {
-    console.log('Updating cart UI...');
     var cartContainer = $('#cart-container');
     if (cartContainer.length) {
       cartContainer.empty();
@@ -397,13 +384,10 @@ $(document).ready(function() {
         cartContainer.append(itemHtml);
       });
       
-      // Update cart total
       var cartTotalElement = $('#cart-total');
       if (cartTotalElement.length) {
         cartTotalElement.text((cart.total_price / 100).toFixed(2));
       }
-      
-      console.log('Cart UI updated');
     } else {
       console.error('Cart container not found.');
     }
@@ -416,8 +400,6 @@ $(document).ready(function() {
   $(document).on('change', 'input[name="updates[]"]', function() {
     var variantId = $(this).data('variant-id');
     var newQuantity = parseInt($(this).val(), 10);
-    
-    console.log('Quantity changed for variant:', variantId, 'New quantity:', newQuantity);
 
     if (variantId !== giftVariantId) {
       $.ajax({
@@ -426,10 +408,9 @@ $(document).ready(function() {
         dataType: 'json',
         data: {
           id: variantId,
-          quantity: 1
+          quantity: newQuantity
         },
         success: function(cart) {
-          console.log('Cart updated after quantity change:', cart);
           checkCartAndManageGift();
         },
         error: function(xhr, status, error) {
@@ -437,7 +418,6 @@ $(document).ready(function() {
         }
       });
     } else {
-      console.log('Attempted to change gift quantity. Ignoring.');
       $(this).val(1); // Reset the input to 1 if it's the gift product
     }
   });
@@ -446,8 +426,6 @@ $(document).ready(function() {
   $(document).on('click', '.remove-item', function(e) {
     e.preventDefault();
     var variantId = $(this).data('variant-id');
-    
-    console.log('Removing item with variant:', variantId);
 
     if (variantId !== giftVariantId) {
       $.ajax({
@@ -459,15 +437,13 @@ $(document).ready(function() {
           quantity: 0
         },
         success: function(cart) {
-          console.log('Cart updated after item removal:', cart);
           checkCartAndManageGift();
         },
         error: function(xhr, status, error) {
           console.error('Error removing item:', xhr.responseText);
         }
       });
-    } else {
-      console.log('Attempted to remove gift product. Ignoring.');
     }
   });
 });
+
