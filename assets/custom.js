@@ -348,7 +348,8 @@ $(document).ready(function() {
       },
       success: function(data) {
         console.log('Gift quantity adjusted:', data);
-        checkCartAndManageGift(); // Recheck cart after adjusting gift quantity
+        updateCartUI(data);
+        isUpdating = false;
       },
       error: function(xhr, status, error) {
         console.error('Error adjusting gift quantity:', xhr.responseText);
