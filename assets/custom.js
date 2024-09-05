@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Accept': 'application/json'
               },
               body: JSON.stringify({
-                id: 'GIFT_PRODUCT_VARIANT_ID',
+                id: '9681446502678',
                 quantity: 1
               })
             })
