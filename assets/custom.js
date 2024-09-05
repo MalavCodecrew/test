@@ -344,7 +344,7 @@ $(document).ready(function() {
       dataType: 'json',
       data: {
         id: variantId,
-        quantity: 1
+        quantity: quantity
       },
       success: function(cart) {
         console.log('Gift quantity adjusted:', cart);
@@ -389,7 +389,7 @@ $(document).ready(function() {
         var itemHtml = `
           <div class="cart-item" data-variant-id="${item.variant_id}">
             <span class="item-title">${item.title}</span>
-            <input type="number" name="updates[]" value="${item.quantity}" min="0" 
+            <input type="number" name="updates[]" value="${isGift ? 1 : item.quantity}" min="0" 
                    data-variant-id="${item.variant_id}" ${isGift ? 'disabled' : ''}>
             ${isGift ? '' : `<button class="remove-item" data-variant-id="${item.variant_id}">Remove</button>`}
           </div>
@@ -426,7 +426,7 @@ $(document).ready(function() {
         dataType: 'json',
         data: {
           id: variantId,
-          quantity: 1
+          quantity: newQuantity
         },
         success: function(cart) {
           console.log('Cart updated after quantity change:', cart);
@@ -471,4 +471,3 @@ $(document).ready(function() {
     }
   });
 });
-
