@@ -344,7 +344,7 @@ $(document).ready(function() {
       dataType: 'json',
       data: {
         id: variantId,
-        quantity: quantity
+        quantity: 1
       },
       success: function(data) {
         console.log('Gift quantity adjusted:', data);
