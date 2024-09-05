@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $(document).ready(function() {
   function checkCartAndAddGift() {
     $.getJSON('/cart.js', function(cart) {
-      if (cart.total_price >= 5000) { // Example condition: $50 (5000 cents)
+      if (cart.total_price >= 15) { // Example condition: $50 (5000 cents)
         var hasGift = cart.items.some(function(item) {
           return item.title === "Free Gift Product";
         });
