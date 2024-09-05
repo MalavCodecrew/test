@@ -285,23 +285,22 @@ $(document).ready(function() {
         });
 
         if (!hasGift) {
-          // Add gift product to cart (replace 'GIFT_PRODUCT_VARIANT_ID' with your gift product variant ID)
+          // Add gift product to cart (replace with correct variant ID)
           $.ajax({
             url: '/cart/add.js',
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({
-              id: '9681446502678', // Replace this with the actual numeric variant ID
+              id: '9876543210', // Correct variant ID
               quantity: 1
             }),
             success: function(data) {
               console.log('Gift added:', data);
-              // Optionally, refresh the cart to show updated contents
               location.reload();
             },
             error: function(xhr, status, error) {
-              console.error('Error adding gift:', xhr.responseText); // Detailed error message
+              console.error('Error adding gift:', xhr.responseText);
             }
           });
         } else {
@@ -311,14 +310,14 @@ $(document).ready(function() {
         console.log("Cart total is less than $15.");
       }
     }).fail(function(xhr, status, error) {
-      console.error('Error fetching cart:', xhr.responseText); // Detailed error message
+      console.error('Error fetching cart:', xhr.responseText);
     });
   }
 
   // Run the function on page load
   checkCartAndAddGift();
 
-  // Optional: Recheck when cart updates (if using AJAX updates)
+  // Recheck when cart updates (if using AJAX updates)
   $(document).on('cart:updated', function() {
     checkCartAndAddGift();
   });
