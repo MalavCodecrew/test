@@ -290,7 +290,7 @@ $(document).ready(function() {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({
-              id: 'GIFT_PRODUCT_VARIANT_ID',
+              id: '/products/9681446502678',
               quantity: 1
             }),
             success: function(data) {
