@@ -292,7 +292,7 @@ $(document).ready(function() {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({
-              id: 9681446502678, // Correct variant ID
+              id: 9681446502678, // Correct numeric variant ID
               quantity: 1
             }),
             success: function(data) {
