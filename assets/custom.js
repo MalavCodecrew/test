@@ -276,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //----------------------------------- GWP-JS-------------------------------------------->
 $(document).ready(function() {
   function checkCartAndAddGift() {
+    console.log("hwloo")
     $.getJSON('/cart.js', function(cart) {
       if (cart.total_price >= 15) { // Example condition: $50 (5000 cents)
         var hasGift = cart.items.some(function(item) {
