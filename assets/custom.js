@@ -275,16 +275,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //----------------------------------- GWP-JS-------------------------------------------->
 document.addEventListener('DOMContentLoaded', function() {
-  // Function to check cart total and add gift
   function checkCartAndAddGift() {
     fetch('/cart.js')
       .then(response => response.json())
       .then(cart => {
-        if (cart.total_price >= 15) { // Example condition: $50 (5000 cents)
+        if (cart.total_price >= 5000) { // Example condition: $50 (5000 cents)
           let hasGift = cart.items.some(item => item.title === "Free Gift Product");
 
           if (!hasGift) {
-            // Add gift product to cart (change 'GIFT_PRODUCT_VARIANT_ID' to your gift product variant ID)
+            // Add gift product to cart (replace 'GIFT_PRODUCT_VARIANT_ID' with your gift product variant ID)
             fetch('/cart/add.js', {
               method: 'POST',
               headers: {
@@ -297,16 +296,21 @@ document.addEventListener('DOMContentLoaded', function() {
               })
             })
             .then(response => response.json())
-            .then(data => console.log('Gift added:', data))
+            .then(data => {
+              console.log('Gift added:', data);
+              // Optionally, refresh the cart to show updated contents
+              location.reload();
+            })
             .catch(error => console.error('Error adding gift:', error));
           }
         }
-      });
+      })
+      .catch(error => console.error('Error fetching cart:', error));
   }
 
   // Run the function on page load
   checkCartAndAddGift();
 
-  // Optional: Recheck when cart updates
+  // Optional: Recheck when cart updates (if using AJAX updates)
   document.addEventListener('cart:updated', checkCartAndAddGift);
 });
