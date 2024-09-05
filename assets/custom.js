@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Accept': 'application/json'
               },
               body: JSON.stringify({
-                id: 'products/9681446502678',
+                id: '9681446502678',
                 quantity: 1
               })
             })
