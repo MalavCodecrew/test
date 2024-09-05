@@ -278,47 +278,46 @@ $(document).ready(function() {
   function checkCartAndAddGift() {
     console.log("Checking cart...");
 
-    $.getJSON('/cart.js', function(cart) {
-      if (cart.total_price >= 1500) { // Example condition: $15 (1500 cents)
-        var hasGift = cart.items.some(function(item) {
-          return item.title === "Free Gift Product"; // Make sure the title matches exactly
-        });
-
-        if (!hasGift) {
-          // Add gift product to cart (replace with correct variant ID)
-          $.ajax({
-            url: '/cart/add.js',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: JSON.stringify({
-              id: 49055053381910, // Correct numeric variant ID
-              quantity: 1
-            }),
-            success: function(data) {
-              console.log('Gift added:', data);
-              // No need to reload the page, you can update the cart dynamically if needed
-            },
-            error: function(xhr, status, error) {
-              console.error('Error adding gift:', xhr.responseText);
-            }
+    setTimeout(function() { // Delay to ensure cart data is fully loaded
+      $.getJSON('/cart.js', function(cart) {
+        if (cart.total_price >= 1500) {
+          var hasGift = cart.items.some(function(item) {
+            return item.title === "Free Gift Product";
           });
+
+          if (!hasGift) {
+            $.ajax({
+              url: '/cart/add.js',
+              type: 'POST',
+              dataType: 'json',
+              contentType: 'application/json',
+              data: JSON.stringify({
+                id: 49055053381910,
+                quantity: 1
+              }),
+              success: function(data) {
+                console.log('Gift added:', data);
+              },
+              error: function(xhr, status, error) {
+                console.error('Error adding gift:', xhr.responseText);
+              }
+            });
+          } else {
+            console.log("Gift already in cart.");
+          }
         } else {
-          console.log("Gift already in cart.");
+          console.log("Cart total is less than $15.");
         }
-      } else {
-        console.log("Cart total is less than $15.");
-      }
-    }).fail(function(xhr, status, error) {
-      console.error('Error fetching cart:', xhr.responseText);
-    });
+      }).fail(function(xhr, status, error) {
+        console.error('Error fetching cart:', xhr.responseText);
+      });
+    }, 500); // 500ms delay to ensure cart updates
   }
 
-  // Run the function on page load
   checkCartAndAddGift();
 
-  // Recheck when cart updates (if using AJAX updates)
   $(document).on('cart:updated', function() {
     checkCartAndAddGift();
   });
 });
+
