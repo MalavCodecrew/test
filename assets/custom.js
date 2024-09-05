@@ -277,117 +277,139 @@ document.addEventListener("DOMContentLoaded", function() {
 $(document).ready(function() {
   var isUpdating = false;
   var retryCount = 0;
-  var maxRetries = 3; // Number of retries before giving up
+  var maxRetries = 3;
 
   function checkCartAndAddGift() {
-    if (isUpdating) return; // Prevent concurrent updates
+    if (isUpdating) return;
 
-    isUpdating = true; // Lock cart updates
+    isUpdating = true;
     console.log("Checking cart...");
 
     $.getJSON('/cart.js', function(cart) {
-      console.log('Cart contents:', cart); // Log the cart contents
+      console.log('Cart contents:', cart);
 
       if (cart.total_price >= 1500) {
         var giftItem = cart.items.find(function(item) {
-          return item.title === "Free Gift Product"; // Replace with exact title
+          return item.title === "Free Gift Product";
         });
 
         if (giftItem) {
           console.log("Gift already in cart with quantity:", giftItem.quantity);
-
           if (giftItem.quantity > 1) {
-            // Update the quantity to 1 if it's greater than 1
-            $.ajax({
-              url: '/cart/change.js',
-              type: 'POST',
-              dataType: 'json',
-              contentType: 'application/json',
-              data: JSON.stringify({
-                id: 49055053381910,
-                quantity: 1
-              }),
-              success: function(data) {
-                console.log('Gift quantity adjusted to 1:', data);
-                setTimeout(updateCartUI, 1000); // Delay before updating UI
-              },
-              error: function(xhr, status, error) {
-                console.error('Error adjusting gift quantity:', xhr.responseText);
-              }
-            });
+            updateGiftQuantity(49055053381910, 1);
           } else {
             console.log("Gift already in cart with correct quantity.");
-            setTimeout(updateCartUI, 1000); // Delay before updating UI
+            isUpdating = false;
+            updateCartUI();
           }
         } else {
-          // Add gift product
-          console.log("Adding gift product...");
-
-          $.ajax({
-            url: '/cart/add.js',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: JSON.stringify({
-              id: 49055053381910, // Replace with correct variant ID
-              quantity: 1
-            }),
-            success: function(data) {
-              console.log('Gift added:', data);
-              setTimeout(updateCartUI, 1000); // Delay before updating UI
-            },
-            error: function(xhr, status, error) {
-              console.error('Error adding gift:', xhr.responseText);
-            }
-          });
+          addGiftToCart();
         }
       } else {
         console.log("Cart total is less than $15.");
-        isUpdating = false; // Unlock cart updates
+        removeGiftFromCart();
       }
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart:', xhr.responseText);
-      isUpdating = false; // Unlock cart updates in case of error
+      isUpdating = false;
     });
   }
 
-  // Function to update the cart UI
+  function updateGiftQuantity(variantId, quantity) {
+    $.ajax({
+      url: '/cart/change.js',
+      type: 'POST',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        id: variantId,
+        quantity: quantity
+      }),
+      success: function(data) {
+        console.log('Gift quantity adjusted to 1:', data);
+        isUpdating = false;
+        updateCartUI();
+      },
+      error: function(xhr, status, error) {
+        console.error('Error adjusting gift quantity:', xhr.responseText);
+        isUpdating = false;
+      }
+    });
+  }
+
+  function addGiftToCart() {
+    console.log("Adding gift product...");
+    $.ajax({
+      url: '/cart/add.js',
+      type: 'POST',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        id: 49055053381910,
+        quantity: 1
+      }),
+      success: function(data) {
+        console.log('Gift added:', data);
+        isUpdating = false;
+        updateCartUI();
+      },
+      error: function(xhr, status, error) {
+        console.error('Error adding gift:', xhr.responseText);
+        isUpdating = false;
+      }
+    });
+  }
+
+  function removeGiftFromCart() {
+    $.ajax({
+      url: '/cart/change.js',
+      type: 'POST',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        id: 49055053381910,
+        quantity: 0
+      }),
+      success: function(data) {
+        console.log('Gift removed:', data);
+        isUpdating = false;
+        updateCartUI();
+      },
+      error: function(xhr, status, error) {
+        console.error('Error removing gift:', xhr.responseText);
+        isUpdating = false;
+      }
+    });
+  }
+
   function updateCartUI() {
     console.log('Updating cart UI...');
-
     $.getJSON('/cart.js', function(cart) {
-      var cartContainer = $('#cart-container'); // Adjust selector as needed
-
+      var cartContainer = $('#cart-container');
       if (cartContainer.length) {
-        // Manually render cart items or refresh cart contents
-        cartContainer.empty(); // Clear existing contents
+        cartContainer.empty();
         cart.items.forEach(function(item) {
           cartContainer.append('<div>' + item.title + ' - ' + item.quantity + '</div>');
         });
         console.log('Cart UI updated');
-        isUpdating = false; // Unlock cart updates after UI update
       } else {
         console.error('Cart container not found.');
-        isUpdating = false; // Unlock cart updates if container not found
       }
+      isUpdating = false;
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart data for UI update:', xhr.responseText);
-
-      // Retry logic
       if (retryCount < maxRetries) {
         retryCount++;
         console.log('Retrying to update cart UI... Attempt:', retryCount);
-        setTimeout(updateCartUI, 1000); // Retry after delay
+        setTimeout(updateCartUI, 1000);
       } else {
-        isUpdating = false; // Unlock cart updates after retries
+        isUpdating = false;
       }
     });
   }
 
-  // Run the function on page load
   checkCartAndAddGift();
 
-  // Recheck when cart updates (if using AJAX updates)
   $(document).on('cart:updated', function() {
     checkCartAndAddGift();
   });
