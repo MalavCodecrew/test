@@ -273,3 +273,40 @@ document.addEventListener("DOMContentLoaded", function() {
   showPage(currentPage);
 });
 
+//----------------------------------- GWP-JS-------------------------------------------->
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to check cart total and add gift
+  function checkCartAndAddGift() {
+    fetch('/cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        if (cart.total_price >= 15) { // Example condition: $50 (5000 cents)
+          let hasGift = cart.items.some(item => item.title === "Free Gift Product");
+
+          if (!hasGift) {
+            // Add gift product to cart (change 'GIFT_PRODUCT_VARIANT_ID' to your gift product variant ID)
+            fetch('/cart/add.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                id: 'GIFT_PRODUCT_VARIANT_ID',
+                quantity: 1
+              })
+            })
+            .then(response => response.json())
+            .then(data => console.log('Gift added:', data))
+            .catch(error => console.error('Error adding gift:', error));
+          }
+        }
+      });
+  }
+
+  // Run the function on page load
+  checkCartAndAddGift();
+
+  // Optional: Recheck when cart updates
+  document.addEventListener('cart:updated', checkCartAndAddGift);
+});
