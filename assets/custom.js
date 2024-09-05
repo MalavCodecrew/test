@@ -295,7 +295,7 @@ $(document).ready(function() {
         if (giftItem) {
           console.log("Gift in cart with quantity:", giftItem.quantity);
           if (giftItem.quantity !== 1) {
-            updateGiftQuantity(49055053381910, 1);
+            updateGiftQuantity(giftVariantId, 1);
           } else {
             console.log("Gift already in cart with correct quantity.");
             isUpdating = false;
