@@ -318,6 +318,7 @@ $(document).ready(function() {
         quantity: 1
       },
       success: function(data) {
+        console.log('Gift added:', data);
         checkCartAndManageGift(); // Recheck cart after adding gift
       },
       error: function(xhr, status, error) {
@@ -337,6 +338,7 @@ $(document).ready(function() {
         quantity: quantity
       },
       success: function(cart) {
+        console.log('Gift quantity adjusted:', cart);
         updateCartUI(cart); // Update UI with adjusted quantity
         isUpdating = false;
       },
@@ -357,6 +359,7 @@ $(document).ready(function() {
         quantity: 0
       },
       success: function(cart) {
+        console.log('Gift removed:', cart);
         updateCartUI(cart);
         isUpdating = false;
       },
@@ -446,4 +449,5 @@ $(document).ready(function() {
     }
   });
 });
+
 
