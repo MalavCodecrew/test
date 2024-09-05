@@ -276,6 +276,8 @@ document.addEventListener("DOMContentLoaded", function() {
 //----------------------------------- GWP-JS-------------------------------------------->
 $(document).ready(function() {
   var isUpdating = false;
+  var retryCount = 0;
+  var maxRetries = 3; // Number of retries before giving up
 
   function checkCartAndAddGift() {
     if (isUpdating) return; // Prevent concurrent updates
@@ -307,7 +309,7 @@ $(document).ready(function() {
               }),
               success: function(data) {
                 console.log('Gift quantity adjusted to 1:', data);
-                updateCartUI(); // Update the cart UI directly
+                setTimeout(updateCartUI, 1000); // Delay before updating UI
               },
               error: function(xhr, status, error) {
                 console.error('Error adjusting gift quantity:', xhr.responseText);
@@ -315,7 +317,7 @@ $(document).ready(function() {
             });
           } else {
             console.log("Gift already in cart with correct quantity.");
-            updateCartUI(); // Update the cart UI directly
+            setTimeout(updateCartUI, 1000); // Delay before updating UI
           }
         } else {
           // Add gift product
@@ -332,7 +334,7 @@ $(document).ready(function() {
             }),
             success: function(data) {
               console.log('Gift added:', data);
-              updateCartUI(); // Update the cart UI directly
+              setTimeout(updateCartUI, 1000); // Delay before updating UI
             },
             error: function(xhr, status, error) {
               console.error('Error adding gift:', xhr.responseText);
@@ -363,11 +365,22 @@ $(document).ready(function() {
           cartContainer.append('<div>' + item.title + ' - ' + item.quantity + '</div>');
         });
         console.log('Cart UI updated');
+        isUpdating = false; // Unlock cart updates after UI update
       } else {
         console.error('Cart container not found.');
+        isUpdating = false; // Unlock cart updates if container not found
       }
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart data for UI update:', xhr.responseText);
+
+      // Retry logic
+      if (retryCount < maxRetries) {
+        retryCount++;
+        console.log('Retrying to update cart UI... Attempt:', retryCount);
+        setTimeout(updateCartUI, 1000); // Retry after delay
+      } else {
+        isUpdating = false; // Unlock cart updates after retries
+      }
     });
   }
 
