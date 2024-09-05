@@ -274,9 +274,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //----------------------------------- GWP-JS-------------------------------------------->
-var isUpdating = false;
-
 $(document).ready(function() {
+  var isUpdating = false;
+
   function checkCartAndAddGift() {
     if (isUpdating) return; // Prevent concurrent updates
 
@@ -285,18 +285,41 @@ $(document).ready(function() {
 
     $.getJSON('/cart.js', function(cart) {
       if (cart.total_price >= 1500) {
-        var hasGift = cart.items.some(function(item) {
-          return item.title === "Free Gift Product";
+        var giftItem = cart.items.find(function(item) {
+          return item.title === "Free Gift Product"; // Replace with exact title
         });
 
-        if (!hasGift) {
+        if (giftItem) {
+          if (giftItem.quantity > 1) {
+            // Update the quantity to 1 if it's greater than 1
+            $.ajax({
+              url: '/cart/change.js',
+              type: 'POST',
+              dataType: 'json',
+              contentType: 'application/json',
+              data: JSON.stringify({
+                id: giftItem.id, // Use the existing variant ID from the cart
+                quantity: 1
+              }),
+              success: function(data) {
+                console.log('Gift quantity adjusted to 1:', data);
+              },
+              error: function(xhr, status, error) {
+                console.error('Error adjusting gift quantity:', xhr.responseText);
+              }
+            });
+          } else {
+            console.log("Gift already in cart with correct quantity.");
+          }
+        } else {
+          // Add the gift product to the cart
           $.ajax({
             url: '/cart/add.js',
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({
-              id: 49055053381910,
+              id: 49055053381910, // Correct numeric variant ID
               quantity: 1
             }),
             success: function(data) {
@@ -306,8 +329,6 @@ $(document).ready(function() {
               console.error('Error adding gift:', xhr.responseText);
             }
           });
-        } else {
-          console.log("Gift already in cart.");
         }
       } else {
         console.log("Cart total is less than $15.");
@@ -319,8 +340,10 @@ $(document).ready(function() {
     });
   }
 
+  // Run the function on page load
   checkCartAndAddGift();
 
+  // Recheck when cart updates (if using AJAX updates)
   $(document).on('cart:updated', function() {
     checkCartAndAddGift();
   });
