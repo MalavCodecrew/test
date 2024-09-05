@@ -276,12 +276,11 @@ document.addEventListener("DOMContentLoaded", function() {
 //----------------------------------- GWP-JS-------------------------------------------->
 $(document).ready(function() {
   var isUpdating = false;
-  var retryCount = 0;
-  var maxRetries = 3;
+  var giftVariantId = 49055053381910; // Make sure this is correct for your store
+  var giftTitle = "Free Gift Product"; // Make sure this matches your gift product's title
 
   function checkCartAndAddGift() {
     if (isUpdating) return;
-
     isUpdating = true;
     console.log("Checking cart...");
 
@@ -290,12 +289,12 @@ $(document).ready(function() {
 
       if (cart.total_price >= 1500) {
         var giftItem = cart.items.find(function(item) {
-          return item.title === "Free Gift Product";
+          return item.variant_id === giftVariantId;
         });
 
         if (giftItem) {
-          console.log("Gift already in cart with quantity:", giftItem.quantity);
-          if (giftItem.quantity > 1) {
+          console.log("Gift in cart with quantity:", giftItem.quantity);
+          if (giftItem.quantity !== 1) {
             updateGiftQuantity(49055053381910, 1);
           } else {
             console.log("Gift already in cart with correct quantity.");
@@ -320,13 +319,12 @@ $(document).ready(function() {
       url: '/cart/change.js',
       type: 'POST',
       dataType: 'json',
-      contentType: 'application/json',
-      data: JSON.stringify({
+      data: {
         id: 49055053381910,
         quantity: 1
-      }),
+      },
       success: function(data) {
-        console.log('Gift quantity adjusted to 1:', data);
+        console.log('Gift quantity adjusted:', data);
         isUpdating = false;
         updateCartUI();
       },
@@ -343,11 +341,10 @@ $(document).ready(function() {
       url: '/cart/add.js',
       type: 'POST',
       dataType: 'json',
-      contentType: 'application/json',
-      data: JSON.stringify({
+      data: {
         id: 49055053381910,
         quantity: 1
-      }),
+      },
       success: function(data) {
         console.log('Gift added:', data);
         isUpdating = false;
@@ -365,11 +362,10 @@ $(document).ready(function() {
       url: '/cart/change.js',
       type: 'POST',
       dataType: 'json',
-      contentType: 'application/json',
-      data: JSON.stringify({
+      data: {
         id: 49055053381910,
         quantity: 0
-      }),
+      },
       success: function(data) {
         console.log('Gift removed:', data);
         isUpdating = false;
@@ -398,19 +394,27 @@ $(document).ready(function() {
       isUpdating = false;
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart data for UI update:', xhr.responseText);
-      if (retryCount < maxRetries) {
-        retryCount++;
-        console.log('Retrying to update cart UI... Attempt:', retryCount);
-        setTimeout(updateCartUI, 1000);
-      } else {
-        isUpdating = false;
-      }
+      isUpdating = false;
     });
   }
 
+  // Run the check immediately when the page loads
   checkCartAndAddGift();
 
-  $(document).on('cart:updated', function() {
+  // Monitor all changes to the cart
+  $(document).on('cart:updated change', '.cart-item__quantity', function() {
     checkCartAndAddGift();
+  });
+
+  // Additional event listeners for cart changes
+  $(document).on('click', '.cart-item__remove', function() {
+    setTimeout(checkCartAndAddGift, 500);
+  });
+
+  // If you have a mini-cart or drawer, you might need to listen for its open event
+  $(document).on('drawer:open', function(event) {
+    if (event.target.id === 'cart-drawer') {  // adjust this selector as needed
+      checkCartAndAddGift();
+    }
   });
 });
