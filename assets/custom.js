@@ -386,7 +386,7 @@ $(document).ready(function() {
         `;
         cartContainer.append(itemHtml);
       });
-      
+
       var cartTotalElement = $('#cart-total');
       if (cartTotalElement.length) {
         cartTotalElement.text((cart.total_price / 100).toFixed(2));
@@ -398,56 +398,7 @@ $(document).ready(function() {
 
   // Run the function on page load
   checkCartAndManageGift();
-
-  // Listen for quantity changes
-  $(document).on('change', 'input[name="updates[]"]', function() {
-    var variantId = $(this).data('variant-id');
-    var newQuantity = parseInt($(this).val(), 10);
-
-    if (variantId !== giftVariantId) {
-      $.ajax({
-        url: '/cart/change.js',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-          id: variantId,
-          quantity: newQuantity
-        },
-        success: function(cart) {
-          checkCartAndManageGift();
-        },
-        error: function(xhr, status, error) {
-          console.error('Error updating cart:', xhr.responseText);
-        }
-      });
-    } else {
-      $(this).val(1); // Reset the input to 1 if it's the gift product
-    }
-  });
-
-  // Listen for remove item clicks
-  $(document).on('click', '.remove-item', function(e) {
-    e.preventDefault();
-    var variantId = $(this).data('variant-id');
-
-    if (variantId !== giftVariantId) {
-      $.ajax({
-        url: '/cart/change.js',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-          id: variantId,
-          quantity: 0
-        },
-        success: function(cart) {
-          checkCartAndManageGift();
-        },
-        error: function(xhr, status, error) {
-          console.error('Error removing item:', xhr.responseText);
-        }
-      });
-    }
-  });
 });
+
 
 
