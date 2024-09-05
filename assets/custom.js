@@ -344,11 +344,11 @@ $(document).ready(function() {
       dataType: 'json',
       data: {
         id: variantId,
-        quantity: 1
+        quantity: quantity
       },
-      success: function(data) {
-        console.log('Gift quantity adjusted:', data);
-        updateCartUI(data);
+      success: function(cart) {
+        console.log('Gift quantity adjusted:', cart);
+        updateCartUI(cart); // Update UI with adjusted quantity
         isUpdating = false;
       },
       error: function(xhr, status, error) {
@@ -426,7 +426,7 @@ $(document).ready(function() {
         dataType: 'json',
         data: {
           id: variantId,
-          quantity: 1
+          quantity: newQuantity
         },
         success: function(cart) {
           console.log('Cart updated after quantity change:', cart);
@@ -471,3 +471,4 @@ $(document).ready(function() {
     }
   });
 });
+
