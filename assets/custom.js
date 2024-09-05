@@ -302,12 +302,16 @@ $(document).ready(function() {
               dataType: 'json',
               contentType: 'application/json',
               data: JSON.stringify({
-                id: 49055053381910,
+                id: giftItem.id,
                 quantity: 1
               }),
               success: function(data) {
                 console.log('Gift quantity adjusted to 1:', data);
-                location.reload(); // Reload page to update the cart
+                sessionStorage.setItem('giftUpdated', 'true'); // Set flag
+                if (!sessionStorage.getItem('giftReloaded')) {
+                  sessionStorage.setItem('giftReloaded', 'true'); // Set reload flag
+                  location.reload(); // Reload page to update the cart
+                }
               },
               error: function(xhr, status, error) {
                 console.error('Error adjusting gift quantity:', xhr.responseText);
@@ -329,7 +333,11 @@ $(document).ready(function() {
             }),
             success: function(data) {
               console.log('Gift added:', data);
-              location.reload(); // Reload page to update the cart
+              sessionStorage.setItem('giftUpdated', 'true'); // Set flag
+              if (!sessionStorage.getItem('giftReloaded')) {
+                sessionStorage.setItem('giftReloaded', 'true'); // Set reload flag
+                location.reload(); // Reload page to update the cart
+              }
             },
             error: function(xhr, status, error) {
               console.error('Error adding gift:', xhr.responseText);
@@ -344,6 +352,11 @@ $(document).ready(function() {
       console.error('Error fetching cart:', xhr.responseText);
       isUpdating = false; // Unlock cart updates in case of error
     });
+  }
+
+  // Clear session storage flags on page load
+  if (sessionStorage.getItem('giftReloaded')) {
+    sessionStorage.removeItem('giftReloaded');
   }
 
   // Run the function on page load
