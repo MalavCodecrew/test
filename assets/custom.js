@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //----------------------------------- GWP-JS-------------------------------------------->
 $(document).ready(function() {
   var isUpdating = false;
-  
+
   function checkCartAndAddGift() {
     if (isUpdating) return; // Prevent concurrent updates
 
@@ -315,6 +315,7 @@ $(document).ready(function() {
             });
           } else {
             console.log("Gift already in cart with correct quantity.");
+            updateCartUI(); // Update the cart UI directly
           }
         } else {
           // Add gift product
@@ -340,8 +341,8 @@ $(document).ready(function() {
         }
       } else {
         console.log("Cart total is less than $15.");
+        isUpdating = false; // Unlock cart updates
       }
-      isUpdating = false; // Unlock cart updates
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart:', xhr.responseText);
       isUpdating = false; // Unlock cart updates in case of error
@@ -351,15 +352,22 @@ $(document).ready(function() {
   // Function to update the cart UI
   function updateCartUI() {
     console.log('Updating cart UI...');
-    
-    $.get('/cart', function(cartHtml) {
-      // Example: Update cart container directly
-      $('#cart-container').html(cartHtml);
 
-      // Trigger a custom event if needed to refresh cart UI
-      $(document).trigger('cart:updated');
+    $.getJSON('/cart.js', function(cart) {
+      var cartContainer = $('#cart-container'); // Adjust selector as needed
+
+      if (cartContainer.length) {
+        // Manually render cart items or refresh cart contents
+        cartContainer.empty(); // Clear existing contents
+        cart.items.forEach(function(item) {
+          cartContainer.append('<div>' + item.title + ' - ' + item.quantity + '</div>');
+        });
+        console.log('Cart UI updated');
+      } else {
+        console.error('Cart container not found.');
+      }
     }).fail(function(xhr, status, error) {
-      console.error('Error updating cart UI:', xhr.responseText);
+      console.error('Error fetching cart data for UI update:', xhr.responseText);
     });
   }
 
