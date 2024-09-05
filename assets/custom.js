@@ -322,7 +322,7 @@ $(document).ready(function() {
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify({
-        id: variantId,
+        id: 49055053381910,
         quantity: quantity
       }),
       success: function(data) {
