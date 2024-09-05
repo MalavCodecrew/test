@@ -426,7 +426,7 @@ $(document).ready(function() {
         dataType: 'json',
         data: {
           id: variantId,
-          quantity: newQuantity
+          quantity: 1
         },
         success: function(cart) {
           console.log('Cart updated after quantity change:', cart);
