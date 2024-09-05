@@ -220,10 +220,8 @@
       },
       "7908887715985482762": {
         "type": "shopify:\/\/apps\/metaobj-api\/blocks\/star_rating\/8ceab114-8995-44c7-b825-bf01c2914373",
-        "disabled": false,
+        "disabled": true,
         "settings": {
-          "product": "",
-          "colour": "#ff0000"
         }
       }
     },
