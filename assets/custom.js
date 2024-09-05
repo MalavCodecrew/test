@@ -277,7 +277,6 @@ document.addEventListener("DOMContentLoaded", function() {
 $(document).ready(function() {
   var isUpdating = false;
   
-  // Function to check and add gift product
   function checkCartAndAddGift() {
     if (isUpdating) return; // Prevent concurrent updates
 
@@ -285,7 +284,7 @@ $(document).ready(function() {
     console.log("Checking cart...");
 
     $.getJSON('/cart.js', function(cart) {
-      console.log('Cart contents:', cart); // Log cart contents for troubleshooting
+      console.log('Cart contents:', cart); // Log the cart contents
 
       if (cart.total_price >= 1500) {
         var giftItem = cart.items.find(function(item) {
@@ -308,8 +307,7 @@ $(document).ready(function() {
               }),
               success: function(data) {
                 console.log('Gift quantity adjusted to 1:', data);
-                // Instead of reloading, update the cart UI if possible
-                updateCartUI();
+                updateCartUI(); // Update the cart UI directly
               },
               error: function(xhr, status, error) {
                 console.error('Error adjusting gift quantity:', xhr.responseText);
@@ -333,8 +331,7 @@ $(document).ready(function() {
             }),
             success: function(data) {
               console.log('Gift added:', data);
-              // Instead of reloading, update the cart UI if possible
-              updateCartUI();
+              updateCartUI(); // Update the cart UI directly
             },
             error: function(xhr, status, error) {
               console.error('Error adding gift:', xhr.responseText);
@@ -353,13 +350,16 @@ $(document).ready(function() {
 
   // Function to update the cart UI
   function updateCartUI() {
-    // Here you can add logic to manually update the cart UI.
-    // For example, you could re-fetch the cart contents and update the display.
-    // This is a placeholder for your specific cart update logic.
     console.log('Updating cart UI...');
+    
     $.get('/cart', function(cartHtml) {
-      // Example of updating a cart container
+      // Example: Update cart container directly
       $('#cart-container').html(cartHtml);
+
+      // Trigger a custom event if needed to refresh cart UI
+      $(document).trigger('cart:updated');
+    }).fail(function(xhr, status, error) {
+      console.error('Error updating cart UI:', xhr.responseText);
     });
   }
 
