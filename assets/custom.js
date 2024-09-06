@@ -423,7 +423,7 @@ $(document).ready(function() {
     }
   }
 
-$(document).on('click', '.cart-remove-button', function() {
+$(document).on('click', 'cart-remove-button', function() {
   console.log("clicked");
   $.getJSON('/cart.js', function(cart) {
     if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
