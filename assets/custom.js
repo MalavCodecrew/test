@@ -388,10 +388,19 @@ function updateCartUI() {
           // Remove the entire div with class "title-wrapper-with-link"
           tempDiv.find('.title-wrapper-with-link').remove();
 
+          // Loop through the cart items to find products with price 0
+          cart.items.forEach(function(item) {
+            if (item.price === 0) {
+              // Find the corresponding quantity selector in the fetched section and remove it
+              var productIdSelector = '[data-product-id="' + item.id + '"]'; // Adjust this selector based on your HTML structure
+              tempDiv.find(productIdSelector).find('.quantity-selector').remove();
+            }
+          });
+
           // Append the manipulated HTML back to the cart container
           cartContainer.append(tempDiv.html());
 
-          console.log('Cart UI updated and div removed');
+          console.log('Cart UI updated, div and quantity selectors removed');
         },
         error: function(xhr, status, error) {
           console.error('Error fetching cart section:', xhr.responseText);
