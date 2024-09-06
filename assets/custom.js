@@ -335,7 +335,7 @@ $(document).ready(function() {
       type: 'POST',
       dataType: 'json',
       data: {
-        id: giftVariantId,
+        id: variantId,
         quantity: quantity
       },
       success: function(data) {
