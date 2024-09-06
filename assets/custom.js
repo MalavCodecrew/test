@@ -389,7 +389,8 @@ function updateCartUI() {
           dataType: 'json',
           success: function() {
             console.log('Product removed from cart');
-            updateCartUI(); // Refresh the cart UI after removal
+            // Update the cart UI after removal
+            refreshCartUI();
           },
           error: function(xhr, status, error) {
             console.error('Error removing item from cart:', xhr.responseText);
@@ -397,42 +398,7 @@ function updateCartUI() {
         });
       } else {
         // Update the UI if the product was not removed
-        $.ajax({
-          url: '/?section_id=main-cart-items',
-          type: 'GET',
-          success: function(data) {
-            cartContainer.empty();
-            var tempDiv = $('<div>').html(data);
-            tempDiv.find('.title-wrapper-with-link').remove();
-            cartContainer.append(tempDiv.html());
-
-            // Reattach event handlers for delete buttons
-            cartContainer.on('click', '.remove-item', function(event) {
-              event.preventDefault();
-              var line = $(this).data('line');
-              $.ajax({
-                url: '/cart/change.js',
-                type: 'POST',
-                data: {
-                  line: line,
-                  quantity: 0
-                },
-                dataType: 'json',
-                success: function() {
-                  updateCartUI(); // Refresh cart UI after removal
-                },
-                error: function(xhr, status, error) {
-                  console.error('Error removing item from cart:', xhr.responseText);
-                }
-              });
-            });
-
-            console.log('Cart UI updated, div and quantity selectors removed');
-          },
-          error: function(xhr, status, error) {
-            console.error('Error fetching cart section:', xhr.responseText);
-          }
-        });
+        refreshCartUI();
       }
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart data for UI update:', xhr.responseText);
@@ -441,6 +407,51 @@ function updateCartUI() {
     console.error('Cart container not found.');
   }
 }
+
+function refreshCartUI() {
+  var cartContainer = $('#main-cart-items');
+
+  $.ajax({
+    url: '/?section_id=main-cart-items',
+    type: 'GET',
+    success: function(data) {
+      cartContainer.empty();
+      var tempDiv = $('<div>').html(data);
+      tempDiv.find('.title-wrapper-with-link').remove();
+      cartContainer.append(tempDiv.html());
+
+      // Reattach event handlers for delete buttons
+      cartContainer.on('click', '.remove-item', function(event) {
+        event.preventDefault();
+        var line = $(this).data('line');
+        $.ajax({
+          url: '/cart/change.js',
+          type: 'POST',
+          data: {
+            line: line,
+            quantity: 0
+          },
+          dataType: 'json',
+          success: function() {
+            refreshCartUI(); // Refresh cart UI after removal
+          },
+          error: function(xhr, status, error) {
+            console.error('Error removing item from cart:', xhr.responseText);
+          }
+        });
+      });
+
+      console.log('Cart UI updated, div and quantity selectors removed');
+    },
+    error: function(xhr, status, error) {
+      console.error('Error fetching cart section:', xhr.responseText);
+    }
+  });
+}
+
+// Call the updateCartUI function whenever necessary, e.g., after adding items to the cart
+updateCartUI();
+
 
 
 
