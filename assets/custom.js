@@ -421,16 +421,16 @@ function updateCartUI() {
   //   console.log('Cart UI updated');
   // }
 
-  // function retryCheck(checksRemaining) {
-  //   if (checksRemaining > 0) {
-  //     setTimeout(function() {
-  //       checkCartAndAddGift(checksRemaining - 1);
-  //     }, checkInterval);
-  //   } else {
-  //     console.log("Max checks reached. Please refresh the page if issues persist.");
-  //     isUpdating = false;
-  //   }
-  // }
+  function retryCheck(checksRemaining) {
+    if (checksRemaining > 0) {
+      setTimeout(function() {
+        checkCartAndAddGift(checksRemaining - 1);
+      }, checkInterval);
+    } else {
+      console.log("Max checks reached. Please refresh the page if issues persist.");
+      isUpdating = false;
+    }
+  }
 
   function initializeCartCheck() {
     checkCartAndAddGift(maxChecks);
@@ -443,18 +443,18 @@ function updateCartUI() {
       initializeCartCheck();
     });
   });
-  // $(document).on('click', '.remove-item', function(e) {
-  //   e.preventDefault();
-  //   var variantId = $(this).data('variant-id');
-  //   updateGiftQuantity(variantId, 0, maxChecks);
-  // });
+  $(document).on('click', '.remove-item', function(e) {
+    e.preventDefault();
+    var variantId = $(this).data('variant-id');
+    updateGiftQuantity(variantId, 0, maxChecks);
+  });
 
-  // $('form[action="/cart"]').on('submit', function(e) {
-  //   e.preventDefault();
-  //   $.post('/cart/update.js', $(this).serialize(), function(data) {
-  //     initializeCartCheck();
-  //   });
-  // });
+  $('form[action="/cart"]').on('submit', function(e) {
+    e.preventDefault();
+    $.post('/cart/update.js', $(this).serialize(), function(data) {
+      initializeCartCheck();
+    });
+  });
   $(document).on('cart:updated', initializeCartCheck);
 });
 
