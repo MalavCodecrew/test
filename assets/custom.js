@@ -350,25 +350,25 @@ $(document).ready(function() {
     });
   }
 
-  function removeGiftFromCart(checksRemaining) {
-    $.ajax({
-      url: '/cart/change.js',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        id: giftVariantId,
-        quantity: 0
-      },
-      success: function(data) {
-        console.log('Gift removed:', data);
-        updateCartUI(data);
-      },
-      error: function(xhr, status, error) {
-        console.error('Error removing gift:', xhr.responseText);
-        retryCheck(checksRemaining);
-      }
-    });
-  }
+  // function removeGiftFromCart(checksRemaining) {
+  //   $.ajax({
+  //     url: '/cart/change.js',
+  //     type: 'POST',
+  //     dataType: 'json',
+  //     data: {
+  //       id: giftVariantId,
+  //       quantity: 0
+  //     },
+  //     success: function(data) {
+  //       console.log('Gift removed:', data);
+  //       updateCartUI(data);
+  //     },
+  //     error: function(xhr, status, error) {
+  //       console.error('Error removing gift:', xhr.responseText);
+  //       retryCheck(checksRemaining);
+  //     }
+  //   });
+  // }
 
 function updateCartUI() {
   console.log('Updating cart UI...');
