@@ -376,14 +376,14 @@ $(document).ready(function() {
       $.getJSON('/cart.js', function(cart) {
         cartContainer.empty();
         cart.items.forEach(function(item) {
-          cartContainer.append(cartContainer.append(
+         cartContainer.append(
   '<div>' +
     '<img src="' + item.image + '" alt="' + item.title + '" style="width: 50px; height: auto;">' +
     '<span>' + item.title + '</span> - ' +
     '<span>' + item.quantity + '</span>' +
   '</div>'
 );
-);
+
         });
         console.log('Cart UI updated');
       }).fail(function(xhr, status, error) {
