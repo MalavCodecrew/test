@@ -508,32 +508,3 @@ function updateCartUI() {
     });
   }
 
-  // Function to update the cart UI
-  function updateCartUI() {
-    $.ajax({
-      url: '/?section_id=main-cart-items',
-      type: 'GET',
-      success: function(data) {
-        var cartContainer = $('#main-cart-items');
-        if (cartContainer.length) {
-          cartContainer.html(data);
-          console.log('Cart UI updated');
-        } else {
-          console.error('Cart container not found');
-        }
-      },
-      error: function(xhr, status, error) {
-        console.error('Error updating cart UI:', error);
-      }
-    });
-  }
-
-  // Run on page load
-  $(document).ready(checkAndRemoveGiftCard);
-
-  // Run when the cart is updated
-  $(document).on('cart.requestComplete', checkAndRemoveGiftCard);
-
-})(jQuery);
-
-
