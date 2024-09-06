@@ -383,12 +383,6 @@ function updateCartUI() {
           cartContainer.empty();
           var tempDiv = $('<div>').html(data);
           tempDiv.find('.title-wrapper-with-link').remove();
-          cart.items.forEach(function(item) {
-            if (item.price == 0) {
-              var productIdSelector = '[data-product-id="' + item.id + '"]'; 
-              tempDiv.find(productIdSelector).find('.quantity-selector').remove();
-            }
-          });
           cartContainer.append(tempDiv.html());
 
           console.log('Cart UI updated, div and quantity selectors removed');
