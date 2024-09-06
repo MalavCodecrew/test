@@ -283,7 +283,7 @@ $(document).ready(function() {
 
   function checkCartAndAddGift(checksRemaining) {
     console.log("gettt")
-    if (isUpdating) return;
+    // if (isUpdating) return;
     isUpdating = true;
     console.log("Checking cart...");
 
