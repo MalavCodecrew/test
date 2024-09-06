@@ -378,7 +378,7 @@ $(document).ready(function() {
         cart.items.forEach(function(item) {
          cartContainer.append(
   '<div>' +
-    '<img src="' + item.image + '" alt="' + item.title + '" style="width: 50px; height: auto;">' +
+    '<img src="' + item.image + '" alt="' + item.title + >' +
     '<span>' + item.title + '</span> - ' +
     '<span>' + item.quantity + '</span>' +
   '</div>'
