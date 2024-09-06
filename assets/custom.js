@@ -282,6 +282,7 @@ $(document).ready(function() {
   var maxChecks = 5; 
 
   function checkCartAndAddGift(checksRemaining) {
+    console.log("gettt")
     if (isUpdating) return;
     isUpdating = true;
     console.log("Checking cart...");
