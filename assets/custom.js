@@ -362,7 +362,6 @@ $(document).ready(function() {
         id: giftVariantId,
         quantity: 0
       },
-        isUpdating = true;
       success: function(data) {
         console.log('Gift removed:', data);
         updateCartUI(data);
