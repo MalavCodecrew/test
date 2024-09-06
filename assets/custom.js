@@ -379,9 +379,9 @@ $(document).ready(function() {
     if (cartContainer.length) {
       $.getJSON('/cart.js', function(cart) {
         // Check if the cart is empty or contains only the gift product
-        if (cart.item_count === 0 || (cart.item_count === 1 && cart.items[0].variant_id === giftVariantId)) {
+        if (cart.item_count === 0 || (cart.items.length === 1 && cart.items[0].variant_id === giftVariantId)) {
           // Remove the gift product if it's the only item
-          if (cart.item_count === 1) {
+          if (cart.items.length === 1) {
             removeGiftFromCart(maxChecks);
           }
           // Update UI to show empty cart
@@ -436,10 +436,26 @@ $(document).ready(function() {
     });
   });
 
+  // Update this event listener to immediately check the cart
   $(document).on('click', '.remove-item', function(e) {
     e.preventDefault();
     var variantId = $(this).data('variant-id');
-    updateGiftQuantity(variantId, 0, maxChecks);
+    $.ajax({
+      url: '/cart/change.js',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        id: variantId,
+        quantity: 0
+      },
+      success: function(data) {
+        console.log('Item removed:', data);
+        checkCartAndAddGift(maxChecks);  // Immediate check after item removal
+      },
+      error: function(xhr, status, error) {
+        console.error('Error removing item:', xhr.responseText);
+      }
+    });
   });
 
   $('form[action="/cart"]').on('submit', function(e) {
