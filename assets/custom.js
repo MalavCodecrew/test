@@ -421,16 +421,16 @@ function updateCartUI() {
   //   console.log('Cart UI updated');
   // }
 
-  function retryCheck(checksRemaining) {
-    if (checksRemaining > 0) {
-      setTimeout(function() {
-        checkCartAndAddGift(checksRemaining - 1);
-      }, checkInterval);
-    } else {
-      console.log("Max checks reached. Please refresh the page if issues persist.");
-      isUpdating = false;
-    }
-  }
+  // function retryCheck(checksRemaining) {
+  //   if (checksRemaining > 0) {
+  //     setTimeout(function() {
+  //       checkCartAndAddGift(checksRemaining - 1);
+  //     }, checkInterval);
+  //   } else {
+  //     console.log("Max checks reached. Please refresh the page if issues persist.");
+  //     isUpdating = false;
+  //   }
+  // }
 
   function initializeCartCheck() {
     checkCartAndAddGift(maxChecks);
