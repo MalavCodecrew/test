@@ -413,51 +413,6 @@ function updateCartUI() {
 }
 
 function refreshCartUI() {
-  var cartContainer = $('#cart');
-
-  $.ajax({
-    url: '/?section_id=main-cart-items',
-    type: 'GET',
-    success: function(data) {
-      cartContainer.empty();
-      var tempDiv = $('<div>').html(data);
-      tempDiv.find('.title-wrapper-with-link').remove();
-      cartContainer.append(tempDiv.html());
-
-      // Reattach event handlers for delete buttons
-      cartContainer.on('click', '.remove-item', function(event) {
-        event.preventDefault();
-        var line = $(this).data('line');
-        $.ajax({
-          url: '/cart/change.js',
-          type: 'POST',
-          data: {
-            line: line,
-            quantity: 0
-          },
-          dataType: 'json',
-          success: function() {
-            refreshCartUI(); // Refresh cart UI after removal
-          },
-          error: function(xhr, status, error) {
-            console.error('Error removing item from cart:', xhr.responseText);
-          }
-        });
-      });
-
-      console.log('Cart UI updated.');
-    },
-    error: function(xhr, status, error) {
-      console.error('Error fetching cart section:', xhr.responseText);
-    }
-  });
-}
-
-// Example usage
-updateCartUI();
-
-
-function refreshCartUI() {
   var cartContainer = $('#main-cart-items');
 
   $.ajax({
