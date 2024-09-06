@@ -385,22 +385,19 @@ function updateCartUI() {
           // Create a temporary DOM element to manipulate the content
           var tempDiv = $('<div>').html(data);
 
-          // Remove the entire div with class "title-wrapper-with-link"
-          tempDiv.find('.title-wrapper-with-link').remove();
-
-          // Loop through the cart items to find products with price 0
+          // Loop through the cart items to find the gift product
           cart.items.forEach(function(item) {
-            if (item.price == 0) {
-              // Find the corresponding quantity selector in the fetched section and remove it
+            if (item.properties && item.properties.is_gift) { // Assuming 'is_gift' identifies the gift product
               var productIdSelector = '[data-product-id="' + item.id + '"]'; // Adjust this selector based on your HTML structure
-              tempDiv.find(productIdSelector).find('.quantity-selector').remove();
+              // Disable the quantity selector for the gift product
+              tempDiv.find(productIdSelector).find('.quantity-selector').attr('disabled', true);
             }
           });
 
           // Append the manipulated HTML back to the cart container
           cartContainer.append(tempDiv.html());
 
-          console.log('Cart UI updated, div and quantity selectors removed');
+          console.log('Cart UI updated and gift product quantity selector disabled');
         },
         error: function(xhr, status, error) {
           console.error('Error fetching cart section:', xhr.responseText);
@@ -413,6 +410,7 @@ function updateCartUI() {
     console.error('Cart container not found.');
   }
 }
+
 
 
   function renderCartItems(cart, container) {
