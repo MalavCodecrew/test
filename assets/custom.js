@@ -435,7 +435,6 @@ function updateCartUI() {
   function initializeCartCheck() {
     checkCartAndAddGift(maxChecks);
   }
-
   initializeCartCheck();
 
   $(document).on('change', 'input[name="updates[]"]', function() {
