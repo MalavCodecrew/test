@@ -379,9 +379,9 @@ $(document).ready(function() {
     if (cartContainer.length) {
       $.getJSON('/cart.js', function(cart) {
         // Check if the cart is empty or contains only the gift product
-        if (cart.item_count === 0 || (cart.items.length === 1 && cart.items[0].variant_id === giftVariantId)) {
+        if (cart.item_count === 0 || (cart.item_count === 1 && cart.items[0].variant_id === giftVariantId)) {
           // Remove the gift product if it's the only item
-          if (cart.items.length === 1) {
+          if (cart.item_count === 1) {
             removeGiftFromCart(maxChecks);
           }
           // Update UI to show empty cart
