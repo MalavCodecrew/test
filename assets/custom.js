@@ -388,7 +388,7 @@ function updateCartUI() {
           // Loop through the cart items to find the gift product
           cart.items.forEach(function(item) {
             if (item.properties && item.properties.is_gift) { // Assuming 'is_gift' identifies the gift product
-              var productIdSelector = '[data-product-id="' + item.id + '"]'; // Adjust this selector based on your HTML structure
+              var productIdSelector = '[data-product-id="' + 49055053381910+ '"]'; // Adjust this selector based on your HTML structure
               // Remove the quantity selector for the gift product
               tempDiv.find(productIdSelector).find('.quantity-selector').remove();
             }
