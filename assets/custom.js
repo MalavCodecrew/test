@@ -371,18 +371,27 @@ $(document).ready(function() {
 
 function updateCartUI() {
   console.log('Updating cart UI...');
-  var cartContainer = $('#main-cart-items');
-  
+  var cartContainer = $('#cart');
+
   if (cartContainer.length) {
     $.getJSON('/cart.js', function(cart) {
       // Fetch the main-cart-items section HTML
       $.ajax({
-        url: '/?section_id=main-cart-items', // Use Shopify's section rendering endpoint
+        url: '/?section_id=main-cart-items', // Shopify's section rendering endpoint
         type: 'GET',
         success: function(data) {
           cartContainer.empty(); // Clear the current cart content
-          cartContainer.append(data); // Append the fetched section content
-          console.log('Cart UI updated with section content');
+
+          // Create a temporary DOM element to manipulate the content
+          var tempDiv = $('<div>').html(data);
+
+          // Remove the "title-wrapper-with-link" class
+          tempDiv.find('.title-wrapper-with-link').removeClass('title-wrapper-with-link');
+
+          // Append the manipulated HTML back to the cart container
+          cartContainer.append(tempDiv.html());
+
+          console.log('Cart UI updated and class removed');
         },
         error: function(xhr, status, error) {
           console.error('Error fetching cart section:', xhr.responseText);
@@ -395,6 +404,7 @@ function updateCartUI() {
     console.error('Cart container not found.');
   }
 }
+
 
   function renderCartItems(cart, container) {
    $.getJSON('/cart.js', function(cart) {
