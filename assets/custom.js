@@ -438,12 +438,12 @@ function updateCartUI() {
 
   initializeCartCheck();
 
-  // $(document).on('change', 'input[name="updates[]"]', function() {
-  //   var form = $(this).closest('form');
-  //   $.post('/cart/update.js', form.serialize(), function(data) {
-  //     initializeCartCheck();
-  //   });
-  // });
+  $(document).on('change', 'input[name="updates[]"]', function() {
+    var form = $(this).closest('form');
+    $.post('/cart/update.js', form.serialize(), function(data) {
+      initializeCartCheck();
+    });
+  });
   // $(document).on('click', '.remove-item', function(e) {
   //   e.preventDefault();
   //   var variantId = $(this).data('variant-id');
