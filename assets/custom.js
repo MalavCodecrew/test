@@ -278,7 +278,7 @@ $(document).ready(function() {
   var isUpdating = false;
   var giftVariantId = 49055053381910;
   var giftTitle = "Default title";
-  var checkInterval = 1000;
+  var checkInterval = 500;
   var maxChecks = 5; 
 
   function checkCartAndAddGift(checksRemaining) {
