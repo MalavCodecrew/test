@@ -468,5 +468,4 @@ $(document).ready(function() {
   $(document).on('cart:updated', initializeCartCheck);
 });
 
-})
 
