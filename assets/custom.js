@@ -450,12 +450,12 @@ function updateCartUI() {
   //   updateGiftQuantity(variantId, 0, maxChecks);
   // });
 
-  $('form[action="/cart"]').on('submit', function(e) {
-    e.preventDefault();
-    $.post('/cart/update.js', $(this).serialize(), function(data) {
-      initializeCartCheck();
-    });
-  });
+  // $('form[action="/cart"]').on('submit', function(e) {
+  //   e.preventDefault();
+  //   $.post('/cart/update.js', $(this).serialize(), function(data) {
+  //     initializeCartCheck();
+  //   });
+  // });
   $(document).on('cart:updated', initializeCartCheck);
 });
 
