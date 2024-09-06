@@ -385,11 +385,11 @@ function updateCartUI() {
           // Create a temporary DOM element to manipulate the content
           var tempDiv = $('<div>').html(data);
 
-          // Loop through the cart items to find the gift product
+          // Loop through the cart items to find the product with the specific variant ID
           cart.items.forEach(function(item) {
-            if (item.properties && item.properties.is_gift) { // Assuming 'is_gift' identifies the gift product
-              var productIdSelector = '[data-product-id="' + 49055053381910+ '"]'; // Adjust this selector based on your HTML structure
-              // Remove the quantity selector for the gift product
+            if (item.variant_id === 49055053381910) { // Check for the specific variant ID
+              var productIdSelector = '[data-product-id="' + item.id + '"]'; // Adjust if necessary
+              // Remove the quantity selector for the product with the specified variant ID
               tempDiv.find(productIdSelector).find('.quantity-selector').remove();
             }
           });
@@ -397,7 +397,7 @@ function updateCartUI() {
           // Append the manipulated HTML back to the cart container
           cartContainer.append(tempDiv.html());
 
-          console.log('Cart UI updated and gift product quantity selector removed');
+          console.log('Cart UI updated and quantity selector removed for variant ID 49055053381910');
         },
         error: function(xhr, status, error) {
           console.error('Error fetching cart section:', xhr.responseText);
@@ -410,6 +410,7 @@ function updateCartUI() {
     console.error('Cart container not found.');
   }
 }
+
 
 
 
