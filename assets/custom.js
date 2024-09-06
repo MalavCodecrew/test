@@ -274,74 +274,44 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //----------------------------------- GWP-JS-------------------------------------------->
-$(document).ready(function() {
-  var isUpdating = false;
+(function($) {
   var giftVariantId = 49055053381910; // Ensure this is correct for your store
-  var giftTitle = "Free Gift Product"; // Ensure this matches your gift product title exactly
+  var giftThreshold = 1500; // $15 in cents
+  var isUpdating = false;
 
-  function checkCartAndAddGift() {
+  function checkAndUpdateGift() {
     if (isUpdating) return;
     isUpdating = true;
-    console.log("Checking cart...");
 
     $.getJSON('/cart.js', function(cart) {
-      console.log('Cart contents:', cart);
       var cartTotal = cart.total_price;
-      var giftInCart = cart.items.find(item => item.variant_id === giftVariantId);
+      var giftInCart = cart.items.some(item => item.variant_id === giftVariantId);
 
-      if (cartTotal >= 1500 && !giftInCart) {
+      if (cartTotal >= giftThreshold && !giftInCart) {
         addGiftToCart();
-      } else if (cartTotal >= 1500 && giftInCart && giftInCart.quantity !== 1) {
-        updateGiftQuantity(1);
-      } else if (cartTotal < 1500 && giftInCart) {
+      } else if (cartTotal < giftThreshold && giftInCart) {
         removeGiftFromCart();
       } else {
-        console.log("Cart is in correct state.");
-        updateCartUI(cart);
         isUpdating = false;
       }
-    }).fail(function(xhr, status, error) {
-      console.error('Error fetching cart:', xhr.responseText);
+    }).fail(function() {
+      console.error('Failed to fetch cart');
       isUpdating = false;
     });
   }
 
   function addGiftToCart() {
-    console.log("Adding gift product...");
     $.ajax({
       url: '/cart/add.js',
       type: 'POST',
       dataType: 'json',
-      data: {
-        id: giftVariantId,
-        quantity: 1
+      data: { id: giftVariantId, quantity: 1 },
+      success: function() {
+        console.log('Gift added to cart');
+        refreshCart();
       },
-      success: function(data) {
-        console.log('Gift added:', data);
-        updateCartUI();
-      },
-      error: function(xhr, status, error) {
-        console.error('Error adding gift:', xhr.responseText);
-        isUpdating = false;
-      }
-    });
-  }
-
-  function updateGiftQuantity(quantity) {
-    $.ajax({
-      url: '/cart/change.js',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        id: giftVariantId,
-        quantity: quantity
-      },
-      success: function(data) {
-        console.log('Gift quantity adjusted:', data);
-        updateCartUI(data);
-      },
-      error: function(xhr, status, error) {
-        console.error('Error adjusting gift quantity:', xhr.responseText);
+      error: function() {
+        console.error('Failed to add gift to cart');
         isUpdating = false;
       }
     });
@@ -352,103 +322,71 @@ $(document).ready(function() {
       url: '/cart/change.js',
       type: 'POST',
       dataType: 'json',
-      data: {
-        id: giftVariantId,
-        quantity: 0
+      data: { id: giftVariantId, quantity: 0 },
+      success: function() {
+        console.log('Gift removed from cart');
+        refreshCart();
       },
-      success: function(data) {
-        console.log('Gift removed:', data);
-        updateCartUI(data);
-      },
-      error: function(xhr, status, error) {
-        console.error('Error removing gift:', xhr.responseText);
+      error: function() {
+        console.error('Failed to remove gift from cart');
         isUpdating = false;
       }
     });
   }
 
-  function updateCartUI(cartData) {
-    console.log('Updating cart UI...');
-    var cartContainer = $('#cart-container');
-    if (cartContainer.length) {
-      if (!cartData) {
-        $.getJSON('/cart.js', function(cart) {
-          renderCartItems(cart, cartContainer);
-        }).fail(function(xhr, status, error) {
-          console.error('Error fetching cart data for UI update:', xhr.responseText);
-        });
-      } else {
-        renderCartItems(cartData, cartContainer);
-      }
-    } else {
-      console.error('Cart container not found.');
-    }
-    isUpdating = false;
-  }
-
-  function renderCartItems(cart, container) {
-    container.empty();
-    cart.items.forEach(function(item) {
-      var itemHtml = `
-        <div class="cart-item" data-variant-id="${item.variant_id}">
-          <span>${item.title} - Quantity: </span>
-          <input type="number" class="item-quantity" value="${item.quantity}" min="0" data-variant-id="${item.variant_id}">
-          <button class="remove-item" data-variant-id="${item.variant_id}">Remove</button>
-        </div>
-      `;
-      container.append(itemHtml);
-    });
-    $('#cart-total').text('$' + (cart.total_price / 100).toFixed(2));
-    console.log('Cart UI updated');
-  }
-
-  function updateItemQuantity(variantId, quantity) {
+  function refreshCart() {
     $.ajax({
-      url: '/cart/change.js',
-      type: 'POST',
+      url: '/cart.js',
       dataType: 'json',
-      data: {
-        id: variantId,
-        quantity: quantity
-      },
       success: function(cart) {
-        console.log('Item quantity updated:', cart);
-        checkCartAndAddGift();
+        $('form[action="/cart"]').replaceWith(cart.items_subtotal_price);
       },
-      error: function(xhr, status, error) {
-        console.error('Error updating item quantity:', xhr.responseText);
+      complete: function() {
         isUpdating = false;
       }
     });
   }
 
-  // Run the function on page load
-  checkCartAndAddGift();
-
-  // Listen for quantity changes
-  $(document).on('change', '.item-quantity', function() {
-    var variantId = $(this).data('variant-id');
-    var newQuantity = parseInt($(this).val());
-    updateItemQuantity(variantId, newQuantity);
-  });
-
-  // Listen for remove item clicks
-  $(document).on('click', '.remove-item', function(e) {
-    e.preventDefault();
-    var variantId = $(this).data('variant-id');
-    updateItemQuantity(variantId, 0);
-  });
+  // Run on page load
+  $(document).ready(checkAndUpdateGift);
 
   // Listen for cart form submissions
-  $('form[action="/cart"]').on('submit', function(e) {
+  $(document).on('submit', 'form[action="/cart/add"]', function(e) {
     e.preventDefault();
-    $.post('/cart/update.js', $(this).serialize(), function(cart) {
-      checkCartAndAddGift();
+    $.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: $(this).serialize(),
+      dataType: 'json',
+      success: function() {
+        checkAndUpdateGift();
+      }
     });
   });
 
-  // Additional listener for AJAX cart updates
-  $(document).on('cart:updated', checkCartAndAddGift);
-});
+  // Listen for quantity changes
+  $(document).on('change', 'input[name^="updates"]', function() {
+    var $form = $(this).closest('form');
+    $.ajax({
+      type: 'POST',
+      url: '/cart/update.js',
+      data: $form.serialize(),
+      dataType: 'json',
+      success: function() {
+        checkAndUpdateGift();
+      }
+    });
+  });
+
+  // Listen for remove links
+  $(document).on('click', 'a[href^="/cart/change"]', function(e) {
+    e.preventDefault();
+    var href = $(this).attr('href');
+    $.getJSON(href, function() {
+      checkAndUpdateGift();
+    });
+  });
+
+})(jQuery);
 
 
