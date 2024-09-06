@@ -279,16 +279,21 @@ document.addEventListener("DOMContentLoaded", function() {
   var giftVariantId = 49055053381910; // Gift product variant ID
 
   function initializeGiftProduct() {
-    updateGiftQuantity();
-    disableGiftQuantitySelector();
+    $.getJSON('/cart.js', function(cart) {
+      var giftInCart = cart.items.some(item => item.variant_id === giftVariantId);
+      if (giftInCart) {
+        updateGiftQuantity();
+        disableGiftQuantitySelector();
+      }
+    });
   }
 
   function updateGiftQuantity() {
     $.ajax({
-      url: '/cart/update.js',
+      url: '/cart/change.js',
       type: 'POST',
       dataType: 'json',
-      data: { updates: { [giftVariantId]: 1 } },
+      data: { id: giftVariantId, quantity: 1 },
       success: function(cart) {
         console.log('Gift quantity set to 1');
         updateCartUI(cart);
@@ -322,8 +327,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (giftItem) {
       $(`input[name="updates[]"][data-variant-id="${giftVariantId}"]`).val(1);
     }
-    $('.cart-subtotal').text('$' + (cart.total_price / 100).toFixed(2));
-    $('.cart-item-count').text(cart.item_count);
+    $('.cart__subtotal').text('$' + (cart.total_price / 100).toFixed(2));
+    $('.cart__count').text(cart.item_count);
   }
 
   // Run on page load
@@ -334,6 +339,11 @@ document.addEventListener("DOMContentLoaded", function() {
     e.preventDefault();
     e.stopPropagation();
     return false;
+  });
+
+  // Listen for cart updates
+  $(document).on('cart.requestComplete', function(event, cart) {
+    initializeGiftProduct();
   });
 
 })(jQuery);
