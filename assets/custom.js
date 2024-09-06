@@ -278,10 +278,8 @@ $(document).ready(function() {
   var isUpdating = false;
   var giftVariantId = 49055053381910; // Ensure this is correct for your store
   var giftTitle = "Free Gift Product"; // Ensure this matches your gift product title exactly
-  var checkInterval = 1000; // Check every second
-  var maxChecks = 5; // Maximum number of checks before giving up
 
-  function checkCartAndAddGift(checksRemaining) {
+  function checkCartAndAddGift() {
     if (isUpdating) return;
     isUpdating = true;
     console.log("Checking cart...");
@@ -292,11 +290,11 @@ $(document).ready(function() {
       var giftInCart = cart.items.find(item => item.variant_id === giftVariantId);
 
       if (cartTotal >= 1500 && !giftInCart) {
-        addGiftToCart(checksRemaining);
+        addGiftToCart();
       } else if (cartTotal >= 1500 && giftInCart && giftInCart.quantity !== 1) {
-        updateGiftQuantity(giftVariantId, 1, checksRemaining);
+        updateGiftQuantity(1);
       } else if (cartTotal < 1500 && giftInCart) {
-        removeGiftFromCart(checksRemaining);
+        removeGiftFromCart();
       } else {
         console.log("Cart is in correct state.");
         updateCartUI(cart);
@@ -304,11 +302,11 @@ $(document).ready(function() {
       }
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart:', xhr.responseText);
-      retryCheck(checksRemaining);
+      isUpdating = false;
     });
   }
 
-  function addGiftToCart(checksRemaining) {
+  function addGiftToCart() {
     console.log("Adding gift product...");
     $.ajax({
       url: '/cart/add.js',
@@ -324,18 +322,18 @@ $(document).ready(function() {
       },
       error: function(xhr, status, error) {
         console.error('Error adding gift:', xhr.responseText);
-        retryCheck(checksRemaining);
+        isUpdating = false;
       }
     });
   }
 
-  function updateGiftQuantity(variantId, quantity, checksRemaining) {
+  function updateGiftQuantity(quantity) {
     $.ajax({
       url: '/cart/change.js',
       type: 'POST',
       dataType: 'json',
       data: {
-        id: variantId,
+        id: giftVariantId,
         quantity: quantity
       },
       success: function(data) {
@@ -344,12 +342,12 @@ $(document).ready(function() {
       },
       error: function(xhr, status, error) {
         console.error('Error adjusting gift quantity:', xhr.responseText);
-        retryCheck(checksRemaining);
+        isUpdating = false;
       }
     });
   }
 
-  function removeGiftFromCart(checksRemaining) {
+  function removeGiftFromCart() {
     $.ajax({
       url: '/cart/change.js',
       type: 'POST',
@@ -364,7 +362,7 @@ $(document).ready(function() {
       },
       error: function(xhr, status, error) {
         console.error('Error removing gift:', xhr.responseText);
-        retryCheck(checksRemaining);
+        isUpdating = false;
       }
     });
   }
@@ -391,56 +389,66 @@ $(document).ready(function() {
   function renderCartItems(cart, container) {
     container.empty();
     cart.items.forEach(function(item) {
-      container.append('<div>' + item.title + ' - ' + item.quantity + '</div>');
+      var itemHtml = `
+        <div class="cart-item" data-variant-id="${item.variant_id}">
+          <span>${item.title} - Quantity: </span>
+          <input type="number" class="item-quantity" value="${item.quantity}" min="0" data-variant-id="${item.variant_id}">
+          <button class="remove-item" data-variant-id="${item.variant_id}">Remove</button>
+        </div>
+      `;
+      container.append(itemHtml);
     });
-    // Update cart total
     $('#cart-total').text('$' + (cart.total_price / 100).toFixed(2));
     console.log('Cart UI updated');
   }
 
-  function retryCheck(checksRemaining) {
-    if (checksRemaining > 0) {
-      setTimeout(function() {
-        checkCartAndAddGift(checksRemaining - 1);
-      }, checkInterval);
-    } else {
-      console.log("Max checks reached. Please refresh the page if issues persist.");
-      isUpdating = false;
-    }
-  }
-
-  function initializeCartCheck() {
-    checkCartAndAddGift(maxChecks);
+  function updateItemQuantity(variantId, quantity) {
+    $.ajax({
+      url: '/cart/change.js',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        id: variantId,
+        quantity: quantity
+      },
+      success: function(cart) {
+        console.log('Item quantity updated:', cart);
+        checkCartAndAddGift();
+      },
+      error: function(xhr, status, error) {
+        console.error('Error updating item quantity:', xhr.responseText);
+        isUpdating = false;
+      }
+    });
   }
 
   // Run the function on page load
-  initializeCartCheck();
+  checkCartAndAddGift();
 
   // Listen for quantity changes
-  $(document).on('change', 'input[name="updates[]"]', function() {
-    var form = $(this).closest('form');
-    $.post('/cart/update.js', form.serialize(), function(data) {
-      initializeCartCheck();
-    });
+  $(document).on('change', '.item-quantity', function() {
+    var variantId = $(this).data('variant-id');
+    var newQuantity = parseInt($(this).val());
+    updateItemQuantity(variantId, newQuantity);
   });
 
   // Listen for remove item clicks
   $(document).on('click', '.remove-item', function(e) {
     e.preventDefault();
     var variantId = $(this).data('variant-id');
-    updateGiftQuantity(variantId, 0, maxChecks);
+    updateItemQuantity(variantId, 0);
   });
 
   // Listen for cart form submissions
   $('form[action="/cart"]').on('submit', function(e) {
     e.preventDefault();
-    $.post('/cart/update.js', $(this).serialize(), function(data) {
-      initializeCartCheck();
+    $.post('/cart/update.js', $(this).serialize(), function(cart) {
+      checkCartAndAddGift();
     });
   });
 
   // Additional listener for AJAX cart updates
-  $(document).on('cart:updated', initializeCartCheck);
+  $(document).on('cart:updated', checkCartAndAddGift);
 });
 
 
