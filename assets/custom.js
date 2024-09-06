@@ -329,13 +329,13 @@ $(document).ready(function() {
     });
   }
 
-  function updateGiftQuantity(variantId, quantity, checksRemaining) {
+  function updateGiftQuantity(giftVariantId, quantity, checksRemaining) {
     $.ajax({
       url: '/cart/change.js',
       type: 'POST',
       dataType: 'json',
       data: {
-        id: variantId,
+        id: giftVariantId,
         quantity: quantity
       },
       success: function(data) {
