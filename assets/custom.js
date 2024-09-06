@@ -454,14 +454,6 @@ function refreshCartUI() {
 
 // Call this function where appropriate, such as after adding items to the cart
 updateCartUI();
-
-
-// Call the updateCartUI function whenever necessary, e.g., after adding items to the cart
-updateCartUI();
-
-
-
-
   function renderCartItems(cart, container) {
    $.getJSON('/cart.js', function(cart) {
       $.ajax({
