@@ -476,35 +476,5 @@ function updateCartUI() {
   $(document).on('cart:updated', initializeCartCheck);
 });
 
-(function($) {
-  // Function to check and remove the gift card if it's the only item
-  function checkAndRemoveGiftCard() {
-    $.getJSON('/cart.js', function(cart) {
-      console.log('Checking cart:', cart);
-      
-      if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
-        console.log('Gift card is the only item. Removing...');
-        
-        $.ajax({
-          url: '/cart/change.js',
-          type: 'POST',
-          dataType: 'json',
-          data: JSON.stringify({
-            id: cart.items[0].key,
-            quantity: 0
-          }),
-          contentType: 'application/json',
-          success: function(updatedCart) {
-            console.log('Gift card removed successfully:', updatedCart);
-            updateCartUI();
-          },
-          error: function(xhr, status, error) {
-            console.error('Error removing gift card:', error);
-          }
-        });
-      } else {
-        console.log('No need to remove gift card.');
-      }
-    });
-  }
+
 
