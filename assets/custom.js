@@ -456,7 +456,7 @@ function updateCartUI() {
   //     initializeCartCheck();
   //   });
   // });
-//   $(document).on('cart:updated', initializeCartCheck);
-// });
+  $(document).on('cart:updated', initializeCartCheck);
+});
 
 
