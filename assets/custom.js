@@ -441,6 +441,7 @@ $(document).ready(function() {
     e.preventDefault();
     var variantId = $(this).data('variant-id');
      console.log("clicked",variantId)
+     isUpdating = true;
     $.ajax({
       url: '/cart/change.js',
       type: 'POST',
