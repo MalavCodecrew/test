@@ -423,31 +423,6 @@ $(document).ready(function() {
     }
   }
 
-$(document).on('click', 'cart-remove-button', function() {
-  console.log("clicked");
-  $.getJSON('/cart.js', function(cart) {
-    if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
-      $.ajax({
-        url: '/cart/change.js',
-        type: 'POST',
-        data: {
-          id: 49055053381910,
-          quantity: 0
-        },
-        success: function() {
-          console.log('Product removed');
-          // Optionally refresh the cart or the page
-          location.reload(); 
-        }
-      });
-    }
-  });
-});
-
-  
-
-
-  
   function initializeCartCheck() {
     checkCartAndAddGift(maxChecks);
   }
