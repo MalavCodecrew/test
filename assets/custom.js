@@ -423,31 +423,6 @@ $(document).ready(function() {
     }
   }
 
-$(document).on('click', '.cart-remove-button', function(e) {
-  e.preventDefault();
-  console.log("clicked");
-  
-  $.getJSON('/cart.js', function(cart) {
-    if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
-      $.ajax({
-        url: '/cart/change.js',
-        type: 'POST',
-        data: {
-          id: 49055053381910,
-          quantity: 0
-        },
-        success: function() {
-          console.log('Product removed');
-          // Optionally refresh the cart or the page
-          location.reload(); 
-        }
-      });
-    }
-  });
-});
-
-
-  
   function initializeCartCheck() {
     checkCartAndAddGift(maxChecks);
   }
@@ -460,6 +435,29 @@ $(document).on('click', '.cart-remove-button', function(e) {
       initializeCartCheck();
     });
   });
+
+ $(document).on('click', 'cart-remove-button', function(e) {
+    e.preventDefault(); // Prevent default behavior (like navigation)
+    console.log('Cart remove button clicked');
+    
+    // Simulate the click action or perform removal via AJAX, if needed
+    var removeButton = $(this);
+    var removeUrl = removeButton.attr('href'); // Get the URL to remove the item
+
+    // Use AJAX to remove the item
+    $.ajax({
+      url: removeUrl,
+      type: 'POST',
+      success: function() {
+        console.log('Item removed, updating cart UI...');
+        updateCartUI(); // Call your function to update the cart UI
+      },
+      error: function(xhr, status, error) {
+        console.error('Error removing item from cart:', xhr.responseText);
+      }
+    });
+  });
+  
 
   $(document).on('cart:updated', initializeCartCheck);
 });
