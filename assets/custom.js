@@ -369,24 +369,32 @@ $(document).ready(function() {
     });
   }
 
-  function updateCartUI(cartData) {
-    console.log('Updating cart UI...');
-    var cartContainer = $('#cart-container');
-    if (cartContainer.length) {
-      if (!cartData) {
-        $.getJSON('/cart.js', function(cart) {
-          renderCartItems(cart, cartContainer);
-        }).fail(function(xhr, status, error) {
-          console.error('Error fetching cart data for UI update:', xhr.responseText);
-        });
-      } else {
-        renderCartItems(cartData, cartContainer);
-      }
-    } else {
-      console.error('Cart container not found.');
-    }
-    isUpdating = false;
+function updateCartUI() {
+  console.log('Updating cart UI...');
+  var cartContainer = $('#main-cart-items');
+  
+  if (cartContainer.length) {
+    $.getJSON('/cart.js', function(cart) {
+      // Fetch the main-cart-items section HTML
+      $.ajax({
+        url: '/?section_id=main-cart-items', // Use Shopify's section rendering endpoint
+        type: 'GET',
+        success: function(data) {
+          cartContainer.empty(); // Clear the current cart content
+          cartContainer.append(data); // Append the fetched section content
+          console.log('Cart UI updated with section content');
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching cart section:', xhr.responseText);
+        }
+      });
+    }).fail(function(xhr, status, error) {
+      console.error('Error fetching cart data for UI update:', xhr.responseText);
+    });
+  } else {
+    console.error('Cart container not found.');
   }
+}
 
   function renderCartItems(cart, container) {
     container.empty();
