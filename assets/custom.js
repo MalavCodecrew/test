@@ -371,7 +371,7 @@ $(document).ready(function() {
 
   function updateCartUI() {
     console.log('Updating cart UI...');
-    var cartContainer = $('#cart-container');
+    var cartContainer = $('.cart-items');
     if (cartContainer.length) {
       $.getJSON('/cart.js', function(cart) {
         cartContainer.empty();
