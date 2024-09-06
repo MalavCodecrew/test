@@ -299,7 +299,7 @@ $(document).ready(function() {
         removeGiftFromCart(checksRemaining);
       } else {
         console.log("Cart is in correct state.");
-        updateCartUI();
+        updateCartUI(cart);
         isUpdating = false;
       }
     }).fail(function(xhr, status, error) {
@@ -320,7 +320,7 @@ $(document).ready(function() {
       },
       success: function(data) {
         console.log('Gift added:', data);
-        retryCheck(checksRemaining);
+        updateCartUI();
       },
       error: function(xhr, status, error) {
         console.error('Error adding gift:', xhr.responseText);
@@ -340,7 +340,7 @@ $(document).ready(function() {
       },
       success: function(data) {
         console.log('Gift quantity adjusted:', data);
-        retryCheck(checksRemaining);
+        updateCartUI(data);
       },
       error: function(xhr, status, error) {
         console.error('Error adjusting gift quantity:', xhr.responseText);
@@ -360,7 +360,7 @@ $(document).ready(function() {
       },
       success: function(data) {
         console.log('Gift removed:', data);
-        retryCheck(checksRemaining);
+        updateCartUI(data);
       },
       error: function(xhr, status, error) {
         console.error('Error removing gift:', xhr.responseText);
@@ -369,22 +369,33 @@ $(document).ready(function() {
     });
   }
 
-  function updateCartUI() {
+  function updateCartUI(cartData) {
     console.log('Updating cart UI...');
     var cartContainer = $('#cart-container');
     if (cartContainer.length) {
-      $.getJSON('/cart.js', function(cart) {
-        cartContainer.empty();
-        cart.items.forEach(function(item) {
-          cartContainer.append('<div>' + item.title + ' - ' + item.quantity + '</div>');
+      if (!cartData) {
+        $.getJSON('/cart.js', function(cart) {
+          renderCartItems(cart, cartContainer);
+        }).fail(function(xhr, status, error) {
+          console.error('Error fetching cart data for UI update:', xhr.responseText);
         });
-        console.log('Cart UI updated');
-      }).fail(function(xhr, status, error) {
-        console.error('Error fetching cart data for UI update:', xhr.responseText);
-      });
+      } else {
+        renderCartItems(cartData, cartContainer);
+      }
     } else {
       console.error('Cart container not found.');
     }
+    isUpdating = false;
+  }
+
+  function renderCartItems(cart, container) {
+    container.empty();
+    cart.items.forEach(function(item) {
+      container.append('<div>' + item.title + ' - ' + item.quantity + '</div>');
+    });
+    // Update cart total
+    $('#cart-total').text('$' + (cart.total_price / 100).toFixed(2));
+    console.log('Cart UI updated');
   }
 
   function retryCheck(checksRemaining) {
@@ -393,10 +404,9 @@ $(document).ready(function() {
         checkCartAndAddGift(checksRemaining - 1);
       }, checkInterval);
     } else {
-      console.log("Max checks reached. Refreshing page.");
-      location.reload();
+      console.log("Max checks reached. Please refresh the page if issues persist.");
+      isUpdating = false;
     }
-    isUpdating = false;
   }
 
   function initializeCartCheck() {
@@ -407,10 +417,19 @@ $(document).ready(function() {
   initializeCartCheck();
 
   // Listen for quantity changes
-  $(document).on('change', 'input[name="updates[]"]', initializeCartCheck);
+  $(document).on('change', 'input[name="updates[]"]', function() {
+    var form = $(this).closest('form');
+    $.post('/cart/update.js', form.serialize(), function(data) {
+      initializeCartCheck();
+    });
+  });
 
   // Listen for remove item clicks
-  $(document).on('click', '.remove-item', initializeCartCheck);
+  $(document).on('click', '.remove-item', function(e) {
+    e.preventDefault();
+    var variantId = $(this).data('variant-id');
+    updateGiftQuantity(variantId, 0, maxChecks);
+  });
 
   // Listen for cart form submissions
   $('form[action="/cart"]').on('submit', function(e) {
