@@ -369,47 +369,47 @@ $(document).ready(function() {
       }
     });
   }
-function updateCartUI() {
-  console.log('Updating cart UI...');
-  var cartContainer = $('#main-cart-items');
+// function updateCartUI() {
+//   console.log('Updating cart UI...');
+//   var cartContainer = $('#main-cart-items');
 
-  if (cartContainer.length) {
-    // Fetch cart data
-    $.getJSON('/cart.js', function(cart) {
-      console.log('Cart data fetched:', cart);
+//   if (cartContainer.length) {
+//     // Fetch cart data
+//     $.getJSON('/cart.js', function(cart) {
+//       console.log('Cart data fetched:', cart);
 
-      // Check if there's only one item in the cart and its variant ID is 49055053381910
-      if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
-        console.log('Removing the only item in the cart with the specified variant ID.');
+//       // Check if there's only one item in the cart and its variant ID is 49055053381910
+//       if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
+//         console.log('Removing the only item in the cart with the specified variant ID.');
 
-        // Remove the item from the cart
-        $.ajax({
-          url: '/cart/change.js',
-          type: 'POST',
-          data: {
-            line: 1,  // Adjust the line number if necessary
-            quantity: 0
-          },
-          dataType: 'json',
-          success: function(response) {
-            console.log('Product removed from cart:', response);
-            refreshCartUI(); // Refresh UI after removal
-          },
-          error: function(xhr, status, error) {
-            console.error('Error removing item from cart:', xhr.responseText);
-          }
-        });
-      } else {
-        console.log('No action needed or cart does not meet the condition.');
-        refreshCartUI(); // Refresh UI without modification
-      }
-    }).fail(function(xhr, status, error) {
-      console.error('Error fetching cart data:', xhr.responseText);
-    });
-  } else {
-    console.error('Cart container not found.');
-  }
-}
+//         // Remove the item from the cart
+//         $.ajax({
+//           url: '/cart/change.js',
+//           type: 'POST',
+//           data: {
+//             line: 1,  // Adjust the line number if necessary
+//             quantity: 0
+//           },
+//           dataType: 'json',
+//           success: function(response) {
+//             console.log('Product removed from cart:', response);
+//             refreshCartUI(); // Refresh UI after removal
+//           },
+//           error: function(xhr, status, error) {
+//             console.error('Error removing item from cart:', xhr.responseText);
+//           }
+//         });
+//       } else {
+//         console.log('No action needed or cart does not meet the condition.');
+//         refreshCartUI(); // Refresh UI without modification
+//       }
+//     }).fail(function(xhr, status, error) {
+//       console.error('Error fetching cart data:', xhr.responseText);
+//     });
+//   } else {
+//     console.error('Cart container not found.');
+//   }
+// }
 
 // function refreshCartUI() {
 //   var cartContainer = $('#main-cart-items');
