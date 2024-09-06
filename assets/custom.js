@@ -411,48 +411,46 @@ function updateCartUI() {
   }
 }
 
-function refreshCartUI() {
-  var cartContainer = $('#main-cart-items');
+// function refreshCartUI() {
+//   var cartContainer = $('#main-cart-items');
 
-  $.ajax({
-    url: '/?section_id=main-cart-items',
-    type: 'GET',
-    success: function(data) {
-      cartContainer.empty();
-      var tempDiv = $('<div>').html(data);
-      tempDiv.find('.title-wrapper-with-link').remove();
-      cartContainer.append(tempDiv.html());
+//   $.ajax({
+//     url: '/?section_id=main-cart-items',
+//     type: 'GET',
+//     success: function(data) {
+//       cartContainer.empty();
+//       var tempDiv = $('<div>').html(data);
+//       tempDiv.find('.title-wrapper-with-link').remove();
+//       cartContainer.append(tempDiv.html());
 
-      // Attach click handler to delete buttons in the updated UI
-      cartContainer.on('click', '.remove-item', function(event) {
-        event.preventDefault();
-        var line = $(this).data('line');
-        $.ajax({
-          url: '/cart/change.js',
-          type: 'POST',
-          data: {
-            line: line,
-            quantity: 0
-          },
-          dataType: 'json',
-          success: function() {
-            refreshCartUI(); // Refresh UI after removal
-          },
-          error: function(xhr, status, error) {
-            console.error('Error removing item from cart:', xhr.responseText);
-          }
-        });
-      });
+//       // Attach click handler to delete buttons in the updated UI
+//       cartContainer.on('click', '.remove-item', function(event) {
+//         event.preventDefault();
+//         var line = $(this).data('line');
+//         $.ajax({
+//           url: '/cart/change.js',
+//           type: 'POST',
+//           data: {
+//             line: line,
+//             quantity: 0
+//           },
+//           dataType: 'json',
+//           success: function() {
+//             refreshCartUI(); // Refresh UI after removal
+//           },
+//           error: function(xhr, status, error) {
+//             console.error('Error removing item from cart:', xhr.responseText);
+//           }
+//         });
+//       });
 
-      console.log('Cart UI updated successfully.');
-    },
-    error: function(xhr, status, error) {
-      console.error('Error fetching cart section:', xhr.responseText);
-    }
-  });
-}
-
-// Call this function where appropriate, such as after adding items to the cart
+//       console.log('Cart UI updated successfully.');
+//     },
+//     error: function(xhr, status, error) {
+//       console.error('Error fetching cart section:', xhr.responseText);
+//     }
+//   });
+// }
 updateCartUI();
   function renderCartItems(cart, container) {
    $.getJSON('/cart.js', function(cart) {
