@@ -375,29 +375,19 @@ function updateCartUI() {
 
   if (cartContainer.length) {
     $.getJSON('/cart.js', function(cart) {
-      // Fetch the main-cart-items section HTML
       $.ajax({
-        url: '/?section_id=main-cart-items', // Shopify's section rendering endpoint
+        url: '/?section_id=main-cart-items',
         type: 'GET',
         success: function(data) {
-          cartContainer.empty(); // Clear the current cart content
-
-          // Create a temporary DOM element to manipulate the content
+          cartContainer.empty();
           var tempDiv = $('<div>').html(data);
-
-          // Remove the entire div with class "title-wrapper-with-link"
           tempDiv.find('.title-wrapper-with-link').remove();
-
-          // Loop through the cart items to find products with price 0
           cart.items.forEach(function(item) {
             if (item.price == 0) {
-              // Find the corresponding quantity selector in the fetched section and remove it
-              var productIdSelector = '[data-product-id="' + item.id + '"]'; // Adjust this selector based on your HTML structure
+              var productIdSelector = '[data-product-id="' + item.id + '"]'; 
               tempDiv.find(productIdSelector).find('.quantity-selector').remove();
             }
           });
-
-          // Append the manipulated HTML back to the cart container
           cartContainer.append(tempDiv.html());
 
           console.log('Cart UI updated, div and quantity selectors removed');
@@ -417,13 +407,12 @@ function updateCartUI() {
 
   function renderCartItems(cart, container) {
    $.getJSON('/cart.js', function(cart) {
-      // Fetch the main-cart-items section HTML
       $.ajax({
-        url: '/?section_id=main-cart-items', // Use Shopify's section rendering endpoint
+        url: '/?section_id=main-cart-items', 
         type: 'GET',
         success: function(data) {
-          cartContainer.empty(); // Clear the current cart content
-          cartContainer.append(data); // Append the fetched section content
+          cartContainer.empty(); 
+          cartContainer.append(data);
           console.log('Cart UI updated with section content');
         },
         error: function(xhr, status, error) {
@@ -433,7 +422,6 @@ function updateCartUI() {
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart data for UI update:', xhr.responseText);
     });
-    // Update cart total
     $('#cart-total').text('$' + (cart.total_price / 100).toFixed(2));
     console.log('Cart UI updated');
   }
@@ -453,33 +441,26 @@ function updateCartUI() {
     checkCartAndAddGift(maxChecks);
   }
 
-  // Run the function on page load
   initializeCartCheck();
 
-  // Listen for quantity changes
   $(document).on('change', 'input[name="updates[]"]', function() {
     var form = $(this).closest('form');
     $.post('/cart/update.js', form.serialize(), function(data) {
       initializeCartCheck();
     });
   });
-
-  // Listen for remove item clicks
   $(document).on('click', '.remove-item', function(e) {
     e.preventDefault();
     var variantId = $(this).data('variant-id');
     updateGiftQuantity(variantId, 0, maxChecks);
   });
 
-  // Listen for cart form submissions
   $('form[action="/cart"]').on('submit', function(e) {
     e.preventDefault();
     $.post('/cart/update.js', $(this).serialize(), function(data) {
       initializeCartCheck();
     });
   });
-
-  // Additional listener for AJAX cart updates
   $(document).on('cart:updated', initializeCartCheck);
 });
 
