@@ -455,8 +455,8 @@ $(document).ready(function() {
       error: function(xhr, status, error) {
         console.error('Error removing item from cart:', xhr.responseText);
       }
-    });
-  });  checkCartAndAddGift();
+    });checkCartAndAddGift();
+  });  
   
 
   $(document).on('cart:updated', initializeCartCheck);
