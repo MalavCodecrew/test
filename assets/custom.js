@@ -369,10 +369,9 @@ $(document).ready(function() {
       }
     });
   }
-
 function updateCartUI() {
   console.log('Updating cart UI...');
-  var cartContainer = $('#cart');
+  var cartContainer = $('#main-cart-items');
 
   if (cartContainer.length) {
     // Fetch cart data
@@ -381,28 +380,28 @@ function updateCartUI() {
 
       // Check if there's only one item in the cart and its variant ID is 49055053381910
       if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
-        console.log('Only one item in the cart with the specified variant ID.');
+        console.log('Removing the only item in the cart with the specified variant ID.');
 
         // Remove the item from the cart
         $.ajax({
           url: '/cart/change.js',
           type: 'POST',
           data: {
-            line: 1,  // Line number of the item to remove (adjust if necessary)
+            line: 1,  // Adjust the line number if necessary
             quantity: 0
           },
           dataType: 'json',
           success: function(response) {
-            console.log('Product removed from cart successfully:', response);
-            refreshCartUI(); // Refresh the cart UI after removal
+            console.log('Product removed from cart:', response);
+            refreshCartUI(); // Refresh UI after removal
           },
           error: function(xhr, status, error) {
             console.error('Error removing item from cart:', xhr.responseText);
           }
         });
       } else {
-        console.log('Cart does not meet the condition for automatic removal.');
-        refreshCartUI();
+        console.log('No action needed or cart does not meet the condition.');
+        refreshCartUI(); // Refresh UI without modification
       }
     }).fail(function(xhr, status, error) {
       console.error('Error fetching cart data:', xhr.responseText);
@@ -424,7 +423,7 @@ function refreshCartUI() {
       tempDiv.find('.title-wrapper-with-link').remove();
       cartContainer.append(tempDiv.html());
 
-      // Reattach event handlers for delete buttons
+      // Attach click handler to delete buttons in the updated UI
       cartContainer.on('click', '.remove-item', function(event) {
         event.preventDefault();
         var line = $(this).data('line');
@@ -437,7 +436,7 @@ function refreshCartUI() {
           },
           dataType: 'json',
           success: function() {
-            refreshCartUI(); // Refresh cart UI after removal
+            refreshCartUI(); // Refresh UI after removal
           },
           error: function(xhr, status, error) {
             console.error('Error removing item from cart:', xhr.responseText);
@@ -445,13 +444,17 @@ function refreshCartUI() {
         });
       });
 
-      console.log('Cart UI updated, div and quantity selectors removed');
+      console.log('Cart UI updated successfully.');
     },
     error: function(xhr, status, error) {
       console.error('Error fetching cart section:', xhr.responseText);
     }
   });
 }
+
+// Call this function where appropriate, such as after adding items to the cart
+updateCartUI();
+
 
 // Call the updateCartUI function whenever necessary, e.g., after adding items to the cart
 updateCartUI();
