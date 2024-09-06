@@ -369,6 +369,35 @@ $(document).ready(function() {
       }
     });
   }
+
+  function updateCartUI() {
+  console.log('Updating cart UI...');
+  var cartContainer = $('#main-cart-items');
+
+  if (cartContainer.length) {
+    $.getJSON('/cart.js', function(cart) {
+      $.ajax({
+        url: '/?section_id=main-cart-items',
+        type: 'GET',
+        success: function(data) {
+          cartContainer.empty();
+          var tempDiv = $('<div>').html(data);
+          tempDiv.find('.title-wrapper-with-link').remove();
+          cartContainer.append(tempDiv.html());
+
+          console.log('Cart UI updated, div and quantity selectors removed');
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching cart section:', xhr.responseText);
+        }
+      });
+    }).fail(function(xhr, status, error) {
+      console.error('Error fetching cart data for UI update:', xhr.responseText);
+    });
+  } else {
+    console.error('Cart container not found.');
+  }
+}
 // function updateCartUI() {
 //   console.log('Updating cart UI...');
 //   var cartContainer = $('#main-cart-items');
