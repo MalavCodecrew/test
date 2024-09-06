@@ -438,6 +438,7 @@ $(document).ready(function() {
 
   // Update this event listener to immediately check the cart
   $(document).on('click', '#Remove-1', function(e) {
+    console.log("clicked")
     e.preventDefault();
     var variantId = $(this).data('variant-id');
     $.ajax({
