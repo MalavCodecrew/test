@@ -372,41 +372,90 @@ $(document).ready(function() {
 
 function updateCartUI() {
   console.log('Updating cart UI...');
-  var cartContainer = $('#main-cart-items');
+  var cartContainer = $('#cart');
 
   if (cartContainer.length) {
+    // Fetch cart data
     $.getJSON('/cart.js', function(cart) {
+      console.log('Cart data fetched:', cart);
+
       // Check if there's only one item in the cart and its variant ID is 49055053381910
       if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
+        console.log('Only one item in the cart with the specified variant ID.');
+
         // Remove the item from the cart
         $.ajax({
           url: '/cart/change.js',
           type: 'POST',
           data: {
-            line: 1,  // Assuming it's the first and only item
+            line: 1,  // Line number of the item to remove (adjust if necessary)
             quantity: 0
           },
           dataType: 'json',
-          success: function() {
-            console.log('Product removed from cart');
-            // Update the cart UI after removal
-            refreshCartUI();
+          success: function(response) {
+            console.log('Product removed from cart successfully:', response);
+            refreshCartUI(); // Refresh the cart UI after removal
           },
           error: function(xhr, status, error) {
             console.error('Error removing item from cart:', xhr.responseText);
           }
         });
       } else {
-        // Update the UI if the product was not removed
+        console.log('Cart does not meet the condition for automatic removal.');
         refreshCartUI();
       }
     }).fail(function(xhr, status, error) {
-      console.error('Error fetching cart data for UI update:', xhr.responseText);
+      console.error('Error fetching cart data:', xhr.responseText);
     });
   } else {
     console.error('Cart container not found.');
   }
 }
+
+function refreshCartUI() {
+  var cartContainer = $('#cart');
+
+  $.ajax({
+    url: '/?section_id=main-cart-items',
+    type: 'GET',
+    success: function(data) {
+      cartContainer.empty();
+      var tempDiv = $('<div>').html(data);
+      tempDiv.find('.title-wrapper-with-link').remove();
+      cartContainer.append(tempDiv.html());
+
+      // Reattach event handlers for delete buttons
+      cartContainer.on('click', '.remove-item', function(event) {
+        event.preventDefault();
+        var line = $(this).data('line');
+        $.ajax({
+          url: '/cart/change.js',
+          type: 'POST',
+          data: {
+            line: line,
+            quantity: 0
+          },
+          dataType: 'json',
+          success: function() {
+            refreshCartUI(); // Refresh cart UI after removal
+          },
+          error: function(xhr, status, error) {
+            console.error('Error removing item from cart:', xhr.responseText);
+          }
+        });
+      });
+
+      console.log('Cart UI updated.');
+    },
+    error: function(xhr, status, error) {
+      console.error('Error fetching cart section:', xhr.responseText);
+    }
+  });
+}
+
+// Example usage
+updateCartUI();
+
 
 function refreshCartUI() {
   var cartContainer = $('#main-cart-items');
