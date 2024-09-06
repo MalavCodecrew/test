@@ -377,7 +377,7 @@ function updateCartUI() {
   if (cartContainer.length) {
     $.getJSON('/cart.js', function(cart) {
       // Check if there's only one item in the cart and its variant ID is 49055053381910
-      if (cart.items.length === 1 && cart.items[0].variant_id === 49055053381910) {
+      if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
         // Remove the item from the cart
         $.ajax({
           url: '/cart/change.js',
