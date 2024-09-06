@@ -376,7 +376,7 @@ $(document).ready(function() {
       $.getJSON('/cart.js', function(cart) {
         cartContainer.empty();
         cart.items.forEach(function(item) {
-          cartContainer.append('<div>' + item.title + ' - ' + item.quantity + '</div>');
+          cartContainer.append('<div>' + item.image + item.title + ' - ' + item.quantity + '</div>');
         });
         console.log('Cart UI updated');
       }).fail(function(xhr, status, error) {
