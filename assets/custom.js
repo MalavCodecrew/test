@@ -385,13 +385,13 @@ function updateCartUI() {
           // Create a temporary DOM element to manipulate the content
           var tempDiv = $('<div>').html(data);
 
-          // Remove the "title-wrapper-with-link" class
-          tempDiv.find('.title-wrapper-with-link').removeClass('title-wrapper-with-link');
+          // Remove the entire div with class "title-wrapper-with-link"
+          tempDiv.find('.title-wrapper-with-link').remove();
 
           // Append the manipulated HTML back to the cart container
           cartContainer.append(tempDiv.html());
 
-          console.log('Cart UI updated and class removed');
+          console.log('Cart UI updated and div removed');
         },
         error: function(xhr, status, error) {
           console.error('Error fetching cart section:', xhr.responseText);
