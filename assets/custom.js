@@ -480,7 +480,7 @@ $(document).ready(function() {
 //     }
 //   });
 // }
-updateCartUI();
+// updateCartUI();
   function renderCartItems(cart, container) {
    $.getJSON('/cart.js', function(cart) {
       $.ajax({
