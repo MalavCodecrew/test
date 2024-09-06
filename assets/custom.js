@@ -376,13 +376,14 @@ $(document).ready(function() {
       $.getJSON('/cart.js', function(cart) {
         cartContainer.empty();
         cart.items.forEach(function(item) {
-         cartContainer.append(
+        cartContainer.append(
   '<div>' +
-    '<img src="' + item.image + '" alt="' + item.title + >' +
+    '<img src="' + item.image + '" alt="' + item.title + '">' +
     '<span>' + item.title + '</span> - ' +
     '<span>' + item.quantity + '</span>' +
   '</div>'
 );
+
 
         });
         console.log('Cart UI updated');
