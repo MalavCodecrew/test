@@ -291,11 +291,11 @@ $(document).ready(function() {
       var cartTotal = cart.total_price;
       var giftInCart = cart.items.find(item => item.variant_id === giftVariantId);
 
-      if (cartTotal >= 1500 && !giftInCart) {
+      if (cartTotal >= 8000 && !giftInCart) {
         addGiftToCart(checksRemaining);
-      } else if (cartTotal >= 1500 && giftInCart && giftInCart.quantity !== 1) {
+      } else if (cartTotal >= 8000 && giftInCart && giftInCart.quantity !== 1) {
         updateGiftQuantity(giftVariantId, 1, checksRemaining);
-      } else if (cartTotal < 1500 && giftInCart) {
+      } else if (cartTotal < 8000 && giftInCart) {
         removeGiftFromCart(checksRemaining);
       } else {
         console.log("Cart is in correct state.");
