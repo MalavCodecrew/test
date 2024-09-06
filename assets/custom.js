@@ -277,125 +277,63 @@ document.addEventListener("DOMContentLoaded", function() {
 (function($) {
   // Configuration
   var giftVariantId = 49055053381910; // Gift product variant ID
-  var giftThreshold = 1500; // $15 in cents
-  var isUpdating = false;
 
-  function checkAndUpdateGift() {
-    if (isUpdating) return;
-    isUpdating = true;
-
-    $.getJSON('/cart.js', function(cart) {
-      var cartTotal = cart.total_price;
-      var giftItem = cart.items.find(item => item.variant_id === giftVariantId);
-      
-      if (cartTotal >= giftThreshold && !giftItem) {
-        addGiftToCart();
-      } else if (giftItem && giftItem.quantity !== 1) {
-        updateGiftQuantity(1);
-      } else {
-        isUpdating = false;
-        disableGiftQuantitySelector();
-      }
-    }).fail(function() {
-      console.error('Failed to fetch cart');
-      isUpdating = false;
-    });
-  }
-
-  function addGiftToCart() {
-    $.ajax({
-      url: '/cart/add.js',
-      type: 'POST',
-      dataType: 'json',
-      data: { id: giftVariantId, quantity: 1 },
-      success: function(item) {
-        console.log('Gift added to cart');
-        updateCartUI(item);
-      },
-      error: function() {
-        console.error('Failed to add gift to cart');
-        isUpdating = false;
-      }
-    });
-  }
-
-  function updateGiftQuantity(quantity) {
-    $.ajax({
-      url: '/cart/change.js',
-      type: 'POST',
-      dataType: 'json',
-      data: { id: giftVariantId, quantity: quantity },
-      success: function(cart) {
-        console.log('Gift quantity updated');
-        updateCartTotals(cart);
-        isUpdating = false;
-      },
-      error: function() {
-        console.error('Failed to update gift quantity');
-        isUpdating = false;
-      }
-    });
-  }
-
-  function updateCartUI(item) {
-    var $cartForm = $('form[action="/cart"]');
-    var $cartItems = $cartForm.find('.cart-items');
-    
-    var newItemHtml = `
-      <div class="cart-item" data-variant-id="${item.variant_id}">
-        <span>${item.title}</span>
-        <input type="number" name="updates[]" value="1" min="1" data-variant-id="${item.variant_id}" readonly>
-      </div>
-    `;
-    
-    $cartItems.append(newItemHtml);
-    updateCartTotals();
+  function initializeGiftProduct() {
+    updateGiftQuantity();
     disableGiftQuantitySelector();
   }
 
-  function updateCartTotals() {
-    $.getJSON('/cart.js', function(cart) {
-      $('.cart-subtotal').text('$' + (cart.total_price / 100).toFixed(2));
-      $('.cart-item-count').text(cart.item_count);
-      isUpdating = false;
+  function updateGiftQuantity() {
+    $.ajax({
+      url: '/cart/update.js',
+      type: 'POST',
+      dataType: 'json',
+      data: { updates: { [giftVariantId]: 1 } },
+      success: function(cart) {
+        console.log('Gift quantity set to 1');
+        updateCartUI(cart);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.error('Failed to update gift quantity:', textStatus, errorThrown);
+      }
     });
   }
 
   function disableGiftQuantitySelector() {
-    $(`input[name="updates[]"][data-variant-id="${giftVariantId}"]`)
-      .attr('readonly', true)
-      .css('opacity', '0.5')
-      .siblings('.quantity-selector__button')
-      .prop('disabled', true)
-      .css('opacity', '0.5');
+    var $giftInput = $(`input[name="updates[]"][data-variant-id="${giftVariantId}"]`);
+    var $giftQuantityWrapper = $giftInput.closest('.quantity-selector');
+
+    $giftInput.prop('disabled', true).css({
+      'pointer-events': 'none',
+      'background-color': '#f0f0f0',
+      'color': '#888'
+    });
+
+    $giftQuantityWrapper.find('.quantity-selector__button').prop('disabled', true).css({
+      'pointer-events': 'none',
+      'opacity': '0.5'
+    });
+
+    $giftQuantityWrapper.css('pointer-events', 'none');
+  }
+
+  function updateCartUI(cart) {
+    var giftItem = cart.items.find(item => item.variant_id === giftVariantId);
+    if (giftItem) {
+      $(`input[name="updates[]"][data-variant-id="${giftVariantId}"]`).val(1);
+    }
+    $('.cart-subtotal').text('$' + (cart.total_price / 100).toFixed(2));
+    $('.cart-item-count').text(cart.item_count);
   }
 
   // Run on page load
-  $(document).ready(checkAndUpdateGift);
+  $(document).ready(initializeGiftProduct);
 
-  // Listen for quantity changes
-  $(document).on('change', 'input[name^="updates"]', function() {
-    var $input = $(this);
-    var variantId = $input.data('variant-id');
-    var newQuantity = parseInt($input.val(), 10);
-
-    if (variantId !== giftVariantId) {
-      $.ajax({
-        type: 'POST',
-        url: '/cart/change.js',
-        data: { id: variantId, quantity: newQuantity },
-        dataType: 'json',
-        success: function(cart) {
-          updateCartTotals(cart);
-          checkAndUpdateGift();
-        }
-      });
-    }
-  });
-
-  // Prevent quantity changes for gift product
-  $(document).on('click', `.quantity-selector__button[data-variant-id="${giftVariantId}"]`, function(e) {
+  // Prevent any interaction with the gift product quantity
+  $(document).on('click change', `.quantity-selector__button[data-variant-id="${giftVariantId}"], input[name="updates[]"][data-variant-id="${giftVariantId}"]`, function(e) {
     e.preventDefault();
+    e.stopPropagation();
+    return false;
   });
 
 })(jQuery);
