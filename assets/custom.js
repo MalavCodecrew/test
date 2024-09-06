@@ -400,26 +400,26 @@ function updateCartUI() {
 }
 
 
-  // function renderCartItems(cart, container) {
-  //  $.getJSON('/cart.js', function(cart) {
-  //     $.ajax({
-  //       url: '/?section_id=main-cart-items', 
-  //       type: 'GET',
-  //       success: function(data) {
-  //         cartContainer.empty(); 
-  //         cartContainer.append(data);
-  //         console.log('Cart UI updated with section content');
-  //       },
-  //       error: function(xhr, status, error) {
-  //         console.error('Error fetching cart section:', xhr.responseText);
-  //       }
-  //     });
-  //   }).fail(function(xhr, status, error) {
-  //     console.error('Error fetching cart data for UI update:', xhr.responseText);
-  //   });
-  //   $('#cart-total').text('$' + (cart.total_price / 100).toFixed(2));
-  //   console.log('Cart UI updated');
-  // }
+  function renderCartItems(cart, container) {
+   $.getJSON('/cart.js', function(cart) {
+      $.ajax({
+        url: '/?section_id=main-cart-items', 
+        type: 'GET',
+        success: function(data) {
+          cartContainer.empty(); 
+          cartContainer.append(data);
+          console.log('Cart UI updated with section content');
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching cart section:', xhr.responseText);
+        }
+      });
+    }).fail(function(xhr, status, error) {
+      console.error('Error fetching cart data for UI update:', xhr.responseText);
+    });
+    $('#cart-total').text('$' + (cart.total_price / 100).toFixed(2));
+    console.log('Cart UI updated');
+  }
 
   function retryCheck(checksRemaining) {
     if (checksRemaining > 0) {
