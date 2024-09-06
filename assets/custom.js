@@ -364,6 +364,7 @@ $(document).ready(function() {
       },
       success: function(data) {
         console.log('Gift removed:', data);
+        isUpdating = false
         updateCartUI(data);
       },
       error: function(xhr, status, error) {
