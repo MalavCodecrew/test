@@ -444,11 +444,11 @@ function updateCartUI() {
       initializeCartCheck();
     });
   });
-  $(document).on('click', '.remove-item', function(e) {
-    e.preventDefault();
-    var variantId = $(this).data('variant-id');
-    updateGiftQuantity(variantId, 0, maxChecks);
-  });
+  // $(document).on('click', '.remove-item', function(e) {
+  //   e.preventDefault();
+  //   var variantId = $(this).data('variant-id');
+  //   updateGiftQuantity(variantId, 0, maxChecks);
+  // });
 
   $('form[action="/cart"]').on('submit', function(e) {
     e.preventDefault();
