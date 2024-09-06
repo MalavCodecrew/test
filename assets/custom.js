@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $(document).ready(function() {
   var isUpdating = false;
   var giftVariantId = 49055053381910; // Ensure this is correct for your store
-  var giftTitle = "Free Gift Product"; // Ensure this matches your gift product title exactly
+  var giftTitle = "Default Title"; // Ensure this matches your gift product title exactly
   var checkInterval = 1000; // Check every second
   var maxChecks = 5; // Maximum number of checks before giving up
 
