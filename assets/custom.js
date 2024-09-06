@@ -387,7 +387,7 @@ function updateCartUI() {
 
           // Loop through the cart items to find the product with the specific variant ID
           cart.items.forEach(function(item) {
-            if (item.variant_id === 49055053381910) { // Check for the specific variant ID
+            if (giftVariantId === 49055053381910) { // Check for the specific variant ID
               var productIdSelector = '[data-product-id="' + item.id + '"]'; // Adjust if necessary
               // Remove the quantity selector for the product with the specified variant ID
               tempDiv.find(productIdSelector).find('.quantity-selector').remove();
