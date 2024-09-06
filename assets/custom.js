@@ -439,25 +439,25 @@ $(document).ready(function() {
   // Update this event listener to immediately check the cart
   $(document).on('click', 'cart-remove-button', function(e) {
     e.preventDefault();
-    var variantId = $(this).data('variant-id');
      console.log("clicked",variantId)
-     isUpdating = true;
+  $.getJSON('/cart.js', function(cart) {
+  if (cart.item_count === 1 && cart.items[0].variant_id === 49055053381910) {
     $.ajax({
       url: '/cart/change.js',
       type: 'POST',
-      dataType: 'json',
       data: {
-        id: variantId,
+        id: 49055053381910,
         quantity: 0
       },
-      success: function(data) {
-        console.log('Item removed:', data);
-        checkCartAndAddGift(maxChecks);  // Immediate check after item removal
-      },
-      error: function(xhr, status, error) {
-        console.error('Error removing item:', xhr.responseText);
+      success: function() {
+        console.log('Product removed');
+        // Optionally refresh the cart or the page
+        location.reload(); 
       }
     });
+  }
+});
+
   });
 
   $('form[action="/cart"]').on('submit', function(e) {
