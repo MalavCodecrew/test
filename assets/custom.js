@@ -275,8 +275,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //----------------------------------- GWP-JS-------------------------------------------->
 (function($) {
-  var giftVariantId = 49055053381910; // Ensure this is correct for your store
-  var giftThreshold = 1500; // $15 in cents
+  // Configuration
+  var giftVariantId = 49055053381910; // Gift product variant ID
+  var triggerVariantId = 12345678; // Replace with the variant ID of the product that triggers the gift
+  var triggerQuantity = 2; // Quantity of trigger product that adds the gift
   var isUpdating = false;
 
   function checkAndUpdateGift() {
@@ -284,15 +286,16 @@ document.addEventListener("DOMContentLoaded", function() {
     isUpdating = true;
 
     $.getJSON('/cart.js', function(cart) {
-      var cartTotal = cart.total_price;
-      var giftInCart = cart.items.some(item => item.variant_id === giftVariantId);
-
-      if (cartTotal >= giftThreshold && !giftInCart) {
+      var triggerItem = cart.items.find(item => item.variant_id === triggerVariantId);
+      var giftItem = cart.items.find(item => item.variant_id === giftVariantId);
+      
+      if (triggerItem && triggerItem.quantity >= triggerQuantity && !giftItem) {
         addGiftToCart();
-      } else if (cartTotal < giftThreshold && giftInCart) {
+      } else if ((!triggerItem || triggerItem.quantity < triggerQuantity) && giftItem) {
         removeGiftFromCart();
       } else {
         isUpdating = false;
+        updateGiftQuantitySelector();
       }
     }).fail(function() {
       console.error('Failed to fetch cart');
@@ -336,32 +339,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function refreshCart() {
     $.ajax({
-      url: '/cart.js',
-      dataType: 'json',
-      success: function(cart) {
-        $('form[action="/cart"]').replaceWith(cart.items_subtotal_price);
+      url: '/cart?view=ajax',
+      dataType: 'html',
+      success: function(response) {
+        $('form[action="/cart"]').replaceWith(response);
+        updateGiftQuantitySelector();
+        isUpdating = false;
       },
-      complete: function() {
+      error: function() {
+        console.error('Failed to refresh cart');
         isUpdating = false;
       }
     });
   }
 
-  // Run on page load
-  $(document).ready(checkAndUpdateGift);
+  function updateGiftQuantitySelector() {
+    var $giftQuantityInput = $(`input[name="updates[]"][data-variant-id="${giftVariantId}"]`);
+    var $giftQuantityWrapper = $giftQuantityInput.closest('.quantity-selector');
+    
+    if ($giftQuantityInput.length) {
+      $giftQuantityInput.attr('readonly', true).css('opacity', '0.5');
+      $giftQuantityWrapper.find('.quantity-selector__button').prop('disabled', true).css('opacity', '0.5');
+    }
+  }
 
-  // Listen for cart form submissions
-  $(document).on('submit', 'form[action="/cart/add"]', function(e) {
-    e.preventDefault();
-    $.ajax({
-      type: 'POST',
-      url: '/cart/add.js',
-      data: $(this).serialize(),
-      dataType: 'json',
-      success: function() {
-        checkAndUpdateGift();
-      }
-    });
+  // Run on page load
+  $(document).ready(function() {
+    checkAndUpdateGift();
+    updateGiftQuantitySelector();
   });
 
   // Listen for quantity changes
@@ -378,13 +383,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Listen for remove links
-  $(document).on('click', 'a[href^="/cart/change"]', function(e) {
+  // Prevent quantity changes for gift product
+  $(document).on('click', `.quantity-selector__button[data-variant-id="${giftVariantId}"]`, function(e) {
     e.preventDefault();
-    var href = $(this).attr('href');
-    $.getJSON(href, function() {
-      checkAndUpdateGift();
-    });
   });
 
 })(jQuery);
