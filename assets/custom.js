@@ -390,7 +390,7 @@ function updateCartUI() {
 
           // Loop through the cart items to find products with price 0
           cart.items.forEach(function(item) {
-            if (item.price === 0) {
+            if (item.price == 0) {
               // Find the corresponding quantity selector in the fetched section and remove it
               var productIdSelector = '[data-product-id="' + item.id + '"]'; // Adjust this selector based on your HTML structure
               tempDiv.find(productIdSelector).find('.quantity-selector').remove();
