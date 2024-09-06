@@ -277,8 +277,7 @@ document.addEventListener("DOMContentLoaded", function() {
 (function($) {
   // Configuration
   var giftVariantId = 49055053381910; // Gift product variant ID
-  var triggerVariantId = 12345678; // Replace with the variant ID of the product that triggers the gift
-  var triggerQuantity = 2; // Quantity of trigger product that adds the gift
+  var giftThreshold = 1500; // $15 in cents
   var isUpdating = false;
 
   function checkAndUpdateGift() {
@@ -286,13 +285,13 @@ document.addEventListener("DOMContentLoaded", function() {
     isUpdating = true;
 
     $.getJSON('/cart.js', function(cart) {
-      var triggerItem = cart.items.find(item => item.variant_id === triggerVariantId);
+      var cartTotal = cart.total_price;
       var giftItem = cart.items.find(item => item.variant_id === giftVariantId);
       
-      if (triggerItem && triggerItem.quantity >= triggerQuantity && !giftItem) {
+      if (cartTotal >= giftThreshold && !giftItem) {
         addGiftToCart();
-      } else if ((!triggerItem || triggerItem.quantity < triggerQuantity) && giftItem) {
-        removeGiftFromCart();
+      } else if (giftItem && giftItem.quantity !== 1) {
+        updateGiftQuantity(1);
       } else {
         isUpdating = false;
         updateGiftQuantitySelector();
@@ -320,18 +319,18 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  function removeGiftFromCart() {
+  function updateGiftQuantity(quantity) {
     $.ajax({
       url: '/cart/change.js',
       type: 'POST',
       dataType: 'json',
-      data: { id: giftVariantId, quantity: 0 },
+      data: { id: giftVariantId, quantity: quantity },
       success: function() {
-        console.log('Gift removed from cart');
+        console.log('Gift quantity updated');
         refreshCart();
       },
       error: function() {
-        console.error('Failed to remove gift from cart');
+        console.error('Failed to update gift quantity');
         isUpdating = false;
       }
     });
