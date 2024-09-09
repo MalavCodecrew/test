@@ -33,6 +33,7 @@
         {{- 'general.continue_shopping' | t -}}
       </a>
       {% for item in cart.items %}
+        {{ item.product.tags }}
       {% endfor %}
     </div>
 
