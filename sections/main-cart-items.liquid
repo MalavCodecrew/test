@@ -32,13 +32,14 @@
       <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
         {{- 'general.continue_shopping' | t -}}
       </a>
-      <div class="discount-banner"></div>
-      {%- assign cart_total = cart.total_price | divided_by: 100 %}
-      {% for item in cart.items %}
-        {% if item.product.tags contains 'shoes' and cart_total > 20 %}
-          <p>Add any one Product form <a href="/collections/ilash">iLash collection </a> and get it for free</p>
-        {% endif %}
-      {% endfor %}
+      <div class="discount-banner">
+        {%- assign cart_total = cart.total_price | divided_by: 100 %}
+        {% for item in cart.items %}
+          {% if item.product.tags contains 'shoes' and cart_total > 20 %}
+            <a href="/collections/ilash">Claim a free Gift Here </a>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
 
     <div class="cart__warnings">
