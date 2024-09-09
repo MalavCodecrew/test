@@ -36,7 +36,7 @@
         {%- assign cart_total = cart.total_price | divided_by: 100 %}
         {% for item in cart.items %}
           {% if item.product.tags contains 'shoes' and cart_total > 20 %}
-            <a href="/collections/ilash">Claim a free Gift Here </a>
+            <a href="/products/ilash-collection-case-kit">Claim a free Gift Here </a>
           {% endif %}
         {% endfor %}
       </div>
