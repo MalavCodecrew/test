@@ -32,6 +32,8 @@
       <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
         {{- 'general.continue_shopping' | t -}}
       </a>
+      {%- assign cart_total = cart.total_price | divided_by: 100 %}
+      {{ cart_total }}
       {% for item in cart.items %}
         {% if item.product.tags contains 'shoes' %}
           <p>Add any one Product form <a href="/collections/ilash">iLash collection </a> and get it for free</p>
