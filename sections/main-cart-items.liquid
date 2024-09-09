@@ -33,7 +33,9 @@
         {{- 'general.continue_shopping' | t -}}
       </a>
       {% for item in cart.items %}
-        {{ item.product.tags }}
+        {% if item.product.tags contains 'shoes' %}
+          <p>Hello, this product is from the Shoes collection!</p>
+        {% endif %}
       {% endfor %}
     </div>
 
