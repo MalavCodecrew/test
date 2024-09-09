@@ -394,7 +394,7 @@ $(document).ready(function() {
             success: function(data) {
               cartContainer.empty();
               var tempDiv = $('<div>').html(data);
-              tempDiv.find('.title-wrapper-with-link').remove();
+              tempDiv.find('.title-wrapper-with-link', "discount-banner").remove();
               cartContainer.append(tempDiv.html());
               console.log('Cart UI updated, div and quantity selectors removed');
             },
