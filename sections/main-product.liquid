@@ -828,6 +828,8 @@
             {% render 'icon-close' %}
           </button>
           <div class="product-popup-modal__content-info">
+            {% if collection.title == 'iLash' %}
+            {% endif %}
             <h1 class="h2">{{ block.settings.page.title | escape }}</h1>
             {{ block.settings.page.content }}
             <h1 class="h2">{{ block.settings['page-1'].title | escape }}</h1>
