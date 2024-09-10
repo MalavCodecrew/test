@@ -527,7 +527,7 @@ $(document).ready(function() {
                         <a class="full-unstyled-link" href="${item.productUrl}">${item.productTitle}</a>
                     </h3>
                     <p>${item.productPrice}</p>
-    <button onclick="removeFromWishlist('${item.productTitle}')">Remove</button> 
+    // <button onclick="removeFromWishlist('${item.productTitle}')">Remove</button> 
                 </div>
             </div>
         `).join('');
