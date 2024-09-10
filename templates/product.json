@@ -36,6 +36,13 @@
             "product": "{{product}}"
           }
         },
+        "popup_eVMdLj": {
+          "type": "popup",
+          "settings": {
+            "text": "Size-Chart",
+            "page": "size-chart"
+          }
+        },
         "price": {
           "type": "price",
           "settings": {
@@ -76,13 +83,6 @@
           "settings": {
             "share_label": "Share"
           }
-        },
-        "popup_eVMdLj": {
-          "type": "popup",
-          "settings": {
-            "text": "Size-Chart",
-            "page": "size-chart"
-          }
         }
       },
       "block_order": [
@@ -90,14 +90,14 @@
         "title",
         "custom_liquid_EmmTNd",
         "klaviyo_reviews_average_rating_bwytTJ",
+        "popup_eVMdLj",
         "price",
         "variant_picker",
         "quantity_selector",
         "custom_liquid_JQ8Gt9",
         "buy_buttons",
         "description",
-        "share",
-        "popup_eVMdLj"
+        "share"
       ],
       "settings": {
         "enable_sticky_info": true,
