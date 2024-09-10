@@ -541,22 +541,14 @@
 
   function removeFromWishlist(productTitle) {
     let wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
-    
-    // Remove the product from the wishlist
     wishlistData = wishlistData.filter(item => item.productTitle !== productTitle);
-    
-    // Update the local storage
     localStorage.setItem('wishlist', JSON.stringify(wishlistData));
-    
-    // Refresh the wishlist UI
     displayWishlist();
 }
 
     function displayWishlist() {
     const wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
     const wishlistBlock = document.querySelector('.js-wishlistBlock');
-
-    // If wishlist is empty, clear the wishlist block
     if (wishlistData.length === 0) {
         if (wishlistBlock) {
             wishlistBlock.innerHTML = '<p>Your wishlist is empty</p>'; // Optionally show a message
