@@ -1,3 +1,4 @@
+{{ collection.title }}
 <section
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
@@ -828,7 +829,6 @@
             {% render 'icon-close' %}
           </button>
           <div class="product-popup-modal__content-info">
-            {{ collection.title }}
             {% if collection.title == 'iLash' %}
               <h1 class="h2">{{ block.settings.page.title | escape }}</h1>
               {{ block.settings.page.content }}
