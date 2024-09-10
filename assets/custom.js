@@ -533,22 +533,16 @@ $(document).ready(function() {
         `).join('');
 
         const wishlistBlock = document.querySelector('.js-wishlistBlock');
-
-        // Add a check to ensure the element is not null before setting innerHTML
         if (wishlistBlock) {
             wishlistBlock.innerHTML = wishlistHtml;
         } else {
             console.error('Element with class "js-wishlistBlock" not found');
         }
     }
-
-   // Execute this function on DOM content load
 document.addEventListener('DOMContentLoaded', function () {
-    // Fetch the wishlist data from localStorage
     const wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-    // Set the initial button text based on whether the product is in the wishlist or not
-    const wishlistButton = document.querySelector('.wishlist_button'); // Use querySelector instead of getElementsByClassName
+    const wishlistButton = document.querySelector('.wishlist_button'); 
     const productTitle = "{{ product.title }}";
     
     if (wishlistButton) {
@@ -571,7 +565,5 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.error('Element with class "wishlist_button" not found');
     }
-
-    // Display wishlist items
     displayWishlist();
 });
