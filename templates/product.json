@@ -80,7 +80,7 @@
         "popup_eVMdLj": {
           "type": "popup",
           "settings": {
-            "text": "Pop-up link text",
+            "text": "Size-Chart",
             "page": "size-chart"
           }
         }
