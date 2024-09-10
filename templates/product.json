@@ -40,7 +40,8 @@
           "type": "popup",
           "settings": {
             "text": "Size-Chart",
-            "page": "size-chart"
+            "page": "size-chart",
+            "page-1": "size-chart-shoes"
           }
         },
         "price": {
