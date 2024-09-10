@@ -587,7 +587,7 @@
                     aria-haspopup="dialog"
                   >
                     {%- for collection in product.collections %}
-                      {% if collection.handle == 'ilash' and 'shoes' %}
+                      {% if collection.handle == 'ilash' or collection.handle == 'shoes' %}
                         {{ block.settings.text | default: block.settings.page.title | escape }}
                       {% endif %}
                     {% endfor %}
