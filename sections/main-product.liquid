@@ -1,4 +1,5 @@
-{% for collection in product.collections %}
+{{ product.collections.first.handle -}}
+{%- for collection in product.collections %}
   {% if collection.handle == 'ilash' %}
     dddd
   {% endif %}
