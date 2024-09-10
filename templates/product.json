@@ -83,6 +83,13 @@
           "settings": {
             "share_label": "Share"
           }
+        },
+        "popup_wKphB6": {
+          "type": "popup",
+          "settings": {
+            "text": "Pop-up link text",
+            "page": ""
+          }
         }
       },
       "block_order": [
@@ -97,7 +104,8 @@
         "custom_liquid_JQ8Gt9",
         "buy_buttons",
         "description",
-        "share"
+        "share",
+        "popup_wKphB6"
       ],
       "settings": {
         "enable_sticky_info": true,
