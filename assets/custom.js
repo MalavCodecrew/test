@@ -462,6 +462,9 @@ $(document).ready(function() {
   $(document).on('cart:updated', initializeCartCheck);
 });
 
+
+
+
 // wishlist js--------------------------------------------------------->
     function toggleWishlist() {
         const pdpData = {
