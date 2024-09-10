@@ -552,36 +552,41 @@
     displayWishlist();
 }
 
-    function displayWishlist(pdpData) {
-        const wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
-        
-        if (wishlistData.length === 0) {
-            console.log('Wishlist is empty');
-            return;
-        }
+    function displayWishlist() {
+    const wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const wishlistBlock = document.querySelector('.js-wishlistBlock');
 
-        const wishlistHtml = wishlistData.map(item => `
-            <div class="wishlist-product__list">
-                <div class="c-product">
+    // If wishlist is empty, clear the wishlist block
+    if (wishlistData.length === 0) {
+        if (wishlistBlock) {
+            wishlistBlock.innerHTML = '<p>Your wishlist is empty</p>'; // Optionally show a message
+        }
+        return;
+    }
+
+    const wishlistHtml = wishlistData.map(item => `
+        <div class="wishlist-product__list">
+            <div class="c-product">
                 <a href="${item.productUrl}">
                     <img src="${item.productImg}" alt="${item.productTitle}">
-                    </a>
-                    <h3 class="c-product__title card__heading h5">
-                        <a class="full-unstyled-link" href="${item.productUrl}">${item.productTitle}</a>
-                    </h3>
-                    <p>${item.productPrice}</p>
-    <button onclick="removeFromWishlist('${item.productTitle}')">Remove</button> 
-                </div>
+                </a>
+                <h3 class="c-product__title card__heading h5">
+                    <a class="full-unstyled-link" href="${item.productUrl}">${item.productTitle}</a>
+                </h3>
+                <p>${item.productPrice}</p>
+                <button onclick="removeFromWishlist('${item.productTitle}')">Remove</button> 
             </div>
-        `).join('');
+        </div>
+    `).join('');
 
-        const wishlistBlock = document.querySelector('.js-wishlistBlock');
-        if (wishlistBlock) {
-            wishlistBlock.innerHTML = wishlistHtml;
-        } else {
-            console.error('Element with class "js-wishlistBlock" not found');
-        }
+    // Update the wishlist block with new content
+    if (wishlistBlock) {
+        wishlistBlock.innerHTML = wishlistHtml;
+    } else {
+        console.error('Element with class "js-wishlistBlock" not found');
     }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
 
