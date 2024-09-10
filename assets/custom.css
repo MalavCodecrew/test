@@ -677,3 +677,10 @@ button.product-btn-test {
   margin-top: 10px;
   position: relative;
 }
+.wishlist-remove-btn {
+  background: red;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 10px;
+}
