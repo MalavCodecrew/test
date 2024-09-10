@@ -683,4 +683,5 @@ button.product-btn-test {
   color: white;
   padding: 8px 16px;
   border-radius: 10px;
+  cursor: pointer;
 }
