@@ -586,7 +586,11 @@
                     type="button"
                     aria-haspopup="dialog"
                   >
-                    {{ block.settings.text | default: block.settings.page.title | escape }}
+                    {%- for collection in product.collections %}
+                      {% if collection.handle == 'ilash' and 'shoes' %}
+                        {{ block.settings.text | default: block.settings.page.title | escape }}
+                      {% endif %}
+                    {% endfor %}
                   </button>
                 </modal-opener>
 
