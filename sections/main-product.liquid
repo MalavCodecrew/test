@@ -835,8 +835,12 @@
               {% endif %}
             {% endfor %}
 
-            <h1 class="h2">{{ block.settings['page-1'].title | escape }}</h1>
-            {{ block.settings['page-1'].content }}
+            {%- for collection in product.collections %}
+              {% if collection.handle == 'shoes' %}
+                <h1 class="h2">{{ block.settings['page-1'].title | escape }}</h1>
+                {{ block.settings['page-1'].content }}
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
       </modal-dialog>
