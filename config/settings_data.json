@@ -225,6 +225,12 @@
         "disabled": true,
         "settings": {
         }
+      },
+      "17828154360508871270": {
+        "type": "shopify:\/\/apps\/scriptinjector\/blocks\/front_script\/3d325123-1cba-4c06-9955-d7a555188c9c",
+        "disabled": false,
+        "settings": {
+        }
       }
     },
     "color_schemes": {
