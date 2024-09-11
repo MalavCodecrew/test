@@ -688,11 +688,12 @@ button.product-btn-test {
 
 /* size-chart-popup------------------------------------------------> */
 select#country-select {
-  height: auto;
+  height: 40px;
   margin: 0 auto;
   max-width: 100%;
-  width: 100px;
+  width: 150px;
   padding: 3px 5px;
+  font-size: 15px;
 }
 #size-table table {
   width: 100%;
