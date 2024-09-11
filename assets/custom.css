@@ -715,3 +715,6 @@ td {
 #size-table tr td:nth-child(even) {
   background-color: #ffffff;
 }
+input#cm-table {
+  accent-color: black;
+}
