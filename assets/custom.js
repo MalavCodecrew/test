@@ -465,77 +465,86 @@ $(document).ready(function() {
 
 
 // size-chart-table-js---------------------------------------->
-      let isCm = true; // Flag to track current unit (true: cm, false: in)
+let isCm = true; // Flag to track current unit (true: cm, false: in)
 
-      const countryData = {
-        "Russia": {
-          "cm": ["40", "42", "44", "46", "48", "50"],
-          "in": [convertToInches("40"), convertToInches("42"), convertToInches("44"), convertToInches("46"), convertToInches("48"), convertToInches("50")]
-        },
-        "India": {
-          "cm": ["36", "38", "40", "42", "44", "46"],
-          "in": [convertToInches("36"), convertToInches("38"), convertToInches("40"), convertToInches("42"), convertToInches("44"), convertToInches("46")]
-        },
-        "US": {
-          "cm": ["2", "4", "6", "8", "10", "12"],
-          "in": [convertToInches("2"), convertToInches("4"), convertToInches("6"), convertToInches("8"), convertToInches("10"), convertToInches("12")]
-        }
-      };
+const countryData = {
+  "Russia": {
+    "cm": ["40", "42", "44", "46", "48", "50"],
+    "in": [convertToInches("40"), convertToInches("42"), convertToInches("44"), convertToInches("46"), convertToInches("48"), convertToInches("50")]
+  },
+  "India": {
+    "cm": ["36", "38", "40", "42", "44", "46"],
+    "in": [convertToInches("36"), convertToInches("38"), convertToInches("40"), convertToInches("42"), convertToInches("44"), convertToInches("46")]
+  },
+  "US": {
+    "cm": ["2", "4", "6", "8", "10", "12"],
+    "in": [convertToInches("2"), convertToInches("4"), convertToInches("6"), convertToInches("8"), convertToInches("10"), convertToInches("12")]
+  }
+};
 
-      function updateCountryRow() {
-        const countrySelect = document.getElementById("country-select");
-        const selectedCountry = countrySelect.value;
-        const countryRow = document.getElementById("country-row");
+// Function to update the country row based on the selected country and current unit
+function updateCountryRow() {
+  const countrySelect = document.getElementById("country-select");
+  const selectedCountry = countrySelect.value;
+  const countryRow = document.getElementById("country-row");
 
-        // Update the row with selected country sizes based on current unit
-        let unit = isCm ? "cm" : "in";
-        let sizes = countryData[selectedCountry][unit];
+  // Update the row with selected country sizes based on current unit
+  let unit = isCm ? "cm" : "in";
+  let sizes = countryData[selectedCountry][unit];
 
-        countryRow.cells[0].innerText = selectedCountry.toUpperCase();
-        for (let i = 1; i < countryRow.cells.length; i++) {
-          countryRow.cells[i].innerText = sizes[i - 1];
-        }
+  countryRow.cells[0].innerText = selectedCountry.toUpperCase();
+  for (let i = 1; i < countryRow.cells.length; i++) {
+    countryRow.cells[i].innerText = sizes[i - 1];
+  }
+}
+
+// Function to convert sizes for the entire table (both country and other rows)
+function convertSizes(unit) {
+  // Update flag first before conversion
+  isCm = (unit === "cm");
+  
+  // Convert other size rows (waist, hip, bust, sleeve length)
+  const sizeRows = document.querySelectorAll(".size-row");
+  sizeRows.forEach(row => {
+    for (let i = 1; i < row.cells.length; i++) {
+      let sizeValue = row.cells[i].innerText;
+
+      // Convert sizes based on selected unit
+      if (unit === "in") {
+        row.cells[i].innerText = convertToInches(sizeValue);
+      } else if (unit === "cm") {
+        row.cells[i].innerText = convertToCm(sizeValue);
       }
+    }
+  });
 
-      function convertSizes(unit) {
-        // Update flag first before conversion
-        isCm = (unit === "cm");
+  // Convert country sizes as well after the size row conversion
+  updateCountryRow();
+}
 
-        const sizeRows = document.querySelectorAll(".size-row");
+// Function to convert from centimeters to inches
+function convertToInches(sizeValue) {
+  if (sizeValue.includes("-")) {
+    let sizes = sizeValue.split("-");
+    return sizes.map(cm => (cm / 2.54).toFixed(1)).join("-");
+  } else {
+    return (sizeValue / 2.54).toFixed(1);
+  }
+}
 
-        // Loop through each size row and convert
-        sizeRows.forEach(row => {
-          for (let i = 1; i < row.cells.length; i++) {
-            let sizeValue = row.cells[i].innerText;
+// Function to convert from inches to centimeters
+function convertToCm(sizeValue) {
+  if (sizeValue.includes("-")) {
+    let sizes = sizeValue.split("-");
+    return sizes.map(inch => (inch * 2.54).toFixed(0)).join("-");
+  } else {
+    return (sizeValue * 2.54).toFixed(0);
+  }
+}
 
-            // Convert sizes based on selected unit
-            if (unit === "in" && isCm) {
-              row.cells[i].innerText = convertToInches(sizeValue);
-            } else if (unit === "cm" && !isCm) {
-              row.cells[i].innerText = convertToCm(sizeValue);
-            }
-          }
-        });
+// Initial setup to ensure correct unit and country display when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+  updateCountryRow();  // Display country row with current units
+});
 
-        // Convert country sizes as well
-        updateCountryRow();
-      }
-
-      function convertToInches(sizeValue) {
-        if (sizeValue.includes("-")) {
-          let sizes = sizeValue.split("-");
-          return sizes.map(cm => (cm / 2.54).toFixed(1)).join("-");
-        } else {
-          return (sizeValue / 2.54).toFixed(1);
-        }
-      }
-
-      function convertToCm(sizeValue) {
-        if (sizeValue.includes("-")) {
-          let sizes = sizeValue.split("-");
-          return sizes.map(inch => (inch * 2.54).toFixed(0)).join("-");
-        } else {
-          return (sizeValue * 2.54).toFixed(0);
-        }
-      }
  
