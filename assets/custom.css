@@ -721,3 +721,9 @@ input#cm-table {
 input#in-table {
   accent-color: black;
 }
+.table-unit-convert {
+  margin-top: 15px;
+  gap: 10px;
+  display: flex;
+  margin-bottom: 10px;
+}
