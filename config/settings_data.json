@@ -173,12 +173,6 @@
         "settings": {
         }
       },
-      "16257672959480466561": {
-        "type": "shopify:\/\/apps\/chatnest-stay-in-touch\/blocks\/whatsapp_chat_icon\/2cf195f2-d40f-4ac1-bfb3-67027dc724f5",
-        "disabled": false,
-        "settings": {
-        }
-      },
       "3720565183479497137": {
         "type": "shopify:\/\/apps\/globo-product-option\/blocks\/app-embed-block\/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
         "disabled": false,
@@ -226,9 +220,9 @@
         "settings": {
         }
       },
-      "17828154360508871270": {
-        "type": "shopify:\/\/apps\/scriptinjector\/blocks\/front_script\/3d325123-1cba-4c06-9955-d7a555188c9c",
-        "disabled": false,
+      "16257672959480466561": {
+        "type": "shopify:\/\/apps\/chatnest-stay-in-touch\/blocks\/whatsapp_chat_icon\/2cf195f2-d40f-4ac1-bfb3-67027dc724f5",
+        "disabled": true,
         "settings": {
         }
       }
