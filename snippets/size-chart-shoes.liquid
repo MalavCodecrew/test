@@ -1,60 +1,119 @@
-<table border="1" cellspacing="0" cellpadding="10">
-  <thead>
-    <tr>
-      <th>SIZE</th>
-      <th>XXS</th>
-      <th>XS</th>
-      <th>S</th>
-      <th>M</th>
-      <th>L</th>
-      <th>XL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>RUSSIA</td>
-      <td>40</td>
-      <td>42</td>
-      <td>44</td>
-      <td>46</td>
-      <td>48</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <td>WAIST CM</td>
-      <td>62</td>
-      <td>66</td>
-      <td>70-72</td>
-      <td>74-78</td>
-      <td>78-82</td>
-      <td>86-90</td>
-    </tr>
-    <tr>
-      <td>HIP CM</td>
-      <td>88</td>
-      <td>92</td>
-      <td>96-98</td>
-      <td>100-104</td>
-      <td>104-108</td>
-      <td>112-116</td>
-    </tr>
-    <tr>
-      <td>BUST CM</td>
-      <td>82</td>
-      <td>86</td>
-      <td>90-92</td>
-      <td>94-98</td>
-      <td>98-102</td>
-      <td>106-110</td>
-    </tr>
-    <tr>
-      <td>SLEEVE LENGTH CM</td>
-      <td>55</td>
-      <td>57</td>
-      <td>58</td>
-      <td>58</td>
-      <td>59</td>
-      <td>59</td>
-    </tr>
-  </tbody>
-</table>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Size Table</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid #000;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #000;
+        color: #fff;
+      }
+      td {
+        background-color: #f3f3f3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dropdown for Country Selection -->
+    <label for="country-select">Select Country: </label>
+    <select id="country-select" onchange="updateCountryRow()">
+      <option value="Russia">Russia</option>
+      <option value="India">India</option>
+      <option value="US">US</option>
+    </select>
+
+    <!-- Size Table -->
+    <table id="size-table">
+      <thead>
+        <tr>
+          <th>SIZE</th>
+          <th>XXS</th>
+          <th>XS</th>
+          <th>S</th>
+          <th>M</th>
+          <th>L</th>
+          <th>XL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="country-row">
+          <td>RUSSIA</td>
+          <td>40</td>
+          <td>42</td>
+          <td>44</td>
+          <td>46</td>
+          <td>48</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>WAIST CM</td>
+          <td>62</td>
+          <td>66</td>
+          <td>70-72</td>
+          <td>74-78</td>
+          <td>78-82</td>
+          <td>86-90</td>
+        </tr>
+        <tr>
+          <td>HIP CM</td>
+          <td>88</td>
+          <td>92</td>
+          <td>96-98</td>
+          <td>100-104</td>
+          <td>104-108</td>
+          <td>112-116</td>
+        </tr>
+        <tr>
+          <td>BUST CM</td>
+          <td>82</td>
+          <td>86</td>
+          <td>90-92</td>
+          <td>94-98</td>
+          <td>98-102</td>
+          <td>106-110</td>
+        </tr>
+        <tr>
+          <td>SLEEVE LENGTH CM</td>
+          <td>55</td>
+          <td>57</td>
+          <td>58</td>
+          <td>58</td>
+          <td>59</td>
+          <td>59</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      function updateCountryRow() {
+        const countrySelect = document.getElementById("country-select");
+        const selectedCountry = countrySelect.value;
+        const countryRow = document.getElementById("country-row");
+
+        // Replace values based on selected country
+        let countryData = {
+          "Russia": ["40", "42", "44", "46", "48", "50"],
+          "India": ["36", "38", "40", "42", "44", "46"],
+          "US": ["2", "4", "6", "8", "10", "12"]
+        };
+
+        // Update the row with selected country
+        countryRow.cells[0].innerText = selectedCountry.toUpperCase();
+        let sizes = countryData[selectedCountry];
+        for (let i = 1; i < countryRow.cells.length; i++) {
+          countryRow.cells[i].innerText = sizes[i - 1];
+        }
+      }
+    </script>
+  </body>
+</html>
