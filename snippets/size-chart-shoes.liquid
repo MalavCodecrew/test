@@ -100,14 +100,12 @@
         const selectedCountry = countrySelect.value;
         const countryRow = document.getElementById("country-row");
 
-        // Replace values based on selected country
         let countryData = {
           "Russia": ["40", "42", "44", "46", "48", "50"],
           "India": ["36", "38", "40", "42", "44", "46"],
           "US": ["2", "4", "6", "8", "10", "12"]
         };
 
-        // Update the row with selected country
         countryRow.cells[0].innerText = selectedCountry.toUpperCase();
         let sizes = countryData[selectedCountry];
         for (let i = 1; i < countryRow.cells.length; i++) {
