@@ -24,21 +24,17 @@
     </style>
   </head>
   <body>
-    <!-- Dropdown for Country Selection -->
     <label for="country-select">Select Country: </label>
     <select id="country-select" onchange="updateCountryRow()">
       <option value="Russia">Russia</option>
       <option value="India">India</option>
       <option value="US">US</option>
     </select>
-
-    <!-- Radio Buttons for Unit Selection -->
     <div>
       <label><input type="radio" name="unit" value="cm" checked onclick="convertSizes('cm')"> Centimeters (CM)</label>
       <label><input type="radio" name="unit" value="in" onclick="convertSizes('in')"> Inches (IN)</label>
     </div>
 
-    <!-- Size Table -->
     <table id="size-table">
       <thead>
         <tr>
