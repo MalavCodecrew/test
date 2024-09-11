@@ -8,8 +8,12 @@
     </select>
 
     <div>
-      <label id="cm-table"><input type="radio" name="unit" value="cm" checked onclick="convertSizes('cm')">CM</label>
-      <label id="in-table"><input type="radio" name="unit" value="in" onclick="convertSizes('in')">INCH</label>
+      <label for="cm-table"
+        ><input type="radio" id="cm-table" name="unit" value="cm" checked onclick="convertSizes('cm')">CM</label
+      >
+      <label for="in-table"
+        ><input type="radio" id="in-table" name="unit" value="in" onclick="convertSizes('in')">INCH</label
+      >
     </div>
 
     <table id="size-table">
