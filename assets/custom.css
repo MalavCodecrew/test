@@ -700,7 +700,7 @@ select#country-select {
 }
 #size-table th,
 td {
-  border: 1px solid #000;
+  border: 1px solid gray;
   padding: 10px;
   text-align: center;
 }
@@ -713,10 +713,4 @@ td {
 }
 #size-table tr td:nth-child(even) {
   background-color: #ffffff;
-}
-#size-table table tr td {
-  border: 1px solid gray;
-}
-#size-table table tr th {
-  border: 1px solid gray;
 }
