@@ -466,7 +466,7 @@ $(document).ready(function() {
 
 // size-chart-table-js---------------------------------------->
 
- let isCm = true; // Flag to track current unit (true: cm, false: in)
+ let isCm = true;
 
       function updateCountryRow() {
         const countrySelect = document.getElementById("country-select");
@@ -479,7 +479,6 @@ $(document).ready(function() {
           "US": ["2", "4", "6", "8", "10", "12"]
         };
 
-        // Update the row with selected country sizes
         countryRow.cells[0].innerText = selectedCountry.toUpperCase();
         let sizes = countryData[selectedCountry];
         for (let i = 1; i < countryRow.cells.length; i++) {
@@ -490,13 +489,11 @@ $(document).ready(function() {
       function convertSizes(unit) {
         const sizeRows = document.querySelectorAll(".size-row");
 
-        // Loop through each size row
         sizeRows.forEach(row => {
           let type = row.getAttribute("data-type");
           for (let i = 1; i < row.cells.length; i++) {
             let sizeValue = row.cells[i].innerText;
 
-            // Convert sizes based on selected unit
             if (unit === "in" && isCm) {
               row.cells[i].innerText = convertToInches(sizeValue);
             } else if (unit === "cm" && !isCm) {
@@ -508,7 +505,6 @@ $(document).ready(function() {
       }
 
       function convertToInches(sizeValue) {
-        // Split values in case of range (e.g., "70-72")
         if (sizeValue.includes("-")) {
           let sizes = sizeValue.split("-");
           return sizes.map(cm => (cm / 2.54).toFixed(1)).join("-");
@@ -518,7 +514,6 @@ $(document).ready(function() {
       }
 
       function convertToCm(sizeValue) {
-        // Split values in case of range (e.g., "70-72")
         if (sizeValue.includes("-")) {
           let sizes = sizeValue.split("-");
           return sizes.map(inch => (inch * 2.54).toFixed(0)).join("-");
