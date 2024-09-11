@@ -694,9 +694,6 @@ select#country-select {
   width: 100px;
   padding: 3px 5px;
 }
-#size-table tr + tr td:nth-child(even) {
-  background-color: #ffffff;
-}
 #size-table table {
   width: 100%;
   border-collapse: collapse;
@@ -713,4 +710,7 @@ td {
 }
 #size-table td {
   background-color: #f3f3f3;
+}
+#size-table tr + tr td:nth-child(even) {
+  background-color: #ffffff;
 }
