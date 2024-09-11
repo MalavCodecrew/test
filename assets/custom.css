@@ -685,3 +685,12 @@ button.product-btn-test {
   border-radius: 10px;
   cursor: pointer;
 }
+
+/* size-chart-popup------------------------------------------------> */
+select#country-select {
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100px;
+  padding: 3px 5px;
+}
