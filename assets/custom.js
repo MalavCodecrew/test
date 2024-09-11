@@ -465,7 +465,7 @@ $(document).ready(function() {
 
 
 // size-chart-table-js---------------------------------------->
-let isCm = true; // Flag to track current unit (true: cm, false: in)
+let isCm = true; 
 
 const countryData = {
   "Russia": {
@@ -482,13 +482,11 @@ const countryData = {
   }
 };
 
-// Function to update the country row based on the selected country and current unit
 function updateCountryRow() {
   const countrySelect = document.getElementById("country-select");
   const selectedCountry = countrySelect.value;
   const countryRow = document.getElementById("country-row");
 
-  // Update the row with selected country sizes based on current unit
   let unit = isCm ? "cm" : "in";
   let sizes = countryData[selectedCountry][unit];
 
@@ -498,18 +496,14 @@ function updateCountryRow() {
   }
 }
 
-// Function to convert sizes for the entire table (both country and other rows)
 function convertSizes(unit) {
-  // Update flag first before conversion
   isCm = (unit === "cm");
   
-  // Convert other size rows (waist, hip, bust, sleeve length)
   const sizeRows = document.querySelectorAll(".size-row");
   sizeRows.forEach(row => {
     for (let i = 1; i < row.cells.length; i++) {
       let sizeValue = row.cells[i].innerText;
 
-      // Convert sizes based on selected unit
       if (unit === "in") {
         row.cells[i].innerText = convertToInches(sizeValue);
       } else if (unit === "cm") {
@@ -518,11 +512,9 @@ function convertSizes(unit) {
     }
   });
 
-  // Convert country sizes as well after the size row conversion
   updateCountryRow();
 }
 
-// Function to convert from centimeters to inches
 function convertToInches(sizeValue) {
   if (sizeValue.includes("-")) {
     let sizes = sizeValue.split("-");
@@ -532,7 +524,6 @@ function convertToInches(sizeValue) {
   }
 }
 
-// Function to convert from inches to centimeters
 function convertToCm(sizeValue) {
   if (sizeValue.includes("-")) {
     let sizes = sizeValue.split("-");
@@ -542,9 +533,8 @@ function convertToCm(sizeValue) {
   }
 }
 
-// Initial setup to ensure correct unit and country display when the page loads
 document.addEventListener("DOMContentLoaded", function() {
-  updateCountryRow();  // Display country row with current units
+  updateCountryRow();
 });
 
  
