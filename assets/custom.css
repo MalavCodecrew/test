@@ -694,3 +694,6 @@ select#country-select {
   width: 100px;
   padding: 3px 5px;
 }
+#sizeGuideTable tr + tr td:nth-child(even) {
+  background-color: #ffffff;
+}
