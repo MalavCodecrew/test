@@ -464,6 +464,65 @@ $(document).ready(function() {
 
 
 
+// size-chart-table-js---------------------------------------->
 
+ let isCm = true; // Flag to track current unit (true: cm, false: in)
 
+      function updateCountryRow() {
+        const countrySelect = document.getElementById("country-select");
+        const selectedCountry = countrySelect.value;
+        const countryRow = document.getElementById("country-row");
 
+        let countryData = {
+          "Russia": ["40", "42", "44", "46", "48", "50"],
+          "India": ["36", "38", "40", "42", "44", "46"],
+          "US": ["2", "4", "6", "8", "10", "12"]
+        };
+
+        // Update the row with selected country sizes
+        countryRow.cells[0].innerText = selectedCountry.toUpperCase();
+        let sizes = countryData[selectedCountry];
+        for (let i = 1; i < countryRow.cells.length; i++) {
+          countryRow.cells[i].innerText = sizes[i - 1];
+        }
+      }
+
+      function convertSizes(unit) {
+        const sizeRows = document.querySelectorAll(".size-row");
+
+        // Loop through each size row
+        sizeRows.forEach(row => {
+          let type = row.getAttribute("data-type");
+          for (let i = 1; i < row.cells.length; i++) {
+            let sizeValue = row.cells[i].innerText;
+
+            // Convert sizes based on selected unit
+            if (unit === "in" && isCm) {
+              row.cells[i].innerText = convertToInches(sizeValue);
+            } else if (unit === "cm" && !isCm) {
+              row.cells[i].innerText = convertToCm(sizeValue);
+            }
+          }
+        });
+        isCm = unit === "cm";
+      }
+
+      function convertToInches(sizeValue) {
+        // Split values in case of range (e.g., "70-72")
+        if (sizeValue.includes("-")) {
+          let sizes = sizeValue.split("-");
+          return sizes.map(cm => (cm / 2.54).toFixed(1)).join("-");
+        } else {
+          return (sizeValue / 2.54).toFixed(1);
+        }
+      }
+
+      function convertToCm(sizeValue) {
+        // Split values in case of range (e.g., "70-72")
+        if (sizeValue.includes("-")) {
+          let sizes = sizeValue.split("-");
+          return sizes.map(inch => (inch * 2.54).toFixed(0)).join("-");
+        } else {
+          return (sizeValue * 2.54).toFixed(0);
+        }
+      }
