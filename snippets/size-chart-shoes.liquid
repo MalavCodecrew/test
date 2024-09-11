@@ -135,13 +135,12 @@
 
       function convertSizes(unit) {
         // Update flag first before conversion
-        isCm = unit === "cm";
+        isCm = (unit === "cm");
 
         const sizeRows = document.querySelectorAll(".size-row");
 
         // Loop through each size row and convert
         sizeRows.forEach(row => {
-          let type = row.getAttribute("data-type");
           for (let i = 1; i < row.cells.length; i++) {
             let sizeValue = row.cells[i].innerText;
 
