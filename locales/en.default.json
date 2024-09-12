@@ -9,8 +9,9 @@
 */
 {
   "general": {
-    "password_page6666": {
+    "password_page": {
       "login_form_heading": "Enter store using password:",
+      "login_form_heading1": "Enter store using password:1",
       "login_password_button": "Enter using password",
       "login_form_password_label": "Password",
       "login_form_password_placeholder": "Your password",
