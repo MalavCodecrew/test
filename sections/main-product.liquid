@@ -1,5 +1,5 @@
 {% assign vat_rate = 'general.price_vat.price-rate' | t %}
-{{ vat_rate }}
+{% assign vat111 = vat_rate | divided_by: 100 %}
 <section
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
