@@ -67,6 +67,11 @@
       "next_slide": "Slide right",
       "previous_slide": "Slide left",
       "name": "Slider"
+    },
+    "vat": {
+      "price_vat": {
+        "price-rate": "0.2"
+      }
     }
   },
   "newsletter": {
