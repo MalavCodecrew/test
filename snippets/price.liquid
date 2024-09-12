@@ -37,8 +37,8 @@
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
 -%}
-{% assign price_rate = 'general.price_vat.price-rate' | t %}
-{% assign vat_rate = price_rate %}
+
+{% assign vat_rate = 'general.price_vat.price-rate' | t %}
 <div
   class="
     price
