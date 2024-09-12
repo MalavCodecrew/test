@@ -38,7 +38,7 @@
   endif
 -%}
 
-{% assign vat_rate = 'general.price_vat.price-rate' | t %}
+{% assign vat_rate = 'general.price_vat.price-rate' | t | divided_by: 100 %}
 <div
   class="
     price
@@ -61,7 +61,7 @@
         {%- if show_compare_at_price and compare_at_price -%}
           {%- unless product.price_varies == false and product.compare_at_price_varies %}
             <span class="visually-hidden visually-hidden--inline">
-              {{- 'products.product.price.regular_price' | t | divided_by: 100 -}}
+              {{- 'products.product.price.regular_price' | t -}}
             </span>
             <span>
               <s
