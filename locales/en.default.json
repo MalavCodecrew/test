@@ -21,7 +21,7 @@
     },
     "vat": {
       "price_vat": {
-        "price-rate": "Enter store using password:"
+        "price-rate": "0.5"
       }
     },
     "social": {
