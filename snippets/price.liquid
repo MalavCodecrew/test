@@ -37,7 +37,7 @@
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
 -%}
-
+{% assign vat_rate = 0.5 %}
 <div
   class="
     price
@@ -97,7 +97,7 @@
         <div class="regularwithvat">{{ vat_incl_price_money }}</div>
       {%- endif -%}
     </div>
-    {% assign vat_rate = 0.5 %}
+
     {% assign vat_excl_price = product.price | money %}
     {% assign vat_incl_price = product.price | times: vat_rate | plus: product.price | money %}
     {% assign vat_excl_price_compare = compare_at_price | money %}
