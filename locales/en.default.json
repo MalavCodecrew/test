@@ -20,7 +20,7 @@
       "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
     },
     "price_vat": {
-      "price-rate": "0.2"
+      "price-rate": "20"
     },
     "social": {
       "alt_text": {
