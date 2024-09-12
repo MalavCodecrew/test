@@ -84,8 +84,8 @@
           {{- 'products.product.volume_pricing.price_range' | t: minimum: money_price_min, maximum: money_price_max -}}
         </span>
       {%- else -%}
-        {% assign vat_excl_price_money = price | money %}
-        {% assign vat_incl_price_money = price | times: vat_rate | plus: price | money %}
+        {% assign vat_excl_price_money = price | money_with_currency %}
+        {% assign vat_incl_price_money = price | times: vat_rate | plus: price | money_with_currency %}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         <div class="regularwithoutvat">
           <span
@@ -100,10 +100,14 @@
       {%- endif -%}
     </div>
 
-    {% assign vat_excl_price = product.price | money %}
-    {% assign vat_incl_price = product.price | times: vat_rate | plus: product.price | money %}
-    {% assign vat_excl_price_compare = compare_at_price | money %}
-    {% assign vat_incl_price_compare = compare_at_price | times: vat_rate | plus: compare_at_price | money %}
+    {% assign vat_excl_price = product.price | money_with_currency %}
+    {% assign vat_incl_price = product.price | times: vat_rate | plus: product.price | money_with_currency %}
+    {% assign vat_excl_price_compare = compare_at_price | money_with_currency %}
+    {% assign vat_incl_price_compare = compare_at_price
+      | times: vat_rate
+      | plus: compare_at_price
+      | money_with_currency
+    %}
     <div class="price__sale">
       {%- unless product.price_varies == false and product.compare_at_price_varies %}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
