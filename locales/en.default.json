@@ -11,7 +11,6 @@
   "general": {
     "password_page": {
       "login_form_heading": "Enter store using password:",
-      "login_form_heading1": "Enter store using password:1",
       "login_password_button": "Enter using password",
       "login_form_password_label": "Password",
       "login_form_password_placeholder": "Your password",
@@ -19,6 +18,11 @@
       "login_form_submit": "Enter",
       "admin_link_html": "Are you the store owner? <a href=\"\/admin\" class=\"link underlined-link\">Log in here<\/a>",
       "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
+    },
+    "vat": {
+      "price_vat": {
+        "price-rate": "Enter store using password:"
+      }
     },
     "social": {
       "alt_text": {
