@@ -154,7 +154,7 @@
           "label": "Logo"
         },
         "logo_width": {
-          "label": "Desktop logo widt",
+          "label": "Desktop logo width",
           "info": "Logo width is automatically optimized for mobile."
         },
         "favicon": {
