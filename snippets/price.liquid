@@ -97,10 +97,11 @@
         <div class="regularwithvat">{{ vat_incl_price_money }}</div>
       {%- endif -%}
     </div>
+    {% assign vat_rate = 0.5 %}
     {% assign vat_excl_price = product.price | money %}
-    {% assign vat_incl_price = product.price | times: 0.2 | plus: product.price | money %}
+    {% assign vat_incl_price = product.price | times: vat_rate | plus: product.price | money %}
     {% assign vat_excl_price_compare = compare_at_price | money %}
-    {% assign vat_incl_price_compare = compare_at_price | times: 0.2 | plus: compare_at_price | money %}
+    {% assign vat_incl_price_compare = compare_at_price | times: vat_rate | plus: compare_at_price | money %}
     <div class="price__sale">
       {%- unless product.price_varies == false and product.compare_at_price_varies %}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
