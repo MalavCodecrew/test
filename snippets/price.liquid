@@ -90,8 +90,8 @@
         <div class="regularwithoutvat">
           <span
             class="price-item price-item--regular taax"
-            incleprice="{{ vat_incl_price_money }}"
-            excleprice="{{ vat_excl_price_money }}"
+            incleprice="{{ vat_incl_price_money  | money_with_currency }}"
+            excleprice="{{ vat_excl_price_money | money_with_currency }}"
           >
             {{ money_price }}
           </span>
@@ -118,7 +118,7 @@
                 {{ compare_at_price | money }}
               {% endif %}
             </div>
-            <div class="compareincludevat">{{ vat_incl_price_compare }}</div>
+            <div class="compareincludevat">{{ vat_incl_price_compare | money_with_currency }}</div>
           </s>
         </span>
       {%- endunless -%}
@@ -126,7 +126,7 @@
       <span class="price-item price-item--sale price-item--last">
         <div class="moneywithoutvat">{{ money_price }}</div>
         <div class="includevat">
-          {{ vat_incl_price }}
+          {{ vat_incl_price | money_with_currency }}
         </div>
       </span>
     </div>
