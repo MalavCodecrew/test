@@ -83,7 +83,7 @@
         </span>
       {%- else -%}
         {% assign vat_excl_price_money = price | money %}
-        {% assign vat_incl_price_money = price | times: 0.2 | plus: price | money %}
+        {% assign vat_incl_price_money = price | times: vat_rate | plus: price | money %}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         <div class="regularwithoutvat">
           <span
