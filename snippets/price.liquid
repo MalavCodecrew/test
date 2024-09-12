@@ -38,9 +38,7 @@
   endif
 -%}
 {% assign price_rate = 'general.price_vat.price-rate' | t %}
-{% assign vat_rate = 0.5 %}
-
-{{ price_rate }}
+{% assign vat_rate = price_rate %}
 <div
   class="
     price
