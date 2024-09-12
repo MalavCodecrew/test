@@ -1,5 +1,5 @@
-{% assign vat_rate_str = 'general.price_vat.price-rate' | t %}
-{% assign vat_rate = vat_rate_str | replace: ',', '.' | times: 1 | divided_by: 100 %}
+{% assign vat_rate = 'general.price_vat.price-rate' | t | remove: ',' | remove: ' ' | times: 1 | divided_by: 100 %}
+{{ vat_rate }}
 
 <section
   id="MainProduct-{{ section.id }}"
