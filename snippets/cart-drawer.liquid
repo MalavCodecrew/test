@@ -61,84 +61,86 @@
 </style>
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
-  <div class="desktop extra-item">
-    {% for product in collections.all.products %}
-      <div class="cart-product-page">
-        <div class="cart-product-image">
-          {% render 'card-product', card_product: product, show_secondary_image: true %}
-        </div>
-        <upsell-variant-selects
-          id="data-selects-{{ product.id }}"
-          data-section="{{ section }}"
-          data-id="{{ product.id }}"
-          data-url="{{ product.url }}"
-          {% if update_url == false %}
-            data-update-url="false"
-          {% endif %}
-          {{ block.shopify_attributes }}
-        >
-          {%- for option in product.options_with_values -%}
-            <div class="product-form__input product-form__input--dropdown">
-              {% assign optionsLength = option.values | size %}
-              {% if optionsLength == 1 %}
-                <h5 style="text-align:start">{{ option.values.first }}</h5>
-              {% else %}
-                <div class="select" style="margin-top:10px">
-                  {%- if picker_type == 'swatch_dropdown' -%}
-                    <span
-                      data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
-                      class="dropdown-swatch"
-                    >
-                      {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
-                    </span>
-                  {%- else -%}
-                    <select
-                      id="Option-template--16976122773689__main-{{ forloop.index0 }}"
-                      class="select__select"
-                      name="options[{{ option.name | escape }}]"
-                      form="{{ product_form_id }}"
-                    >
-                      {%- for value in option.values -%}
-                        <option
-                          value="{{ value | escape }}"
-                          {% if swatch_value and picker_type == 'swatch_dropdown' %}
-                            data-option-swatch-value="{{ swatch_value }}"
-                            {% if swatch_focal_point %}
-                              data-option-swatch-focal-point="{{ swatch_focal_point }}"
+  <!--
+    <div class="desktop extra-item">
+      {% for product in collections.all.products %}
+        <div class="cart-product-page">
+          <div class="cart-product-image">
+            {% render 'card-product', card_product: product, show_secondary_image: true %}
+          </div>
+          <upsell-variant-selects
+            id="data-selects-{{ product.id }}"
+            data-section="{{ section }}"
+            data-id="{{ product.id }}"
+            data-url="{{ product.url }}"
+            {% if update_url == false %}
+              data-update-url="false"
+            {% endif %}
+            {{ block.shopify_attributes }}
+          >
+            {%- for option in product.options_with_values -%}
+              <div class="product-form__input product-form__input--dropdown">
+                {% assign optionsLength = option.values | size %}
+                {% if optionsLength == 1 %}
+                  <h5 style="text-align:start">{{ option.values.first }}</h5>
+                {% else %}
+                  <div class="select" style="margin-top:10px">
+                    {%- if picker_type == 'swatch_dropdown' -%}
+                      <span
+                        data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
+                        class="dropdown-swatch"
+                      >
+                        {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
+                      </span>
+                    {%- else -%}
+                      <select
+                        id="Option-template--16976122773689__main-{{ forloop.index0 }}"
+                        class="select__select"
+                        name="options[{{ option.name | escape }}]"
+                        form="{{ product_form_id }}"
+                      >
+                        {%- for value in option.values -%}
+                          <option
+                            value="{{ value | escape }}"
+                            {% if swatch_value and picker_type == 'swatch_dropdown' %}
+                              data-option-swatch-value="{{ swatch_value }}"
+                              {% if swatch_focal_point %}
+                                data-option-swatch-focal-point="{{ swatch_focal_point }}"
+                              {% endif %}
                             {% endif %}
-                          {% endif %}
-                        >
-                          {% if option_disabled -%}
-                            {{- 'products.product.value_unavailable' | t: option_value: value -}}
-                          {%- else -%}
-                            {{- value -}}
-                          {%- endif %}
-                        </option>
-                      {% endfor %}
-                    </select>
-                  {% endif %}
-                  {% render 'icon-caret' %}
-                </div>
-              {% endif %}
-            </div>
-          {% endfor %}
+                          >
+                            {% if option_disabled -%}
+                              {{- 'products.product.value_unavailable' | t: option_value: value -}}
+                            {%- else -%}
+                              {{- value -}}
+                            {%- endif %}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    {% endif %}
+                    {% render 'icon-caret' %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
 
-          <script type="application/json">
-            {{ product.variants | json }}
-          </script>
-        </upsell-variant-selects>
+            <script type="application/json">
+              {{ product.variants | json }}
+            </script>
+          </upsell-variant-selects>
 
-        <div style="margin:10px 0;">
-          {%- render 'upsell-buy-btn',
-            block: block,
-            product: product,
-            product_form_id: product_form_id,
-            section_id: section.id
-          -%}
+          <div style="margin:10px 0;">
+            {%- render 'upsell-buy-btn',
+              block: block,
+              product: product,
+              product_form_id: product_form_id,
+              section_id: section.id
+            -%}
+          </div>
         </div>
-      </div>
-    {% endfor %}
-  </div>
+      {% endfor %}
+    </div>
+  -->
   <!-- <div class="upsell-product">{% render 'upsell-product' %}</div> -->
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
