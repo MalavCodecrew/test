@@ -126,7 +126,7 @@
     "predictive_search_show_vendor": true,
     "predictive_search_show_price": true,
     "currency_code_enabled": true,
-    "cart_type": "page",
+    "cart_type": "drawer",
     "show_vendor": true,
     "show_cart_note": true,
     "cart_drawer_collection": "frontpage",
@@ -223,12 +223,6 @@
       "16257672959480466561": {
         "type": "shopify:\/\/apps\/chatnest-stay-in-touch\/blocks\/whatsapp_chat_icon\/2cf195f2-d40f-4ac1-bfb3-67027dc724f5",
         "disabled": true,
-        "settings": {
-        }
-      },
-      "17828154360508871270": {
-        "type": "shopify:\/\/apps\/scriptinjector\/blocks\/front_script\/3d325123-1cba-4c06-9955-d7a555188c9c",
-        "disabled": false,
         "settings": {
         }
       }
