@@ -151,8 +151,7 @@
                 {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
               "
             >
-              --number
-              {{ collection.metafields.custom.image_collecton | size }}
+              {{ collection.metafields.custom.image_collecton }}
 
               {% assign imagecollection = collection.metafields.custom.image_collecton %}
               <li
