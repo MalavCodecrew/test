@@ -563,8 +563,6 @@ $(document).ready(function() {
       'text-shadow': '2px 2px 4px rgba(0,0,0,0.6)' // Optional shadow for better visibility
     });
 
-    // Add the text "Hi" inside the background div
-    bgElement.text('Hi');
 
     // Append the background element with "Hi" between the products
     productContainer.prepend(bgElement); // Or use .append() based on desired position
