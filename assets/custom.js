@@ -541,7 +541,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $(document).ready(function() {
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
     // Find the product grid or container where products are listed
-    var productContainer = $('.grid'); // Update this selector to match your theme's product container
+    var productContainer = $('.product-grid'); // Update this selector to match your theme's product container
 
     // Create a new HTML element for the background image
     var bgElement = $('<div>').css({
