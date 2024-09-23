@@ -559,19 +559,12 @@ $(document).ready(function() {
         'display': 'flex',
         'cursor': 'pointer',
       }).click(function() {
-        window.location.href = '/collections/premium-watches'; // Redirect on click
+        window.location.href = '/collections/premium-watches'; 
       });
 
       var listItem = $('<li>')
         .addClass('grid__item scroll-trigger animate--slide-in')
         .append(bgElement);
-
-      // Hover effect to disable pointer events
-      bgElement.hover(function() {
-        $(this).css('pointer-events', 'none'); // Disable pointer events
-      }, function() {
-        $(this).css('pointer-events', 'auto'); // Re-enable pointer events
-      });
 
       if (randomIndex < productItems.length) {
         productItems.eq(randomIndex).before(listItem); 
