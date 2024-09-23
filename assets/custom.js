@@ -543,37 +543,37 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // adding collection as promo between products in collection page-------------------------------------->
-// $(document).ready(function() {
-//   if (window.location.pathname.includes('/collections/best-selling-collection')) {
-//     setTimeout(function() {
-//       var productContainer = $('#product-grid');
-//       var productItems = productContainer.children('li'); 
-//       var randomIndex = Math.floor(Math.random() * (productItems.length + 1)); 
+$(document).ready(function() {
+  if (window.location.pathname.includes('/collections/best-selling-collection')) {
+    setTimeout(function() {
+      var productContainer = $('#product-grid');
+      var productItems = productContainer.children('li'); 
+      var randomIndex = Math.floor(Math.random() * (productItems.length + 1)); 
 
-//       var bgElement = $('<div>').css({
-//         'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
-//         'background-size': 'cover',
-//         'background-position': 'center',
-//         'height': '270px',
-//         'width': '100%',
-//         'display': 'flex',
-//         'cursor': 'pointer',
-//       }).click(function() {
-//         window.location.href = '/collections/premium-watches'; // Redirect on click
-//       });
+      var bgElement = $('<div>').css({
+        'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
+        'background-size': 'cover',
+        'background-position': 'center',
+        'height': '270px',
+        'width': '100%',
+        'display': 'flex',
+        'cursor': 'pointer',
+      }).click(function() {
+        window.location.href = '/collections/premium-watches'; // Redirect on click
+      });
 
-//       var listItem = $('<li>')
-//         .addClass('grid__item scroll-trigger animate--slide-in')
-//         .append(bgElement);
+      var listItem = $('<li>')
+        .addClass('grid__item scroll-trigger animate--slide-in')
+        .append(bgElement);
 
-//       if (randomIndex < productItems.length) {
-//         productItems.eq(randomIndex).before(listItem); 
-//       } else {
-//         productContainer.append(listItem); 
-//       }
-//     }, 250);
-//   }
-// });
+      if (randomIndex < productItems.length) {
+        productItems.eq(randomIndex).before(listItem); 
+      } else {
+        productContainer.append(listItem); 
+      }
+    }, 250);
+  }
+});
 
 
                     
