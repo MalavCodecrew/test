@@ -544,8 +544,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // adding collection as promo between products in collection page-------------------------------------->
 $(document).ready(function() {
-  if (window.location.pathname.includes('/collections/best-selling-collection')) {
-    setTimeout(function() {
       var productContainer = $('#product-grid');
       var productItems = productContainer.children('li'); 
       var randomIndex = Math.floor(Math.random() * (productItems.length + 1)); 
@@ -571,8 +569,8 @@ $(document).ready(function() {
       } else {
         productContainer.append(listItem); 
       }
-    }, 250);
-  }
+  
+  
 });
 
 
