@@ -542,7 +542,7 @@ $(document).ready(function() {
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
     // Find the product grid or container where products are listed
     var productContainer = $('#product-grid'); // Update this selector to match your theme's product container
-
+console.log("hhhhhhhhh")
     // Create a new HTML element for the background image
     var bgElement = $('<div>').css({
       'background-image': 'url("https://quickstart-06ab4342.myshopify.com/cdn/shop/collections/22.webp?v=1723184084&width=750")', // Update path
