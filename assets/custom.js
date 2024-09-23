@@ -538,4 +538,10 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // adding collection as promo between products in collection page-------------------------------------->
+{% if collection.handle == 'best-selling-collection' %}
+    document.addEventListener("DOMContentLoaded", function() {
+      console.log("Hello from the specific collection page!");
+    });
+{% endif %}
+
 
