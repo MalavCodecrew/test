@@ -539,9 +539,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // adding collection as promo between products in collection page-------------------------------------->
 $(document).ready(function() {
-  console.log("hello")
+  console.log("Page Path:", window.location.pathname); // Debugging step
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
     console.log("Hello from the specific collection page!");
+  } else {
+    console.log("Not on the specific collection page");
   }
 });
 
