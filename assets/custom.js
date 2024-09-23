@@ -558,24 +558,16 @@ $(document).ready(function() {
         'width': '100%',
         'display': 'flex',
         'cursor': 'pointer',
+      }).click(function() {
+        window.location.href = '/collections/premium-watches'; // Redirect on click
       });
-
-      var clickableElement = $('<a>')
-        .attr('href', '/collections/premium-watches')
-        .css({
-          'text-decoration': 'none',
-          'width': '100%',
-            'display': 'block', 
-          'position': 'relative'
-        });
-
-      clickableElement.append(bgElement);
 
       var listItem = $('<li>')
         .addClass('grid__item scroll-trigger animate--slide-in')
-        .append(clickableElement);
+        .append(bgElement);
 
-       clickableElement.hover(function() {
+      // Hover effect to disable pointer events
+      bgElement.hover(function() {
         $(this).css('pointer-events', 'none'); // Disable pointer events
       }, function() {
         $(this).css('pointer-events', 'auto'); // Re-enable pointer events
