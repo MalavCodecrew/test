@@ -540,28 +540,23 @@ document.addEventListener("DOMContentLoaded", function() {
 // adding collection as promo between products in collection page-------------------------------------->
 $(document).ready(function() {
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
-    // Find the product grid or container where products are listed
-    var productContainer = $('#product-grid'); // Ensure this selector matches your theme's product container
+    var productContainer = $('#product-grid');
     
-    // Debugging step to check if the script runs
     console.log("Script running for best-selling collection");
-
-    // Create a new HTML element for the background image and text
     var bgElement = $('<div>').css({
       'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
       'background-size': 'cover',
       'background-position': 'center',
-      'height': '400px', // Adjust height based on your layout
-      'width': '100%',   // Full width
+      'height': '400px', 
+      'width': '100%',   
       'margin': '20px 0',
-      'display': 'flex',        // Make text and image centered vertically
+      'display': 'flex',        
       'justify-content': 'center',
       'align-items': 'center',
+      'cursor': 'pointer',
     });
 
-
-    // Append the background element with "Hi" between the products
-    productContainer.prepend(bgElement); // Or use .append() based on desired position
+    productContainer.prepend(bgElement);
   }
 });
 
