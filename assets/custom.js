@@ -560,8 +560,9 @@ $(document).ready(function() {
       });
  clickableElement.append(bgElement);
 
-      var listItem = $('<li>').append(clickableElement);
-    
+      var listItem = $('<li>')
+       .addClass('grid__item scroll-trigger animate--slide-in') 
+       .append(clickableElement);
     productContainer.prepend(listItem)
       }, 500);
   }
