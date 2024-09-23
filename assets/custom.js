@@ -561,7 +561,7 @@ $(document).ready(function() {
  clickableElement.append(bgElement);
 
     
-    productContainer.prepend(bgElement);
+    productContainer.prepend(clickableElement);
   }
 });
 
