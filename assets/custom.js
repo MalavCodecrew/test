@@ -545,7 +545,7 @@ $(document).ready(function() {
 
     // Create a new HTML element for the background image
     var bgElement = $('<div>').css({
-      'background-image': 'url("/https://quickstart-06ab4342.myshopify.com/cdn/shop/collections/22.webp?v=1723184084&width=750")', // Update path
+      'background-image': 'url("https://quickstart-06ab4342.myshopify.com/cdn/shop/collections/22.webp?v=1723184084&width=750")', // Update path
       'background-size': 'cover',
       'background-position': 'center',
       'height': '400px', // Adjust height based on your layout
