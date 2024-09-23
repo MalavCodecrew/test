@@ -540,7 +540,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // adding collection as promo between products in collection page-------------------------------------->
 $(document).ready(function() {
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
-    var productContainer = $('.grid__item scroll-trigger animate--slide-in scroll-trigger--offscreen');
+    var productContainer = $('#product-grid');
     
     var bgElement = $('<div>').css({
       'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
