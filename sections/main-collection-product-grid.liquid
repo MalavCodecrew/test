@@ -136,15 +136,6 @@
             </div>
           </div>
         {%- else -%}
-          {{ collection.metafields.custom.image_collecton }}
-
-          {% assign imagecollection = collection.metafields.custom.image_collecton %}
-
-          <img
-            class="image-collection"
-            src="{{ imagecollection | img_url }}"
-          >
-
           <div
             class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
           >
