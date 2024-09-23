@@ -538,7 +538,16 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // adding collection as promo between products in collection page-------------------------------------->
-$(document).ready(function() {
+// $(document).ready(function() {
+//   console.log("Page Path:", window.location.pathname); // Debugging step
+//   if (window.location.pathname.includes('/collections/best-selling-collection')) {
+//     console.log("Hello from the specific collection page!");
+//   } else {
+//     console.log("Not on the specific collection page");
+//   }
+// });
+
+document.addEventListener("DOMContentLoaded", function() {
   console.log("Page Path:", window.location.pathname); // Debugging step
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
     console.log("Hello from the specific collection page!");
@@ -546,6 +555,5 @@ $(document).ready(function() {
     console.log("Not on the specific collection page");
   }
 });
-
 
 
