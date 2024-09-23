@@ -567,7 +567,13 @@ $(document).ready(function() {
           'width': '100%',
             'display': 'block', 
           'position': 'relative'
+        })
+       .hover(function() {
+          $(this).css('opacity', 0); // Hide link on hover
+        }, function() {
+          $(this).css('opacity', 1); // Show link when not hovering
         });
+
 
       clickableElement.append(bgElement);
 
