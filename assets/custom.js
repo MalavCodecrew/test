@@ -546,7 +546,7 @@ $(document).ready(function() {
       'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
       'background-size': 'cover',
       'background-position': 'center',
-      'height': '250px', 
+      'height': '400px', 
       'width': '100%',   
       'display': 'flex',        
       'cursor': 'pointer',
