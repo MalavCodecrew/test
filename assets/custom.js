@@ -547,7 +547,7 @@ $(document).ready(function() {
       'background-size': 'cover',
       'background-position': 'center',
       'height': '250px', 
-      'width': '20%',   
+      'width': '100%',   
       'display': 'flex',        
       'cursor': 'pointer',
     });
