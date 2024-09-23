@@ -541,20 +541,23 @@ document.addEventListener("DOMContentLoaded", function() {
 $(document).ready(function() {
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
     // Find the product grid or container where products are listed
-    var productContainer = $('#product-grid'); // Update this selector to match your theme's product container
+    var productContainer = $('.grid'); // Update this selector to match your theme's product container
 
-    // Create a new HTML element for "Hi"
-    var hiElement = $('<div>').text('Hi').css({
-      'text-align': 'center',
-      'font-size': '20px',
-      'margin': '20px 0',
-      'color': '#000'
+    // Create a new HTML element for the background image
+    var bgElement = $('<div>').css({
+      'background-image': 'url("/https://quickstart-06ab4342.myshopify.com/cdn/shop/collections/22.webp?v=1723184084&width=750")', // Update path
+      'background-size': 'cover',
+      'background-position': 'center',
+      'height': '400px', // Adjust height based on your layout
+      'width': '100%',   // Full width
+      'margin': '20px 0'
     });
 
-    // Append the "Hi" element between the products
-    productContainer.prepend(hiElement); // Or use .append()/.before()/.after() based on where you want to place it
+    // Append the background element between the products
+    productContainer.prepend(bgElement); // Or use .append() based on desired position
   }
 });
+
 
 
 
