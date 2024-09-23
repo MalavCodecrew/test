@@ -570,11 +570,11 @@ $(document).ready(function() {
         .attr('style', '--animation-order: ;')
         .append(clickableElement);
 
-      // Insert the new item at the random index
+     
       if (randomIndex < productItems.length) {
-        productItems.eq(randomIndex).before(listItem); // Insert before the random index
+        productItems.eq(randomIndex).before(listItem); 
       } else {
-        productContainer.append(listItem); // Append at the end if random index is the last one
+        productContainer.append(listItem); 
       }
     }, 500);
   }
