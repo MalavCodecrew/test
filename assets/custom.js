@@ -557,10 +557,6 @@ $(document).ready(function() {
       'display': 'flex',        // Make text and image centered vertically
       'justify-content': 'center',
       'align-items': 'center',
-      'color': 'white',         // Text color for "Hi"
-      'font-size': '40px',      // Font size for "Hi"
-      'font-weight': 'bold',
-      'text-shadow': '2px 2px 4px rgba(0,0,0,0.6)' // Optional shadow for better visibility
     });
 
 
