@@ -553,10 +553,10 @@ $(document).ready(function() {
     });
      var clickableElement = $('<a>')
       .attr('href', '/collections/premium-watches')  
-      .css({
-        'text-decoration': 'none',
-        'width': '100%'             
-      });
+      // .css({
+      //   'text-decoration': 'none',
+      //   'width': '100%'             
+      // });
  clickableElement.append(bgElement);
 
     
