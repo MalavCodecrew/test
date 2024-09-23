@@ -537,4 +537,5 @@ document.addEventListener("DOMContentLoaded", function() {
   updateCountryRow();
 });
 
- 
+// adding collection as promo between products in collection page-------------------------------------->
+
