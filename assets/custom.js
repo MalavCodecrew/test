@@ -550,11 +550,9 @@ $(document).ready(function() {
       var productItems = productContainer.children('li'); 
       var randomIndex1 = Math.floor(Math.random() * (productItems.length + 1)); 
       var randomIndex2;
-
-      // Ensure randomIndex2 is at least 3 positions away from randomIndex1
       do {
         randomIndex2 = Math.floor(Math.random() * (productItems.length + 1));
-      } while (Math.abs(randomIndex1 - randomIndex2) < 6);
+      } while (Math.abs(randomIndex1 - randomIndex2) < 4);
 
       var bgElement1 = $('<div>').css({
         'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
