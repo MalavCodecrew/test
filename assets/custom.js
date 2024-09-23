@@ -551,6 +551,8 @@ $(document).ready(function() {
       'display': 'flex',        
       'cursor': 'pointer',
        'margin': '20px 0',
+      'justify-content': 'center',
+      'align-items': 'center',
     });
      var clickableElement = $('<a>')
       .attr('href', '/collections/premium-watches')  
