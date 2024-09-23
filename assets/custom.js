@@ -574,7 +574,7 @@ $(document).ready(function() {
       } else {
         productContainer.append(listItem); 
       }
-    }, 500);
+    }, 250);
   }
 });
 
