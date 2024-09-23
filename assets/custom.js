@@ -566,8 +566,6 @@ $(document).ready(function() {
 
       var listItem = $('<li>')
         .addClass('grid__item scroll-trigger animate--slide-in')
-        .attr('data-cascade', '')
-        .attr('style', '--animation-order: ;')
         .append(clickableElement);
 
      
