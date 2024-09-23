@@ -727,3 +727,8 @@ input#in-table {
   display: flex;
   margin-bottom: 10px !important;
 }
+
+.image-collection {
+  width: 100%;
+  height: 270px;
+}
