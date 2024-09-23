@@ -548,9 +548,10 @@ $(document).ready(function() {
     setTimeout(function() {
       var productContainer = $('#product-grid');
       var productItems = productContainer.children('li'); 
-      var randomIndex = Math.floor(Math.random() * (productItems.length + 1)); 
+      var randomIndex1 = Math.floor(Math.random() * (productItems.length + 1)); 
+      var randomIndex2 = Math.floor(Math.random() * (productItems.length + 1)); 
 
-      var bgElement = $('<div>').css({
+      var bgElement1 = $('<div>').css({
         'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
         'background-size': 'cover',
         'background-position': 'center',
@@ -562,14 +563,36 @@ $(document).ready(function() {
         window.location.href = '/collections/premium-watches'; 
       });
 
-      var listItem = $('<li>')
-        .addClass('grid__item scroll-trigger animate--slide-in')
-        .append(bgElement);
+      var bgElement2 = $('<div>').css({
+        'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
+        'background-size': 'cover',
+        'background-position': 'center',
+        'height': '270px',
+        'width': '100%',
+        'display': 'flex',
+        'cursor': 'pointer',
+      }).click(function() {
+        window.location.href = '/collections/premium-watches'; 
+      });
 
-      if (randomIndex < productItems.length) {
-        productItems.eq(randomIndex).before(listItem); 
+      var listItem1 = $('<li>')
+        .addClass('grid__item scroll-trigger animate--slide-in')
+        .append(bgElement1);
+
+      var listItem2 = $('<li>')
+        .addClass('grid__item scroll-trigger animate--slide-in')
+        .append(bgElement2);
+
+      if (randomIndex1 < productItems.length) {
+        productItems.eq(randomIndex1).before(listItem1); 
       } else {
-        productContainer.append(listItem); 
+        productContainer.append(listItem1); 
+      }
+
+      if (randomIndex2 < productItems.length) {
+        productItems.eq(randomIndex2).before(listItem2); 
+      } else {
+        productContainer.append(listItem2); 
       }
     }, 250);
   }
