@@ -560,8 +560,9 @@ $(document).ready(function() {
       });
  clickableElement.append(bgElement);
 
+      var listItem = $('<li>').append(clickableElement);
     
-    productContainer.prepend(clickableElement)
+    productContainer.prepend(listItem)
       }, 500);
   }
 });
