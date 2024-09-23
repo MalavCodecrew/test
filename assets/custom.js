@@ -562,7 +562,7 @@ $(document).ready(function() {
 
       var listItem = $('<li>')
        .addClass('grid__item scroll-trigger animate--slide-in') 
-         .attr('data-cascade', '') // Add data-cascade attribute
+         .attr('data-cascade', '')
        .append(clickableElement);
     productContainer.prepend(listItem)
       }, 500);
