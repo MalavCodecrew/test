@@ -548,8 +548,8 @@ $(document).ready(function() {
     setTimeout(function() {
       var productContainer = $('#product-grid');
       var productItems = productContainer.children('li'); 
-      var randomIndex1 = Math.floor(Math.random() * (productItems.length + 1)); 
-      var randomIndex2 = Math.floor(Math.random() * (productItems.length + 1)); 
+      var randomIndex1 = 5; 
+      var randomIndex2 = 13; 
 
       var bgElement1 = $('<div>').css({
         'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
