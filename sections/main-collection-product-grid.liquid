@@ -156,10 +156,12 @@
                 {{ collectionurl }}
               -->
               {% assign imagecollection = collection.metafields.custom.image_collecton %}
-              <img
-                class="gift-card__image"
-                src="{{ imagecollection | img_url }}"
-              >
+              <li>
+                <img
+                  class="image-collection"
+                  src="{{ imagecollection | img_url }}"
+                >
+              </li>
 
               {%- for product in collection.products -%}
                 {% assign lazy_load = false %}
