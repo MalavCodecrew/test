@@ -549,10 +549,7 @@ $(document).ready(function() {
       var productContainer = $('#product-grid');
       var productItems = productContainer.children('li'); 
       var randomIndex1 = Math.floor(Math.random() * (productItems.length + 1)); 
-      var randomIndex2;
-      do {
-        randomIndex2 = Math.floor(Math.random() * (productItems.length + 1));
-      } while (Math.abs(randomIndex1 - randomIndex2) < 3);
+      var randomIndex2 = Math.floor(Math.random() * (productItems.length + 1)); 
 
       var bgElement1 = $('<div>').css({
         'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
@@ -586,14 +583,12 @@ $(document).ready(function() {
         .addClass('grid__item scroll-trigger animate--slide-in')
         .append(bgElement2);
 
-      // Insert the first list item
       if (randomIndex1 < productItems.length) {
         productItems.eq(randomIndex1).before(listItem1); 
       } else {
         productContainer.append(listItem1); 
       }
 
-      // Insert the second list item
       if (randomIndex2 < productItems.length) {
         productItems.eq(randomIndex2).before(listItem2); 
       } else {
