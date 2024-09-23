@@ -555,7 +555,15 @@ $(document).ready(function() {
       'align-items': 'center',
       'cursor': 'pointer',
     });
+     var clickableElement = $('<a>')
+      .attr('href', '/premium-watches')  
+      .css({
+        'text-decoration': 'none',
+        'width': '100%'             
+      });
+ clickableElement.append(bgElement);
 
+    
     productContainer.prepend(bgElement);
   }
 });
