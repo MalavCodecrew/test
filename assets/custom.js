@@ -556,7 +556,7 @@ $(document).ready(function() {
         'background-position': 'center',
         'height': '270px',
         'width': '100%',
-        'display': 'block',
+        'display': 'flex',
         'cursor': 'pointer',
       });
 
