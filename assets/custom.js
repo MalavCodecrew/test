@@ -567,19 +567,19 @@ $(document).ready(function() {
           'width': '100%',
             'display': 'block', 
           'position': 'relative'
-        })
-       .hover(function() {
-          $(this).css('opacity', 0); // Hide link on hover
-        }, function() {
-          $(this).css('opacity', 1); // Show link when not hovering
         });
-
 
       clickableElement.append(bgElement);
 
       var listItem = $('<li>')
         .addClass('grid__item scroll-trigger animate--slide-in')
         .append(clickableElement);
+
+       clickableElement.hover(function() {
+        $(this).css('pointer-events', 'none'); // Disable pointer events
+      }, function() {
+        $(this).css('pointer-events', 'auto'); // Re-enable pointer events
+      });
 
       if (randomIndex < productItems.length) {
         productItems.eq(randomIndex).before(listItem); 
