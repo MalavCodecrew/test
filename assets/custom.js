@@ -562,14 +562,15 @@ $(document).ready(function() {
 
       var listItem = $('<li>')
        .addClass('grid__item scroll-trigger animate--slide-in') 
-         .attr('data-cascade', '')
+         .attr('data-cascade', '--animation-order: {{ forloop.index }}')
+        .attr('style','')
        .append(clickableElement);
     productContainer.prepend(listItem)
       }, 500);
   }
 });
- data-cascade
-                    style="--animation-order: {{ forloop.index }};"
+
+                    
 
 
 
