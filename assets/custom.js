@@ -538,48 +538,33 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // adding collection as promo between products in collection page-------------------------------------->
-// $(document).ready(function() {
+$(document).ready(function() {
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
-    // Find the product grid or container where products are listed
-    var productContainer = $('#product-grid'); // Ensure this selector matches your theme's product container
+    var productContainer = $('#product-grid');
     
-    // Debugging step to check if the script runs
     console.log("Script running for best-selling collection");
-
-    // Create a new HTML element for the background image and text
     var bgElement = $('<div>').css({
       'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
       'background-size': 'cover',
       'background-position': 'center',
-      'height': '400px', // Adjust height based on your layout
-      'width': '100%',   // Full width
+      'height': '400px', 
+      'width': '100%',   
       'margin': '20px 0',
-      'display': 'flex',        // Make text and image centered vertically
+      'display': 'flex',        
       'justify-content': 'center',
       'align-items': 'center',
-      'color': 'white',         // Text color for "Hi"
-      'font-size': '40px',      // Font size for "Hi"
-      'font-weight': 'bold',
-      'text-shadow': '2px 2px 4px rgba(0,0,0,0.6)', // Optional shadow for better visibility
-      'cursor': 'pointer'       // Add pointer to indicate it's clickable
+      'cursor': 'pointer',
     });
-
-    // Add the text "Hi" inside the background div
-    bgElement.text('Hi');
-
-    // Create an anchor element to wrap around the background element
-    var clickableElement = $('<a>')
-      .attr('href', '/collections/premium-watches')  // Replace with your target page URL
+     var clickableElement = $('<a>')
+      .attr('href', '/collections/premium-watches')  
       .css({
-        'text-decoration': 'none',  // Remove underline from the link
-        'width': '100%'             // Make the clickable area the full width
+        'text-decoration': 'none',
+        'width': '100%'             
       });
+ clickableElement.append(bgElement);
 
-    // Append the background element inside the anchor tag
-    clickableElement.append(bgElement);
-
-    // Append the clickable element to the product container
-    productContainer.prepend(clickableElement); // Or use .append() based on desired position
+    
+    productContainer.prepend(bgElement);
   }
 });
 
