@@ -151,17 +151,6 @@
                 {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
               "
             >
-              {% assign imagecollection = collection.metafields.custom.image_collecton %}
-              <li
-                class="grid__item scroll-trigger animate--slide-in"
-                data-cascade
-              >
-                <img
-                  class="image-collection"
-                  src="{{ imagecollection | img_url }}"
-                >
-              </li>
-
               {%- for product in collection.products -%}
                 {% assign lazy_load = false %}
                 {%- if forloop.index > 2 -%}
