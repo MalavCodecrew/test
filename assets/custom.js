@@ -565,6 +565,8 @@ $(document).ready(function() {
         .css({
           'text-decoration': 'none',
           'width': '100%',
+            'display': 'block', 
+          'position': 'relative'
         });
 
       clickableElement.append(bgElement);
