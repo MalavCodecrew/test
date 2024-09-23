@@ -539,11 +539,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // adding collection as promo between products in collection page-------------------------------------->
 $(document).ready(function() {
-  console.log("Page Path:", window.location.pathname); // Debugging step
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
-    console.log("Hello from the specific collection page!");
-  } else {
-    console.log("Not on the specific collection page");
+    // Find the product grid or container where products are listed
+    var productContainer = $('.grid'); // Update this selector to match your theme's product container
+
+    // Create a new HTML element for "Hi"
+    var hiElement = $('<div>').text('Hi').css({
+      'text-align': 'center',
+      'font-size': '20px',
+      'margin': '20px 0',
+      'color': '#000'
+    });
+
+    // Append the "Hi" element between the products
+    productContainer.prepend(hiElement); // Or use .append()/.before()/.after() based on where you want to place it
   }
 });
 
