@@ -569,7 +569,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Create an anchor element to wrap around the background element
     var clickableElement = $('<a>')
-      .attr('href', '/your-target-page')  // Replace with your target page URL
+      .attr('href', '/collections/premium-watches')  // Replace with your target page URL
       .css({
         'text-decoration': 'none',  // Remove underline from the link
         'width': '100%'             // Make the clickable area the full width
