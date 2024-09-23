@@ -562,7 +562,7 @@ $(document).ready(function() {
 
     
     productContainer.prepend(clickableElement)
-      }, 1000);
+      }, 500);
   }
 });
 
