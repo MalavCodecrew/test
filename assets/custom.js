@@ -541,34 +541,45 @@ document.addEventListener("DOMContentLoaded", function() {
 $(document).ready(function() {
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
     setTimeout(function() {
-    var productContainer = $('#product-grid');
-    
-    var bgElement = $('<div>').css({
-      'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
-      'background-size': 'cover',
-      'background-position': 'center',
-      'height': '270px', 
-      'width': '100%',   
-      'display': 'flex',        
-      'cursor': 'pointer',
-    });
-     var clickableElement = $('<a>')
-      .attr('href', '/collections/premium-watches')  
-      .css({
-        'text-decoration': 'none',
-        'width': '100%'             
+      var productContainer = $('#product-grid');
+      var productItems = productContainer.children('li'); // Get existing product items
+      var randomIndex = Math.floor(Math.random() * (productItems.length + 1)); // Random index
+
+      var bgElement = $('<div>').css({
+        'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
+        'background-size': 'cover',
+        'background-position': 'center',
+        'height': '270px',
+        'width': '100%',
+        'display': 'flex',
+        'cursor': 'pointer',
       });
- clickableElement.append(bgElement);
+
+      var clickableElement = $('<a>')
+        .attr('href', '/collections/premium-watches')
+        .css({
+          'text-decoration': 'none',
+          'width': '100%',
+        });
+
+      clickableElement.append(bgElement);
 
       var listItem = $('<li>')
-       .addClass('grid__item scroll-trigger animate--slide-in') 
-         .attr('data-cascade', '')
-        .attr('style','--animation-order: ;')
-       .append(clickableElement);
-    productContainer.prepend(listItem)
-      }, 500);
+        .addClass('grid__item scroll-trigger animate--slide-in')
+        .attr('data-cascade', '')
+        .attr('style', '--animation-order: ;')
+        .append(clickableElement);
+
+      // Insert the new item at the random index
+      if (randomIndex < productItems.length) {
+        productItems.eq(randomIndex).before(listItem); // Insert before the random index
+      } else {
+        productContainer.append(listItem); // Append at the end if random index is the last one
+      }
+    }, 500);
   }
 });
+
 
                     
 
