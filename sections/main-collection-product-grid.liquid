@@ -151,8 +151,17 @@
                 {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
               "
             >
-              {% assign parentcollection = collection.metafields.custom.collection_url %}
-              {{ parentcollection }}
+              {% assign collectionurl = collection.metafields.custom.collection_url %}
+              {{ collectionurl }}
+              {% assign imagecollection = collection.metafields.custom.image_collecton %}
+              <img
+                class="gift-card__image"
+                src="{{ imagecollection | img_url }}"
+                alt=""
+                height="{{ 570 | divided_by: 1.5 }}"
+                width="570"
+                loading="eager"
+              >
 
               {%- for product in collection.products -%}
                 {% assign lazy_load = false %}
