@@ -556,7 +556,7 @@ $(document).ready(function() {
       'cursor': 'pointer',
     });
      var clickableElement = $('<a>')
-      .attr('href', '/premium-watches')  
+      .attr('href', '/collections/premium-watches')  
       .css({
         'text-decoration': 'none',
         'width': '100%'             
