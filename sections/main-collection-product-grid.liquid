@@ -151,7 +151,8 @@
                 {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
               "
             >
-              {{ collection.metafields.custom.collection_url -}}
+              {% assign parentcollection = collection.metafields.custom.collection_url %}
+              {{ parentcollection }}
               heyy
               {%- for product in collection.products -%}
                 {% assign lazy_load = false %}
