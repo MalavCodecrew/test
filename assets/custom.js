@@ -562,8 +562,8 @@ $(document).ready(function() {
 
       var listItem = $('<li>')
        .addClass('grid__item scroll-trigger animate--slide-in') 
-         .attr('data-cascade', '--animation-order: {{ forloop.index }}')
-        .attr('style','')
+         .attr('data-cascade', '')
+        .attr('style','--animation-order:0')
        .append(clickableElement);
     productContainer.prepend(listItem)
       }, 500);
