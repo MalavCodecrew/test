@@ -559,7 +559,7 @@ $(document).ready(function() {
         'display': 'flex',
         'cursor': 'pointer',
       }).click(function() {
-        window.location.href = '/collections/premium-watches'; // Redirect on click
+        window.location.href = '/collections/premium-watches'; 
       });
 
       var listItem = $('<li>')
