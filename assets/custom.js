@@ -577,7 +577,7 @@ $(document).ready(function() {
         'display': 'flex',
         'cursor': 'pointer',
       }).click(function() {
-        window.location.href = '/collections/premium-watches'; 
+        window.location.href = '/collections/shoes'; 
       });
 
       var listItem1 = $('<li>')
