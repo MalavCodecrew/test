@@ -552,11 +552,11 @@ $(document).ready(function() {
       'cursor': 'pointer',
     });
      var clickableElement = $('<a>')
-      .attr('href', '/collections/premium-watches');
-      // .css({
-      //   'text-decoration': 'none',
-      //   'width': '100%'             
-      // });
+      .attr('href', '/collections/premium-watches')  
+      .css({
+        'text-decoration': 'none',
+        'width': '100%'             
+      });
  clickableElement.append(bgElement);
 
     
