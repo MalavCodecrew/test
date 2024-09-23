@@ -546,13 +546,10 @@ $(document).ready(function() {
       'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
       'background-size': 'cover',
       'background-position': 'center',
-      'height': '400px', 
-      'width': '100%',   
+      'height': '250px', 
+      'width': '20%',   
       'display': 'flex',        
       'cursor': 'pointer',
-       'margin': '20px 0',
-      'justify-content': 'center',
-      'align-items': 'center',
     });
      var clickableElement = $('<a>')
       .attr('href', '/collections/premium-watches')  
