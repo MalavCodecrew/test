@@ -537,6 +537,11 @@ document.addEventListener("DOMContentLoaded", function() {
   updateCountryRow();
 });
 
+
+
+
+
+
 // adding collection as promo between products in collection page-------------------------------------->
 $(document).ready(function() {
   if (window.location.pathname.includes('/collections/best-selling-collection')) {
