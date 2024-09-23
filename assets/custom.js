@@ -573,7 +573,6 @@ $(document).ready(function() {
         .addClass('grid__item scroll-trigger animate--slide-in')
         .append(clickableElement);
 
-     
       if (randomIndex < productItems.length) {
         productItems.eq(randomIndex).before(listItem); 
       } else {
