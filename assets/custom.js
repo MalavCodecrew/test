@@ -569,7 +569,7 @@ $(document).ready(function() {
       });
 
       var bgElement2 = $('<div>').css({
-        'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/watch3_df44ac95-7862-4b3d-b0a4-39deb9085787.jpg?v=1721305196")',
+        'background-image': 'url("https://cdn.shopify.com/s/files/1/0881/8694/5814/files/shoes11_b843e0ed-b0fd-41ce-9d82-fc433a041ce3.jpg?v=1721305184")',
         'background-size': 'cover',
         'background-position': 'center',
         'height': '270px',
