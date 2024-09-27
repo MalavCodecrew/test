@@ -387,6 +387,7 @@
                       {% if card_product.selected_or_first_available_variant.available == false %}
                         disabled
                       {% endif %}
+                      data-sizes="{% for variant in product.variants %}{{ variant.option1 }}{% unless forloop.last %},{% endunless %}{% endfor %}
                     >
                     <button
                       id="{{ product_form_id }}-submit"
