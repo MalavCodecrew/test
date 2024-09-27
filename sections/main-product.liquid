@@ -133,19 +133,20 @@
               {% for i in product_variant_custom %}
                 {% assign icolor = product_variant_custom_color[forloop.index0] %}
                 {% assign icolor_2 = product_variant_custom_color_2[forloop.index0] %}
-
-                <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
-                  <div
-                    class="swatch"
-                    style="
-                        background: linear-gradient(315deg, {{ icolor }}, {{ icolor_2 }}); border-radius:0px;
-                        border: 1px solid black;
-                      margin-right:5px;
-                    "
-                  >
-                    &nbsp
-                  </div>
-                </a>
+                {% if icolor != blank and icolor_2 != blank %}
+                  <a style="text-decoration: none" ; href="https://{{ shop.domain }}/products/{{ i.handle }}">
+                    <div
+                      class="swatch"
+                      style="
+                          background: linear-gradient(315deg, {{ icolor }}, {{ icolor_2 }}); border-radius:0px;
+                          border: 1px solid black;
+                        margin-right:5px;
+                      "
+                    >
+                      &nbsp
+                    </div>
+                  </a>
+                {% endif %}
               {% endfor %}
             </div>
           {% endif %}
