@@ -123,7 +123,9 @@
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
-          {% if product.metafields.custom.custom_colour.value and product.metafields.custom.custom_colour2.value %}
+          {% if product.metafields.custom.custom_colour.value != blank
+            and product.metafields.custom.custom_colour2.value != blank
+          %}
             {%- assign product_variant_custom = product.metafields.custom.product.value -%}
             {%- assign product_variant_custom_color = product.metafields.custom.custom_colour.value -%}
             {%- assign product_variant_custom_color_2 = product.metafields.custom.custom_colour2.value -%}
