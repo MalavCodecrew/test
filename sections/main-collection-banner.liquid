@@ -17,6 +17,7 @@
     {{ collection.products.variant }}
     {% for variant in product.variants %}
       {{ variant.option1 }}
+      {% unless forloop.last %},{% endunless %}
     {% endfor %}
   </div>
 {% endif %}
