@@ -600,6 +600,19 @@ $(document).ready(function() {
 
 
                     
+// adding custom filter on collection page
+<script>
+  function filterBySize(size) {
+    document.querySelectorAll('.product__title').forEach(product => {
+      const sizes = product.getAttribute('data-sizes').split(',');
+      if (sizes.includes(size)) {
+        product.style.display = 'block';
+      } else {
+        product.style.display = 'none';
+      }
+    });
+  }
+</script>
 
 
 
