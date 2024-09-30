@@ -601,23 +601,11 @@ $(document).ready(function() {
 
                     
 // adding custom filter on collection page
-// function filterBySize(size) {
-//   console.log("heyyyyyyy")
-//   document.querySelectorAll('.product__title').forEach(product => {
-//     if (!size || product.getAttribute('data-sizes').includes(size)) {
-//       product.style.display = 'block';
-//     } else {
-//       product.style.display = 'none';
-//     }
-//   });
-// }
-
-
 
 $(document).ready(function() {
   $('.filter-btn').on('click', function() {
     var selectedSize = $(this).data('size');
-    console.log('Selected Size:', selectedSize);  // Debug log
+    console.log('Selected Size:', selectedSize); 
 
     if (selectedSize === 'all') {
       console.log('Showing all products');
@@ -629,8 +617,7 @@ $(document).ready(function() {
         // Check if 'sizes' is defined
         if (typeof sizes !== 'undefined') {
           sizes = sizes.toString().split(',');
-          console.log('Product Sizes:', sizes);  // Debug log
-
+          console.log('Product Sizes:', sizes);  
           if (sizes.includes(selectedSize.toString())) {
             console.log('Showing product');
             $(this).show();
@@ -640,7 +627,7 @@ $(document).ready(function() {
           }
         } else {
           console.log('No sizes defined for this product');
-          $(this).hide();  // Hide the product if no size data
+          $(this).hide();  
         }
       });
     }
