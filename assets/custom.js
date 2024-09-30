@@ -601,17 +601,42 @@ $(document).ready(function() {
 
                     
 // adding custom filter on collection page
-function filterBySize(size) {
-  console.log("heyyyyyyy")
-  document.querySelectorAll('.product__title').forEach(product => {
-    if (!size || product.getAttribute('data-sizes').includes(size)) {
-      product.style.display = 'block';
+// function filterBySize(size) {
+//   console.log("heyyyyyyy")
+//   document.querySelectorAll('.product__title').forEach(product => {
+//     if (!size || product.getAttribute('data-sizes').includes(size)) {
+//       product.style.display = 'block';
+//     } else {
+//       product.style.display = 'none';
+//     }
+//   });
+// }
+
+
+
+$(document).ready(function() {
+  $('.filter-btn').on('click', function() {
+    var selectedSize = $(this).data('size');
+
+    // If "Show All Sizes" is clicked
+    if (selectedSize === 'all') {
+      $('.product').show(); // Show all products
     } else {
-      product.style.display = 'none';
+      $('.product').each(function() {
+        var sizes = $(this).data('sizes').toString().split(','); // Get sizes as an array
+        if (sizes.includes(selectedSize.toString())) {
+          $(this).show();  // Show product if it has the selected size
+        } else {
+          $(this).hide();  // Hide product if it doesn't have the selected size
+        }
+      });
     }
   });
-}
 
-
-
+  // Add active class to the selected button
+  $('.filter-btn').on('click', function() {
+    $('.filter-btn').removeClass('active');
+    $(this).addClass('active');
+  });
+});
 
