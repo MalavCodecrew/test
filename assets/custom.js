@@ -609,8 +609,6 @@ $(document).ready(function() {
       selectedSizes.push($(this).val());
     });
 
-    console.log('Selected Sizes:', selectedSizes);
-
     if (selectedSizes.length === 0) {
       $('.grid__item').hide();
       return;
@@ -623,14 +621,11 @@ $(document).ready(function() {
         sizes = sizes.toString().split(',');
 
         if (selectedSizes.some(size => sizes.includes(size))) {
-          console.log('Showing product');
           $(this).show();
         } else {
-          console.log('Hiding product');
           $(this).hide();
         }
       } else {
-        console.log('No sizes defined for this product');
         $(this).hide();
       }
     });
