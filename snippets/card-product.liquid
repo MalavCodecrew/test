@@ -136,6 +136,7 @@
                 {% endif %}
                 data-sizes="{% for variant in card_product.variants %}{{ variant.option1 }}{% unless forloop.last %},{% endunless %}{% endfor %}"
               >
+                heyy
                 <a
                   href="{{ card_product.url }}"
                   id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
