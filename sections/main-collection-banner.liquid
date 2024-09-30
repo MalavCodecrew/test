@@ -31,6 +31,7 @@
       {% for size in all_sizes %}
         {% if size != '' %}
           <li class="filter-checkbox" value="{{ size }}">{{ size }}</li>
+          <label><input type="checkbox" class="filter-checkbox" value="{{ size }}">{{ size }}</label>
         {% endif %}
       {% endfor %}
     </ul>
