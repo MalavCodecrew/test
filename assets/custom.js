@@ -631,41 +631,62 @@ $(document).ready(function() {
 //     });
 //   });
 // });
-function filterProducts() {
-    console.log("Selected sizes:", selectedSizes); // Debug: show selected sizes
+$(document).ready(function() {
+    var selectedSizes = [];
 
-    // If no sizes are selected, show all products
-    if (selectedSizes.length === 0) {
-        $('.grid__item').show();
-        return;
+    // Function to filter products based on selected sizes
+    function filterProducts() {
+        console.log("Selected sizes:", selectedSizes); // Debug: show selected sizes
+
+        // If no sizes are selected, show all products
+        if (selectedSizes.length === 0) {
+            $('.grid__item').show();
+            return;
+        }
+
+        // Loop through each product grid item
+        $('.grid__item').each(function() {
+            var sizes = $(this).data('sizes');
+
+            // Check if sizes is defined before processing
+            if (typeof sizes !== 'undefined') {
+                sizes = sizes.toString().split(',');
+                console.log("Product sizes:", sizes); // Debug: show product sizes
+
+                // Show product if it has at least one matching size
+                if (selectedSizes.some(size => sizes.includes(size))) {
+                    $(this).show();
+                    console.log("Product shown:", $(this).text());
+                } else {
+                    $(this).hide();
+                    console.log("Product hidden:", $(this).text());
+                }
+            } else {
+                $(this).hide(); // Hide product if it has no sizes defined
+                console.log("Product hidden due to undefined sizes:", $(this).text());
+            }
+        });
     }
 
-    // Loop through each product grid item
-    $('.grid__item').each(function() {
-        // Retrieve the data-sizes attribute
-        var sizes = $(this).data('sizes');
+    // Event handler for clicking on filter labels
+    $('.filter-label').on('click', function() {
+        var size = $(this).data('size');
+        console.log("Clicked size:", size); // Debug: show clicked size
 
-        // Check if sizes is defined before processing
-        if (typeof sizes !== 'undefined') {
-            sizes = sizes.toString().split(',');
-            console.log("Product sizes:", sizes); // Debug: show product sizes
-
-            // Show product if it has at least one matching size
-            if (selectedSizes.some(size => sizes.includes(size))) {
-                $(this).show();
-                console.log("Product shown:", $(this).text());
-            } else {
-                $(this).hide();
-                console.log("Product hidden:", $(this).text());
-            }
+        // Toggle the selected size
+        var index = selectedSizes.indexOf(size);
+        if (index === -1) {
+            selectedSizes.push(size);
+            $(this).addClass('selected'); // Optionally add a selected class for styling
         } else {
-            $(this).hide(); // Hide product if it has no sizes defined
-            console.log("Product hidden due to undefined sizes:", $(this).text());
+            selectedSizes.splice(index, 1);
+            $(this).removeClass('selected');
         }
+
+        // Run the filtering logic
+        filterProducts();
     });
-}
-
-
+});
 
 
    // JavaScript to sort sizes numerically
