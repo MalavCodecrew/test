@@ -631,7 +631,9 @@ $(document).ready(function() {
 //     });
 //   });
 // });
-
+  var link = document.createElement('script');
+  link.src = 'https://kit.fontawesome.com/a076d05399.js';
+  document.head.appendChild(link);
 $(document).ready(function() {
     var selectedSizes = [];
 
