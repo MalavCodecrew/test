@@ -631,6 +631,7 @@ $(document).ready(function() {
 //     });
 //   });
 // });
+
 $(document).ready(function() {
     var selectedSizes = [];
 
@@ -647,9 +648,10 @@ $(document).ready(function() {
         // Loop through each product grid item
         $('.grid__item').each(function() {
             var sizes = $(this).data('sizes');
+            console.log("Checking product:", $(this).text(), "with sizes:", sizes); // Debug log
 
-            // Check if sizes is defined before processing
-            if (typeof sizes !== 'undefined') {
+            // Check if sizes is defined and not empty
+            if (typeof sizes !== 'undefined' && sizes.trim() !== '') {
                 sizes = sizes.toString().split(',');
                 console.log("Product sizes:", sizes); // Debug: show product sizes
 
@@ -662,11 +664,31 @@ $(document).ready(function() {
                     console.log("Product hidden:", $(this).text());
                 }
             } else {
-                $(this).hide(); // Hide product if it has no sizes defined
-                console.log("Product hidden due to undefined sizes:", $(this).text());
+                $(this).hide(); // Hide product if it has no sizes defined or is empty
+                console.log("Product hidden due to undefined or empty sizes:", $(this).text());
             }
         });
     }
+
+    // Event handler for clicking on filter labels
+    $('.filter-label').on('click', function() {
+        var size = $(this).data('size');
+        console.log("Clicked size:", size); // Debug: show clicked size
+
+        // Toggle the selected size
+        var index = selectedSizes.indexOf(size);
+        if (index === -1) {
+            selectedSizes.push(size);
+            $(this).addClass('selected'); // Optionally add a selected class for styling
+        } else {
+            selectedSizes.splice(index, 1);
+            $(this).removeClass('selected');
+        }
+
+        // Run the filtering logic
+        filterProducts();
+    });
+});
 
     // Event handler for clicking on filter labels
     $('.filter-label').on('click', function() {
