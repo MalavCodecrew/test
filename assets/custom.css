@@ -752,3 +752,6 @@ input#in-table {
 .filter-label {
   cursor: pointer;
 }
+.filter-checkbox:checked + span {
+  font-weight: bold; /* Set font weight to bold */
+}
