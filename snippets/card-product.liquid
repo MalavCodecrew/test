@@ -132,7 +132,7 @@
               <h3
                 class="card__heading"
                 {% if card_product.featured_media == null and settings.card_style == 'standard' %}
-                  id="title-{{ section_id }}-{{ card_product.id }}"
+                  id="title-{{ section_id }}-{{ card_product.id }}--"
                 {% endif %}
                 data-sizes="{% for variant in card_product.variants %}{{ variant.option1 }}{% unless forloop.last %},{% endunless %}{% endfor %}"
               >
