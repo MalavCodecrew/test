@@ -738,13 +738,5 @@ input#in-table {
 .custom-filter {
   display: flex;
   justify-content: center;
-  word-spacing: 4px;
   font-size: 18px;
-}
-.custom-filter-list {
-  cursor: pointer;
-}
-span.filter-btn.active {
-  font-weight: 600;
-  color: red;
 }
