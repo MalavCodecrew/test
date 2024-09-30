@@ -13,11 +13,11 @@
   {% for product in collection.products %}
     {% for variant in product.variants %}
       {% unless all_sizes contains variant.option1 %}
-        {% assign all_sizes = all_sizes | append: variant.option1 | append: ', ' %}
+        {% assign all_sizes = all_sizes | append: variant.option1 | append: '/' %}
       {% endunless %}
     {% endfor %}
   {% endfor %}
-  {% assign all_sizes = all_sizes | split: ', ' | sort | uniq %}
+  {% assign all_sizes = all_sizes | split: '/' | sort | uniq %}
 
   <ul class="custom-filter">
     <div class="filter-title">Shop by Size &nbsp</div>
