@@ -613,8 +613,7 @@ $(document).ready(function() {
     } else {
       $('.grid__item').each(function() {
         var sizes = $(this).data('sizes');
-        
-        // Check if 'sizes' is defined
+    
         if (typeof sizes !== 'undefined') {
           sizes = sizes.toString().split(',');
           console.log('Product Sizes:', sizes);  
