@@ -736,5 +736,5 @@ input#in-table {
 
 /* // adding custom filter on collection page */
 .custom-filter {
-  list-style: none;
+  cursor: pointer;
 }
