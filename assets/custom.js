@@ -601,25 +601,63 @@ $(document).ready(function() {
 
                     
 // adding custom filter on collection page
+// $(document).ready(function() {
+//   $('.filter-checkbox').on('change', function() {
+//     var selectedSizes = [];
+
+//     $('.filter-checkbox:checked').each(function() {
+//       selectedSizes.push($(this).val());
+//     });
+
+//     if (selectedSizes.length === 0) {
+//       $('.grid__item').show();
+//       return;
+//     }
+
+//     $('.grid__item').each(function() {
+//       var sizes = $(this).data('sizes');
+      
+//       if (typeof sizes !== 'undefined') {
+//         sizes = sizes.toString().split(',');
+
+//         if (selectedSizes.some(size => sizes.includes(size))) {
+//           $(this).show();
+//         } else {
+//           $(this).hide();
+//         }
+//       } else {
+//         $(this).hide();
+//       }
+//     });
+//   });
+// });
 $(document).ready(function() {
-  $('.filter-checkbox').on('change', function() {
+  // Click event on the label
+  $('.custom-filter label').on('click', function() {
     var selectedSizes = [];
 
-    $('.filter-checkbox:checked').each(function() {
-      selectedSizes.push($(this).val());
+    // Toggle 'active' class on the clicked label
+    $(this).toggleClass('active');
+
+    // Find all active labels (clicked labels) and get their size values
+    $('.custom-filter label.active').each(function() {
+      selectedSizes.push($(this).find('input').val());
     });
 
+    // If no size is selected, show all items
     if (selectedSizes.length === 0) {
       $('.grid__item').show();
       return;
     }
 
+    // Show/hide grid items based on selected sizes
     $('.grid__item').each(function() {
       var sizes = $(this).data('sizes');
       
       if (typeof sizes !== 'undefined') {
         sizes = sizes.toString().split(',');
 
+        // Show item if any selected size matches
         if (selectedSizes.some(size => sizes.includes(size))) {
           $(this).show();
         } else {
@@ -631,6 +669,7 @@ $(document).ready(function() {
     });
   });
 });
+
    // JavaScript to sort sizes numerically
  document.addEventListener('DOMContentLoaded', function () {
       var filterList = document.querySelectorAll('.custom-filter label');
