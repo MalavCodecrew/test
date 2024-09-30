@@ -747,5 +747,5 @@ input#in-table {
   display: flex;
 }
 .filter-checkbox {
-  display: none;
+  display: none !important;
 }
