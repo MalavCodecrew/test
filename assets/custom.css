@@ -749,22 +749,3 @@ input#in-table {
 .filter-checkbox {
   display: none !important;
 }
-.filter-label {
-  cursor: pointer; /* Change cursor to pointer for better UX */
-  display: inline-flex; /* Align checkbox and text in a row */
-  align-items: center; /* Center vertically */
-}
-
-.filter-checkbox {
-  display: none; /* Hide the checkbox visually */
-}
-
-/* Make the label bold when the associated checkbox is checked */
-.filter-checkbox:checked + .filter-label {
-  font-weight: bold; /* Make the label bold when the checkbox is checked */
-}
-
-/* Optional: Keep label text normal when checkbox is not checked */
-.filter-checkbox:not(:checked) + .filter-label {
-  font-weight: normal; /* Ensure normal weight when not checked */
-}
