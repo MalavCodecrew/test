@@ -14,11 +14,26 @@
     <label><input type="checkbox" class="filter-checkbox" value="8"> Size 8</label>
     <label><input type="checkbox" class="filter-checkbox" value="10"> Size 10</label>
     <label><input type="checkbox" class="filter-checkbox" value="12"> Size 12</label>
-    {{ collection.products.variant }}
-    {% for variant in product.variants %}
-      {{ variant.option1 }}
-      {% unless forloop.last %},{% endunless %}
+    {% assign all_sizes = '' %}
+
+    {% for product in collection.products %}
+      {% for variant in product.variants %}
+        {% unless all_sizes contains variant.option1 %}
+          {% assign all_sizes = all_sizes | append: variant.option1 | append: ', ' %}
+        {% endunless %}
+      {% endfor %}
     {% endfor %}
+
+    {% assign all_sizes = all_sizes | split: ', ' | sort | uniq %}
+
+    <p>All Available Sizes:</p>
+    <ul>
+      {% for size in all_sizes %}
+        {% if size != '' %}
+          <li>{{ size }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
   </div>
 {% endif %}
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
