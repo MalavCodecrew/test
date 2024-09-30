@@ -162,6 +162,7 @@
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
                     style="--animation-order: {{ forloop.index }};"
+                    data-sizes="{% for variant in product.variants %}{{ variant.option1 }}{% unless forloop.last %},{% endunless %}{% endfor %}"
                   {% endif %}
                 >
                   {% render 'card-product',
