@@ -19,8 +19,9 @@
       {% endfor %}
     {% endfor %}
     {% assign all_sizes = all_sizes | split: ', ' | sort | uniq %}
-    <div class="filter-title">Shop by Size</div>
+
     <ul>
+      <div class="filter-title">Shop by Size</div>
       {% for size in all_sizes %}
         {% if size != '' %}
           <label><input type="checkbox" class="filter-checkbox" value="{{ size }}">{{ size }}</label>
