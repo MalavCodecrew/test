@@ -12,7 +12,6 @@
   {% assign all_sizes = '' %}
   {% for product in collection.products %}
     {% for variant in product.variants %}
-      {{ variant.option2 }}
       {% unless all_sizes contains variant.option1 %}
         {% assign all_sizes = all_sizes | append: variant.option1 | append: '/' %}
       {% endunless %}
