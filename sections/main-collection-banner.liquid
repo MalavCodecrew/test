@@ -10,11 +10,11 @@
 {%- endstyle -%}
 {% if collection.title == 'Shoes' %}
   <ul>
-    <li><button onclick="filterBySize('8')">Shop by Size: 8</button></li>
-    <li><button onclick="filterBySize('10')">Shop by Size: 10</button></li>
-    <li><button onclick="filterBySize('12')">Shop by Size: 12</button></li>
+    <li><button class="filter-btn" data-size="8">Shop by Size: 8</button></li>
+    <li><button class="filter-btn" data-size="10">Shop by Size: 10</button></li>
+    <li><button class="filter-btn" data-size="12">Shop by Size: 12</button></li>
+    <li><button class="filter-btn" data-size="all">Show All Sizes</button></li>
   </ul>
-  <button onclick="filterBySize('')">Show All Sizes</button>
 {% endif %}
 
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
