@@ -621,7 +621,7 @@ $(document).ready(function() {
     if (selectedSize === 'all') {
       $('.practice').show(); 
     } else {
-      $('.practice').each(function() {
+      $('.product__title').each(function() {
         var sizes = $(this).data('sizes').toString().split(','); 
         if (sizes.includes(selectedSize.toString())) {
           $(this).show(); 
