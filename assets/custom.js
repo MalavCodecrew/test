@@ -636,6 +636,7 @@ $(document).ready(function() {
 
   $('.filter-label').on('click', function() {
     var size = $(this).data('size');
+    console.log("Clicked size:", size); // Debug: Show clicked size
 
     // Toggle the size in the selectedSizes array
     var index = selectedSizes.indexOf(size);
@@ -646,25 +647,31 @@ $(document).ready(function() {
       selectedSizes.splice(index, 1);
       $(this).removeClass('selected');
     }
+    
+    console.log("Selected sizes:", selectedSizes); // Debug: Show selected sizes array
 
+    // If no sizes are selected, show all products
     if (selectedSizes.length === 0) {
       $('.grid__item').show();
       return;
     }
 
+    // Loop through each product grid item
     $('.grid__item').each(function() {
       var sizes = $(this).data('sizes');
+      console.log("Product sizes:", sizes); // Debug: Show product sizes
 
       if (typeof sizes !== 'undefined') {
         sizes = sizes.toString().split(',');
 
-        if (selectedSizes.some(size => sizes.includes(size))) {
-          $(this).show();
+        // Check if any of the selected sizes match the product sizes
+        if (selectedSizes.some(function(size) { return sizes.includes(size); })) {
+          $(this).show();  // Show product if any size matches
         } else {
-          $(this).hide();
+          $(this).hide();  // Hide product if no size matches
         }
       } else {
-        $(this).hide();
+        $(this).hide();  // Hide product if it has no sizes
       }
     });
   });
