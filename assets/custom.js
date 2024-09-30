@@ -605,10 +605,8 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('.filter-btn').on('click', function() {
     var selectedSize = $(this).data('size');
-    console.log('Selected Size:', selectedSize); 
 
     if (selectedSize === 'all') {
-      console.log('Showing all products');
       $('.grid__item').show();
     } else {
       $('.grid__item').each(function() {
@@ -616,16 +614,12 @@ $(document).ready(function() {
     
         if (typeof sizes !== 'undefined') {
           sizes = sizes.toString().split(',');
-          console.log('Product Sizes:', sizes);  
           if (sizes.includes(selectedSize.toString())) {
-            console.log('Showing product');
             $(this).show();
           } else {
-            console.log('Hiding product');
             $(this).hide();
           }
         } else {
-          console.log('No sizes defined for this product');
           $(this).hide();  
         }
       });
