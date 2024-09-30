@@ -602,33 +602,33 @@ $(document).ready(function() {
                     
 // adding custom filter on collection page
 
-$(document).ready(function() {
-  $('.filter-btn').on('click', function() {
-    var selectedSize = $(this).data('size');
+// $(document).ready(function() {
+//   $('.filter-btn').on('click', function() {
+//     var selectedSize = $(this).data('size');
 
-    if (selectedSize === 'all') {
-      $('.grid__item').show();
-    } else {
-      $('.grid__item').each(function() {
-        var sizes = $(this).data('sizes');
+//     if (selectedSize === 'all') {
+//       $('.grid__item').show();
+//     } else {
+//       $('.grid__item').each(function() {
+//         var sizes = $(this).data('sizes');
     
-        if (typeof sizes !== 'undefined') {
-          sizes = sizes.toString().split(',');
-          if (sizes.includes(selectedSize.toString())) {
-            $(this).show();
-          } else {
-            $(this).hide();
-          }
-        } else {
-          $(this).hide();  
-        }
-      });
-    }
-  });
+//         if (typeof sizes !== 'undefined') {
+//           sizes = sizes.toString().split(',');
+//           if (sizes.includes(selectedSize.toString())) {
+//             $(this).show();
+//           } else {
+//             $(this).hide();
+//           }
+//         } else {
+//           $(this).hide();  
+//         }
+//       });
+//     }
+//   });
 
-  $('.filter-btn').on('click', function() {
-    $('.filter-btn').removeClass('active');
-    $(this).addClass('active');
-  });
-});
+//   $('.filter-btn').on('click', function() {
+//     $('.filter-btn').removeClass('active');
+//     $(this).addClass('active');
+//   });
+// });
 
