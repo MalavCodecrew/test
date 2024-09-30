@@ -621,17 +621,26 @@ $(document).ready(function() {
 
     if (selectedSize === 'all') {
       console.log('Showing all products');
-      $('.card__heading').show();
+      $('.product').show();
     } else {
-      $('.card__heading').each(function() {
-        var sizes = $(this).data('sizes').toString().split(',');
-        console.log('Product Sizes:', sizes);  // Debug log
-        if (sizes.includes(selectedSize.toString())) {
-          console.log('Showing product');
-          $(this).show();
+      $('.product').each(function() {
+        var sizes = $(this).data('sizes');
+        
+        // Check if 'sizes' is defined
+        if (typeof sizes !== 'undefined') {
+          sizes = sizes.toString().split(',');
+          console.log('Product Sizes:', sizes);  // Debug log
+
+          if (sizes.includes(selectedSize.toString())) {
+            console.log('Showing product');
+            $(this).show();
+          } else {
+            console.log('Hiding product');
+            $(this).hide();
+          }
         } else {
-          console.log('Hiding product');
-          $(this).hide();
+          console.log('No sizes defined for this product');
+          $(this).hide();  // Hide the product if no size data
         }
       });
     }
