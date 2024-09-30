@@ -20,7 +20,7 @@
   {% assign all_sizes = all_sizes | split: ', ' | sort | uniq %}
 
   <ul class="custom-filter">
-    <div class="filter-title">Shop by Size</div>
+    <div class="filter-title">Shop by Size &nbsp</div>
     {% for size in all_sizes %}
       {% if size != '' %}
         <label><input type="checkbox" class="filter-checkbox" value="{{ size }}">{{ size }}</label>
