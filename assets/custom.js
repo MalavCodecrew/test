@@ -605,12 +605,6 @@ $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
     var selectedSizes = [];
 
-    if ($('.filter-checkbox[value="all"]').is(':checked')) {
-      console.log('Showing all products');
-      $('.grid__item').show();
-      return;
-    }
-
     $('.filter-checkbox:checked').each(function() {
       selectedSizes.push($(this).val());
     });
