@@ -634,21 +634,9 @@ $(document).ready(function() {
 $(document).ready(function() {
   var selectedSizes = [];
 
-  $('.filter-label').on('click', function() {
-    var size = $(this).data('size');
-    console.log("Clicked size:", size); // Debug: Show clicked size
-
-    // Toggle the size in the selectedSizes array
-    var index = selectedSizes.indexOf(size);
-    if (index === -1) {
-      selectedSizes.push(size);
-      $(this).addClass('selected');
-    } else {
-      selectedSizes.splice(index, 1);
-      $(this).removeClass('selected');
-    }
-    
-    console.log("Selected sizes:", selectedSizes); // Debug: Show selected sizes array
+  // Function to handle filtering
+  function filterProducts() {
+    console.log("Selected sizes:", selectedSizes); // Debug: show selected sizes
 
     // If no sizes are selected, show all products
     if (selectedSizes.length === 0) {
@@ -659,23 +647,46 @@ $(document).ready(function() {
     // Loop through each product grid item
     $('.grid__item').each(function() {
       var sizes = $(this).data('sizes');
-      console.log("Product sizes:", sizes); // Debug: Show product sizes
+      console.log("Product sizes:", sizes); // Debug: show product sizes
 
       if (typeof sizes !== 'undefined') {
         sizes = sizes.toString().split(',');
 
-        // Check if any of the selected sizes match the product sizes
+        // Show product if it has at least one matching size
         if (selectedSizes.some(function(size) { return sizes.includes(size); })) {
-          $(this).show();  // Show product if any size matches
+          $(this).show();
+          console.log("Product shown for size:", sizes);
         } else {
-          $(this).hide();  // Hide product if no size matches
+          $(this).hide();
+          console.log("Product hidden for size:", sizes);
         }
       } else {
-        $(this).hide();  // Hide product if it has no sizes
+        $(this).hide(); // Hide if no sizes are defined
+        console.log("Product hidden (no sizes found).");
       }
     });
+  }
+
+  // Event handler for clicking on filter labels
+  $('.filter-label').on('click', function() {
+    var size = $(this).data('size');
+    console.log("Clicked size:", size); // Debug: show clicked size
+
+    // Toggle the selected size
+    var index = selectedSizes.indexOf(size);
+    if (index === -1) {
+      selectedSizes.push(size);
+      $(this).addClass('selected');  // Optionally add a selected class for styling
+    } else {
+      selectedSizes.splice(index, 1);
+      $(this).removeClass('selected');
+    }
+
+    // Run the filtering logic
+    filterProducts();
   });
 });
+
 
    // JavaScript to sort sizes numerically
  document.addEventListener('DOMContentLoaded', function () {
