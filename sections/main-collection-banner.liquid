@@ -28,8 +28,8 @@
           <span>
             {{- size }}
           </span>
+          {%- unless forloop.last %}/ {% endunless -%}
         </label>
-        {%- unless forloop.last %}/ {% endunless -%}
       {% endif %}
     {% endfor %}
   </ul>
