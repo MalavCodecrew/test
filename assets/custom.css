@@ -736,7 +736,8 @@ input#in-table {
 
 /* // adding custom filter on collection page */
 .custom-filter {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .custom-filter-list {
   cursor: pointer;
