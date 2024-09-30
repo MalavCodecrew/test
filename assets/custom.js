@@ -632,17 +632,17 @@ $(document).ready(function() {
   });
 });
   
-   // JavaScript to sort sizes numerically
- document.addEventListener('DOMContentLoaded', function () {
-      var filterList = document.querySelectorAll('.custom-filter label');
-      var sizesArray = Array.from(filterList);
+ //   // JavaScript to sort sizes numerically
+ // document.addEventListener('DOMContentLoaded', function () {
+ //      var filterList = document.querySelectorAll('.custom-filter label');
+ //      var sizesArray = Array.from(filterList);
 
-      sizesArray.sort(function (a, b) {
-        return parseInt(a.querySelector('input').value) - parseInt(b.querySelector('input').value);
-      });
+ //      sizesArray.sort(function (a, b) {
+ //        return parseInt(a.querySelector('input').value) - parseInt(b.querySelector('input').value);
+ //      });
 
-      var parent = document.querySelector('.custom-filter');
-      sizesArray.forEach(function (sizeLabel) {
-        parent.appendChild(sizeLabel);
-      });
-    });
+ //      var parent = document.querySelector('.custom-filter');
+ //      sizesArray.forEach(function (sizeLabel) {
+ //        parent.appendChild(sizeLabel);
+ //      });
+ //    });
