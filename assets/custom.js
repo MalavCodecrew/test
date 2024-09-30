@@ -615,6 +615,7 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
+  console.log("heyt")
   $('.filter-btn').on('click', function() {
     var selectedSize = $(this).data('size');
 
