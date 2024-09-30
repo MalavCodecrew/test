@@ -602,6 +602,7 @@ $(document).ready(function() {
                     
 // adding custom filter on collection page
 function filterBySize(size) {
+  console.log("heyyyyyyy")
   document.querySelectorAll('.product__title').forEach(product => {
     if (!size || product.getAttribute('data-sizes').includes(size)) {
       product.style.display = 'block';
