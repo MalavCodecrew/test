@@ -610,7 +610,7 @@ $(document).ready(function() {
     });
 
     if (selectedSizes.length === 0) {
-      $('.grid__item').hide();
+      $('.grid__item').show();
       return;
     }
 
