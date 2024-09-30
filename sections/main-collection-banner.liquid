@@ -30,7 +30,7 @@
     <ul>
       {% for size in all_sizes %}
         {% if size != '' %}
-          <li>{{ size }}</li>
+          <li class="filter-checkbox" value="{{ size }}">{{ size }}</li>
         {% endif %}
       {% endfor %}
     </ul>
