@@ -618,22 +618,21 @@ $(document).ready(function() {
   $('.filter-btn').on('click', function() {
     var selectedSize = $(this).data('size');
 
-    // If "Show All Sizes" is clicked
     if (selectedSize === 'all') {
-      $('.product').show(); // Show all products
+      $('.product').show(); 
     } else {
       $('.product').each(function() {
-        var sizes = $(this).data('sizes').toString().split(','); // Get sizes as an array
+        var sizes = $(this).data('sizes').toString().split(','); 
         if (sizes.includes(selectedSize.toString())) {
-          $(this).show();  // Show product if it has the selected size
+          $(this).show(); 
         } else {
-          $(this).hide();  // Hide product if it doesn't have the selected size
+          $(this).hide();  
         }
       });
     }
   });
 
-  // Add active class to the selected button
+ 
   $('.filter-btn').on('click', function() {
     $('.filter-btn').removeClass('active');
     $(this).addClass('active');
