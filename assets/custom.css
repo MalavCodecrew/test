@@ -746,3 +746,6 @@ input#in-table {
 .color-swatches {
   display: flex;
 }
+.filter-checkbox {
+  display: none;
+}
