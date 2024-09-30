@@ -751,8 +751,10 @@ input#in-table {
 }
 .filter-label {
   cursor: pointer; /* Change cursor to pointer for better UX */
+  transition: font-weight 0.2s; /* Smooth transition for boldness */
 }
 
-.filter-label.selected {
-  font-weight: bold; /* Make the label bold when the class is applied */
+/* Make the label bold when the associated checkbox is checked */
+.filter-checkbox:checked + .filter-label {
+  font-weight: bold; /* Make the label bold when the checkbox is checked */
 }
