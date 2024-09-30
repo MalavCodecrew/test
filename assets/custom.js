@@ -619,9 +619,9 @@ $(document).ready(function() {
     var selectedSize = $(this).data('size');
 
     if (selectedSize === 'all') {
-      $('.product').show(); 
+      $('.practice').show(); 
     } else {
-      $('.product').each(function() {
+      $('.practice').each(function() {
         var sizes = $(this).data('sizes').toString().split(','); 
         if (sizes.includes(selectedSize.toString())) {
           $(this).show(); 
