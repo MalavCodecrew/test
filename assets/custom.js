@@ -634,7 +634,7 @@ $(document).ready(function() {
   
    // JavaScript to sort sizes numerically
  document.addEventListener('DOMContentLoaded', function () {
-      var filterList = document.querySelectorAll('.custom-filter.filter-checkbox');
+      var filterList = document.querySelectorAll('.custom-filter .filter-checkbox');
       var sizesArray = Array.from(filterList);
 
       sizesArray.sort(function (a, b) {
