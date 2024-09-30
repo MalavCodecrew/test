@@ -617,22 +617,26 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('.filter-btn').on('click', function() {
     var selectedSize = $(this).data('size');
+    console.log('Selected Size:', selectedSize);  // Debug log
 
     if (selectedSize === 'all') {
-      $('.practice').show(); 
+      console.log('Showing all products');
+      $('.product__title').show();
     } else {
       $('.product__title').each(function() {
-        var sizes = $(this).data('sizes').toString().split(','); 
+        var sizes = $(this).data('sizes').toString().split(',');
+        console.log('Product Sizes:', sizes);  // Debug log
         if (sizes.includes(selectedSize.toString())) {
-          $(this).show(); 
+          console.log('Showing product');
+          $(this).show();
         } else {
-          $(this).hide();  
+          console.log('Hiding product');
+          $(this).hide();
         }
       });
     }
   });
 
- 
   $('.filter-btn').on('click', function() {
     $('.filter-btn').removeClass('active');
     $(this).addClass('active');
