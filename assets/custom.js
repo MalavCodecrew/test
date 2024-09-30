@@ -621,9 +621,9 @@ $(document).ready(function() {
 
     if (selectedSize === 'all') {
       console.log('Showing all products');
-      $('.card__heading').show();
+      $('.grid__item').show();
     } else {
-      $('.card__heading').each(function() {
+      $('.grid__item').each(function() {
         var sizes = $(this).data('sizes');
         
         // Check if 'sizes' is defined
