@@ -27,9 +27,9 @@
           <input type="checkbox" class="filter-checkbox" value="{{ size }}">
           <span>
             {{- size }}
-            {%- unless forloop.last %}/ {% endunless -%}
           </span>
         </label>
+        {%- unless forloop.last %}/ {% endunless -%}
       {% endif %}
     {% endfor %}
   </ul>
