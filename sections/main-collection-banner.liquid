@@ -9,26 +9,24 @@
   }
 {%- endstyle -%}
 {% if collection.title == 'Shoes' %}
-  <div class="custom-filter">
-    {% assign all_sizes = '' %}
-    {% for product in collection.products %}
-      {% for variant in product.variants %}
-        {% unless all_sizes contains variant.option1 %}
-          {% assign all_sizes = all_sizes | append: variant.option1 | append: ', ' %}
-        {% endunless %}
-      {% endfor %}
+  {% assign all_sizes = '' %}
+  {% for product in collection.products %}
+    {% for variant in product.variants %}
+      {% unless all_sizes contains variant.option1 %}
+        {% assign all_sizes = all_sizes | append: variant.option1 | append: ', ' %}
+      {% endunless %}
     {% endfor %}
-    {% assign all_sizes = all_sizes | split: ', ' | sort | uniq %}
+  {% endfor %}
+  {% assign all_sizes = all_sizes | split: ', ' | sort | uniq %}
 
-    <ul>
-      <div class="filter-title">Shop by Size</div>
-      {% for size in all_sizes %}
-        {% if size != '' %}
-          <label><input type="checkbox" class="filter-checkbox" value="{{ size }}">{{ size }}</label>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </div>
+  <ul class="custom-filter">
+    <div class="filter-title">Shop by Size</div>
+    {% for size in all_sizes %}
+      {% if size != '' %}
+        <label><input type="checkbox" class="filter-checkbox" value="{{ size }}">{{ size }}</label>
+      {% endif %}
+    {% endfor %}
+  </ul>
 {% endif %}
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
