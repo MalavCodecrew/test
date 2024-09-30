@@ -744,3 +744,7 @@ input#in-table {
 .custom-filter-list {
   cursor: pointer;
 }
+span.filter-btn.active {
+  font-weight: 600;
+  color: red;
+}
