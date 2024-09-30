@@ -23,9 +23,9 @@
     <div class="filter-title">Shop by Size &nbsp</div>
     {% for size in all_sizes %}
       {% if size != '' %}
-        <label class="filter-label"
-          ><input type="checkbox" class="filter-checkbox" value="{{ size }}"> <span>{{ size }}</span>/</label
-        >
+        <label class="filter-label">
+          <input type="checkbox" class="filter-checkbox" value="{{ size }}"> <span>{{ size }}</span>
+        </label>
       {% endif %}
     {% endfor %}
   </ul>
