@@ -9,12 +9,12 @@
   }
 {%- endstyle -%}
 {% if collection.title == 'Shoes' %}
-  <ul class="custom-filter">
-    <li><button class="filter-btn" data-size="8">Shop by Size: 8</button></li>
-    <li><button class="filter-btn" data-size="10">Shop by Size: 10</button></li>
-    <li><button class="filter-btn" data-size="12">Shop by Size: 12</button></li>
-    <li><button class="filter-btn" data-size="all">Show All Sizes</button></li>
-  </ul>
+  <div class="custom-filter">
+    <button class="filter-btn" data-size="8">Shop by Size: 8</button>
+    <button class="filter-btn" data-size="10">Shop by Size: 10</button>
+    <button class="filter-btn" data-size="12">Shop by Size: 12</button>
+    <button class="filter-btn" data-size="all">Show All Sizes</button>
+  </div>
 {% endif %}
 
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
