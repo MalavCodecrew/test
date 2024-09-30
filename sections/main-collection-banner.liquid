@@ -14,7 +14,7 @@
     <label><input type="checkbox" class="filter-checkbox" value="8"> Size 8</label>
     <label><input type="checkbox" class="filter-checkbox" value="10"> Size 10</label>
     <label><input type="checkbox" class="filter-checkbox" value="12"> Size 12</label>
-    {{ collection.products }}hey
+    {{ collection.products | json }}hey
     {% for variant in product.variants %}
       {{ variant.option1 }}
     {% endfor %}
