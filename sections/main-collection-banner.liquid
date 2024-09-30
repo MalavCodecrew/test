@@ -24,8 +24,11 @@
     {% for size in all_sizes %}
       {% if size != '' %}
         <label class="filter-label">
-          <input type="checkbox" class="filter-checkbox" value="{{ size }}"> <span>{{ size }}</span>
-          {%- unless forloop.last %}/ {% endunless %}
+          <input type="checkbox" class="filter-checkbox" value="{{ size }}">
+          <span>
+            {{- size }}
+            {%- unless forloop.last %}/ {% endunless -%}
+          </span>
         </label>
       {% endif %}
     {% endfor %}
