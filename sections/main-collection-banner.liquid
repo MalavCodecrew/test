@@ -10,19 +10,25 @@
 {%- endstyle -%}
 {% if collection.title == 'Shoes' %}
   <div class="custom-filter">
-    <strong> Shop by Size &nbsp</strong>
-    <div class="custom-filter-list">
-      <input type="checkbox" id="8" name="8 In" class="filter-btn">
-      <label for="8">8</label>
-      <span class="filter-btn" data-size="8"> 8 </span>/
-      <input type="checkbox" id="10" name="10 In" class="filter-btn">
-      <label for="10">10</label>
-      <span class="filter-btn" data-size="10"> 10 </span>/
-      <input type="checkbox" id="12" name="12 In" class="filter-btn">
-      <label for="12">12</label>
-      <span class="filter-btn" data-size="12"> 12 </span>/
-      <span class="filter-btn" data-size="all">Show All Sizes</span>
-    </div>
+    <!--
+      <strong> Shop by Size &nbsp</strong>
+      <div class="custom-filter-list">
+        <input type="checkbox" id="8" name="8 In" class="filter-btn">
+        <label for="8">8</label>
+        <span class="filter-btn" data-size="8"> 8 </span>/
+        <input type="checkbox" id="10" name="10 In" class="filter-btn">
+        <label for="10">10</label>
+        <span class="filter-btn" data-size="10"> 10 </span>/
+        <input type="checkbox" id="12" name="12 In" class="filter-btn">
+        <label for="12">12</label>
+        <span class="filter-btn" data-size="12"> 12 </span>/
+        <span class="filter-btn" data-size="all">Show All Sizes</span>
+      </div>
+    -->
+    <label><input type="checkbox" class="filter-checkbox" value="8"> Size 8</label>
+    <label><input type="checkbox" class="filter-checkbox" value="10"> Size 10</label>
+    <label><input type="checkbox" class="filter-checkbox" value="12"> Size 12</label>
+    <label><input type="checkbox" class="filter-checkbox" value="all"> Show All</label>
   </div>
 {% endif %}
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
