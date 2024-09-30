@@ -632,32 +632,32 @@ $(document).ready(function() {
 //   });
 // });
 $(document).ready(function() {
-  // Click event on the label
-  $('.custom-filter label').on('click', function() {
-    var selectedSizes = [];
+  var selectedSizes = [];
 
-    // Toggle 'active' class on the clicked label
-    $(this).toggleClass('active');
+  $('.filter-label').on('click', function() {
+    var size = $(this).data('size');
 
-    // Find all active labels (clicked labels) and get their size values
-    $('.custom-filter label.active').each(function() {
-      selectedSizes.push($(this).find('input').val());
-    });
+    // Toggle the size in the selectedSizes array
+    var index = selectedSizes.indexOf(size);
+    if (index === -1) {
+      selectedSizes.push(size);
+      $(this).addClass('selected');
+    } else {
+      selectedSizes.splice(index, 1);
+      $(this).removeClass('selected');
+    }
 
-    // If no size is selected, show all items
     if (selectedSizes.length === 0) {
       $('.grid__item').show();
       return;
     }
 
-    // Show/hide grid items based on selected sizes
     $('.grid__item').each(function() {
       var sizes = $(this).data('sizes');
-      
+
       if (typeof sizes !== 'undefined') {
         sizes = sizes.toString().split(',');
 
-        // Show item if any selected size matches
         if (selectedSizes.some(size => sizes.includes(size))) {
           $(this).show();
         } else {
