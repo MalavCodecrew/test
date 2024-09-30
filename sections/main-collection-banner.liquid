@@ -10,12 +10,7 @@
 {%- endstyle -%}
 {% if collection.title == 'Shoes' %}
   <div class="custom-filter">
-    <div class="filter-title">Shop by Size &nbsp</div>
-    <label><input type="checkbox" class="filter-checkbox" value="8"> Size 8</label>
-    <label><input type="checkbox" class="filter-checkbox" value="10"> Size 10</label>
-    <label><input type="checkbox" class="filter-checkbox" value="12"> Size 12</label>
     {% assign all_sizes = '' %}
-
     {% for product in collection.products %}
       {% for variant in product.variants %}
         {% unless all_sizes contains variant.option1 %}
@@ -23,10 +18,8 @@
         {% endunless %}
       {% endfor %}
     {% endfor %}
-
     {% assign all_sizes = all_sizes | split: ', ' | sort | uniq %}
-
-    <p>All Available Sizes:</p>
+    <div class="filter-title">Shop by Size &nbsp</div>
     <ul>
       {% for size in all_sizes %}
         {% if size != '' %}
