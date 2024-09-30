@@ -25,6 +25,7 @@
       {% if size != '' %}
         <label class="filter-label">
           <input type="checkbox" class="filter-checkbox" value="{{ size }}"> <span>{{ size }}</span>
+          {%- unless forloop.last %}/ {% endunless %}
         </label>
       {% endif %}
     {% endfor %}
