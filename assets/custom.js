@@ -636,7 +636,7 @@ $(document).ready(function() {
             $(this).show();
           } else {
             console.log('Hiding product');
-            $('.practice').hide();
+            $(this).hide();
           }
         } else {
           console.log('No sizes defined for this product');
