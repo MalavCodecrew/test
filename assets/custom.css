@@ -749,3 +749,10 @@ input#in-table {
 .filter-checkbox {
   display: none !important;
 }
+.filter-label {
+  cursor: pointer; /* Change cursor to pointer for better UX */
+}
+
+.filter-label.selected {
+  font-weight: bold; /* Make the label bold when the class is applied */
+}
