@@ -605,9 +605,9 @@ $(document).ready(function() {
 
   // Log sizes for each grid item
   $('.grid__item').each(function() {
-    var sizes = $(this).data('sizes');
+    var sizes = $(this).data('size');
     console.log('Item:', $(this));
-    console.log('Raw data-sizes attribute:', $(this).attr('data-sizes'));
+    console.log('Raw data-sizes attribute:', $(this).attr('data-size'));
     console.log('Parsed sizes:', sizes);
   });
 
