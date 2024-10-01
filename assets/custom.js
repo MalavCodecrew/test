@@ -634,21 +634,20 @@ $(document).ready(function() {
 $(document).ready(function() {
   function filterItems() {
     var selectedSizes = [];
-    
+
     // Gather checked checkboxes
     $('.filter-checkbox:checked').each(function() {
       selectedSizes.push($(this).val());
     });
-    
+
     console.log("Selected sizes:", selectedSizes); // Debugging line
 
     $('.grid__item').each(function() {
-      var sizes = $(this).data('sizes');
-
-      console.log("Current item's sizes:", sizes); // Debugging line
+      var sizes = $(this).attr('data-sizes'); // Get raw data-sizes
+      console.log("Data-sizes attribute:", sizes); // Check if it's retrieved correctly
       
-      if (typeof sizes !== 'undefined') {
-        sizes = sizes.toString().split(',');
+      if (sizes) {
+        sizes = sizes.split(',');
 
         if (selectedSizes.length === 0 || selectedSizes.some(size => sizes.includes(size))) {
           $(this).show();
@@ -668,8 +667,9 @@ $(document).ready(function() {
   filterItems();
 
   // Event listener for checkbox changes
-  $('.filter-checkbox').on('change', filterItems);
+  $(document).on('change', '.filter-checkbox', filterItems);
 });
+
 
 
 
