@@ -696,6 +696,10 @@ $(document).ready(function() {
       }
     });
   });
+  console.log("Selected Sizes: ", selectedSizes);
+console.log("Selected Materials: ", selectedMaterials);
+console.log("Selected Colors: ", selectedColors);
+
 });
 
    // JavaScript to sort sizes numerically
