@@ -601,75 +601,75 @@ $(document).ready(function() {
 
                     
 // adding custom filter on collection page
-// $(document).ready(function() {
-//   $('.filter-checkbox').on('change', function() {
-//     var selectedSizes = [];
-
-//     $('.filter-checkbox:checked').each(function() {
-//       selectedSizes.push($(this).val());
-//     });
-
-//     if (selectedSizes.length === 0) {
-//       $('.grid__item').show();
-//       return;
-//     }
-
-//     $('.grid__item').each(function() {
-//       var sizes = $(this).data('sizes');
-      
-//       if (typeof sizes !== 'undefined') {
-//         sizes = sizes.toString().split(',');
-
-//         if (selectedSizes.some(size => sizes.includes(size))) {
-//           $(this).show();
-//         } else {
-//           $(this).hide();
-//         }
-//       } else {
-//         $(this).hide();
-//       }
-//     });
-//   });
-// });
 $(document).ready(function() {
-  function filterItems() {
+  $('.filter-checkbox').on('change', function() {
     var selectedSizes = [];
-    
-    // Gather checked checkboxes
+
     $('.filter-checkbox:checked').each(function() {
       selectedSizes.push($(this).val());
     });
-    
-    console.log("Selected sizes:", selectedSizes); // Debugging line
+
+    if (selectedSizes.length === 0) {
+      $('.grid__item').show();
+      return;
+    }
 
     $('.grid__item').each(function() {
       var sizes = $(this).data('sizes');
-
-      console.log("Current item's sizes:", sizes); // Debugging line
       
       if (typeof sizes !== 'undefined') {
         sizes = sizes.toString().split(',');
 
-        if (selectedSizes.length === 0 || selectedSizes.some(size => sizes.includes(size))) {
+        if (selectedSizes.some(size => sizes.includes(size))) {
           $(this).show();
-          console.log("Showing item:", $(this)); // Debugging line
         } else {
           $(this).hide();
-          console.log("Hiding item:", $(this)); // Debugging line
         }
       } else {
         $(this).hide();
-        console.log("Hiding item due to undefined sizes:", $(this)); // Debugging line
       }
     });
-  }
-
-  // Initial filter application on page load
-  filterItems();
-
-  // Event listener for checkbox changes
-  $('.filter-checkbox').on('change', filterItems);
+  });
 });
+// $(document).ready(function() {
+//   function filterItems() {
+//     var selectedSizes = [];
+    
+//     // Gather checked checkboxes
+//     $('.filter-checkbox:checked').each(function() {
+//       selectedSizes.push($(this).val());
+//     });
+    
+//     console.log("Selected sizes:", selectedSizes); // Debugging line
+
+//     $('.grid__item').each(function() {
+//       var sizes = $(this).data('sizes');
+
+//       console.log("Current item's sizes:", sizes); // Debugging line
+      
+//       if (typeof sizes !== 'undefined') {
+//         sizes = sizes.toString().split(',');
+
+//         if (selectedSizes.length === 0 || selectedSizes.some(size => sizes.includes(size))) {
+//           $(this).show();
+//           console.log("Showing item:", $(this)); // Debugging line
+//         } else {
+//           $(this).hide();
+//           console.log("Hiding item:", $(this)); // Debugging line
+//         }
+//       } else {
+//         $(this).hide();
+//         console.log("Hiding item due to undefined sizes:", $(this)); // Debugging line
+//       }
+//     });
+//   }
+
+//   // Initial filter application on page load
+//   filterItems();
+
+//   // Event listener for checkbox changes
+//   $('.filter-checkbox').on('change', filterItems);
+// });
 
 
 
