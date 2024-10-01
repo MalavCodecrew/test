@@ -597,37 +597,47 @@ $(document).ready(function() {
     }, 250);
   }
 });
-
-
-                    
+              
 // adding custom filter on collection page
 $(document).ready(function() {
-      $('.filter-checkbox').on('change', function() {
-        var selectedSizes = [];
-        $('.filter-checkbox:checked').each(function() {
-          selectedSizes.push($(this).val());
-        });
-        if (selectedSizes.length === 0) {
-          $('.grid__item').show();
-          return;
-        }
-        $('.grid__item').each(function() {
-          var sizes = $(this).data('sizes');
-          
-          if (typeof sizes !== 'undefined') {
-            sizes = sizes.toString().split(',');
-            if (selectedSizes.some(size => sizes.includes(size))) {
-              $(this).show();
-            } else {
-              $(this).hide();
-            }
-          } else {
-            $(this).hide();
-          }
-        });
-      });
-    });
+  console.log('jQuery version:', $.fn.jquery);
+  console.log('Number of checkboxes:', $('.filter-checkbox').length);
 
+  $('.grid__item').each(function() {
+    console.log('Item sizes:', $(this).data('sizes'));
+  });
+
+  $('.filter-checkbox').on('change', function() {
+    console.log('Checkbox changed:', $(this).val());
+    var selectedSizes = [];
+    $('.filter-checkbox:checked').each(function() {
+      selectedSizes.push($(this).val());
+    });
+    console.log('Selected sizes:', selectedSizes);
+    if (selectedSizes.length === 0) {
+      $('.grid__item').show();
+      return;
+    }
+    $('.grid__item').each(function() {
+      var sizes = $(this).data('sizes');
+      console.log('Item:', $(this), 'Sizes:', sizes);
+      
+      if (typeof sizes !== 'undefined') {
+        sizes = sizes.toString().split(',');
+        if (selectedSizes.some(size => sizes.includes(size))) {
+          $(this).show();
+          console.log('Showing item');
+        } else {
+          $(this).hide();
+          console.log('Hiding item');
+        }
+      } else {
+        $(this).hide();
+        console.log('Hiding item (no sizes)');
+      }
+    });
+  });
+});
    // JavaScript to sort sizes numerically
  document.addEventListener('DOMContentLoaded', function () {
       var filterList = document.querySelectorAll('.custom-filter label');
