@@ -601,91 +601,91 @@ $(document).ready(function() {
 
                     
 // adding custom filter on collection page
-$(document).ready(function() {
-      $('.filter-checkbox').on('change', function() {
-        var selectedSizes = [];
-        $('.filter-checkbox:checked').each(function() {
-          selectedSizes.push($(this).val());
-        });
-        if (selectedSizes.length === 0) {
-          $('.grid__item').show();
-          return;
-        }
-        $('.grid__item').each(function() {
-          var sizes = $(this).data('size');
+// $(document).ready(function() {
+//       $('.filter-checkbox').on('change', function() {
+//         var selectedSizes = [];
+//         $('.filter-checkbox:checked').each(function() {
+//           selectedSizes.push($(this).val());
+//         });
+//         if (selectedSizes.length === 0) {
+//           $('.grid__item').show();
+//           return;
+//         }
+//         $('.grid__item').each(function() {
+//           var sizes = $(this).data('size');
           
-          if (typeof sizes !== 'undefined') {
-            sizes = sizes.toString().split(',');
-            if (selectedSizes.some(size => sizes.includes(size))) {
-              $(this).show();
-            } else {
-              $(this).hide();
-            }
-          } else {
-            $(this).hide();
-          }
-        });
-      });
+//           if (typeof sizes !== 'undefined') {
+//             sizes = sizes.toString().split(',');
+//             if (selectedSizes.some(size => sizes.includes(size))) {
+//               $(this).show();
+//             } else {
+//               $(this).hide();
+//             }
+//           } else {
+//             $(this).hide();
+//           }
+//         });
+//       });
+//     });
+
+$(document).ready(function() {
+  $('.filter-checkbox').on('change', function() {
+    var selectedFilters = {};
+
+    // Collect all selected filters by option category
+    $('.filter-checkbox:checked').each(function() {
+      var filterCategory = $(this).closest('.filter-title').text().trim(); // Get the filter title (e.g., 'Shop by Size')
+      var filterValue = $(this).val();
+
+      console.log("Filter category: ", filterCategory); // Log the filter category to check if it’s correct
+      console.log("Filter value: ", filterValue); // Log the selected filter value
+
+      if (!selectedFilters[filterCategory]) {
+        selectedFilters[filterCategory] = [];
+      }
+      selectedFilters[filterCategory].push(filterValue);
     });
 
-// $(document).ready(function() {
-//   $('.filter-checkbox').on('change', function() {
-//     var selectedFilters = {};
+    console.log("Selected filters: ", selectedFilters); // Log the selected filters
 
-//     // Collect all selected filters by option category
-//     $('.filter-checkbox:checked').each(function() {
-//       var filterCategory = $(this).closest('.filter-title').text().trim(); // Get the filter title (e.g., 'Shop by Size')
-//       var filterValue = $(this).val();
+    if ($.isEmptyObject(selectedFilters)) {
+      $('.grid__item').show(); // Show all items if no filter is selected
+      return;
+    }
 
-//       console.log("Filter category: ", filterCategory); // Log the filter category to check if it’s correct
-//       console.log("Filter value: ", filterValue); // Log the selected filter value
+    $('.grid__item').each(function() {
+      var item = $(this);
+      var showItem = true;
 
-//       if (!selectedFilters[filterCategory]) {
-//         selectedFilters[filterCategory] = [];
-//       }
-//       selectedFilters[filterCategory].push(filterValue);
-//     });
+      // Check if each filter category matches the item's data attributes (e.g., data-size, data-material, data-color)
+      $.each(selectedFilters, function(category, values) {
+        var categorySlug = category.toLowerCase(); // Convert category to lowercase
+        console.log("Category slug: ", categorySlug); // Log the category slug to check if it matches the `data-` attributes
 
-//     console.log("Selected filters: ", selectedFilters); // Log the selected filters
-
-//     if ($.isEmptyObject(selectedFilters)) {
-//       $('.grid__item').show(); // Show all items if no filter is selected
-//       return;
-//     }
-
-//     $('.grid__item').each(function() {
-//       var item = $(this);
-//       var showItem = true;
-
-//       // Check if each filter category matches the item's data attributes (e.g., data-size, data-material, data-color)
-//       $.each(selectedFilters, function(category, values) {
-//         var categorySlug = category.toLowerCase(); // Convert category to lowercase
-//         console.log("Category slug: ", categorySlug); // Log the category slug to check if it matches the `data-` attributes
-
-//         var itemAttr = item.data(categorySlug); // Get the corresponding data attribute dynamically
+        var itemAttr = item.data(categorySlug); // Get the corresponding data attribute dynamically
         
-//         console.log("Item attribute: ", itemAttr); // Log the item attribute to see if it's being fetched correctly
+        console.log("Item attribute: ", itemAttr); // Log the item attribute to see if it's being fetched correctly
 
-//         if (itemAttr) {
-//           var itemValues = itemAttr.toString().split(','); // Split the item's attribute values into an array
-//           if (!values.some(value => itemValues.includes(value))) {
-//             showItem = false; // Hide if none of the values match
-//           }
-//         } else {
-//           showItem = false; // Hide if the data attribute is missing
-//         }
-//       });
+        if (itemAttr) {
+          var itemValues = itemAttr.toString().split(','); // Split the item's attribute values into an array
+          if (!values.some(value => itemValues.includes(value))) {
+            showItem = false; // Hide if none of the values match
+          }
+        } else {
+          showItem = false; // Hide if the data attribute is missing
+        }
+      });
 
-//       if (showItem) {
-//         item.show();
-//         console.log("Showing item: ", item); // Log which item is shown
-//       } else {
-//         item.hide();
-//         console.log("Hiding item: ", item); // Log which item is hidden
-//       }
-//     });
-//   });
-// });
+      if (showItem) {
+        item.show();
+        console.log("Showing item: ", item); // Log which item is shown
+      } else {
+        item.hide();
+        console.log("Hiding item: ", item); // Log which item is hidden
+      }
+    });
+  });
+});
 
 
    // JavaScript to sort sizes numerically
