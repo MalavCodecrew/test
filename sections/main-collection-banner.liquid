@@ -9,30 +9,28 @@
   }
 {%- endstyle -%}
 {% if collection.title == 'Shoes' %}
-  {% if collection.title == 'Shoes' %}
-    {% assign all_sizes = '' %}
-    {% for product in collection.products %}
-      {% for variant in product.variants %}
-        {% unless all_sizes contains variant.option1 %}
-          {% assign all_sizes = all_sizes | append: variant.option1 | append: '/' %}
-        {% endunless %}
-      {% endfor %}
+  {% assign all_sizes = '' %}
+  {% for product in collection.products %}
+    {% for variant in product.variants %}
+      {% unless all_sizes contains variant.option1 %}
+        {% assign all_sizes = all_sizes | append: variant.option1 | append: '/' %}
+      {% endunless %}
     {% endfor %}
+  {% endfor %}
 
-    {% assign all_sizes = all_sizes | split: '/' | sort | uniq %}
+  {% assign all_sizes = all_sizes | split: '/' | sort | uniq %}
 
-    <div class="custom-filter">
-      <div class="filter-title">Shop by Size &nbsp</div>
-      <div class="filter-sizes">
-        {% for size in all_sizes %}
-          {% if size != '' %}
-            {{ size -}}
-            {%- unless forloop.last %}/ {% endunless %}
-          {% endif %}
-        {% endfor %}
-      </div>
+  <div class="custom-filter">
+    <div class="filter-title">Shop by Size &nbsp</div>
+    <div class="filter-sizes">
+      {% for size in all_sizes %}
+        {% if size != '' %}
+          {{ size -}}
+          {%- unless forloop.last %}/ {% endunless %}
+        {% endif %}
+      {% endfor %}
     </div>
-  {% endif %}
+  </div>
 
   <!--
     {% assign all_options = '' %}
