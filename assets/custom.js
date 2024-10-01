@@ -597,54 +597,37 @@ $(document).ready(function() {
     }, 250);
   }
 });
-              
+
+
+                    
 // adding custom filter on collection page
 $(document).ready(function() {
-  console.log('jQuery version:', $.fn.jquery);
-  console.log('Number of checkboxes:', $('.filter-checkbox').length);
-
-  // Log sizes for each grid item
-  $('.grid__item').each(function() {
-    var sizes = $(this).data('size');
-    console.log('Item:', $(this));
-    console.log('Raw data-sizes attribute:', $(this).attr('data-size'));
-    console.log('Parsed sizes:', sizes);
-  });
-
-  $('.filter-checkbox').on('change', function() {
-    console.log('Checkbox changed:', $(this).val());
-    var selectedSizes = [];
-    $('.filter-checkbox:checked').each(function() {
-      selectedSizes.push($(this).val());
-    });
-    console.log('Selected sizes:', selectedSizes);
-    if (selectedSizes.length === 0) {
-      $('.grid__item').show();
-      return;
-    }
-    $('.grid__item').each(function() {
-      var sizes = $(this).data('size');
-      console.log('Filtering item:', $(this));
-      console.log('Item sizes:', sizes);
-      
-      if (sizes && sizes.length > 0) {
-        if (typeof sizes === 'string') {
-          sizes = sizes.split(',');
+      $('.filter-checkbox').on('change', function() {
+        var selectedSizes = [];
+        $('.filter-checkbox:checked').each(function() {
+          selectedSizes.push($(this).val());
+        });
+        if (selectedSizes.length === 0) {
+          $('.grid__item').show();
+          return;
         }
-        if (selectedSizes.some(size => sizes.includes(size))) {
-          $(this).show();
-          console.log('Showing item');
-        } else {
-          $(this).hide();
-          console.log('Hiding item');
-        }
-      } else {
-        console.log('No sizes found for item, hiding');
-        $(this).hide();
-      }
+        $('.grid__item').each(function() {
+          var sizes = $(this).data('sizes');
+          
+          if (typeof sizes !== 'undefined') {
+            sizes = sizes.toString().split(',');
+            if (selectedSizes.some(size => sizes.includes(size))) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          } else {
+            $(this).hide();
+          }
+        });
+      });
     });
-  });
-});
+
    // JavaScript to sort sizes numerically
  document.addEventListener('DOMContentLoaded', function () {
       var filterList = document.querySelectorAll('.custom-filter label');
