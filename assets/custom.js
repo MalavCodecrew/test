@@ -632,9 +632,6 @@ $(document).ready(function() {
   });
 });
 
-
-
-
    // JavaScript to sort sizes numerically
  document.addEventListener('DOMContentLoaded', function () {
       var filterList = document.querySelectorAll('.custom-filter label');
