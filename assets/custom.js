@@ -638,7 +638,7 @@ $(document).ready(function() {
 
     // Collect all selected filters by option category
     $('.filter-checkbox:checked').each(function() {
-      var filterCategory = $(this).closest('.filter-title').text().trim(); // Get the filter title, e.g., 'Shop by Size'
+      var filterCategory = $(this).closest('.filter-title').text().trim(); // Get the filter title (e.g., 'Shop by Size')
       var filterValue = $(this).val();
 
       if (!selectedFilters[filterCategory]) {
@@ -656,12 +656,12 @@ $(document).ready(function() {
       var item = $(this);
       var showItem = true;
 
-      // Check if each filter category matches the item's data attributes
+      // Check if each filter category matches the item's data attributes (e.g., data-size, data-material, data-color)
       $.each(selectedFilters, function(category, values) {
-        var itemAttr = item.data(category.toLowerCase()); // e.g., data-size, data-material, data-color
-
+        var itemAttr = item.data(category.toLowerCase()); // Get the corresponding data attribute dynamically
+        
         if (itemAttr) {
-          var itemValues = itemAttr.toString().split(',');
+          var itemValues = itemAttr.toString().split(','); // Split the item's attribute values into an array
           if (!values.some(value => itemValues.includes(value))) {
             showItem = false; // Hide if none of the values match
           }
