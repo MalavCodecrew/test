@@ -687,7 +687,7 @@ $(document).ready(function() {
   console.log("Selected Sizes: ", selectedSizes);
 console.log("Selected Materials: ", selectedMaterials);
 console.log("Selected Colors: ", selectedColors);
-});this jquery is not working
+});
    // JavaScript to sort sizes numerically
  // document.addEventListener('DOMContentLoaded', function () {
  //      var filterList = document.querySelectorAll('.custom-filter label');
