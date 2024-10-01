@@ -615,12 +615,12 @@ $(document).ready(function() {
     }
 
     $('.grid__item').each(function() {
-      var sizes = $(this).data('sizes');
+      var options = $(this).data('options');
       
-      if (typeof sizes !== 'undefined') {
-        sizes = sizes.toString().split(',');
+      if (typeof options !== 'undefined') {
+        options = options.toString().split(',');
 
-        if (selectedSizes.some(size => sizes.includes(size))) {
+        if (selectedSizes.some(option => options.includes(option))) {
           $(this).show();
         } else {
           $(this).hide();
