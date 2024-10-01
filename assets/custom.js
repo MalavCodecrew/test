@@ -601,33 +601,93 @@ $(document).ready(function() {
 
                     
 // adding custom filter on collection page
-$(document).ready(function() {
-      $('.filter-checkbox').on('change', function() {
-        var selectedSizes = [];
-        $('.filter-checkbox:checked').each(function() {
-          selectedSizes.push($(this).val());
-        });
-        if (selectedSizes.length === 0) {
-          $('.grid__item').show();
-          return;
-        }
-        $('.grid__item').each(function() {
-          var sizes = $(this).data('size');
+// $(document).ready(function() {
+//       $('.filter-checkbox').on('change', function() {
+//         var selectedSizes = [];
+//         $('.filter-checkbox:checked').each(function() {
+//           selectedSizes.push($(this).val());
+//         });
+//         if (selectedSizes.length === 0) {
+//           $('.grid__item').show();
+//           return;
+//         }
+//         $('.grid__item').each(function() {
+//           var sizes = $(this).data('size');
           
-          if (typeof sizes !== 'undefined') {
-            sizes = sizes.toString().split(',');
-            if (selectedSizes.some(size => sizes.includes(size))) {
-              $(this).show();
-            } else {
-              $(this).hide();
-            }
-          } else {
-            $(this).hide();
-          }
-        });
-      });
-    });
+//           if (typeof sizes !== 'undefined') {
+//             sizes = sizes.toString().split(',');
+//             if (selectedSizes.some(size => sizes.includes(size))) {
+//               $(this).show();
+//             } else {
+//               $(this).hide();
+//             }
+//           } else {
+//             $(this).hide();
+//           }
+//         });
+//       });
+//     });
 
+$(document).ready(function() {
+  $('.filter-checkbox').on('change', function() {
+    // Create arrays for selected sizes, materials, and colors
+    var selectedSizes = [];
+    var selectedMaterials = [];
+    var selectedColors = [];
+    // Get selected filter values
+    $('.filter-checkbox:checked').each(function() {
+      var filterTitle = $(this).closest('.filter-title').text().trim();
+      var filterValue = $(this).val();
+      if (filterTitle === 'Shop by Option 1') {
+        selectedSizes.push(filterValue);
+      } else if (filterTitle === 'Shop by Material') {
+        selectedMaterials.push(filterValue);
+      } else if (filterTitle === 'Shop by Color') {
+        selectedColors.push(filterValue);
+      }
+    });
+    // Show all items if no filters are selected
+    if (selectedSizes.length === 0 && selectedMaterials.length === 0 && selectedColors.length === 0) {
+      $('.griditem').show();
+      return;
+    }
+    // Filter items
+    $('.griditem').each(function() {
+      var item = $(this);
+      var showItem = true; // Assume we will show the item
+      // Check sizes
+      if (selectedSizes.length > 0) {
+        var itemSizes = item.data('size') ? item.data('size').toString().split(',') : [];
+        if (!itemSizes.some(size => selectedSizes.includes(size))) {
+          showItem = false; // Hide if no size matches
+        }
+      }
+      // Check materials
+      if (selectedMaterials.length > 0) {
+        var itemMaterials = item.data('material') ? item.data('material').toString().split(',') : [];
+        if (!itemMaterials.some(material => selectedMaterials.includes(material))) {
+          showItem = false; // Hide if no material matches
+        }
+      }
+      // Check colors
+      if (selectedColors.length > 0) {
+        var itemColors = item.data('color') ? item.data('color').toString().split(',') : [];
+        if (!itemColors.some(color => selectedColors.includes(color))) {
+          showItem = false; // Hide if no color matches
+        }
+      }
+      // Show or hide the item
+      if (showItem) {
+        item.show();
+      } else {
+        item.hide();
+      }
+    });
+  });
+  console.log("Selected Sizes: ", selectedSizes);
+console.log("Selected Materials: ", selectedMaterials);
+console.log("Selected Colors: ", selectedColors);
+});this jquery is not working
    // JavaScript to sort sizes numerically
  // document.addEventListener('DOMContentLoaded', function () {
  //      var filterList = document.querySelectorAll('.custom-filter label');
