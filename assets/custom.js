@@ -601,37 +601,84 @@ $(document).ready(function() {
 
                     
 // adding custom filter on collection page
+// $(document).ready(function() {
+//   $('.filter-checkbox').on('change', function() {
+//     var selectedSizes = [];
+
+//     $('.filter-checkbox:checked').each(function() {
+//       selectedSizes.push($(this).val());
+//     });
+
+//     if (selectedSizes.length === 0) {
+//       $('.grid__item').show();
+//       return;
+//     }
+
+//     $('.grid__item').each(function() {
+//       var sizes = $(this).data('sizes');
+      
+//       if (typeof sizes !== 'undefined') {
+//         sizes = sizes.toString().split(',');
+
+//         if (selectedSizes.some(size => sizes.includes(size))) {
+//           $(this).show();
+//         } else {
+//           $(this).hide();
+//         }
+//       } else {
+//         $(this).hide();
+//       }
+//     });
+//   });
+// });
+
 $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
-    var selectedSizes = [];
+    var selectedFilters = {};
 
+    // Collect all selected filters by option category
     $('.filter-checkbox:checked').each(function() {
-      selectedSizes.push($(this).val());
+      var filterCategory = $(this).closest('.filter-title').text().trim(); // Get the filter title, e.g., 'Shop by Size'
+      var filterValue = $(this).val();
+
+      if (!selectedFilters[filterCategory]) {
+        selectedFilters[filterCategory] = [];
+      }
+      selectedFilters[filterCategory].push(filterValue);
     });
 
-    if (selectedSizes.length === 0) {
-      $('.grid__item').show();
+    if ($.isEmptyObject(selectedFilters)) {
+      $('.grid__item').show(); // Show all items if no filter is selected
       return;
     }
 
     $('.grid__item').each(function() {
-      var sizes = $(this).data('sizes');
-      
-      if (typeof sizes !== 'undefined') {
-        sizes = sizes.toString().split(',');
+      var item = $(this);
+      var showItem = true;
 
-        if (selectedSizes.some(size => sizes.includes(size))) {
-          $(this).show();
+      // Check if each filter category matches the item's data attributes
+      $.each(selectedFilters, function(category, values) {
+        var itemAttr = item.data(category.toLowerCase()); // e.g., data-size, data-material, data-color
+
+        if (itemAttr) {
+          var itemValues = itemAttr.toString().split(',');
+          if (!values.some(value => itemValues.includes(value))) {
+            showItem = false; // Hide if none of the values match
+          }
         } else {
-          $(this).hide();
+          showItem = false; // Hide if the data attribute is missing
         }
+      });
+
+      if (showItem) {
+        item.show();
       } else {
-        $(this).hide();
+        item.hide();
       }
     });
   });
 });
-  
+
    // JavaScript to sort sizes numerically
  // document.addEventListener('DOMContentLoaded', function () {
  //      var filterList = document.querySelectorAll('.custom-filter label');
