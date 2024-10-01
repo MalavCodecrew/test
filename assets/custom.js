@@ -623,7 +623,7 @@ $(document).ready(function() {
       return;
     }
     $('.grid__item').each(function() {
-      var sizes = $(this).data('sizes');
+      var sizes = $(this).data('size');
       console.log('Filtering item:', $(this));
       console.log('Item sizes:', sizes);
       
