@@ -630,53 +630,42 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
-    // Create arrays for selected sizes, materials, and colors
-    var selectedSizes = [];
-    var selectedMaterials = [];
-    var selectedColors = [];
-    // Get selected filter values
+    var selectedFilters = {};
+
+    // Collect all selected filters by option category
     $('.filter-checkbox:checked').each(function() {
-      var filterTitle = $(this).closest('.filter-title').text().trim();
+      var filterCategory = $(this).closest('.filter-title').text().trim(); // Get the filter title, e.g., 'Shop by Size'
       var filterValue = $(this).val();
-      if (filterTitle === 'Shop by Option 1') {
-        selectedSizes.push(filterValue);
-      } else if (filterTitle === 'Shop by Option 2') {
-        selectedMaterials.push(filterValue);
-      } else if (filterTitle === 'Shop by Option 3') {
-        selectedColors.push(filterValue);
+
+      if (!selectedFilters[filterCategory]) {
+        selectedFilters[filterCategory] = [];
       }
+      selectedFilters[filterCategory].push(filterValue);
     });
-    // Show all items if no filters are selected
-    if (selectedSizes.length === 0 && selectedMaterials.length === 0 && selectedColors.length === 0) {
-      $('.griditem').show();
+
+    if ($.isEmptyObject(selectedFilters)) {
+      $('.grid__item').show(); // Show all items if no filter is selected
       return;
     }
-    // Filter items
-    $('.griditem').each(function() {
+
+    $('.grid__item').each(function() {
       var item = $(this);
-      var showItem = true; // Assume we will show the item
-      // Check sizes
-      if (selectedSizes.length > 0) {
-        var itemSizes = item.data('size') ? item.data('size').toString().split(',') : [];
-        if (!itemSizes.some(size => selectedSizes.includes(size))) {
-          showItem = false; // Hide if no size matches
+      var showItem = true;
+
+      // Check if each filter category matches the item's data attributes
+      $.each(selectedFilters, function(category, values) {
+        var itemAttr = item.data(category.toLowerCase()); // e.g., data-size, data-material, data-color
+
+        if (itemAttr) {
+          var itemValues = itemAttr.toString().split(',');
+          if (!values.some(value => itemValues.includes(value))) {
+            showItem = false; // Hide if none of the values match
+          }
+        } else {
+          showItem = false; // Hide if the data attribute is missing
         }
-      }
-      // Check materials
-      if (selectedMaterials.length > 0) {
-        var itemMaterials = item.data('material') ? item.data('material').toString().split(',') : [];
-        if (!itemMaterials.some(material => selectedMaterials.includes(material))) {
-          showItem = false; // Hide if no material matches
-        }
-      }
-      // Check colors
-      if (selectedColors.length > 0) {
-        var itemColors = item.data('color') ? item.data('color').toString().split(',') : [];
-        if (!itemColors.some(color => selectedColors.includes(color))) {
-          showItem = false; // Hide if no color matches
-        }
-      }
-      // Show or hide the item
+      });
+
       if (showItem) {
         item.show();
       } else {
@@ -684,10 +673,8 @@ $(document).ready(function() {
       }
     });
   });
-  console.log("Selected Sizes: ", selectedSizes);
-console.log("Selected Materials: ", selectedMaterials);
-console.log("Selected Colors: ", selectedColors);
 });
+
    // JavaScript to sort sizes numerically
  // document.addEventListener('DOMContentLoaded', function () {
  //      var filterList = document.querySelectorAll('.custom-filter label');
