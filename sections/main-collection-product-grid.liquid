@@ -164,6 +164,8 @@
                     style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                   data-size="{% for variant in product.variants %}{{ variant.option1 }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+                  data-material="{% for variant in product.variants %}{{ variant.option2 }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+                  data-color="{% for variant in product.variants %}{{ variant.option3 }}{% unless forloop.last %},{% endunless %}{% endfor %}"
                 >
                   {% render 'card-product',
                     card_product: product,
