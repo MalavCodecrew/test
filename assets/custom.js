@@ -641,11 +641,16 @@ $(document).ready(function() {
       var filterCategory = $(this).closest('.filter-title').text().trim(); // Get the filter title (e.g., 'Shop by Size')
       var filterValue = $(this).val();
 
+      console.log("Filter category: ", filterCategory); // Log the filter category to check if it’s correct
+      console.log("Filter value: ", filterValue); // Log the selected filter value
+
       if (!selectedFilters[filterCategory]) {
         selectedFilters[filterCategory] = [];
       }
       selectedFilters[filterCategory].push(filterValue);
     });
+
+    console.log("Selected filters: ", selectedFilters); // Log the selected filters
 
     if ($.isEmptyObject(selectedFilters)) {
       $('.grid__item').show(); // Show all items if no filter is selected
@@ -658,8 +663,13 @@ $(document).ready(function() {
 
       // Check if each filter category matches the item's data attributes (e.g., data-size, data-material, data-color)
       $.each(selectedFilters, function(category, values) {
-        var itemAttr = item.data(category.toLowerCase()); // Get the corresponding data attribute dynamically
+        var categorySlug = category.toLowerCase(); // Convert category to lowercase
+        console.log("Category slug: ", categorySlug); // Log the category slug to check if it matches the `data-` attributes
+
+        var itemAttr = item.data(categorySlug); // Get the corresponding data attribute dynamically
         
+        console.log("Item attribute: ", itemAttr); // Log the item attribute to see if it's being fetched correctly
+
         if (itemAttr) {
           var itemValues = itemAttr.toString().split(','); // Split the item's attribute values into an array
           if (!values.some(value => itemValues.includes(value))) {
@@ -672,8 +682,10 @@ $(document).ready(function() {
 
       if (showItem) {
         item.show();
+        console.log("Showing item: ", item); // Log which item is shown
       } else {
         item.hide();
+        console.log("Hiding item: ", item); // Log which item is hidden
       }
     });
   });
