@@ -601,18 +601,43 @@ $(document).ready(function() {
 
                     
 // adding custom filter on collection page
+// $(document).ready(function() {
+//   $('.filter-checkbox').on('change', function() {
+//     var selectedSizes = [];
+
+//     $('.filter-checkbox:checked').each(function() {
+//       selectedSizes.push($(this).val());
+//     });
+
+//     if (selectedSizes.length === 0) {
+//       $('.grid__item').show();
+//       return;
+//     }
+
+//     $('.grid__item').each(function() {
+//       var sizes = $(this).data('sizes');
+      
+//       if (typeof sizes !== 'undefined') {
+//         sizes = sizes.toString().split(',');
+
+//         if (selectedSizes.some(size => sizes.includes(size))) {
+//           $(this).show();
+//         } else {
+//           $(this).hide();
+//         }
+//       } else {
+//         $(this).hide();
+//       }
+//     });
+//   });
+// });
 $(document).ready(function() {
-  $('.filter-checkbox').on('change', function() {
+  function filterItems() {
     var selectedSizes = [];
 
     $('.filter-checkbox:checked').each(function() {
       selectedSizes.push($(this).val());
     });
-
-    if (selectedSizes.length === 0) {
-      $('.grid__item').show();
-      return;
-    }
 
     $('.grid__item').each(function() {
       var sizes = $(this).data('sizes');
@@ -620,7 +645,7 @@ $(document).ready(function() {
       if (typeof sizes !== 'undefined') {
         sizes = sizes.toString().split(',');
 
-        if (selectedSizes.some(size => sizes.includes(size))) {
+        if (selectedSizes.length === 0 || selectedSizes.some(size => sizes.includes(size))) {
           $(this).show();
         } else {
           $(this).hide();
@@ -629,22 +654,27 @@ $(document).ready(function() {
         $(this).hide();
       }
     });
-  });
+  }
+
+  // Initial filter application on page load
+  filterItems();
+
+  // Event listener for checkbox changes
+  $('.filter-checkbox').on('change', filterItems);
 });
 
 
-
    // JavaScript to sort sizes numerically
- document.addEventListener('DOMContentLoaded', function () {
-      var filterList = document.querySelectorAll('.custom-filter label');
-      var sizesArray = Array.from(filterList);
+ // document.addEventListener('DOMContentLoaded', function () {
+ //      var filterList = document.querySelectorAll('.custom-filter label');
+ //      var sizesArray = Array.from(filterList);
 
-      sizesArray.sort(function (a, b) {
-        return parseInt(a.querySelector('input').value) - parseInt(b.querySelector('input').value);
-      });
+ //      sizesArray.sort(function (a, b) {
+ //        return parseInt(a.querySelector('input').value) - parseInt(b.querySelector('input').value);
+ //      });
 
-      var parent = document.querySelector('.custom-filter');
-      sizesArray.forEach(function (sizeLabel) {
-        parent.appendChild(sizeLabel);
-      });
-    });
+ //      var parent = document.querySelector('.custom-filter');
+ //      sizesArray.forEach(function (sizeLabel) {
+ //        parent.appendChild(sizeLabel);
+ //      });
+ //    });
