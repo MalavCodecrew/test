@@ -603,8 +603,12 @@ $(document).ready(function() {
   console.log('jQuery version:', $.fn.jquery);
   console.log('Number of checkboxes:', $('.filter-checkbox').length);
 
+  // Log sizes for each grid item
   $('.grid__item').each(function() {
-    console.log('Item sizes:', $(this).data('sizes'));
+    var sizes = $(this).data('sizes');
+    console.log('Item:', $(this));
+    console.log('Raw data-sizes attribute:', $(this).attr('data-sizes'));
+    console.log('Parsed sizes:', sizes);
   });
 
   $('.filter-checkbox').on('change', function() {
@@ -620,10 +624,13 @@ $(document).ready(function() {
     }
     $('.grid__item').each(function() {
       var sizes = $(this).data('sizes');
-      console.log('Item:', $(this), 'Sizes:', sizes);
+      console.log('Filtering item:', $(this));
+      console.log('Item sizes:', sizes);
       
-      if (typeof sizes !== 'undefined') {
-        sizes = sizes.toString().split(',');
+      if (sizes && sizes.length > 0) {
+        if (typeof sizes === 'string') {
+          sizes = sizes.split(',');
+        }
         if (selectedSizes.some(size => sizes.includes(size))) {
           $(this).show();
           console.log('Showing item');
@@ -632,8 +639,8 @@ $(document).ready(function() {
           console.log('Hiding item');
         }
       } else {
+        console.log('No sizes found for item, hiding');
         $(this).hide();
-        console.log('Hiding item (no sizes)');
       }
     });
   });
