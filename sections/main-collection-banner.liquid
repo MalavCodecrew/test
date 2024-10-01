@@ -35,34 +35,53 @@
       {% endfor %}
     </div>
   -->
+
   {% assign all_options = '' %}
+  {% assign option_labels = '' %}
 
   {% for product in collection.products %}
     {% for variant in product.variants %}
       {% for i in (1..3) %}
         {% assign option_name = 'option' | append: i %}
-        {% unless all_options contains variant[option_name] %}
-          {% assign all_options = all_options | append: i | append: '::' | append: variant[option_name] | append: '/' %}
+        {% assign option_label = product.options[i-1] %}
+
+        {% unless option_labels contains option_label %}
+          {% assign option_labels = option_labels | append: i | append: '::' | append: option_label | append: '/' %}
+        {% endunless %}
+
+        {% assign option_value = variant[option_name] %}
+        {% assign option_key = i | append: '::' | append: option_value %}
+
+        {% unless all_options contains option_key %}
+          {% assign all_options = all_options | append: option_key | append: '/' %}
         {% endunless %}
       {% endfor %}
     {% endfor %}
   {% endfor %}
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
+  {% assign option_labels = option_labels | split: '/' | uniq %}
 
   <div class="custom-filter">
-    {% for option in all_options %}
-      {% assign parts = option | split: '::' %}
-      {% assign option_index = parts[0] %}
-      {% assign option_value = parts[1] %}
+    {% for label in option_labels %}
+      {% assign label_parts = label | split: '::' %}
+      {% assign option_index = label_parts[0] %}
+      {% assign option_label = label_parts[1] %}
 
-      {% if option_value != '' %}
-        <div class="filter-title">Shop by Option &nbsp</div>
-        <label class="filter-label">
-          <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
-          <span>{{ option_value }}</span>
-        </label>
-      {% endif %}
+      <div class="filter-title">Shop by {{ option_label }} &nbsp</div>
+
+      {% for option in all_options %}
+        {% assign option_parts = option | split: '::' %}
+        {% if option_parts[0] == option_index %}
+          {% assign option_value = option_parts[1] %}
+          {% if option_value != '' %}
+            <label class="filter-label">
+              <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
+              <span>{{ option_value }}</span>
+            </label>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     {% endfor %}
   </div>
 {% endif %}
