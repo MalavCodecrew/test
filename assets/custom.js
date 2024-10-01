@@ -605,28 +605,44 @@ $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
     var selectedSizes = [];
 
-    $('.filter-checkbox:checked').each(function() {
-      selectedSizes.push($(this).val());
-    });
-
-    if (selectedSizes.length === 0) {
+    // Check if 'all' is selected
+    if ($('.filter-checkbox[value="all"]').is(':checked')) {
+      console.log('Showing all products');
       $('.grid__item').show();
       return;
     }
 
+    // Collect all checked sizes
+    $('.filter-checkbox:checked').each(function() {
+      selectedSizes.push($(this).val());
+    });
+
+    console.log('Selected Sizes:', selectedSizes);
+
+    // If no sizes are selected, hide all products
+    if (selectedSizes.length === 0) {
+      $('.grid__item').hide();
+      return;
+    }
+
+    // Show or hide products based on selected sizes
     $('.grid__item').each(function() {
       var sizes = $(this).data('sizes');
       
       if (typeof sizes !== 'undefined') {
         sizes = sizes.toString().split(',');
 
+        // Check if the product matches any of the selected sizes
         if (selectedSizes.some(size => sizes.includes(size))) {
+          console.log('Showing product');
           $(this).show();
         } else {
+          console.log('Hiding product');
           $(this).hide();
         }
       } else {
-        $(this).hide();
+        console.log('No sizes defined for this product');
+        $(this).hide();  // Hide product if no size data
       }
     });
   });
