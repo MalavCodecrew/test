@@ -17,19 +17,21 @@
       {% endunless %}
     {% endfor %}
   {% endfor %}
-
   {% assign all_sizes = all_sizes | split: '/' | sort | uniq %}
 
   <div class="custom-filter">
     <div class="filter-title">Shop by Size &nbsp</div>
-    <div class="filter-sizes">
-      {% for size in all_sizes %}
-        {% if size != '' %}
-          {{ size -}}
-          {%- unless forloop.last %}/ {% endunless %}
-        {% endif %}
-      {% endfor %}
-    </div>
+    {% for size in all_sizes %}
+      {% if size != '' %}
+        <label class="filter-label">
+          <input type="checkbox" class="filter-checkbox" value="{{ size }}">
+          {%- unless forloop.last %}/ {% endunless -%}
+          <span>
+            {{- size }}
+          </span>
+        </label>
+      {% endif %}
+    {% endfor %}
   </div>
 
   <!--
