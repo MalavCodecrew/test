@@ -644,7 +644,7 @@ $(document).ready(function() {
       var filterTitle = $(this).closest('.filter-title').text().trim();
       var filterValue = $(this).val();
 
-      if (filterTitle === 'Shop by Size') {
+      if (filterTitle === 'Shop by Option 1') {
         selectedSizes.push(filterValue);
       } else if (filterTitle === 'Shop by Material') {
         selectedMaterials.push(filterValue);
