@@ -634,24 +634,32 @@ $(document).ready(function() {
 $(document).ready(function() {
   function filterItems() {
     var selectedSizes = [];
-
+    
+    // Gather checked checkboxes
     $('.filter-checkbox:checked').each(function() {
       selectedSizes.push($(this).val());
     });
+    
+    console.log("Selected sizes:", selectedSizes); // Debugging line
 
     $('.grid__item').each(function() {
       var sizes = $(this).data('sizes');
+
+      console.log("Current item's sizes:", sizes); // Debugging line
       
       if (typeof sizes !== 'undefined') {
         sizes = sizes.toString().split(',');
 
         if (selectedSizes.length === 0 || selectedSizes.some(size => sizes.includes(size))) {
           $(this).show();
+          console.log("Showing item:", $(this)); // Debugging line
         } else {
           $(this).hide();
+          console.log("Hiding item:", $(this)); // Debugging line
         }
       } else {
         $(this).hide();
+        console.log("Hiding item due to undefined sizes:", $(this)); // Debugging line
       }
     });
   }
@@ -662,6 +670,7 @@ $(document).ready(function() {
   // Event listener for checkbox changes
   $('.filter-checkbox').on('change', filterItems);
 });
+
 
 
    // JavaScript to sort sizes numerically
