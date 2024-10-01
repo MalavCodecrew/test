@@ -44,9 +44,6 @@
         {% assign option_name = 'option' | append: i %}
         {% assign option_label = product.options[i-1] %}
 
-        <!-- Debugging: Output option label -->
-        <p>Option Label {{ i }}: {{ option_label }}</p>
-
         {% unless option_labels contains option_label %}
           {% assign option_labels = option_labels | append: i | append: '::' | append: option_label | append: '/' %}
         {% endunless %}
@@ -69,9 +66,6 @@
       {% assign label_parts = label | split: '::' %}
       {% assign option_index = label_parts[0] %}
       {% assign option_label = label_parts[1] %}
-
-      <!-- Debugging: Output the final label -->
-      <p>Final Label {{ option_label }}</p>
 
       <div class="filter-title">Shop by {{ option_label }} &nbsp</div>
 
