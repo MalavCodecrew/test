@@ -634,26 +634,26 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
-    var selectedFilters = {};
+    var selectedSizes = [];
+    var selectedMaterials = [];
+    var selectedColors = [];
 
-    // Collect all selected filters by option category
+    // Collect selected filter values
     $('.filter-checkbox:checked').each(function() {
-      var filterCategory = $(this).closest('.filter-title').text().trim(); // Get the filter title (e.g., 'Shop by Size')
-      var filterValue = $(this).val();
+      var filterTitle = $(this).closest('.filter-title').text().trim();
 
-      console.log("Filter category: ", filterCategory); // Log the filter category to check if it’s correct
-      console.log("Filter value: ", filterValue); // Log the selected filter value
-
-      if (!selectedFilters[filterCategory]) {
-        selectedFilters[filterCategory] = [];
+      if (filterTitle === 'Shop by Size') {
+        selectedSizes.push($(this).val());
+      } else if (filterTitle === 'Shop by Material') {
+        selectedMaterials.push($(this).val());
+      } else if (filterTitle === 'Shop by Color') {
+        selectedColors.push($(this).val());
       }
-      selectedFilters[filterCategory].push(filterValue);
     });
 
-    console.log("Selected filters: ", selectedFilters); // Log the selected filters
-
-    if ($.isEmptyObject(selectedFilters)) {
-      $('.grid__item').show(); // Show all items if no filter is selected
+    // Show all items if no filter is selected
+    if (selectedSizes.length === 0 && selectedMaterials.length === 0 && selectedColors.length === 0) {
+      $('.grid__item').show();
       return;
     }
 
@@ -661,31 +661,35 @@ $(document).ready(function() {
       var item = $(this);
       var showItem = true;
 
-      // Check if each filter category matches the item's data attributes (e.g., data-size, data-material, data-color)
-      $.each(selectedFilters, function(category, values) {
-        var categorySlug = category.toLowerCase(); // Convert category to lowercase
-        console.log("Category slug: ", categorySlug); // Log the category slug to check if it matches the `data-` attributes
-
-        var itemAttr = item.data(categorySlug); // Get the corresponding data attribute dynamically
-        
-        console.log("Item attribute: ", itemAttr); // Log the item attribute to see if it's being fetched correctly
-
-        if (itemAttr) {
-          var itemValues = itemAttr.toString().split(','); // Split the item's attribute values into an array
-          if (!values.some(value => itemValues.includes(value))) {
-            showItem = false; // Hide if none of the values match
-          }
-        } else {
-          showItem = false; // Hide if the data attribute is missing
+      // Check if item matches selected sizes
+      if (selectedSizes.length > 0) {
+        var itemSizes = item.data('size').toString().split(',');
+        if (!itemSizes.some(size => selectedSizes.includes(size))) {
+          showItem = false;
         }
-      });
+      }
 
+      // Check if item matches selected materials
+      if (selectedMaterials.length > 0) {
+        var itemMaterials = item.data('material').toString().split(',');
+        if (!itemMaterials.some(material => selectedMaterials.includes(material))) {
+          showItem = false;
+        }
+      }
+
+      // Check if item matches selected colors
+      if (selectedColors.length > 0) {
+        var itemColors = item.data('color').toString().split(',');
+        if (!itemColors.some(color => selectedColors.includes(color))) {
+          showItem = false;
+        }
+      }
+
+      // Show or hide the item based on the filters
       if (showItem) {
         item.show();
-        console.log("Showing item: ", item); // Log which item is shown
       } else {
         item.hide();
-        console.log("Hiding item: ", item); // Log which item is hidden
       }
     });
   });
