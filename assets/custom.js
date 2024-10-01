@@ -640,9 +640,9 @@ $(document).ready(function() {
       var filterValue = $(this).val();
       if (filterTitle === 'Shop by Option 1') {
         selectedSizes.push(filterValue);
-      } else if (filterTitle === 'Shop by Material') {
+      } else if (filterTitle === 'Shop by Option 2') {
         selectedMaterials.push(filterValue);
-      } else if (filterTitle === 'Shop by Color') {
+      } else if (filterTitle === 'Shop by Option 3') {
         selectedColors.push(filterValue);
       }
     });
