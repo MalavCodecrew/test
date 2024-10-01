@@ -634,58 +634,61 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
+    // Create arrays for selected sizes, materials, and colors
     var selectedSizes = [];
     var selectedMaterials = [];
     var selectedColors = [];
 
-    // Collect selected filter values
+    // Get selected filter values
     $('.filter-checkbox:checked').each(function() {
       var filterTitle = $(this).closest('.filter-title').text().trim();
+      var filterValue = $(this).val();
 
       if (filterTitle === 'Shop by Size') {
-        selectedSizes.push($(this).val());
+        selectedSizes.push(filterValue);
       } else if (filterTitle === 'Shop by Material') {
-        selectedMaterials.push($(this).val());
+        selectedMaterials.push(filterValue);
       } else if (filterTitle === 'Shop by Color') {
-        selectedColors.push($(this).val());
+        selectedColors.push(filterValue);
       }
     });
 
-    // Show all items if no filter is selected
+    // Show all items if no filters are selected
     if (selectedSizes.length === 0 && selectedMaterials.length === 0 && selectedColors.length === 0) {
       $('.grid__item').show();
       return;
     }
 
+    // Filter items
     $('.grid__item').each(function() {
       var item = $(this);
-      var showItem = true;
+      var showItem = true; // Assume we will show the item
 
-      // Check if item matches selected sizes
+      // Check sizes
       if (selectedSizes.length > 0) {
-        var itemSizes = item.data('size').toString().split(',');
+        var itemSizes = item.data('size') ? item.data('size').toString().split(',') : [];
         if (!itemSizes.some(size => selectedSizes.includes(size))) {
-          showItem = false;
+          showItem = false; // Hide if no size matches
         }
       }
 
-      // Check if item matches selected materials
+      // Check materials
       if (selectedMaterials.length > 0) {
-        var itemMaterials = item.data('material').toString().split(',');
+        var itemMaterials = item.data('material') ? item.data('material').toString().split(',') : [];
         if (!itemMaterials.some(material => selectedMaterials.includes(material))) {
-          showItem = false;
+          showItem = false; // Hide if no material matches
         }
       }
 
-      // Check if item matches selected colors
+      // Check colors
       if (selectedColors.length > 0) {
-        var itemColors = item.data('color').toString().split(',');
+        var itemColors = item.data('color') ? item.data('color').toString().split(',') : [];
         if (!itemColors.some(color => selectedColors.includes(color))) {
-          showItem = false;
+          showItem = false; // Hide if no color matches
         }
       }
 
-      // Show or hide the item based on the filters
+      // Show or hide the item
       if (showItem) {
         item.show();
       } else {
