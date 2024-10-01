@@ -29,14 +29,15 @@
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
       {% assign option_value = parts[1] %}
-
-      {% if option_value != '' %}
-        <div class="filter-title">Shop by Option {{ option_index }} &nbsp</div>
-        <label class="filter-label">
-          <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
-          <span>{{ option_value }}</span>
-        </label>
-      {% endif %}
+      <div class="filter-content">
+        {% if option_value != '' %}
+          <div class="filter-title">Shop by Option {{ option_index }} &nbsp</div>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
+            <span>{{ option_value }}</span>
+          </label>
+        {% endif %}
+      </div>
     {% endfor %}
   </div>
 {% endif %}
