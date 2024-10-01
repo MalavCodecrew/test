@@ -658,7 +658,7 @@ $(document).ready(function() {
       // Check sizes
       if (selectedSizes.length > 0) {
         var itemSizes = item.data('size') ? item.data('size').toString().split(',') : [];
-        if (itemSizes.some(size => selectedSizes.includes(size))) {
+        if (!itemSizes.some(size => selectedSizes.includes(size))) {
           showItem = false; // Hide if no size matches
         }
       }
