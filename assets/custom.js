@@ -612,7 +612,7 @@ $(document).ready(function() {
           return;
         }
         $('.grid__item').each(function() {
-          var sizes = $(this).data('sizes');
+          var sizes = $(this).data('size');
           
           if (typeof sizes !== 'undefined') {
             sizes = sizes.toString().split(',');
