@@ -643,7 +643,6 @@ $(document).ready(function() {
     $('.filter-checkbox:checked').each(function() {
       var filterTitle = $(this).closest('.filter-title').text().trim();
       var filterValue = $(this).val();
-
       if (filterTitle === 'Shop by Option 1') {
         selectedSizes.push(filterValue);
       } else if (filterTitle === 'Shop by Material') {
@@ -652,6 +651,11 @@ $(document).ready(function() {
         selectedColors.push(filterValue);
       }
     });
+
+    // Log selected filters for debugging
+    console.log("Selected Sizes: ", selectedSizes);
+    console.log("Selected Materials: ", selectedMaterials);
+    console.log("Selected Colors: ", selectedColors);
 
     // Show all items if no filters are selected
     if (selectedSizes.length === 0 && selectedMaterials.length === 0 && selectedColors.length === 0) {
@@ -662,44 +666,36 @@ $(document).ready(function() {
     // Filter items
     $('.grid__item').each(function() {
       var item = $(this);
-      var showItem = true; // Assume we will show the item
+      var showItem = true;
 
       // Check sizes
       if (selectedSizes.length > 0) {
         var itemSizes = item.data('size') ? item.data('size').toString().split(',') : [];
-        if (!itemSizes.some(size => selectedSizes.includes(size))) {
-          showItem = false; // Hide if no size matches
+        if (!selectedSizes.some(size => itemSizes.includes(size.trim()))) {
+          showItem = false;
         }
       }
 
       // Check materials
-      if (selectedMaterials.length > 0) {
+      if (showItem && selectedMaterials.length > 0) {
         var itemMaterials = item.data('material') ? item.data('material').toString().split(',') : [];
-        if (!itemMaterials.some(material => selectedMaterials.includes(material))) {
-          showItem = false; // Hide if no material matches
+        if (!selectedMaterials.some(material => itemMaterials.includes(material.trim()))) {
+          showItem = false;
         }
       }
 
       // Check colors
-      if (selectedColors.length > 0) {
+      if (showItem && selectedColors.length > 0) {
         var itemColors = item.data('color') ? item.data('color').toString().split(',') : [];
-        if (!itemColors.some(color => selectedColors.includes(color))) {
-          showItem = false; // Hide if no color matches
+        if (!selectedColors.some(color => itemColors.includes(color.trim()))) {
+          showItem = false;
         }
       }
 
       // Show or hide the item
-      if (showItem) {
-        item.show();
-      } else {
-        item.hide();
-      }
+      item.toggle(showItem);
     });
   });
-  console.log("Selected Sizes: ", selectedSizes);
-console.log("Selected Materials: ", selectedMaterials);
-console.log("Selected Colors: ", selectedColors);
-
 });
 
    // JavaScript to sort sizes numerically
