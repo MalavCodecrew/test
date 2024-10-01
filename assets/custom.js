@@ -602,35 +602,31 @@ $(document).ready(function() {
                     
 // adding custom filter on collection page
 $(document).ready(function() {
-  $('.filter-checkbox').on('change', function() {
-    var selectedSizes = [];
-
-    $('.filter-checkbox:checked').each(function() {
-      selectedSizes.push($(this).val());
-    });
-
-    if (selectedSizes.length === 0) {
-      $('.grid__item').show();
-      return;
-    }
-
-    $('.grid__item').each(function() {
-      var sizes = $(this).data('sizes');
-      
-      if (typeof sizes !== 'undefined') {
-        sizes = sizes.toString().split(',');
-
-        if (selectedSizes.some(size => sizes.includes(size))) {
-          $(this).show();
-        } else {
-          $(this).hide();
+      $('.filter-checkbox').on('change', function() {
+        var selectedSizes = [];
+        $('.filter-checkbox:checked').each(function() {
+          selectedSizes.push($(this).val());
+        });
+        if (selectedSizes.length === 0) {
+          $('.grid__item').show();
+          return;
         }
-      } else {
-        $(this).hide();
-      }
+        $('.grid__item').each(function() {
+          var sizes = $(this).data('sizes');
+          
+          if (typeof sizes !== 'undefined') {
+            sizes = sizes.toString().split(',');
+            if (selectedSizes.some(size => sizes.includes(size))) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          } else {
+            $(this).hide();
+          }
+        });
+      });
     });
-  });
-});
 
    // JavaScript to sort sizes numerically
  document.addEventListener('DOMContentLoaded', function () {
