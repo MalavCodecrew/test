@@ -629,51 +629,73 @@ $(document).ready(function() {
 //     });
 
 $(document).ready(function() {
-  $('.filter-checkbox').on('change', function() {
+  // Function to update filtered items
+  function updateFilteredItems() {
     var selectedSizes = [];
-
-    // Collect selected sizes
-    $('.filter-checkbox:checked').each(function() {
-      var filterValue = $(this).val();
-      console.log("Selected size value: ", filterValue); 
-      selectedSizes.push(filterValue);
+    var selectedMaterials = [];
+    var selectedColors = [];
+    
+    // Collect selected filters
+    $('.size-checkbox:checked').each(function() {
+      selectedSizes.push($(this).val());
     });
-
-    console.log("Selected sizes: ", selectedSizes);
-
-    // If no sizes are selected, show all items
-    if (selectedSizes.length === 0) {
+    
+    $('.material-checkbox:checked').each(function() {
+      selectedMaterials.push($(this).val());
+    });
+    
+    $('.color-checkbox:checked').each(function() {
+      selectedColors.push($(this).val());
+    });
+    
+    console.log("Selected filters:", {
+      sizes: selectedSizes,
+      materials: selectedMaterials,
+      colors: selectedColors
+    });
+    
+    // Show all items if no filters are selected
+    if (selectedSizes.length === 0 && selectedMaterials.length === 0 && selectedColors.length === 0) {
       $('.grid__item').show();
       return;
     }
-
-    // Show/hide items based on selected sizes
+    
+    // Filter items
     $('.grid__item').each(function() {
       var item = $(this);
-
-      // Get the 'data-size' attribute
-      var itemSizes = item.attr('data-size');
-      console.log("Item data-size attribute: ", itemSizes);
-
-      if (itemSizes) {
-        var itemSizeArray = itemSizes.split(',');
-        console.log("Item size array: ", itemSizeArray);
-
-        // Check if any selected size matches the item's sizes
-        var showItem = selectedSizes.some(size => itemSizeArray.includes(size));
-
-        if (showItem) {
-          item.show();
-          console.log("Showing item with size(s): ", itemSizes);
-        } else {
-          item.hide();
-          console.log("Hiding item with size(s): ", itemSizes);
-        }
+      
+      // Get all attribute values
+      var itemSizes = (item.attr('data-size') || '').split(',');
+      var itemMaterials = (item.attr('data-material') || '').split(',');
+      var itemColors = (item.attr('data-color') || '').split(',');
+      
+      // Check if item matches all selected filters
+      var sizeMatch = selectedSizes.length === 0 || selectedSizes.some(size => itemSizes.includes(size));
+      var materialMatch = selectedMaterials.length === 0 || selectedMaterials.some(material => itemMaterials.includes(material));
+      var colorMatch = selectedColors.length === 0 || selectedColors.some(color => itemColors.includes(color));
+      
+      // Show/hide item based on all filter conditions
+      if (sizeMatch && materialMatch && colorMatch) {
+        item.show();
+        console.log("Showing item:", {
+          sizes: itemSizes,
+          materials: itemMaterials,
+          colors: itemColors
+        });
       } else {
         item.hide();
-        console.log("No data-size attribute, hiding item.");
+        console.log("Hiding item:", {
+          sizes: itemSizes,
+          materials: itemMaterials,
+          colors: itemColors
+        });
       }
     });
+  }
+  
+  // Add event listeners for all filter checkboxes
+  $('.size-checkbox, .material-checkbox, .color-checkbox').on('change', function() {
+    updateFilteredItems();
   });
 });
 
