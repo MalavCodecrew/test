@@ -28,25 +28,26 @@
       {%- for variant in product.variants -%}
         {%- for option_name in product.options -%}
           {{ option_name }}
+
+          {% for option in all_options %}
+            {% assign parts = option | split: '::' %}
+            {% assign option_index = parts[0] %}
+            {% assign option_value = parts[1] %}
+            <div class="filter-content">
+              {% if option_value != blank -%}
+                <div class="filter-wrapper">
+                  <div class="filter-title">Shop by option{{ option_index }}</div>
+                  <label class="filter-label">
+                    <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
+                    <span>{{ option_value }}</span>
+                  </label>
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
         {%- endfor -%}
       {%- endfor -%}
     {%- endfor -%}
-    {% for option in all_options %}
-      {% assign parts = option | split: '::' %}
-      {% assign option_index = parts[0] %}
-      {% assign option_value = parts[1] %}
-      <div class="filter-content">
-        {% if option_value != blank -%}
-          <div class="filter-wrapper">
-            <div class="filter-title">Shop by option{{ option_index }}</div>
-            <label class="filter-label">
-              <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
-              <span>{{ option_value }}</span>
-            </label>
-          </div>
-        {% endif %}
-      </div>
-    {% endfor %}
   </div>
 {% endif %}
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
