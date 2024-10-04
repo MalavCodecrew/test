@@ -738,7 +738,7 @@ input#in-table {
 .custom-filter {
   display: flex;
   justify-content: center;
-  font-size: 18px;
+  font-size: 15px;
 }
 .filter-title {
   font-weight: 600;
