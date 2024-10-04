@@ -24,14 +24,13 @@
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
-    {% for product in collection.products %}
-      {% for option in product.options_with_values %}
-        {{ option.name }}
-        {% for value in option.values %}
-          {{ value }}
-        {% endfor %}
-      {% endfor %}
-    {% endfor %}
+    {%- for product in collection.products -%}
+      {%- for variant in product.variants -%}
+        {%- for option_name in product.options -%}
+          {{ option_name }}
+        {%- endfor -%}
+      {%- endfor -%}
+    {%- endfor -%}
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
