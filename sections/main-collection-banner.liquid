@@ -31,27 +31,14 @@
         {%- endfor -%}
       {%- endfor -%}
     {%- endfor -%}
-
-    {% assign all_options = '' %}
-    {%- for product in collection.products -%}
-      {%- for variant in product.variants -%}
-        {%- for option in variant.options -%}
-          {% unless all_options contains option -%}
-            {% assign all_options = all_options | append: option | append: '::' %}
-          {% endunless -%}
-        {%- endfor -%}
-      {%- endfor -%}
-    {%- endfor -%}
-
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
-      {% assign option_value = parts[0] %}
-
+      {% assign option_index = parts[0] %}
+      {% assign option_value = parts[1] %}
       <div class="filter-content">
         {% if option_value != blank -%}
           <div class="filter-wrapper">
-            <div class="filter-title">{{ option_value }}</div>
-            <!-- Changed here -->
+            <div class="filter-title">Shop by option{{ option_index }}</div>
             <label class="filter-label">
               <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
               <span>{{ option_value }}</span>
