@@ -762,4 +762,6 @@ input#in-table {
   flex-direction: column;
   display: flex;
   align-items: flex-start;
+  position: relative;
+  left: 40%;
 }
