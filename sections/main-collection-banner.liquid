@@ -14,13 +14,17 @@
   {% for product in collection.products %}
     {% for variant in product.variants %}
       {% for option_name in product.options %}
-      {% endfor %}
-
-      {% for i in (1..3) %}
-        {% assign option_name = 'option' | append: i %}
-        {% unless all_options contains variant[option_name] %}
-          {% assign all_options = all_options | append: i | append: '::' | append: variant[option_name] | append: '/' %}
-        {% endunless %}
+        {% for i in (1..3) %}
+          {% assign option_name = 'option' | append: option_name %}
+          {% unless all_options contains variant[option_name] %}
+            {% assign all_options = all_options
+              | append: i
+              | append: '::'
+              | append: variant[option_name]
+              | append: '/'
+            %}
+          {% endunless %}
+        {% endfor %}
       {% endfor %}
     {% endfor %}
   {% endfor %}
