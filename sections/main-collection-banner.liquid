@@ -13,6 +13,7 @@
 
   {% for product in collection.products %}
     {% for variant in product.variants %}
+      {{ variant }}
       {% for i in (1..3) %}
         {% assign option_name = 'option' | append: i %}
         {% unless all_options contains variant[option_name] %}
