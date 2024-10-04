@@ -661,12 +661,12 @@ $(document).ready(function() {
 
       // Check each selected filter category against the item's data attributes
       $.each(selectedFilters, function(category, values) {
-        var itemAttr = item.attr('data-' + category); // Dynamically get the data attribute
+        var itemAttr = item.data(category); // Use the jQuery data() method to access the attribute
 
         console.log("Item data attribute for category '" + category + "': ", itemAttr);
 
         if (itemAttr) {
-          var itemValues = itemAttr.split(','); // Split the attribute values into an array
+          var itemValues = itemAttr.toString().split(','); // Convert to string and split into an array
           console.log("Item values for category '" + category + "': ", itemValues);
 
           // Check if any of the selected values match the item's values for the category
@@ -688,6 +688,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 
 
