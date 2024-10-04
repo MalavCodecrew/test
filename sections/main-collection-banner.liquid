@@ -12,20 +12,11 @@
   {% assign all_options = '' %}
 
   {% for product in collection.products %}
-    {% assign all_options = '' %}
     {% for variant in product.variants %}
-      {% for i in (0..2) %}
+      {% for i in (1..3) %}
         {% assign option_name = 'option' | append: i %}
-        {% assign option_name_value = product.options[i] %}
-        <!-- i is zero-based -->
-
         {% unless all_options contains variant[option_name] %}
-          {% assign all_options = all_options
-            | append: option_name_value
-            | append: option_name_value
-            | append: '::'
-            | append: '/'
-          %}
+          {% assign all_options = all_options | append: i | append: '::' | append: variant[option_name] | append: '/' %}
         {% endunless %}
       {% endfor %}
     {% endfor %}
@@ -35,10 +26,10 @@
   <div class="custom-filter">
     {%- for product in collection.products -%}
       {%- for option_name in product.options -%}
+        {{ option_name }}
       {%- endfor -%}
     {%- endfor -%}
     {% for option in all_options %}
-      {{ option }}
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
       {% assign option_value = parts[1] %}
