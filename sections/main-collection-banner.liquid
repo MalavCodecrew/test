@@ -24,28 +24,25 @@
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
-    {% assign unique_options = '' %}
-    {% for product in collection.products %}
-      {%- for option_name in product.options -%}
-        {% assign option_value = parts[1] %}
-        {% unless unique_options contains option_name %}
-          <div class="filter-title">Shop by option {{ option_name }}</div>
-          {% assign unique_options = unique_options | append: option_name | append: ',' %}
-
-          <div class="filter-values">
+    {% for option in all_options %}
+      {% assign parts = option | split: '::' %}
+      {% assign option_index = parts[0] %}
+      {% assign option_value = parts[1] %}
+      <div class="filter-content">
+        {% if option_value != blank -%}
+          <div class="filter-wrapper">
             {%- for product in collection.products -%}
-              {% assign value = product.options[option_name] %}
-              {% unless value == blank or unique_options contains value %}
-                <label class="filter-label">
-                  <input type="checkbox" class="filter-checkbox" value="{{  option_value }}">
-                  <span>{{ option_value }}</span>
-                </label>
-                {% assign unique_options = unique_options | append: value | append: ',' %}
-              {% endunless %}
+              {%- for option_name in product.options -%}
+                <div class="filter-title">Shop by option{{ option_name }}</div>
+              {%- endfor -%}
             {%- endfor -%}
+            <label class="filter-label">
+              <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
+              <span>{{ option_value }}</span>
+            </label>
           </div>
-        {% endunless %}
-      {%- endfor -%}
+        {% endif %}
+      </div>
     {% endfor %}
   </div>
 {% endif %}
