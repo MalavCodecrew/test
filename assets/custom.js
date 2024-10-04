@@ -634,11 +634,11 @@ $(document).ready(function() {
 
     // Collect all selected filters by option category
     $('.filter-checkbox:checked').each(function() {
-      var filterCategory = $(this).closest('.filter-wrapper').find('.filter-title').text().trim(); 
+      var filterCategory = $(this).closest('.filter-wrapper').find('.filter-title').text().trim();
       var filterValue = $(this).val();
 
-      console.log("Filter category: ", filterCategory); 
-      console.log("Filter value: ", filterValue); 
+      console.log("Filter category: ", filterCategory);
+      console.log("Filter value: ", filterValue);
 
       if (!selectedFilters[filterCategory]) {
         selectedFilters[filterCategory] = [];
@@ -646,7 +646,7 @@ $(document).ready(function() {
       selectedFilters[filterCategory].push(filterValue);
     });
 
-    console.log("Selected filters: ", selectedFilters); 
+    console.log("Selected filters: ", selectedFilters);
 
     if ($.isEmptyObject(selectedFilters)) {
       $('.grid__item').show();
@@ -659,25 +659,32 @@ $(document).ready(function() {
 
       // Iterate through selected filters
       $.each(selectedFilters, function(category, values) {
-        // Convert the category to lowercase to match data attributes
-        var categorySlug = category.toLowerCase();
-        console.log("Looking for dataset property: " + categorySlug);
+        // Convert category to lowercase and replace spaces or special characters
+        var categorySlug = category.toLowerCase().replace(/\s+/g, '-');
+        console.log("Looking for dataset and attribute for categorySlug: " + categorySlug);
 
-        // Access the data attribute using dataset
-        var itemAttr = item[0].dataset[categorySlug]; // Use dataset to get the data attribute
-        console.log("Item dataset for " + categorySlug + ": ", itemAttr);
+        // Try both dataset and attr to get the data attribute
+        var itemAttrDataset = item[0].dataset[categorySlug];
+        var itemAttrAttr = item.attr('data-' + categorySlug);
+
+        console.log("Item dataset value: ", itemAttrDataset);
+        console.log("Item attr value: ", itemAttrAttr);
+
+        // Use either dataset or attr if available
+        var itemAttr = itemAttrDataset || itemAttrAttr;
+        console.log("Final item attribute value: ", itemAttr);
 
         if (itemAttr) {
-          var itemValues = itemAttr.split(',');  // Split the attribute value into an array
-          console.log("Item values: ", itemValues);  // Log the individual values
+          var itemValues = itemAttr.split(',');
+          console.log("Item values: ", itemValues);
 
           // Check if any of the selected filter values match the item's data attribute values
           if (!values.some(value => itemValues.includes(value))) {
             showItem = false;
           }
         } else {
-          showItem = false;  // If the attribute doesn't exist, hide the item
-          console.log("No matching dataset for " + categorySlug + ", hiding item.");
+          showItem = false;
+          console.log("No matching data attribute for " + categorySlug + ", hiding item.");
         }
       });
 
@@ -692,6 +699,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 
 
