@@ -755,7 +755,11 @@ input#in-table {
 }
 .filter-custom {
   display: flex;
-  text-align: left;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
+}
+.custom-filter {
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
 }
