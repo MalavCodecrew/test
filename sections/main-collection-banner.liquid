@@ -8,33 +8,86 @@
     }
   }
 {%- endstyle -%}
+<!--
+  {% if collection.title == 'Shoes' %}
+    {% assign all_options = '' %}
+
+    {% for product in collection.products %}
+      {% for variant in product.variants %}
+        {% for i in (1..3) %}
+          {% assign option_name = 'option' | append: i %}
+          {% unless all_options contains variant[option_name] %}
+            {% assign all_options = all_options | append: i | append: '::' | append: variant[option_name] | append: '/' %}
+          {% endunless %}
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+
+    {% assign all_options = all_options | split: '/' | sort | uniq %}
+
+    <div class="custom-filter">
+      {% for option in all_options %}
+        {% assign parts = option | split: '::' %}
+        {% assign option_index = parts[0] %}
+        {% assign option_value = parts[1] %}
+        {% assign option_type = parts[2] %}
+        <div class="filter-content">
+          {% if option_value != blank -%}
+            <div class="filter-wrapper">
+              {{ option_type }}
+              <div class="filter-title">Shop by Option {{ option_index }} &nbsp</div>
+              <label class="filter-label">
+                <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
+                <span>{{ option_value }}</span>
+              </label>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+-->
 {% if collection.title == 'Shoes' %}
   {% assign all_options = '' %}
+  {% assign option_names = '' %}
 
   {% for product in collection.products %}
     {% for variant in product.variants %}
       {% for i in (1..3) %}
         {% assign option_name = 'option' | append: i %}
         {% unless all_options contains variant[option_name] %}
-          {% assign all_options = all_options | append: i | append: '::' | append: variant[option_name] | append: '/' %}
+          {% assign all_options = all_options
+            | append: variant[option_name]
+            | append: '::'
+            | append: variant[option_name]
+            | append: '/'
+          %}
+        {% endunless %}
+        {% assign option_label = variant[option_name] %}
+        {% unless option_names contains option_label %}
+          {% assign option_names = option_names
+            | append: option_label
+            | append: '::'
+            | append: option_name
+            | append: '/'
+          %}
         {% endunless %}
       {% endfor %}
     {% endfor %}
   {% endfor %}
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
+  {% assign option_names = option_names | split: '/' | sort | uniq %}
 
   <div class="custom-filter">
-    {% for option in all_options %}
+    {% for option in option_names %}
       {% assign parts = option | split: '::' %}
-      {% assign option_index = parts[0] %}
-      {% assign option_value = parts[1] %}
-      {% assign option_type = parts[2] %}
+      {% assign option_value = parts[0] %}
+      {% assign option_type = parts[1] %}
       <div class="filter-content">
         {% if option_value != blank -%}
           <div class="filter-wrapper">
-            {{ option_type }}
-            <div class="filter-title">Shop by Option {{ option_index }} &nbsp</div>
+            <div class="filter-title">Shop by {{ option_type }} &nbsp;</div>
             <label class="filter-label">
               <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
               <span>{{ option_value }}</span>
@@ -45,6 +98,7 @@
     {% endfor %}
   </div>
 {% endif %}
+
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     <div class="collection-hero__text-wrapper">
