@@ -23,31 +23,34 @@
   {% endfor %}
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
-  <div class="custom-filter">
-    {%- for product in collection.products -%}
-      {%- for variant in product.variants -%}
-        {%- for option_name in product.options -%}
-          {{ option_name }}
-        {%- endfor -%}
+  {% assign option_names = '' %}
+
+  {%- for product in collection.products -%}
+    {%- for variant in product.variants -%}
+      {%- for option_name in product.options -%}
+        {% assign option_names = option_names | append: option_name | append: ',' %}
       {%- endfor -%}
     {%- endfor -%}
-    {% for option in all_options %}
-      {% assign parts = option | split: '::' %}
-      {% assign option_index = parts[0] %}
-      {% assign option_value = parts[1] %}
-      <div class="filter-content">
-        {% if option_value != blank -%}
-          <div class="filter-wrapper">
-            <div class="filter-title">Shop by option{{ option_index }}</div>
-            <label class="filter-label">
-              <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
-              <span>{{ option_value }}</span>
-            </label>
-          </div>
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
+  {%- endfor -%}
+
+  {% assign option_names_array = option_names | split: ',' %}
+
+  {% for option in all_options %}
+    {% assign parts = option | split: '::' %}
+    {% assign option_index = parts[0] %}
+    {% assign option_value = parts[1] %}
+    <div class="filter-content">
+      {% if option_value != blank -%}
+        <div class="filter-wrapper">
+          <div class="filter-title">Shop by option {{ option_names_array[option_index] }}</div>
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
+            <span>{{ option_value }}</span>
+          </label>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
 {% endif %}
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
