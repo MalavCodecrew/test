@@ -22,7 +22,6 @@
         {% unless all_options contains variant[option_name] %}
           {% assign all_options = all_options
             | append: option_name_value
-            | append: option_name_value
             | append: '::'
             | append: variant[option_name]
             | append: '/'
