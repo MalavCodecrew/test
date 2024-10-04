@@ -24,16 +24,6 @@
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
-    {% for product in collection.products %}
-      <div class="product">
-        <h2>{{ product.title }}</h2>
-
-        {% for option in product.options %}
-          <p>Option Name: {{ option.name }}</p>
-        {% endfor %}
-      </div>
-    {% endfor %}
-
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
