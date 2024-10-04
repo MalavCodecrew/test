@@ -26,7 +26,6 @@
 
   <div class="custom-filter">
     {% for option in all_options %}
-      {{ option | json }}
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
       {% assign option_value = parts[1] %}
