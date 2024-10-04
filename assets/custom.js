@@ -634,7 +634,7 @@ $(document).ready(function() {
 
     // Collect all selected filters
     $('.filter-checkbox:checked').each(function() {
-      var filterCategory = $(this).closest('.filter-title').text().trim().toLowerCase(); // Get and lowercase the filter category
+      var filterCategory = $(this).closest('.filter-title').text().trim().toLowerCase(); // Get the filter category
       var filterValue = $(this).val();
 
       console.log("Filter category: ", filterCategory); 
@@ -661,20 +661,26 @@ $(document).ready(function() {
 
       // Check each selected filter category against the item's data attributes
       $.each(selectedFilters, function(category, values) {
-        var itemAttr = item.data(category); // Use the jQuery data() method to access the attribute
+        // Assume that size is the only filter category we're concerned with for now
+        if (category === 'size') {
+          // Get the item size from the data attribute
+          var itemSizeAttr = item.data('size');
 
-        console.log("Item data attribute for category '" + category + "': ", itemAttr);
+          console.log("Item size attribute: ", itemSizeAttr); 
 
-        if (itemAttr) {
-          var itemValues = itemAttr.toString().split(','); // Convert to string and split into an array
-          console.log("Item values for category '" + category + "': ", itemValues);
-
-          // Check if any of the selected values match the item's values for the category
-          if (!values.some(value => itemValues.includes(value))) {
-            showItem = false; // If no match is found, mark the item to be hidden
+          // If itemSizeAttr is not defined, hide the item
+          if (typeof itemSizeAttr === 'undefined') {
+            showItem = false;
+            return false; // Exit the loop early
           }
-        } else {
-          showItem = false; // If the attribute doesn't exist, hide the item
+
+          // Split the item size attribute into an array of values
+          var itemSizes = itemSizeAttr.toString().split(',');
+
+          // Check if any of the selected sizes match the item's sizes
+          if (!values.some(value => itemSizes.includes(value))) {
+            showItem = false;
+          }
         }
       });
 
@@ -688,17 +694,6 @@ $(document).ready(function() {
     });
   });
 });
-
-
-
-
-
-
-
-
-
-
-
 
    // JavaScript to sort sizes numerically
  // document.addEventListener('DOMContentLoaded', function () {
