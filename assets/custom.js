@@ -633,7 +633,8 @@ $(document).ready(function() {
     var selectedFilters = {};
 
     $('.filter-checkbox:checked').each(function() {
-      var filterCategory = $(this).closest('.filter-title').text().trim(); 
+      // Assuming the filter category is in a parent element, like a title or label
+      var filterCategory = $(this).closest('.filter-wrapper').find('.filter-title').text().trim(); 
       var filterValue = $(this).val();
 
       console.log("Filter category: ", filterCategory); 
@@ -683,6 +684,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 
    // JavaScript to sort sizes numerically
