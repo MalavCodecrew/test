@@ -660,15 +660,13 @@ $(document).ready(function() {
         var categorySlug = category.toLowerCase(); 
         console.log("Category slug: ", categorySlug);
 
-        // Log the grid item to check if data attributes are present
-        console.log("Inspecting item: ", item);
-
-        var itemAttr = item.data(categorySlug); // Dynamically fetch the data attribute
+        // Use getAttribute instead of .data()
+        var itemAttr = item.get(0).getAttribute('data-' + categorySlug); 
         
-        console.log("Item attribute for " + categorySlug + ": ", itemAttr); 
+        console.log("Item attribute for " + categorySlug + ": ", itemAttr);
 
         if (itemAttr) {
-          var itemValues = itemAttr.toString().split(','); 
+          var itemValues = itemAttr.split(','); // Split attribute into array
           if (!values.some(value => itemValues.includes(value))) {
             showItem = false;
           }
@@ -687,6 +685,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 
 
