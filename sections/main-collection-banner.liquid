@@ -87,6 +87,7 @@
       <div class="filter-content">
         {% if option_value != blank -%}
           <div class="filter-wrapper">
+            {{ option_name }}
             <div class="filter-title">Shop by {{ option_type }} &nbsp;</div>
             <label class="filter-label">
               <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
