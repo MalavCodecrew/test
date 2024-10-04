@@ -27,7 +27,7 @@
     {% assign unique_options = '' %}
     {% for product in collection.products %}
       {%- for option_name in product.options -%}
-        {% assign option_value = product.options[option_name] %}
+        {% assign option_value = parts[1] %}
         {% unless unique_options contains option_name %}
           <div class="filter-title">Shop by option {{ option_name }}</div>
           {% assign unique_options = unique_options | append: option_name | append: ',' %}
@@ -37,8 +37,8 @@
               {% assign value = product.options[option_name] %}
               {% unless value == blank or unique_options contains value %}
                 <label class="filter-label">
-                  <input type="checkbox" class="filter-checkbox" value="{{ value }}">
-                  <span>{{ value }}</span>
+                  <input type="checkbox" class="filter-checkbox" value="{{  option_value }}">
+                  <span>{{ option_value }}</span>
                 </label>
                 {% assign unique_options = unique_options | append: value | append: ',' %}
               {% endunless %}
