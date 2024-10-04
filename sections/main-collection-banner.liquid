@@ -16,7 +16,7 @@
     {% for variant in product.variants %}
       {% for i in (1..3) %}
         {% assign option_name = 'option' | append: i %}
-        {% assign option_name_value = product.options[i] %}
+        {% assign option_name_value = product.options[i-1] %}
         <!-- Adjust index to match loop -->
         {% unless all_options contains variant[option_name] %}
           {% assign all_options = all_options
