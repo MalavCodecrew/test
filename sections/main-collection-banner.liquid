@@ -24,30 +24,21 @@
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
-    {% assign option_names = '' %}
-
     {%- for product in collection.products -%}
       {%- for variant in product.variants -%}
-        {%- for i in (0..variant.options.size) -%}
-          {% assign option_name = variant.options[i] %}
-          {% assign option_names = option_names | append: option_name | append: ',' %}
+        {%- for option_name in product.options -%}
+          {{ option_name }}
         {%- endfor -%}
       {%- endfor -%}
     {%- endfor -%}
-
-    {% assign option_names_array = option_names | split: ',' %}
-    {% assign option_names_array_size = option_names_array | size %}
-
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
-      {% assign option_index = parts[0] | plus: 0 %}
-      <!-- Ensure option_index is treated as a number -->
+      {% assign option_index = parts[0] %}
       {% assign option_value = parts[1] %}
-
       <div class="filter-content">
-        {% if option_value != blank and option_index < option_names_array_size -%}
+        {% if option_value != blank -%}
           <div class="filter-wrapper">
-            <div class="filter-title">Shop by option {{ option_names_array[option_index] }}</div>
+            <div class="filter-title">Shop by option{{ option_index }}</div>
             <label class="filter-label">
               <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
               <span>{{ option_value }}</span>
