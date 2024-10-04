@@ -29,12 +29,9 @@
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
       {% assign option_value = parts[1] %}
-      {% assign option_type = parts[2] %}
       <div class="filter-content">
         {% if option_value != blank -%}
           <div class="filter-wrapper">
-            {{ option_type }}-----
-
             <div class="filter-title">Shop by {{ option_index }}</div>
             <label class="filter-label">
               <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
