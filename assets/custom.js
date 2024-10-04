@@ -630,11 +630,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
-  $('.grid__item').each(function() {
-  });
-
-  $('.filter-checkbox').each(function() {
-  });
+ 
 
   $('.filter-checkbox').on('change', function() {
     var checkedValues = [];
