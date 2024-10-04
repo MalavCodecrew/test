@@ -660,10 +660,10 @@ $(document).ready(function() {
         var categorySlug = category.toLowerCase(); 
         console.log("Category slug: ", categorySlug);
 
-        // Use getAttribute instead of .data()
-        var itemAttr = item.get(0).getAttribute('data-' + categorySlug); 
+        // Use querySelector to search for elements with a matching attribute
+        var itemAttr = item.attr('data-' + categorySlug); // OR item.get(0).getAttribute('data-' + categorySlug);
         
-        console.log("Item attribute for " + categorySlug + ": ", itemAttr);
+        console.log("Item attribute for " + categorySlug + ": ", itemAttr);  // Check for null values
 
         if (itemAttr) {
           var itemValues = itemAttr.split(','); // Split attribute into array
@@ -685,6 +685,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 
 
