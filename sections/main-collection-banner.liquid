@@ -26,9 +26,9 @@
   <div class="custom-filter">
     {% for product in collection.products %}
       {% for variant in product.variants %}
-        {{ variant.option1 }}
-        {% for var in variant.options %}
-          {{ var.value }}
+        {% assign option_names = variant.options | join: ', ' %}
+        {% for option_name in option_names %}
+          <p>Option Name: {{ option_name }}</p>
         {% endfor %}
       {% endfor %}
     {% endfor %}
