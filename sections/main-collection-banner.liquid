@@ -23,7 +23,7 @@
   {% endfor %}
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
-
+  {{ product_variant.title }}
   <div class="custom-filter">
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
