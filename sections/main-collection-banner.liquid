@@ -12,21 +12,21 @@
   {% assign all_options = '' %}
 
   {% for product in collection.products %}
+    {% assign all_options = '' %}
     {% for variant in product.variants %}
-      {% for option_name_value in product.options %}
-        {% for i in (1..3) %}
-          {% assign option_name = 'option' | append: i %}
-          {% assign option_variant_value = 'option_variant_value' | append: option_name_value %}
-          {% unless all_options contains variant[option_name] %}
-            {% assign all_options = all_options
-              | append: i
-              | append: option_name_value
-              | append: '::'
-              | append: variant[option_name_value]
-              | append: '/'
-            %}
-          {% endunless %}
-        {% endfor %}
+      {% for i in (1..3) %}
+        {% assign option_name = 'option' | append: i %}
+        {% assign option_name_value = product.options[i-1] %}
+        <!-- Adjust index to match loop -->
+        {% unless all_options contains variant[option_name] %}
+          {% assign all_options = all_options
+            | append: i
+            | append: option_name_value
+            | append: '::'
+            | append: variant[option_name]
+            | append: '/'
+          %}
+        {% endunless %}
       {% endfor %}
     {% endfor %}
   {% endfor %}
