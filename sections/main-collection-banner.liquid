@@ -24,8 +24,15 @@
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
-    {% assign all_options = '' %}
+    {%- for product in collection.products -%}
+      {%- for variant in product.variants -%}
+        {%- for option_name in product.options -%}
+          {{ option_name }}
+        {%- endfor -%}
+      {%- endfor -%}
+    {%- endfor -%}
 
+    {% assign all_options = '' %}
     {%- for product in collection.products -%}
       {%- for variant in product.variants -%}
         {%- for option in variant.options -%}
@@ -43,12 +50,8 @@
       <div class="filter-content">
         {% if option_value != blank -%}
           <div class="filter-wrapper">
-            <div class="filter-title">
-              {% assign option_index = forloop.index0 %}
-              {% assign option_name = collection.products[0].options[option_index] %}
-              {{ option_name }}
-              <!-- Changed to use option_name -->
-            </div>
+            <div class="filter-title">{{ option_value }}</div>
+            <!-- Changed here -->
             <label class="filter-label">
               <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
               <span>{{ option_value }}</span>
