@@ -24,17 +24,9 @@
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
-    <!--
-      {%- for product in collection.products -%}
-        {%- for option_name in product.options -%}
-          {{ option_name }}
-        {%- endfor -%}
-      {%- endfor -%}
-    -->
     <div class="filter-title">Shop by {{ option_name }}</div>
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
-      {% assign option_index = parts[0] %}
       {% assign option_value = parts[1] %}
       <div class="filter-content">
         {% if option_value != blank -%}
