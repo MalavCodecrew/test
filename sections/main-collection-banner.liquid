@@ -29,7 +29,7 @@
         {{ option_name }}
       {%- endfor -%}
     {%- endfor -%}
-    <div class="filter-title">Shop by option{{ option_name }}</div>
+    <div class="filter-title">Shop by {{ option_name }}</div>
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
