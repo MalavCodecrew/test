@@ -24,10 +24,15 @@
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
+    {% assign unique_options = '' %}
+
     {%- for product in collection.products -%}
       {%- for variant in product.variants -%}
         {%- for option_name in product.options -%}
-          {{ option_name }}
+          {%- unless unique_options contains option_name -%}
+            {% assign unique_options = unique_options | append: option_name | append: ' ' %}
+            {{ option_name }}
+          {%- endunless -%}
         {%- endfor -%}
       {%- endfor -%}
     {%- endfor -%}
