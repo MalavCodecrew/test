@@ -657,31 +657,31 @@ $(document).ready(function() {
       var item = $(this);
       var showItem = true;
 
+      // Iterate through selected filters
       $.each(selectedFilters, function(category, values) {
-        // Convert the category to lowercase, as data attributes are usually lowercase
+        // Convert the category to lowercase to match data attributes
         var categorySlug = category.toLowerCase();
-        console.log("Looking for data-" + categorySlug + " on item.");
+        console.log("Looking for dataset property: " + categorySlug);
 
-        // Use .attr() to access the data attribute
-        var itemAttr = item.attr('data-' + categorySlug);
-        
-        console.log("Item data for category (" + categorySlug + "): ", itemAttr);  // Log the item attribute value
+        // Access the data attribute using dataset
+        var itemAttr = item[0].dataset[categorySlug]; // Use dataset to get the data attribute
+        console.log("Item dataset for " + categorySlug + ": ", itemAttr);
 
         if (itemAttr) {
           var itemValues = itemAttr.split(',');  // Split the attribute value into an array
           console.log("Item values: ", itemValues);  // Log the individual values
 
-          // Check if the item's attribute matches any of the selected filter values
+          // Check if any of the selected filter values match the item's data attribute values
           if (!values.some(value => itemValues.includes(value))) {
             showItem = false;
           }
         } else {
           showItem = false;  // If the attribute doesn't exist, hide the item
-          console.log("Item has no data-" + categorySlug + ", hiding.");
+          console.log("No matching dataset for " + categorySlug + ", hiding item.");
         }
       });
 
-      // Show or hide the item based on the matching logic
+      // Show or hide the item based on filter matching
       if (showItem) {
         item.show();
         console.log("Showing item.");
@@ -692,6 +692,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 
 
