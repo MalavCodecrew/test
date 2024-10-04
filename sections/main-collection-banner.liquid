@@ -38,6 +38,8 @@
       {%- endfor -%}
     {%- endfor -%}
     {% for option in all_options %}
+      --option{{ option }}
+
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
       {% assign option_value = parts[1] %}
