@@ -632,13 +632,12 @@ $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
     var selectedFilters = {};
 
-    // Collect all selected filters by option category
     $('.filter-checkbox:checked').each(function() {
-      var filterCategory = $(this).closest('.filter-title').text().trim(); // Get the filter title (e.g., 'Shop by Size')
+      var filterCategory = $(this).closest('.filter-title').text().trim(); 
       var filterValue = $(this).val();
 
-      console.log("Filter category: ", filterCategory); // Log the filter category to check if it’s correct
-      console.log("Filter value: ", filterValue); // Log the selected filter value
+      console.log("Filter category: ", filterCategory); 
+      console.log("Filter value: ", filterValue); 
 
       if (!selectedFilters[filterCategory]) {
         selectedFilters[filterCategory] = [];
@@ -646,10 +645,9 @@ $(document).ready(function() {
       selectedFilters[filterCategory].push(filterValue);
     });
 
-    console.log("Selected filters: ", selectedFilters); // Log the selected filters
-
+    console.log("Selected filters: ", selectedFilters); 
     if ($.isEmptyObject(selectedFilters)) {
-      $('.grid__item').show(); // Show all items if no filter is selected
+      $('.grid__item').show();
       return;
     }
 
@@ -657,31 +655,30 @@ $(document).ready(function() {
       var item = $(this);
       var showItem = true;
 
-      // Check if each filter category matches the item's data attributes (e.g., data-size, data-material, data-color)
       $.each(selectedFilters, function(category, values) {
-        var categorySlug = category.toLowerCase(); // Convert category to lowercase
-        console.log("Category slug: ", categorySlug); // Log the category slug to check if it matches the `data-` attributes
+        var categorySlug = category.toLowerCase(); 
+        console.log("Category slug: ", categorySlug);
 
-        var itemAttr = item.data(categorySlug); // Get the corresponding data attribute dynamically
+        var itemAttr = item.data(categorySlug);
         
-        console.log("Item attribute: ", itemAttr); // Log the item attribute to see if it's being fetched correctly
+        console.log("Item attribute: ", itemAttr); 
 
         if (itemAttr) {
-          var itemValues = itemAttr.toString().split(','); // Split the item's attribute values into an array
+          var itemValues = itemAttr.toString().split(','); 
           if (!values.some(value => itemValues.includes(value))) {
-            showItem = false; // Hide if none of the values match
+            showItem = false;
           }
         } else {
-          showItem = false; // Hide if the data attribute is missing
+          showItem = false; 
         }
       });
 
       if (showItem) {
         item.show();
-        console.log("Showing item: ", item); // Log which item is shown
+        console.log("Showing item: ", item);
       } else {
         item.hide();
-        console.log("Hiding item: ", item); // Log which item is hidden
+        console.log("Hiding item: ", item); 
       }
     });
   });
