@@ -647,6 +647,7 @@ $(document).ready(function() {
     });
 
     console.log("Selected filters: ", selectedFilters); 
+
     if ($.isEmptyObject(selectedFilters)) {
       $('.grid__item').show();
       return;
@@ -657,34 +658,41 @@ $(document).ready(function() {
       var showItem = true;
 
       $.each(selectedFilters, function(category, values) {
-        var categorySlug = category.toLowerCase(); 
-        console.log("Category slug: ", categorySlug);
+        // Convert the category to lowercase, as data attributes are usually lowercase
+        var categorySlug = category.toLowerCase();
+        console.log("Looking for data-" + categorySlug + " on item.");
 
-        // Use querySelector to search for elements with a matching attribute
-        var itemAttr = item.attr('data-' + categorySlug); // OR item.get(0).getAttribute('data-' + categorySlug);
+        // Use .attr() to access the data attribute
+        var itemAttr = item.attr('data-' + categorySlug);
         
-        console.log("Item attribute for " + categorySlug + ": ", itemAttr);  // Check for null values
+        console.log("Item data for category (" + categorySlug + "): ", itemAttr);  // Log the item attribute value
 
         if (itemAttr) {
-          var itemValues = itemAttr.split(','); // Split attribute into array
+          var itemValues = itemAttr.split(',');  // Split the attribute value into an array
+          console.log("Item values: ", itemValues);  // Log the individual values
+
+          // Check if the item's attribute matches any of the selected filter values
           if (!values.some(value => itemValues.includes(value))) {
             showItem = false;
           }
         } else {
-          showItem = false; 
+          showItem = false;  // If the attribute doesn't exist, hide the item
+          console.log("Item has no data-" + categorySlug + ", hiding.");
         }
       });
 
+      // Show or hide the item based on the matching logic
       if (showItem) {
         item.show();
-        console.log("Showing item: ", item);
+        console.log("Showing item.");
       } else {
         item.hide();
-        console.log("Hiding item: ", item); 
+        console.log("Hiding item.");
       }
     });
   });
 });
+
 
 
 
