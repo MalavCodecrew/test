@@ -630,52 +630,65 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
-    var selectedSizes = [];
+    var selectedFilters = {};
 
-    // Collect selected sizes
+    // Collect all selected filters
     $('.filter-checkbox:checked').each(function() {
+      var filterCategory = $(this).closest('.filter-title').text().trim().toLowerCase(); // Get and lowercase the filter category
       var filterValue = $(this).val();
-      console.log("Selected size value: ", filterValue); 
-      selectedSizes.push(filterValue);
+
+      console.log("Filter category: ", filterCategory); 
+      console.log("Filter value: ", filterValue);
+
+      if (!selectedFilters[filterCategory]) {
+        selectedFilters[filterCategory] = [];
+      }
+      selectedFilters[filterCategory].push(filterValue);
     });
 
-    console.log("Selected sizes: ", selectedSizes);
+    console.log("Selected filters: ", selectedFilters);
 
-    // If no sizes are selected, show all items
-    if (selectedSizes.length === 0) {
+    // If no filters are selected, show all items
+    if ($.isEmptyObject(selectedFilters)) {
       $('.grid__item').show();
       return;
     }
 
-    // Show/hide items based on selected sizes
+    // Show/hide items based on selected filters
     $('.grid__item').each(function() {
       var item = $(this);
+      var showItem = true;
 
-      // Get the 'data-size' attribute
-      var itemSizes = item.attr('data-size');
-      console.log("Item data-size attribute: ", itemSizes);
+      // Check each selected filter category against the item's data attributes
+      $.each(selectedFilters, function(category, values) {
+        var itemAttr = item.attr('data-' + category); // Dynamically get the data attribute
 
-      if (itemSizes) {
-        var itemSizeArray = itemSizes.split(',');
-        console.log("Item size array: ", itemSizeArray);
+        console.log("Item data attribute for category '" + category + "': ", itemAttr);
 
-        // Check if any selected size matches the item's sizes
-        var showItem = selectedSizes.some(size => itemSizeArray.includes(size));
+        if (itemAttr) {
+          var itemValues = itemAttr.split(','); // Split the attribute values into an array
+          console.log("Item values for category '" + category + "': ", itemValues);
 
-        if (showItem) {
-          item.show();
-          console.log("Showing item with size(s): ", itemSizes);
+          // Check if any of the selected values match the item's values for the category
+          if (!values.some(value => itemValues.includes(value))) {
+            showItem = false; // If no match is found, mark the item to be hidden
+          }
         } else {
-          item.hide();
-          console.log("Hiding item with size(s): ", itemSizes);
+          showItem = false; // If the attribute doesn't exist, hide the item
         }
+      });
+
+      if (showItem) {
+        item.show();
+        console.log("Showing item: ", item);
       } else {
         item.hide();
-        console.log("No data-size attribute, hiding item.");
+        console.log("Hiding item: ", item);
       }
     });
   });
 });
+
 
 
 
