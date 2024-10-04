@@ -735,12 +735,6 @@ input#in-table {
 }
 
 /* // adding custom filter on collection page */
-.custom-filter {
-  display: flex;
-  justify-content: center;
-  font-size: 15px;
-  gap: 10px;
-}
 .filter-title {
   font-weight: 600;
 }
@@ -758,4 +752,10 @@ input#in-table {
 }
 .filter-wrapper {
   text-align: center;
+}
+.filter-custom {
+  display: flex;
+  text-align: left;
+  justify-content: center;
+  gap: 10px;
 }
