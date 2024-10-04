@@ -25,7 +25,9 @@
   {% assign all_options = all_options | split: '/' | sort | uniq %}
 
   <div class="custom-filter">
-    {{ variant.option1 }} hello
+    {% for variant in product.variants %}
+      {{ variant.option1 }} hello
+    {% endfor %}
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
