@@ -630,75 +630,53 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
-    var selectedFilters = {};
+    var selectedSizes = [];
 
-    // Collect all selected filters by option category
+    // Collect selected sizes
     $('.filter-checkbox:checked').each(function() {
-      var filterCategory = $(this).closest('.filter-wrapper').find('.filter-title').text().trim();
       var filterValue = $(this).val();
-
-      console.log("Filter category: ", filterCategory);
-      console.log("Filter value: ", filterValue);
-
-      if (!selectedFilters[filterCategory]) {
-        selectedFilters[filterCategory] = [];
-      }
-      selectedFilters[filterCategory].push(filterValue);
+      console.log("Selected size value: ", filterValue); 
+      selectedSizes.push(filterValue);
     });
 
-    console.log("Selected filters: ", selectedFilters);
+    console.log("Selected sizes: ", selectedSizes);
 
-    if ($.isEmptyObject(selectedFilters)) {
+    // If no sizes are selected, show all items
+    if (selectedSizes.length === 0) {
       $('.grid__item').show();
       return;
     }
 
+    // Show/hide items based on selected sizes
     $('.grid__item').each(function() {
       var item = $(this);
-      var showItem = true;
 
-      // Iterate through selected filters
-      $.each(selectedFilters, function(category, values) {
-        // Convert category to lowercase and replace spaces or special characters
-        var categorySlug = category.toLowerCase().replace(/\s+/g, '-');
-        console.log("Looking for dataset and attribute for categorySlug: " + categorySlug);
+      // Get the 'data-size' attribute
+      var itemSizes = item.attr('data-size');
+      console.log("Item data-size attribute: ", itemSizes);
 
-        // Try both dataset and attr to get the data attribute
-        var itemAttrDataset = item[0].dataset[categorySlug];
-        var itemAttrAttr = item.attr('data-' + categorySlug);
+      if (itemSizes) {
+        var itemSizeArray = itemSizes.split(',');
+        console.log("Item size array: ", itemSizeArray);
 
-        console.log("Item dataset value: ", itemAttrDataset);
-        console.log("Item attr value: ", itemAttrAttr);
+        // Check if any selected size matches the item's sizes
+        var showItem = selectedSizes.some(size => itemSizeArray.includes(size));
 
-        // Use either dataset or attr if available
-        var itemAttr = itemAttrDataset || itemAttrAttr;
-        console.log("Final item attribute value: ", itemAttr);
-
-        if (itemAttr) {
-          var itemValues = itemAttr.split(',');
-          console.log("Item values: ", itemValues);
-
-          // Check if any of the selected filter values match the item's data attribute values
-          if (!values.some(value => itemValues.includes(value))) {
-            showItem = false;
-          }
+        if (showItem) {
+          item.show();
+          console.log("Showing item with size(s): ", itemSizes);
         } else {
-          showItem = false;
-          console.log("No matching data attribute for " + categorySlug + ", hiding item.");
+          item.hide();
+          console.log("Hiding item with size(s): ", itemSizes);
         }
-      });
-
-      // Show or hide the item based on filter matching
-      if (showItem) {
-        item.show();
-        console.log("Showing item.");
       } else {
         item.hide();
-        console.log("Hiding item.");
+        console.log("No data-size attribute, hiding item.");
       }
     });
   });
 });
+
 
 
 
