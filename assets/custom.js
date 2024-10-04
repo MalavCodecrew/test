@@ -632,8 +632,8 @@ $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
     var selectedFilters = {};
 
+    // Collect all selected filters by option category
     $('.filter-checkbox:checked').each(function() {
-      // Assuming the filter category is in a parent element, like a title or label
       var filterCategory = $(this).closest('.filter-wrapper').find('.filter-title').text().trim(); 
       var filterValue = $(this).val();
 
@@ -660,9 +660,12 @@ $(document).ready(function() {
         var categorySlug = category.toLowerCase(); 
         console.log("Category slug: ", categorySlug);
 
-        var itemAttr = item.data(categorySlug);
+        // Log the grid item to check if data attributes are present
+        console.log("Inspecting item: ", item);
+
+        var itemAttr = item.data(categorySlug); // Dynamically fetch the data attribute
         
-        console.log("Item attribute: ", itemAttr); 
+        console.log("Item attribute for " + categorySlug + ": ", itemAttr); 
 
         if (itemAttr) {
           var itemValues = itemAttr.toString().split(','); 
@@ -684,6 +687,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 
 
