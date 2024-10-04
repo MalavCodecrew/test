@@ -34,9 +34,9 @@
         {% if option_value != blank -%}
           <div class="filter-wrapper">
             {{ option_type }}-----
-            {% for variant in product.variants %}
-              {{ variant.option1 }} hello
-            {% endfor %}
+
+            {{ variant.option1 }} hello
+
             <div class="filter-title">Shop by {{ variant.title }}</div>
             <label class="filter-label">
               <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
