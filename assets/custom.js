@@ -629,74 +629,37 @@ $(document).ready(function() {
 //     });
 
 $(document).ready(function() {
-  console.log("Filter initialization started");
 
-  // Debug: Log all grid items and their attributes
   $('.grid__item').each(function() {
-    console.log("Found grid item:", {
-      option1: $(this).attr('data-size'),
-      option2: $(this).attr('data-material'),
-      option3: $(this).attr('data-color')
-    });
   });
 
-  // Debug: Log all filter checkboxes
   $('.filter-checkbox').each(function() {
-    console.log("Found filter checkbox:", {
-      value: $(this).val(),
-      filterGroup: $(this).closest('.filter-content').find('.filter-title').text()
-    });
   });
 
   $('.filter-checkbox').on('change', function() {
-    console.log("Checkbox changed:", {
-      value: $(this).val(),
-      checked: $(this).prop('checked'),
-      filterGroup: $(this).closest('.filter-content').find('.filter-title').text()
-    });
-
-    // Get all checked values
     var checkedValues = [];
     $('.filter-checkbox:checked').each(function() {
       checkedValues.push($(this).val());
     });
-    console.log("All checked values:", checkedValues);
-
-    // If no checkboxes are checked, show all items
     if (checkedValues.length === 0) {
-      console.log("No filters selected - showing all items");
       $('.grid__item').show();
       return;
     }
 
-    // Filter items
     $('.grid__item').each(function() {
       var $item = $(this);
       var option1 = $item.attr('data-size') || '';
       var option2 = $item.attr('data-material') || '';
       var option3 = $item.attr('data-color') || '';
-      
-      console.log("Processing item:", {
-        option1: option1,
-        option2: option2,
-        option3: option3
-      });
-
-      // Split all options into arrays
       var allItemOptions = [
         ...option1.split(','),
         ...option2.split(','),
         ...option3.split(',')
       ].map(opt => opt.trim());
 
-      console.log("Item options:", allItemOptions);
-
-      // Check if any checked value matches any of the item's options
       var shouldShow = checkedValues.some(value => 
         allItemOptions.includes(value)
       );
-
-      console.log("Show decision for item:", shouldShow);
 
       if (shouldShow) {
         $item.show();
