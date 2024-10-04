@@ -629,66 +629,81 @@ $(document).ready(function() {
 //     });
 
 $(document).ready(function() {
-  console.log("Initializing filters...");
+  console.log("Filter initialization started");
 
-  // Track filters by option number (1, 2, 3)
-  function updateFilteredItems() {
-    var selectedFilters = {
-      1: [], // Option1 (Size)
-      2: [], // Option2 (Material)
-      3: []  // Option3 (Color)
-    };
+  // Debug: Log all grid items and their attributes
+  $('.grid__item').each(function() {
+    console.log("Found grid item:", {
+      option1: $(this).attr('data-size'),
+      option2: $(this).attr('data-material'),
+      option3: $(this).attr('data-color')
+    });
+  });
 
-    // Collect all selected values and organize by option number
-    $('.filter-checkbox:checked').each(function() {
-      // Get the option number from the closest filter-title
-      var filterTitle = $(this).closest('.filter-content').find('.filter-title').text();
-      var optionNumber = parseInt(filterTitle.match(/Option (\d+)/)[1]);
-      var filterValue = $(this).val();
-      
-      selectedFilters[optionNumber].push(filterValue);
-      console.log(`Selected ${filterTitle}: ${filterValue}`);
+  // Debug: Log all filter checkboxes
+  $('.filter-checkbox').each(function() {
+    console.log("Found filter checkbox:", {
+      value: $(this).val(),
+      filterGroup: $(this).closest('.filter-content').find('.filter-title').text()
+    });
+  });
+
+  $('.filter-checkbox').on('change', function() {
+    console.log("Checkbox changed:", {
+      value: $(this).val(),
+      checked: $(this).prop('checked'),
+      filterGroup: $(this).closest('.filter-content').find('.filter-title').text()
     });
 
-    console.log("Active filters:", selectedFilters);
+    // Get all checked values
+    var checkedValues = [];
+    $('.filter-checkbox:checked').each(function() {
+      checkedValues.push($(this).val());
+    });
+    console.log("All checked values:", checkedValues);
 
-    // If no filters are selected, show all items
-    if (Object.values(selectedFilters).every(arr => arr.length === 0)) {
+    // If no checkboxes are checked, show all items
+    if (checkedValues.length === 0) {
+      console.log("No filters selected - showing all items");
       $('.grid__item').show();
       return;
     }
 
-    // Check each product grid item
+    // Filter items
     $('.grid__item').each(function() {
-      var item = $(this);
-      var showItem = true;
+      var $item = $(this);
+      var option1 = $item.attr('data-size') || '';
+      var option2 = $item.attr('data-material') || '';
+      var option3 = $item.attr('data-color') || '';
+      
+      console.log("Processing item:", {
+        option1: option1,
+        option2: option2,
+        option3: option3
+      });
 
-      // Check each option type (1, 2, 3)
-      for (let optionNumber = 1; optionNumber <= 3; optionNumber++) {
-        if (selectedFilters[optionNumber].length > 0) {
-          // Get the item's values for this option
-          var itemValues = (item.attr('data-option' + optionNumber) || '').split(',').map(v => v.trim());
-          
-          // If none of the selected values match this item's values, hide it
-          if (!selectedFilters[optionNumber].some(selected => itemValues.includes(selected))) {
-            showItem = false;
-            break;
-          }
-        }
-      }
+      // Split all options into arrays
+      var allItemOptions = [
+        ...option1.split(','),
+        ...option2.split(','),
+        ...option3.split(',')
+      ].map(opt => opt.trim());
 
-      // Show/hide based on filter results
-      if (showItem) {
-        item.show();
+      console.log("Item options:", allItemOptions);
+
+      // Check if any checked value matches any of the item's options
+      var shouldShow = checkedValues.some(value => 
+        allItemOptions.includes(value)
+      );
+
+      console.log("Show decision for item:", shouldShow);
+
+      if (shouldShow) {
+        $item.show();
       } else {
-        item.hide();
+        $item.hide();
       }
     });
-  }
-
-  // Attach event listener to checkboxes
-  $('.filter-checkbox').on('change', function() {
-    updateFilteredItems();
   });
 });
 
