@@ -34,12 +34,9 @@
   <div class="custom-filter">
     {%- for product in collection.products -%}
       {%- for option_name in product.options -%}
-        {{ option_name }}
       {%- endfor -%}
     {%- endfor -%}
     {% for option in all_options %}
-      --option{{ option }}
-
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
       {% assign option_value = parts[1] %}
