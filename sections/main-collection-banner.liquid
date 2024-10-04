@@ -9,35 +9,66 @@
   }
 {%- endstyle -%}
 {% if collection.title == 'Shoes' %}
-  {% assign all_options = '' %}
+  {% assign all_options1 = '' %}
+  {% assign all_options2 = '' %}
+  {% assign all_options3 = '' %}
 
   {% for product in collection.products %}
     {% for variant in product.variants %}
-      {% for i in (1..3) %}
-        {% assign option_name = 'option' | append: i %}
-        {% unless all_options contains variant[option_name] %}
-          {% assign all_options = all_options | append: i | append: '::' | append: variant[option_name] | append: '/' %}
-        {% endunless %}
-      {% endfor %}
+      {% unless all_options1 contains variant.option1 %}
+        {% assign all_options1 = all_options1 | append: variant.option1 | append: '/' %}
+      {% endunless %}
+      {% unless all_options2 contains variant.option2 %}
+        {% assign all_options2 = all_options2 | append: variant.option2 | append: '/' %}
+      {% endunless %}
+      {% unless all_options3 contains variant.option3 %}
+        {% assign all_options3 = all_options3 | append: variant.option3 | append: '/' %}
+      {% endunless %}
     {% endfor %}
   {% endfor %}
 
-  {% assign all_options = all_options | split: '/' | sort | uniq %}
+  {% assign all_options1 = all_options1 | split: '/' | sort | uniq %}
+  {% assign all_options2 = all_options2 | split: '/' | sort | uniq %}
+  {% assign all_options3 = all_options3 | split: '/' | sort | uniq %}
+
   <div class="custom-filter">
-    <div class="filter-title">Shop by {{ option_name }}</div>
-    {% for option in all_options %}
-      {% assign parts = option | split: '::' %}
-      {% assign option_value = parts[1] %}
-      <div class="filter-content">
-        {% if option_value != blank -%}
-          <div class="filter-wrapper">
-            <label class="filter-label">
-              <input type="checkbox" class="filter-checkbox" value="{{ option_value }}">
-              <span>{{ option_value }}</span>
-            </label>
-          </div>
-        {% endif %}
-      </div>
+    <!-- Filter by Size -->
+    <div class="filter-title">Shop by Size</div>
+    {% for option in all_options1 %}
+      {% if option != blank %}
+        <div class="filter-wrapper">
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox" value="{{ option }}">
+            <span>{{ option }}</span>
+          </label>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <!-- Filter by Material -->
+    <div class="filter-title">Shop by Material</div>
+    {% for option in all_options2 %}
+      {% if option != blank %}
+        <div class="filter-wrapper">
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox" value="{{ option }}">
+            <span>{{ option }}</span>
+          </label>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <!-- Filter by Color -->
+    <div class="filter-title">Shop by Color</div>
+    {% for option in all_options3 %}
+      {% if option != blank %}
+        <div class="filter-wrapper">
+          <label class="filter-label">
+            <input type="checkbox" class="filter-checkbox" value="{{ option }}">
+            <span>{{ option }}</span>
+          </label>
+        </div>
+      {% endif %}
     {% endfor %}
   </div>
 {% endif %}
