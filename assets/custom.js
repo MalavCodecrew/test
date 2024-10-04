@@ -629,9 +629,6 @@ $(document).ready(function() {
 //     });
 
 $(document).ready(function() {
-
- 
-
   $('.filter-checkbox').on('change', function() {
     var checkedValues = [];
     $('.filter-checkbox:checked').each(function() {
