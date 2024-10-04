@@ -15,7 +15,7 @@
     {% assign all_options = '' %}
     {% for variant in product.variants %}
       {% for i in (0..2) %}
-        {% assign option_name = 'option' | append: i | plus: 1 %}
+        {% assign option_name = 'option' | append: i %}
         {% assign option_name_value = product.options[i] %}
         <!-- i is zero-based -->
 
