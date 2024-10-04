@@ -630,70 +630,53 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
-    var selectedFilters = {};
+    var selectedSizes = [];
 
-    // Collect all selected filters
+    // Collect selected sizes
     $('.filter-checkbox:checked').each(function() {
-      var filterCategory = $(this).closest('.filter-title').text().trim().toLowerCase(); // Get the filter category
       var filterValue = $(this).val();
-
-      console.log("Filter category: ", filterCategory); 
-      console.log("Filter value: ", filterValue);
-
-      if (!selectedFilters[filterCategory]) {
-        selectedFilters[filterCategory] = [];
-      }
-      selectedFilters[filterCategory].push(filterValue);
+      console.log("Selected size value: ", filterValue); 
+      selectedSizes.push(filterValue);
     });
 
-    console.log("Selected filters: ", selectedFilters);
+    console.log("Selected sizes: ", selectedSizes);
 
-    // If no filters are selected, show all items
-    if ($.isEmptyObject(selectedFilters)) {
+    // If no sizes are selected, show all items
+    if (selectedSizes.length === 0) {
       $('.grid__item').show();
       return;
     }
 
-    // Show/hide items based on selected filters
+    // Show/hide items based on selected sizes
     $('.grid__item').each(function() {
       var item = $(this);
-      var showItem = true;
 
-      // Check each selected filter category against the item's data attributes
-      $.each(selectedFilters, function(category, values) {
-        // Assume that size is the only filter category we're concerned with for now
-        if (category === 'size') {
-          // Get the item size from the data attribute
-          var itemSizeAttr = item.data('size');
+      // Get the 'data-size' attribute
+      var itemSizes = item.attr('data-size');
+      console.log("Item data-size attribute: ", itemSizes);
 
-          console.log("Item size attribute: ", itemSizeAttr); 
+      if (itemSizes) {
+        var itemSizeArray = itemSizes.split(',');
+        console.log("Item size array: ", itemSizeArray);
 
-          // If itemSizeAttr is not defined, hide the item
-          if (typeof itemSizeAttr === 'undefined') {
-            showItem = false;
-            return false; // Exit the loop early
-          }
+        // Check if any selected size matches the item's sizes
+        var showItem = selectedSizes.some(size => itemSizeArray.includes(size));
 
-          // Split the item size attribute into an array of values
-          var itemSizes = itemSizeAttr.toString().split(',');
-
-          // Check if any of the selected sizes match the item's sizes
-          if (!values.some(value => itemSizes.includes(value))) {
-            showItem = false;
-          }
+        if (showItem) {
+          item.show();
+          console.log("Showing item with size(s): ", itemSizes);
+        } else {
+          item.hide();
+          console.log("Hiding item with size(s): ", itemSizes);
         }
-      });
-
-      if (showItem) {
-        item.show();
-        console.log("Showing item: ", item);
       } else {
         item.hide();
-        console.log("Hiding item: ", item);
+        console.log("No data-size attribute, hiding item.");
       }
     });
   });
 });
+
 
    // JavaScript to sort sizes numerically
  // document.addEventListener('DOMContentLoaded', function () {
