@@ -48,30 +48,34 @@
     </div>
 
     <!-- Filter by Material -->
-    <div class="filter-title">Shop by Material</div>
-    {% for option in all_options2 %}
-      {% if option != blank %}
-        <div class="filter-wrapper">
-          <label class="filter-label">
-            <input type="checkbox" class="filter-checkbox" value="{{ option }}">
-            <span>{{ option }}</span>
-          </label>
-        </div>
-      {% endif %}
-    {% endfor %}
+    <div class="filter-custom">
+      <div class="filter-title">Shop by Material</div>
+      {% for option in all_options2 %}
+        {% if option != blank %}
+          <div class="filter-wrapper">
+            <label class="filter-label">
+              <input type="checkbox" class="filter-checkbox" value="{{ option }}">
+              <span>{{ option }}</span>
+            </label>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
 
     <!-- Filter by Color -->
-    <div class="filter-title">Shop by Color</div>
-    {% for option in all_options3 %}
-      {% if option != blank %}
-        <div class="filter-wrapper">
-          <label class="filter-label">
-            <input type="checkbox" class="filter-checkbox" value="{{ option }}">
-            <span>{{ option }}</span>
-          </label>
-        </div>
-      {% endif %}
-    {% endfor %}
+    <div class="filter-custom">
+      <div class="filter-title">Shop by Color</div>
+      {% for option in all_options3 %}
+        {% if option != blank %}
+          <div class="filter-wrapper">
+            <label class="filter-label">
+              <input type="checkbox" class="filter-checkbox" value="{{ option }}">
+              <span>{{ option }}</span>
+            </label>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 {% endif %}
 
