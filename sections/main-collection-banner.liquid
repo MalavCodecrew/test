@@ -19,13 +19,7 @@
         {% assign option_name_value = product.options[i-1] %}
         <!-- Adjust index to match loop -->
         {% unless all_options contains variant[option_name] %}
-          {% assign all_options = all_options
-            | append: i
-            | append: option_name_value
-            | append: '::'
-            | append: variant[option_name]
-            | append: '/'
-          %}
+          {% assign all_options = all_options | append: i | append: '::' | append: variant[option_name] | append: '/' %}
         {% endunless %}
       {% endfor %}
     {% endfor %}
