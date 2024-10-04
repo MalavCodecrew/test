@@ -629,72 +629,65 @@ $(document).ready(function() {
 //     });
 
 $(document).ready(function() {
-  // Function to update filtered items
+  console.log("Initializing filters...");
+
+  // Track filters by option number (1, 2, 3)
   function updateFilteredItems() {
-    var selectedSizes = [];
-    var selectedMaterials = [];
-    var selectedColors = [];
-    
-    // Collect selected filters
-    $('.size-checkbox:checked').each(function() {
-      selectedSizes.push($(this).val());
+    var selectedFilters = {
+      1: [], // Option1 (Size)
+      2: [], // Option2 (Material)
+      3: []  // Option3 (Color)
+    };
+
+    // Collect all selected values and organize by option number
+    $('.filter-checkbox:checked').each(function() {
+      // Get the option number from the closest filter-title
+      var filterTitle = $(this).closest('.filter-content').find('.filter-title').text();
+      var optionNumber = parseInt(filterTitle.match(/Option (\d+)/)[1]);
+      var filterValue = $(this).val();
+      
+      selectedFilters[optionNumber].push(filterValue);
+      console.log(`Selected ${filterTitle}: ${filterValue}`);
     });
-    
-    $('.material-checkbox:checked').each(function() {
-      selectedMaterials.push($(this).val());
-    });
-    
-    $('.color-checkbox:checked').each(function() {
-      selectedColors.push($(this).val());
-    });
-    
-    console.log("Selected filters:", {
-      sizes: selectedSizes,
-      materials: selectedMaterials,
-      colors: selectedColors
-    });
-    
-    // Show all items if no filters are selected
-    if (selectedSizes.length === 0 && selectedMaterials.length === 0 && selectedColors.length === 0) {
+
+    console.log("Active filters:", selectedFilters);
+
+    // If no filters are selected, show all items
+    if (Object.values(selectedFilters).every(arr => arr.length === 0)) {
       $('.grid__item').show();
       return;
     }
-    
-    // Filter items
+
+    // Check each product grid item
     $('.grid__item').each(function() {
       var item = $(this);
-      
-      // Get all attribute values
-      var itemSizes = (item.attr('data-size') || '').split(',');
-      var itemMaterials = (item.attr('data-material') || '').split(',');
-      var itemColors = (item.attr('data-color') || '').split(',');
-      
-      // Check if item matches all selected filters
-      var sizeMatch = selectedSizes.length === 0 || selectedSizes.some(size => itemSizes.includes(size));
-      var materialMatch = selectedMaterials.length === 0 || selectedMaterials.some(material => itemMaterials.includes(material));
-      var colorMatch = selectedColors.length === 0 || selectedColors.some(color => itemColors.includes(color));
-      
-      // Show/hide item based on all filter conditions
-      if (sizeMatch && materialMatch && colorMatch) {
+      var showItem = true;
+
+      // Check each option type (1, 2, 3)
+      for (let optionNumber = 1; optionNumber <= 3; optionNumber++) {
+        if (selectedFilters[optionNumber].length > 0) {
+          // Get the item's values for this option
+          var itemValues = (item.attr('data-option' + optionNumber) || '').split(',').map(v => v.trim());
+          
+          // If none of the selected values match this item's values, hide it
+          if (!selectedFilters[optionNumber].some(selected => itemValues.includes(selected))) {
+            showItem = false;
+            break;
+          }
+        }
+      }
+
+      // Show/hide based on filter results
+      if (showItem) {
         item.show();
-        console.log("Showing item:", {
-          sizes: itemSizes,
-          materials: itemMaterials,
-          colors: itemColors
-        });
       } else {
         item.hide();
-        console.log("Hiding item:", {
-          sizes: itemSizes,
-          materials: itemMaterials,
-          colors: itemColors
-        });
       }
     });
   }
-  
-  // Add event listeners for all filter checkboxes
-  $('.size-checkbox, .material-checkbox, .color-checkbox').on('change', function() {
+
+  // Attach event listener to checkboxes
+  $('.filter-checkbox').on('change', function() {
     updateFilteredItems();
   });
 });
