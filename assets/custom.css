@@ -739,6 +739,7 @@ input#in-table {
   display: flex;
   justify-content: center;
   font-size: 15px;
+  gap: 10px;
 }
 .filter-title {
   font-weight: 600;
@@ -754,4 +755,7 @@ input#in-table {
 }
 .filter-checkbox:checked + span {
   font-weight: bold; /* Set font weight to bold */
+}
+.filter-wrapper {
+  text-align: center;
 }
