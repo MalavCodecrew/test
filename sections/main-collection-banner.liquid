@@ -24,13 +24,11 @@
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
-    {%- if collection.products.size > 0 -%}
-      {%- assign first_product = collection.products[0] -%}
-      {%- for option in first_product.options_with_values -%}
-        {{ option.name }}
+    {%- for product in collection.products -%}
+      {%- for option_name in product.options -%}
+        {{ option_name }}
       {%- endfor -%}
-    {%- endif -%}
-
+    {%- endfor -%}
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
