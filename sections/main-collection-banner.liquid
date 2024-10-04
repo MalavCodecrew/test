@@ -26,6 +26,7 @@
   <div class="custom-filter">
     {% for product in collection.products %}
       {% for variant in product.variants %}
+        {{ variant.option1 }}
         {% for var in variant.options %}
           {{ var.value }}
         {% endfor %}
