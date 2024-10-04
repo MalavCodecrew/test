@@ -25,11 +25,16 @@
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
     {% for product in collection.products %}
-      {% for variant in product.variants %}
-        {% assign option_names = variant.options | join: ', ' %}
-        {% for option_name in option_names %}
-          <p>Option Name: {{ option_name }}</p>
-        {% endfor %}
+      {% for product in collection.products %}
+        <div class="product">
+          <h2>{{ product.title }}</h2>
+
+          {% for variant in product.variants %}
+            {% for option in variant.options %}
+              <p>Option Name: {{ option }}</p>
+            {% endfor %}
+          {% endfor %}
+        </div>
       {% endfor %}
     {% endfor %}
     {% for option in all_options %}
