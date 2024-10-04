@@ -27,7 +27,7 @@
     {% for product in collection.products %}
       {% for variant in product.variants %}
         {% for var in variant.options %}
-          {{ var | json }}
+          {{ var.title }}
         {% endfor %}
       {% endfor %}
     {% endfor %}
