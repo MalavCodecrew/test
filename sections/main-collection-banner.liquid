@@ -14,20 +14,21 @@
   {% for product in collection.products %}
     {% assign all_options = '' %}
     {% for variant in product.variants %}
-      {% for varianti in (1..3) %}
-        {% assign option_name = 'option' | append: i %}
-        {% if varianti > 1 %}
-          {% assign option_name_value = product.options[i-1] %}
-          <!-- Adjust index to match loop -->
-          {% unless all_options contains variant[option_name] %}
-            {% assign all_options = all_options
-              | append: i
-              | append: '::'
-              | append: variant[option_name]
-              | append: '/'
-            %}
-          {% endunless %}
-        {% endif %}
+      {% for i in (0..2) %}
+        {% assign option_name = 'option' | append: i | plus: 1 %}
+        {% assign option_name_value = product.options[i] %}
+        <!-- i is zero-based -->
+
+        {% unless all_options contains variant[option_name] %}
+          {% assign all_options = all_options
+            | append: i
+            | plus: 1
+            | append: option_name_value
+            | append: '::'
+            | append: variant[option_name]
+            | append: '/'
+          %}
+        {% endunless %}
       {% endfor %}
     {% endfor %}
   {% endfor %}
