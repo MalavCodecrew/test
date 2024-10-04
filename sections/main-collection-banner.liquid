@@ -28,6 +28,7 @@
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
       {% assign option_value = parts[1] %}
+      {{ option_name }}
       <div class="filter-content">
         {% if option_value != blank -%}
           <div class="filter-wrapper">
