@@ -25,6 +25,7 @@
   {% assign all_options = all_options | split: '/' | sort | uniq %}
 
   <div class="custom-filter">
+    {{ variant.option1 }} hello
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
@@ -34,8 +35,6 @@
         {% if option_value != blank -%}
           <div class="filter-wrapper">
             {{ option_type }}-----
-
-            {{ variant.option1 }} hello
 
             <div class="filter-title">Shop by {{ variant.title }}</div>
             <label class="filter-label">
