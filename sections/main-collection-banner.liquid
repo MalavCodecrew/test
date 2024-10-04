@@ -27,7 +27,7 @@
     {%- for product in collection.products -%}
       {%- for variant in product.variants -%}
         {%- for option_name in product.options -%}
-          {{ option_name[1] }}
+          {{ option_name }}
         {%- endfor -%}
       {%- endfor -%}
     {%- endfor -%}
