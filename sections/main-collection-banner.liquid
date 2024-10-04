@@ -24,6 +24,7 @@
 
   {% assign all_options = all_options | split: '/' | sort | uniq %}
   <div class="custom-filter">
+    {% assign unique_option_names = '' %}
     {% for option in all_options %}
       {% assign parts = option | split: '::' %}
       {% assign option_index = parts[0] %}
@@ -33,7 +34,10 @@
           <div class="filter-wrapper">
             {%- for product in collection.products -%}
               {%- for option_name in product.options -%}
-                <div class="filter-title">Shop by option{{ option_name }}</div>
+                {% unless unique_option_names contains option_name %}
+                  <div class="filter-title">Shop by option {{ option_name }}</div>
+                  {% assign unique_option_names = unique_option_names | append: option_name | append: ',' %}
+                {% endunless %}
               {%- endfor -%}
             {%- endfor -%}
             <label class="filter-label">
