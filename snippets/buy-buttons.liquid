@@ -75,12 +75,6 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-
-          <a
-            class="btn klaviyo-bis-trigger"
-            href="#"
-            >NOTIFY ME WHEN AVAILABLE
-          </a>
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
@@ -102,6 +96,13 @@
 
             {%- render 'loading-spinner' -%}
           </button>
+          {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+            <a
+              class="button klaviyo-bis-trigger"
+              href="#"
+              >NOTIFY ME WHEN AVAILABLE
+            </a>
+          {% endif %}
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
