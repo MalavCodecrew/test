@@ -87,7 +87,7 @@
           >
             <span>
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                {{ 'products.product.sold_out' | t }}
+                {{ 'products.product.sold_out' | t }}heyy
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
