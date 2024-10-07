@@ -93,13 +93,14 @@
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
             </span>
-            <a
-              class="btn klaviyo-bis-trigger"
-              href="#"
-              >NOTIFY ME WHEN AVAILABLE
-            </a>
+
             {%- render 'loading-spinner' -%}
           </button>
+          <a
+            class="btn klaviyo-bis-trigger"
+            href="#"
+            >NOTIFY ME WHEN AVAILABLE
+          </a>
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
