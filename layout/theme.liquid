@@ -691,9 +691,8 @@ document.addEventListener('DOMContentLoaded', function () {
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    <div class="popup-overlay"></div>
 
-    <script src="https://a.klaviyo.com/media/js/onsite/onsite.js" async></script>
+    <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
     <script>
         var klaviyo = klaviyo || [];
         klaviyo.init({
@@ -730,5 +729,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     </script>
+    <div class="popup-overlay"></div>
   </body>
 </html>
