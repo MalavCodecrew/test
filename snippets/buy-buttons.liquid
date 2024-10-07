@@ -96,11 +96,13 @@
 
             {%- render 'loading-spinner' -%}
           </button>
-          <a
-            class="btn klaviyo-bis-trigger"
-            href="#"
-            >NOTIFY ME WHEN AVAILABLE
-          </a>
+          {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+            <a
+              class="btn klaviyo-bis-trigger"
+              href="#"
+              >NOTIFY ME WHEN AVAILABLE
+            </a>
+          {%- endif %}
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
