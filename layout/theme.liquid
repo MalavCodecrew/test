@@ -733,11 +733,11 @@ document.addEventListener('DOMContentLoaded', function () {
                  $.ajax({
         url: 'https://quickstart-06ab4342.myshopify.com/cart/add',
         type: 'POST',
-        dataType: 'json',
         data: {
           id: '49055053381910',
           quantity: 1
         },
+        dataType: 'json',
         success: function(data) {
           console.log('Gift added:', data);
           updateCartUI();
