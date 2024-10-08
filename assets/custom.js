@@ -325,7 +325,7 @@ $(document).ready(function() {
       },
       success: function(data) {
         console.log('Gift added:', data);
-        updateCartUI();
+        updateCartUI(data);
       },
       error: function(xhr, status, error) {
         console.error('Error adding gift:', xhr.responseText);
