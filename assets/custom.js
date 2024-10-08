@@ -312,36 +312,32 @@ $(document).ready(function() {
     });
   }
 
-   function addGiftToCart(checksRemaining) {
-    const shopDomain = window.Shopify?.shop || window.location.hostname;
+  function addGiftToCart(checksRemaining) {
     console.log("Adding gift product...");
     
-    $.ajax({
-        url: `https://${shopDomain}/cart/add.js`,
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            id: giftVariantId,
-            quantity: 1
-        },
+    fetch('/cart/add.js', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            // Add cache busting header
-            'Cache-Control': 'no-cache'
         },
-        success: function(data) {
-            console.log('Gift added:', data);
-            updateCartUI();
-        },
-        error: function(xhr, status, error) {
-            console.error('Error details:', {
-                status: xhr.status,
-                statusText: xhr.statusText,
-                responseText: xhr.responseText,
-                error: error
-            });
-            retryCheck(checksRemaining);
+        body: JSON.stringify({
+            id: giftVariantId,
+            quantity: 1
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Gift added:', data);
+        updateCartUI();
+    })
+    .catch(error => {
+        console.error('Error adding gift:', error);
+        retryCheck(checksRemaining);
     });
 }
   function updateGiftQuantity(variantId, quantity, checksRemaining) {
