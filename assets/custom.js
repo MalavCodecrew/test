@@ -320,7 +320,7 @@ $(document).ready(function() {
       dataType: 'json',
       data: {
         id: giftVariantId,
-        'product-id': '9681446502678'
+        'product-id': '9681446502678',
         quantity: 1
       },
       success: function(data) {
