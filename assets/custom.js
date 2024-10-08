@@ -315,11 +315,12 @@ $(document).ready(function() {
   function addGiftToCart(checksRemaining) {
     console.log("Adding gift product...");
     $.ajax({
-      url: '/cart/add.js',
+      url: '/cart/add',
       type: 'POST',
       dataType: 'json',
       data: {
         id: giftVariantId,
+        product-id: '9681446502678'
         quantity: 1
       },
       success: function(data) {
