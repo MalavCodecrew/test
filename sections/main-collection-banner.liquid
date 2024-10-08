@@ -15,9 +15,6 @@
 
   {% for product in collection.products %}
     {% for variant in product.variants %}
-      {%- for option_name in product.options -%}
-        {{ option_name }}heyy
-      {%- endfor -%}
       {% unless all_options1 contains variant.option1 %}
         {% assign all_options1 = all_options1 | append: variant.option1 | append: '/' %}
       {% endunless %}
