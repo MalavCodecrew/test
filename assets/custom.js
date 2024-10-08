@@ -319,8 +319,7 @@ $(document).ready(function() {
       type: 'POST',
       dataType: 'json',
       data: {
-        id: '49055053381910',
-        'product-id': '9681446502678',
+        id: 49055053381910,
         quantity: 1
       },
       success: function(data) {
