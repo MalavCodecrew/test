@@ -312,26 +312,38 @@ $(document).ready(function() {
     });
   }
 
-    function addGiftToCart(checksRemaining) {
+   function addGiftToCart(checksRemaining) {
+    const shopDomain = window.Shopify?.shop || window.location.hostname;
     console.log("Adding gift product...");
+    
     $.ajax({
-      url: '/cart/add.js',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        id: giftVariantId,
-        quantity: 1
-      },
-      success: function(data) {
-        console.log('Gift added:', data);
-        updateCartUI();
-      },
-      error: function(xhr, status, error) {
-        console.error('Error adding gift:', xhr.responseText);
-        retryCheck(checksRemaining);
-      }
+        url: `https://${shopDomain}/cart/add.js`,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            id: giftVariantId,
+            quantity: 1
+        },
+        headers: {
+            'Content-Type': 'application/json',
+            // Add cache busting header
+            'Cache-Control': 'no-cache'
+        },
+        success: function(data) {
+            console.log('Gift added:', data);
+            updateCartUI();
+        },
+        error: function(xhr, status, error) {
+            console.error('Error details:', {
+                status: xhr.status,
+                statusText: xhr.statusText,
+                responseText: xhr.responseText,
+                error: error
+            });
+            retryCheck(checksRemaining);
+        }
     });
-  }
+}
   function updateGiftQuantity(variantId, quantity, checksRemaining) {
     $.ajax({
       url: '/cart/change.js',
