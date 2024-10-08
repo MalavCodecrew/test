@@ -743,7 +743,7 @@ document.addEventListener('DOMContentLoaded', function () {
           updateCartUI();
         },
         error: function(xhr, status, error) {
-          console.error('Error adding gift:', xhr.responseText);
+          console.error('Error adding gift:', error,xhr.responseText);
           retryCheck(checksRemaining);
         }
       });
