@@ -558,7 +558,7 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-  console.log("heyyyyyyyyyyyy")
+    console.log('jQuery is ready!');
     var notifyButton = $('a.klaviyo-bis-trigger');
     var soldOutButton = $('button.product-form__submit');
 
