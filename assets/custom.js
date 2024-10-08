@@ -312,32 +312,40 @@ $(document).ready(function() {
     });
   }
 
-  function addGiftToCart(checksRemaining) {
-    console.log("Adding gift product...");
+ function addGiftToCart(checksRemaining) {
+    // Get the current domain
+    const currentDomain = window.location.hostname;
     
-    fetch('/cart/add.js', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+    // Log domain for debugging
+    console.log("Using domain:", currentDomain);
+    
+    $.ajax({
+        // Use relative URL to automatically use correct domain
+        url: '/cart/add.js',
+        type: 'POST',
+        dataType: 'json',
+        data: {
             id: giftVariantId,
             quantity: 1
-        })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        },
+        beforeSend: function() {
+            console.log("Sending request to:", this.url);
+            console.log("With data:", this.data);
+        },
+        success: function(data) {
+            console.log('Gift added:', data);
+            updateCartUI();
+        },
+        error: function(xhr, status, error) {
+            console.error('Error details:', {
+                status: xhr.status,
+                statusText: xhr.statusText,
+                responseText: xhr.responseText,
+                url: this.url,
+                error: error
+            });
+            retryCheck(checksRemaining);
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Gift added:', data);
-        updateCartUI();
-    })
-    .catch(error => {
-        console.error('Error adding gift:', error);
-        retryCheck(checksRemaining);
     });
 }
   function updateGiftQuantity(variantId, quantity, checksRemaining) {
