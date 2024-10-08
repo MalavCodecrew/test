@@ -636,21 +636,7 @@ $(document).ready(function() {
   });
 });
 
-   // JavaScript to sort sizes numerically
- // document.addEventListener('DOMContentLoaded', function () {
- //      var filterList = document.querySelectorAll('.custom-filter label');
- //      var sizesArray = Array.from(filterList);
-
- //      sizesArray.sort(function (a, b) {
- //        return parseInt(a.querySelector('input').value) - parseInt(b.querySelector('input').value);
- //      });
-
- //      var parent = document.querySelector('.custom-filter');
- //      sizesArray.forEach(function (sizeLabel) {
- //        parent.appendChild(sizeLabel);
- //      });
- //    });
-
+// klaviyo button placing below soldout button---------------->
 function moveNotifyMeButton() {
     var notifyButton = $('a.klaviyo-bis-trigger');
     var soldOutButton = $('button.product-form__submit');
