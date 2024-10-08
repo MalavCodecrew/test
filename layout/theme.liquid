@@ -729,30 +729,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     </script>
-    <script>
-                 $.ajax({
-        url: 'https://quickstart-06ab4342.myshopify.com/cart/add',
-        type: 'POST',
-        data: {
-          id: '49055053381910',
-          quantity: 1
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log('Gift added:', data);
-          updateCartUI();
-        },
-        error: function(xhr, status, error) {
-          console.error('Error adding gift:', error,xhr.responseText);
-          retryCheck(checksRemaining);
-        }
-      });
-    </script>
-    <form method="post" action="/cart/add">
-      <input type="hidden" name="id" value="">
-      <input min="1" type="hidden" id="quantity" name="quantity" value="1">
-      <input type="submit" value="ADD TO CART custom" class="add-to-cart-button">
-    </form>
     <div class="popup-overlay"></div>
   </body>
 </html>
