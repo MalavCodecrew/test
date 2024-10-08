@@ -312,42 +312,26 @@ $(document).ready(function() {
     });
   }
 
- function addGiftToCart(checksRemaining) {
-    // Get the current domain
-    const currentDomain = window.location.hostname;
-    
-    // Log domain for debugging
-    console.log("Using domain:", currentDomain);
-    
+  function addGiftToCart(checksRemaining) {
+    console.log("Adding gift product...");
     $.ajax({
-        // Use relative URL to automatically use correct domain
-        url: '/cart/add.js',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            id: giftVariantId,
-            quantity: 1
-        },
-        beforeSend: function() {
-            console.log("Sending request to:", this.url);
-            console.log("With data:", this.data);
-        },
-        success: function(data) {
-            console.log('Gift added:', data);
-            updateCartUI();
-        },
-        error: function(xhr, status, error) {
-            console.error('Error details:', {
-                status: xhr.status,
-                statusText: xhr.statusText,
-                responseText: xhr.responseText,
-                url: this.url,
-                error: error
-            });
-            retryCheck(checksRemaining);
-        }
+      url: '/cart/add.js',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        id: giftVariantId,
+        quantity: 1
+      },
+      success: function(data) {
+        console.log('Gift added:', data);
+        updateCartUI();
+      },
+      error: function(xhr, status, error) {
+        console.error('Error adding gift:', xhr.responseText);
+        retryCheck(checksRemaining);
+      }
     });
-}
+  }
   function updateGiftQuantity(variantId, quantity, checksRemaining) {
     $.ajax({
       url: '/cart/change.js',
