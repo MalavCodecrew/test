@@ -678,9 +678,7 @@ $(document).ready(function() {
  //      });
  //    });
 
-$(window).on('load', function() {
-    console.log('Window loaded!');
-
+function moveNotifyMeButton() {
     var notifyButton = $('a.klaviyo-bis-trigger');
     var soldOutButton = $('button.product-form__submit');
 
@@ -688,6 +686,11 @@ $(window).on('load', function() {
         notifyButton.insertAfter(soldOutButton);
         console.log('Notify Me button moved after Sold Out button!');
     } else {
-        console.log('Buttons not found!');
+        console.log('Buttons not found yet, trying again...');
+        setTimeout(moveNotifyMeButton, 500); // Retry after 500ms
     }
+}
+
+$(document).ready(function() {
+    moveNotifyMeButton(); // Call the function when the DOM is ready
 });
