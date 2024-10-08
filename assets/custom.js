@@ -319,7 +319,7 @@ $(document).ready(function() {
       type: 'POST',
       dataType: 'json',
       data: {
-        id: 49218762146070,
+        id: giftVariantId,
         quantity: 1
       },
       success: function(data) {
