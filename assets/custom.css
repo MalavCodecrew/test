@@ -765,3 +765,7 @@ input#in-table {
   position: relative;
   left: 40%;
 }
+
+td.cart-item__details {
+  text-align: left;
+}
