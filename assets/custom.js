@@ -1,22 +1,28 @@
 // 4th level megamenu dropdown js-------------------------------------------------
 $(document).ready(function () {
   $(".icon-caret").click(function (event) {
+    // Prevent the document click event from firing
     event.stopPropagation();
 
+    // Get the submenu associated with the clicked caret
     var submenu = $(this).next(".sub-menu");
 
+    // Hide all submenus and remove the 'down' class from all carets
     $(".sub-menu").not(submenu).hide();
     $(".icon-caret").not(this).removeClass("down");
 
+    // Toggle the submenu and caret class
     $(this).toggleClass("down");
     submenu.toggle();
   });
 
+  // Hide the submenu when clicking outside
   $(document).click(function () {
     $(".sub-menu").hide();
     $(".icon-caret").removeClass("down");
   });
 
+  // Prevent the submenu click from hiding the submenu
   $(".sub-menu").click(function (event) {
     event.stopPropagation();
   });
@@ -24,44 +30,64 @@ $(document).ready(function () {
 
 // -------------------toggle button from cm to inch--------------------------------------------
 
-        var originalValue; 
-        var originalValue1; 
-        var originalSwatchValues = {}; /
+        var originalValue; // Variable to store the original value for #value
+        var originalValue1; // Variable to store the original value for #value1
+        var originalSwatchValues = {}; // Object to store the original values for the swatches
 
         $(document).ready(function() {
+            // Initialize swatch values and toggle state when the page loads
             initializeSwatchValues();
-            applyToggleStateFromCookie(); 
+            applyToggleStateFromCookie(); // Apply cookie state on page load
 
+            // Listen for changes on the variant radio buttons
             $(document).on('change', 'input[name="Size"]', function() {
-             
+                console.log('Variant changed');
+
+                // Get the new values for the selected variant (assuming value is numeric)
                 originalValue = parseFloat($(this).val());
                 originalValue1 = parseFloat($(this).val());
 
+                console.log('Original value set to:', originalValue);
+                console.log('Original value1 set to:', originalValue1);
+
+                // Update the displayed values in Inches (initial state)
                 if (!isNaN(originalValue)) {
                     $("#value").text(originalValue.toFixed(2) + ' Inches');
-                } else {  
+                    console.log('Displayed value updated to:', originalValue.toFixed(2) + ' Inches');
+                } else {
+                    console.error('Original value is not a valid number:', originalValue);
                 }
 
                 if (!isNaN(originalValue1)) {
                     $("#value1").text(originalValue1.toFixed(2) + ' Inches');
+                    console.log('Displayed value1 updated to:', originalValue1.toFixed(2) + ' Inches');
                 } else {
+                    console.error('Original value1 is not a valid number:', originalValue1);
                 }
+
+                // Store and update swatches based on the toggle state
                 storeSwatchValues();
                 handleConversion();
             });
 
+            // Toggle switch change event
             $("#toggleConvert").change(function() {
+                console.log('Toggle switch changed');
                 handleConversion();
-                setToggleStateCookie($(this).is(":checked")); 
+                setToggleStateCookie($(this).is(":checked")); // Store toggle state in cookie
             });
         });
 
+        // Initialize swatch values based on the current variant
         function initializeSwatchValues() {
             $('input[name="Size"]').each(function() {
                 var swatchValue = parseFloat($(this).val());
                 originalSwatchValues[$(this).attr('id')] = swatchValue;
+                
+                console.log('Initial swatch value for', $(this).attr('id'), ':', swatchValue);
             });
 
+            // Set the initial value for #value and #value1 if needed
             var initialValue = parseFloat($('input[name="Size"]:checked').val());
             if (!isNaN(initialValue)) {
                 originalValue = initialValue;
@@ -72,32 +98,48 @@ $(document).ready(function () {
             }
         }
 
+        // Function to handle conversion logic for #value, #value1, and swatches
         function handleConversion() {
             if ((typeof originalValue === 'undefined' || isNaN(originalValue)) ||
                 (typeof originalValue1 === 'undefined' || isNaN(originalValue1))) {
+                console.error('Original value or value1 is not set or invalid');
                 return;
             }
 
+            // Check if toggle is checked
             var isToggleChecked = $("#toggleConvert").is(":checked");
+            console.log('Toggle state:', isToggleChecked);
+
+            // Perform conversion for #value and #value1
             if (isToggleChecked) {
                 var convertedValue = (originalValue * 2.54).toFixed(2);
                 var convertedValue1 = (originalValue1 * 2.54).toFixed(2);
+                console.log('Converting to Centimeters:', convertedValue, convertedValue1);
 
                 $("#value").text(convertedValue + ' Centimeters');
                 $("#value1").text(convertedValue1 + ' Centimeters');
             } else {
+                console.log('Converting to Inches:', originalValue.toFixed(2), originalValue1.toFixed(2));
+
                 $("#value").text(originalValue.toFixed(2) + ' Inches');
                 $("#value1").text(originalValue1.toFixed(2) + ' Inches');
-            }    
-           updateSwatchLabels(isToggleChecked);
+            }
+
+            // Update swatches based on the toggle state
+            updateSwatchLabels(isToggleChecked);
         }
 
+        // Store original swatch values
         function storeSwatchValues() {
             $('input[name="Size"]').each(function() {
                 var swatchValue = parseFloat($(this).val());
                 originalSwatchValues[$(this).attr('id')] = swatchValue;
+                
+                console.log('Stored swatch value for', $(this).attr('id'), ':', swatchValue);
             });
         }
+
+        // Update swatch labels based on toggle state
         function updateSwatchLabels(isToggleChecked) {
             for (var id in originalSwatchValues) {
                 var originalSwatchValue = originalSwatchValues[id];
@@ -108,34 +150,44 @@ $(document).ready(function () {
                 } else {
                     convertedSwatchValue = originalSwatchValue.toFixed(2) + ' in';
                 }
+
+                // Update the swatch label
                 $('label[for="' + id + '"]').text(convertedSwatchValue);
+                console.log('Updated swatch', id, 'to:', convertedSwatchValue);
             }
         }
+
+        // Set a cookie for the toggle state
         function setToggleStateCookie(isChecked) {
             var expiryDate = new Date();
-            expiryDate.setTime(expiryDate.getTime() + (365 * 24 * 60 * 60 * 1000)); 
+            expiryDate.setTime(expiryDate.getTime() + (365 * 24 * 60 * 60 * 1000)); // 1 year expiry
             document.cookie = "toggleState=" + (isChecked ? "checked" : "unchecked") + "; expires=" + expiryDate.toUTCString() + "; path=/";
+            console.log('Cookie set: ' + document.cookie); // Check cookie in console
         }
 
+        // Apply the toggle state from the cookie
         function applyToggleStateFromCookie() {
             var name = "toggleState=";
             var decodedCookie = decodeURIComponent(document.cookie);
+            console.log('Decoded cookie: ' + decodedCookie); // Check cookie in console
             var cookieArray = decodedCookie.split(';');
             for (var i = 0; i < cookieArray.length; i++) {
                 var cookie = cookieArray[i].trim();
                 if (cookie.indexOf(name) === 0) {
                     var cookieValue = cookie.substring(name.length, cookie.length);
+                    console.log('Cookie value: ' + cookieValue); // Check cookie value in console
                     if (cookieValue === "checked") {
                         $("#toggleConvert").prop("checked", true);
                     } else {
                         $("#toggleConvert").prop("checked", false);
                     }
-                    handleConversion();
+                    handleConversion(); // Apply conversion based on the cookie state
                     return;
                 }
             }
+            // Default to unchecked if cookie is not set
             $("#toggleConvert").prop("checked", false);
-            handleConversion(); 
+            handleConversion(); // Apply conversion based on default state
         }
 
 
@@ -232,13 +284,16 @@ $(document).ready(function() {
   function checkCartAndAddGift(checksRemaining) {
     if (isUpdating) return;
     isUpdating = true;
+    console.log("Checking cart...");
 
     $.getJSON('/cart.js', function(cart) {
+      console.log('Cart contents:', cart);
       var cartTotal = cart.total_price;
       var giftInCart = cart.items.find(item => item.variant_id === giftVariantId);
       var otherItemsInCart = cart.items.filter(item => item.variant_id !== giftVariantId);
 
       if (otherItemsInCart.length === 0) {
+        // If there are no other items in the cart, remove the gift
         removeGiftFromCart(checksRemaining);
       } else if (cartTotal >= 8000 && !giftInCart) {
         addGiftToCart(checksRemaining);
@@ -247,15 +302,18 @@ $(document).ready(function() {
       } else if (cartTotal < 8000 && giftInCart) {
         removeGiftFromCart(checksRemaining);
       } else {
+        console.log("Cart is in correct state.");
         updateCartUI(cart);
         isUpdating = false;
       }
     }).fail(function(xhr, status, error) {
+      console.error('Error fetching cart:', xhr.responseText);
       retryCheck(checksRemaining);
     });
   }
 
   function addGiftToCart(checksRemaining) {
+    console.log("Adding gift product...");
     $.ajax({
       url: '/cart/add.js',
       type: 'POST',
@@ -265,9 +323,11 @@ $(document).ready(function() {
         quantity: 1
       },
       success: function(data) {
+        console.log('Gift added:', data);
         updateCartUI();
       },
       error: function(xhr, status, error) {
+        console.error('Error adding gift:', xhr.responseText);
         retryCheck(checksRemaining);
       }
     });
@@ -283,9 +343,11 @@ $(document).ready(function() {
         quantity: quantity
       },
       success: function(data) {
+        console.log('Gift quantity adjusted:', data);
         updateCartUI(data);
       },
       error: function(xhr, status, error) {
+        console.error('Error adjusting gift quantity:', xhr.responseText);
         retryCheck(checksRemaining);
       }
     });
@@ -301,24 +363,31 @@ $(document).ready(function() {
         quantity: 0
       },
       success: function(data) {
+        console.log('Gift removed:', data);
         updateCartUI(data);
       },
       error: function(xhr, status, error) {
+        console.error('Error removing gift:', xhr.responseText);
         retryCheck(checksRemaining);
       }
     });
   }
 
   function updateCartUI() {
+    console.log('Updating cart UI...');
     var cartContainer = $('#main-cart-items');
     if (cartContainer.length) {
       $.getJSON('/cart.js', function(cart) {
+        // Check if the cart is empty or contains only the gift product
         if (cart.item_count === 0 || (cart.item_count === 1 && cart.items[0].variant_id === giftVariantId)) {
+          // Remove the gift product if it's the only item
           if (cart.item_count === 1) {
             removeGiftFromCart(maxChecks);
           }
+          // Update UI to show empty cart
           cartContainer.html('<p>Your cart is empty</p>');
         } else {
+          // Proceed with normal cart update
           $.ajax({
             url: '/?section_id=main-cart-items',
             type: 'GET',
@@ -327,14 +396,18 @@ $(document).ready(function() {
               var tempDiv = $('<div>').html(data);
               tempDiv.find('.title-wrapper-with-link', "discount-banner").remove();
               cartContainer.append(tempDiv.html());
+              console.log('Cart UI updated, div and quantity selectors removed');
             },
             error: function(xhr, status, error) {
+              console.error('Error fetching cart section:', xhr.responseText);
             }
           });
         }
       }).fail(function(xhr, status, error) {
+        console.error('Error fetching cart data for UI update:', xhr.responseText);
       });
     } else {
+      console.error('Cart container not found.');
     }
     isUpdating = false;
   }
@@ -345,6 +418,7 @@ $(document).ready(function() {
         checkCartAndAddGift(checksRemaining - 1);
       }, checkInterval);
     } else {
+      console.log("Max checks reached. Please refresh the page if issues persist.");
       isUpdating = false;
     }
   }
@@ -363,17 +437,23 @@ $(document).ready(function() {
   });
 
  $(document).on('click', 'cart-remove-button', function(e) {
-    e.preventDefault(); 
+    e.preventDefault(); // Prevent default behavior (like navigation)
+    console.log('Cart remove button clicked');
+    
+    // Simulate the click action or perform removal via AJAX, if needed
     var removeButton = $(this);
-    var removeUrl = removeButton.attr('href'); 
+    var removeUrl = removeButton.attr('href'); // Get the URL to remove the item
 
+    // Use AJAX to remove the item
     $.ajax({
       url: removeUrl,
       type: 'POST',
       success: function() {
-        updateCartUI(); 
+        console.log('Item removed, updating cart UI...');
+        updateCartUI(); // Call your function to update the cart UI
       },
       error: function(xhr, status, error) {
+        console.error('Error removing item from cart:', xhr.responseText);
       }
     });checkCartAndAddGift();
   });  
@@ -519,6 +599,35 @@ $(document).ready(function() {
 });
 
 
+                    
+// adding custom filter on collection page
+// $(document).ready(function() {
+//       $('.filter-checkbox').on('change', function() {
+//         var selectedSizes = [];
+//         $('.filter-checkbox:checked').each(function() {
+//           selectedSizes.push($(this).val());
+//         });
+//         if (selectedSizes.length === 0) {
+//           $('.grid__item').show();
+//           return;
+//         }
+//         $('.grid__item').each(function() {
+//           var sizes = $(this).data('size');
+          
+//           if (typeof sizes !== 'undefined') {
+//             sizes = sizes.toString().split(',');
+//             if (selectedSizes.some(size => sizes.includes(size))) {
+//               $(this).show();
+//             } else {
+//               $(this).hide();
+//             }
+//           } else {
+//             $(this).hide();
+//           }
+//         });
+//       });
+//     });
+
 $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
     var checkedValues = [];
@@ -554,4 +663,17 @@ $(document).ready(function() {
   });
 });
 
+   // JavaScript to sort sizes numerically
+ // document.addEventListener('DOMContentLoaded', function () {
+ //      var filterList = document.querySelectorAll('.custom-filter label');
+ //      var sizesArray = Array.from(filterList);
 
+ //      sizesArray.sort(function (a, b) {
+ //        return parseInt(a.querySelector('input').value) - parseInt(b.querySelector('input').value);
+ //      });
+
+ //      var parent = document.querySelector('.custom-filter');
+ //      sizesArray.forEach(function (sizeLabel) {
+ //        parent.appendChild(sizeLabel);
+ //      });
+ //    });
