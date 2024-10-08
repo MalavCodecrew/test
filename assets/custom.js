@@ -677,3 +677,13 @@ $(document).ready(function() {
  //        parent.appendChild(sizeLabel);
  //      });
  //    });
+
+ $(document).ready(function() {
+        console.log('jQuery is ready!');
+        var notifyButton = $('a.klaviyo-bis-trigger');
+        var soldOutButton = $('button.product-form__submit');
+
+        if (notifyButton.length && soldOutButton.length) {
+            notifyButton.insertAfter(soldOutButton);
+        }
+    });
