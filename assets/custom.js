@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //----------------------------------- GWP-JS-------------------------------------------->
 $(document).ready(function() {
   var isUpdating = false;
-  var giftVariantId = 49218762146070;
+  var giftVariantId = 49055053381910;
   var giftTitle = "Default title";
   var checkInterval = 500;
   var maxChecks = 5; 
