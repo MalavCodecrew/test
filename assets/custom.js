@@ -687,7 +687,7 @@ function moveNotifyMeButton() {
         console.log('Notify Me button moved after Sold Out button!');
     } else {
         console.log('Buttons not found yet, trying again...');
-        setTimeout(moveNotifyMeButton, 500); // Retry after 500ms
+        setTimeout(moveNotifyMeButton, 100); // Retry after 500ms
     }
 }
 
