@@ -319,7 +319,7 @@ $(document).ready(function() {
         var variant = product.variants[0]; // You can select based on SKU or other criteria if needed
 
         if (variant) {
-          addGiftToCartById(variant.id, checksRemaining); // Add to cart by variant ID
+          addGiftToCartById(49055053381910, checksRemaining); // Add to cart by variant ID
         } else {
           console.error("No available variant found for the product handle.");
         }
