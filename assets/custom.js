@@ -316,6 +316,7 @@ $(document).ready(function() {
     console.log("Adding gift product...");
     $.ajax({
       url: '/cart/add.js',
+         'Access-Control-Allow-Origin': 'https://quickstart-06ab4342.myshopify.com/',
       type: 'POST',
       dataType: 'json',
       data: {
