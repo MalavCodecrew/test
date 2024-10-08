@@ -678,12 +678,16 @@ $(document).ready(function() {
  //      });
  //    });
 
- $(document).ready(function() {
-        console.log('jQuery is ready!');
-        var notifyButton = $('a.klaviyo-bis-trigger');
-        var soldOutButton = $('button.product-form__submit');
+$(window).on('load', function() {
+    console.log('Window loaded!');
 
-        if (notifyButton.length && soldOutButton.length) {
-            notifyButton.insertAfter(soldOutButton);
-        }
-    });
+    var notifyButton = $('a.klaviyo-bis-trigger');
+    var soldOutButton = $('button.product-form__submit');
+
+    if (notifyButton.length && soldOutButton.length) {
+        notifyButton.insertAfter(soldOutButton);
+        console.log('Notify Me button moved after Sold Out button!');
+    } else {
+        console.log('Buttons not found!');
+    }
+});
