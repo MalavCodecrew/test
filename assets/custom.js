@@ -274,192 +274,192 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //----------------------------------- GWP-JS-------------------------------------------->
-$(document).ready(function() {
-  var isUpdating = false;
-  var giftVariantId = 49055053381910;
-  var giftTitle = "Default title";
-  var checkInterval = 500;
-  var maxChecks = 5; 
+// $(document).ready(function() {
+//   var isUpdating = false;
+//   var giftVariantId = 49055053381910;
+//   var giftTitle = "Default title";
+//   var checkInterval = 500;
+//   var maxChecks = 5; 
 
-  function checkCartAndAddGift(checksRemaining) {
-    if (isUpdating) return;
-    isUpdating = true;
-    console.log("Checking cart...");
+//   function checkCartAndAddGift(checksRemaining) {
+//     if (isUpdating) return;
+//     isUpdating = true;
+//     console.log("Checking cart...");
 
-    $.getJSON('/cart.js', function(cart) {
-      console.log('Cart contents:', cart);
-      var cartTotal = cart.total_price;
-      var giftInCart = cart.items.find(item => item.variant_id === giftVariantId);
-      var otherItemsInCart = cart.items.filter(item => item.variant_id !== giftVariantId);
+//     $.getJSON('/cart.js', function(cart) {
+//       console.log('Cart contents:', cart);
+//       var cartTotal = cart.total_price;
+//       var giftInCart = cart.items.find(item => item.variant_id === giftVariantId);
+//       var otherItemsInCart = cart.items.filter(item => item.variant_id !== giftVariantId);
 
-      if (otherItemsInCart.length === 0) {
-        // If there are no other items in the cart, remove the gift
-        removeGiftFromCart(checksRemaining);
-      } else if (cartTotal >= 800000 && !giftInCart) {
-        addGiftToCart(checksRemaining);
-      } else if (cartTotal >= 800000 && giftInCart && giftInCart.quantity !== 1) {
-        updateGiftQuantity(giftVariantId, 1, checksRemaining);
-      } else if (cartTotal < 800000 && giftInCart) {
-        removeGiftFromCart(checksRemaining);
-      } else {
-        console.log("Cart is in correct state.");
-        updateCartUI(cart);
-        isUpdating = false;
-      }
-    }).fail(function(xhr, status, error) {
-      console.error('Error fetching cart:', xhr.responseText);
-      retryCheck(checksRemaining);
-    });
-  }
+//       if (otherItemsInCart.length === 0) {
+//         // If there are no other items in the cart, remove the gift
+//         removeGiftFromCart(checksRemaining);
+//       } else if (cartTotal >= 800000 && !giftInCart) {
+//         addGiftToCart(checksRemaining);
+//       } else if (cartTotal >= 800000 && giftInCart && giftInCart.quantity !== 1) {
+//         updateGiftQuantity(giftVariantId, 1, checksRemaining);
+//       } else if (cartTotal < 800000 && giftInCart) {
+//         removeGiftFromCart(checksRemaining);
+//       } else {
+//         console.log("Cart is in correct state.");
+//         updateCartUI(cart);
+//         isUpdating = false;
+//       }
+//     }).fail(function(xhr, status, error) {
+//       console.error('Error fetching cart:', xhr.responseText);
+//       retryCheck(checksRemaining);
+//     });
+//   }
 
-  function addGiftToCart(checksRemaining) {
-    console.log("Adding gift product...");
-    $.ajax({
-      url: '/cart/add.js',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        id: 49055053381910,
-        quantity: 1
-      },
-      success: function(data) {
-        console.log('Gift added:', data);
-        updateCartUI();
-      },
-      error: function(xhr, status, error) {
-        console.error('Error adding gift:', xhr.responseText);
-        retryCheck(checksRemaining);
-      }
-    });
-  }
-  function updateGiftQuantity(variantId, quantity, checksRemaining) {
-    $.ajax({
-      url: '/cart/change.js',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        id: giftVariantId,
-        quantity: quantity
-      },
-      success: function(data) {
-        console.log('Gift quantity adjusted:', data);
-        updateCartUI(data);
-      },
-      error: function(xhr, status, error) {
-        console.error('Error adjusting gift quantity:', xhr.responseText);
-        retryCheck(checksRemaining);
-      }
-    });
-  }
+//   function addGiftToCart(checksRemaining) {
+//     console.log("Adding gift product...");
+//     $.ajax({
+//       url: '/cart/add.js',
+//       type: 'POST',
+//       dataType: 'json',
+//       data: {
+//         id: 49055053381910,
+//         quantity: 1
+//       },
+//       success: function(data) {
+//         console.log('Gift added:', data);
+//         updateCartUI();
+//       },
+//       error: function(xhr, status, error) {
+//         console.error('Error adding gift:', xhr.responseText);
+//         retryCheck(checksRemaining);
+//       }
+//     });
+//   }
+//   function updateGiftQuantity(variantId, quantity, checksRemaining) {
+//     $.ajax({
+//       url: '/cart/change.js',
+//       type: 'POST',
+//       dataType: 'json',
+//       data: {
+//         id: giftVariantId,
+//         quantity: quantity
+//       },
+//       success: function(data) {
+//         console.log('Gift quantity adjusted:', data);
+//         updateCartUI(data);
+//       },
+//       error: function(xhr, status, error) {
+//         console.error('Error adjusting gift quantity:', xhr.responseText);
+//         retryCheck(checksRemaining);
+//       }
+//     });
+//   }
 
-  function removeGiftFromCart(checksRemaining) {
-    $.ajax({
-      url: '/cart/change.js',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        id: giftVariantId,
-        quantity: 0
-      },
-      success: function(data) {
-        console.log('Gift removed:', data);
-        updateCartUI(data);
-      },
-      error: function(xhr, status, error) {
-        console.error('Error removing gift:', xhr.responseText);
-        retryCheck(checksRemaining);
-      }
-    });
-  }
+//   function removeGiftFromCart(checksRemaining) {
+//     $.ajax({
+//       url: '/cart/change.js',
+//       type: 'POST',
+//       dataType: 'json',
+//       data: {
+//         id: giftVariantId,
+//         quantity: 0
+//       },
+//       success: function(data) {
+//         console.log('Gift removed:', data);
+//         updateCartUI(data);
+//       },
+//       error: function(xhr, status, error) {
+//         console.error('Error removing gift:', xhr.responseText);
+//         retryCheck(checksRemaining);
+//       }
+//     });
+//   }
 
-  function updateCartUI() {
-    console.log('Updating cart UI...');
-    var cartContainer = $('#main-cart-items');
-    if (cartContainer.length) {
-      $.getJSON('/cart.js', function(cart) {
-        // Check if the cart is empty or contains only the gift product
-        if (cart.item_count === 0 || (cart.item_count === 1 && cart.items[0].variant_id === giftVariantId)) {
-          // Remove the gift product if it's the only item
-          if (cart.item_count === 1) {
-            removeGiftFromCart(maxChecks);
-          }
-          // Update UI to show empty cart
-          cartContainer.html('<p>Your cart is empty</p>');
-        } else {
-          // Proceed with normal cart update
-          $.ajax({
-            url: '/?section_id=main-cart-items',
-            type: 'GET',
-            success: function(data) {
-              cartContainer.empty();
-              var tempDiv = $('<div>').html(data);
-              tempDiv.find('.title-wrapper-with-link', "discount-banner").remove();
-              cartContainer.append(tempDiv.html());
-              console.log('Cart UI updated, div and quantity selectors removed');
-            },
-            error: function(xhr, status, error) {
-              console.error('Error fetching cart section:', xhr.responseText);
-            }
-          });
-        }
-      }).fail(function(xhr, status, error) {
-        console.error('Error fetching cart data for UI update:', xhr.responseText);
-      });
-    } else {
-      console.error('Cart container not found.');
-    }
-    isUpdating = false;
-  }
+//   function updateCartUI() {
+//     console.log('Updating cart UI...');
+//     var cartContainer = $('#main-cart-items');
+//     if (cartContainer.length) {
+//       $.getJSON('/cart.js', function(cart) {
+//         // Check if the cart is empty or contains only the gift product
+//         if (cart.item_count === 0 || (cart.item_count === 1 && cart.items[0].variant_id === giftVariantId)) {
+//           // Remove the gift product if it's the only item
+//           if (cart.item_count === 1) {
+//             removeGiftFromCart(maxChecks);
+//           }
+//           // Update UI to show empty cart
+//           cartContainer.html('<p>Your cart is empty</p>');
+//         } else {
+//           // Proceed with normal cart update
+//           $.ajax({
+//             url: '/?section_id=main-cart-items',
+//             type: 'GET',
+//             success: function(data) {
+//               cartContainer.empty();
+//               var tempDiv = $('<div>').html(data);
+//               tempDiv.find('.title-wrapper-with-link', "discount-banner").remove();
+//               cartContainer.append(tempDiv.html());
+//               console.log('Cart UI updated, div and quantity selectors removed');
+//             },
+//             error: function(xhr, status, error) {
+//               console.error('Error fetching cart section:', xhr.responseText);
+//             }
+//           });
+//         }
+//       }).fail(function(xhr, status, error) {
+//         console.error('Error fetching cart data for UI update:', xhr.responseText);
+//       });
+//     } else {
+//       console.error('Cart container not found.');
+//     }
+//     isUpdating = false;
+//   }
 
-  function retryCheck(checksRemaining) {
-    if (checksRemaining > 0) {
-      setTimeout(function() {
-        checkCartAndAddGift(checksRemaining - 1);
-      }, checkInterval);
-    } else {
-      console.log("Max checks reached. Please refresh the page if issues persist.");
-      isUpdating = false;
-    }
-  }
+//   function retryCheck(checksRemaining) {
+//     if (checksRemaining > 0) {
+//       setTimeout(function() {
+//         checkCartAndAddGift(checksRemaining - 1);
+//       }, checkInterval);
+//     } else {
+//       console.log("Max checks reached. Please refresh the page if issues persist.");
+//       isUpdating = false;
+//     }
+//   }
 
-  function initializeCartCheck() {
-    checkCartAndAddGift(maxChecks);
-  }
+//   function initializeCartCheck() {
+//     checkCartAndAddGift(maxChecks);
+//   }
   
-  initializeCartCheck();
+//   initializeCartCheck();
 
-  $(document).on('change', 'input[name="updates[]"]', function() {
-    var form = $(this).closest('form');
-    $.post('/cart/update.js', form.serialize(), function(data) {
-      initializeCartCheck();
-    });
-  });
+//   $(document).on('change', 'input[name="updates[]"]', function() {
+//     var form = $(this).closest('form');
+//     $.post('/cart/update.js', form.serialize(), function(data) {
+//       initializeCartCheck();
+//     });
+//   });
 
- $(document).on('click', 'cart-remove-button', function(e) {
-    e.preventDefault(); // Prevent default behavior (like navigation)
-    console.log('Cart remove button clicked');
+//  $(document).on('click', 'cart-remove-button', function(e) {
+//     e.preventDefault(); // Prevent default behavior (like navigation)
+//     console.log('Cart remove button clicked');
     
-    // Simulate the click action or perform removal via AJAX, if needed
-    var removeButton = $(this);
-    var removeUrl = removeButton.attr('href'); // Get the URL to remove the item
+//     // Simulate the click action or perform removal via AJAX, if needed
+//     var removeButton = $(this);
+//     var removeUrl = removeButton.attr('href'); // Get the URL to remove the item
 
-    // Use AJAX to remove the item
-    $.ajax({
-      url: removeUrl,
-      type: 'POST',
-      success: function() {
-        console.log('Item removed, updating cart UI...');
-        updateCartUI(); // Call your function to update the cart UI
-      },
-      error: function(xhr, status, error) {
-        console.error('Error removing item from cart:', xhr.responseText);
-      }
-    });checkCartAndAddGift();
-  });  
+//     // Use AJAX to remove the item
+//     $.ajax({
+//       url: removeUrl,
+//       type: 'POST',
+//       success: function() {
+//         console.log('Item removed, updating cart UI...');
+//         updateCartUI(); // Call your function to update the cart UI
+//       },
+//       error: function(xhr, status, error) {
+//         console.error('Error removing item from cart:', xhr.responseText);
+//       }
+//     });checkCartAndAddGift();
+//   });  
   
 
-  $(document).on('cart:updated', initializeCartCheck)
-});
+//   $(document).on('cart:updated', initializeCartCheck)
+// });
 
 
 
