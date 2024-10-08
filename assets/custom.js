@@ -338,7 +338,7 @@ $(document).ready(function() {
       type: 'POST',
       dataType: 'json',
       data: {
-        id: variantId, // Use the variant ID fetched from the product handle
+        id: 49055053381910, // Use the variant ID fetched from the product handle
         quantity: 1
       },
       success: function(data) {
@@ -362,7 +362,7 @@ $(document).ready(function() {
           type: 'POST',
           dataType: 'json',
           data: {
-            id: giftItem.variant_id, // Use variant ID for the specific gift item
+            id: 49055053381910, // Use variant ID for the specific gift item
             quantity: 0
           },
           success: function(data) {
