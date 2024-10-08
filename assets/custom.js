@@ -518,7 +518,7 @@ $(document).ready(function() {
   }
 });
 
-
+// custom filters----------------------------------->
 $(document).ready(function() {
   $('.filter-checkbox').on('change', function() {
     var checkedValues = [];
