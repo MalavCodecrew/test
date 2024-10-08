@@ -555,14 +555,13 @@ $(document).ready(function() {
 });
 
 //notify me button
-$(window).on('load', function() {
-    console.log('Window loaded!'); // Debugging message
+$(document).ready(function() {
+    console.log('jQuery is ready!');
     var notifyButton = $('a.klaviyo-bis-trigger');
     var soldOutButton = $('button.product-form__submit');
 
     if (notifyButton.length && soldOutButton.length) {
         notifyButton.insertAfter(soldOutButton);
-        console.log('Notify Me button moved after Sold Out button!');
     }
 });
 
