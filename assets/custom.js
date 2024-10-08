@@ -295,11 +295,11 @@ $(document).ready(function() {
       if (otherItemsInCart.length === 0) {
         // If there are no other items in the cart, remove the gift
         removeGiftFromCart(checksRemaining);
-      } else if (cartTotal >= 80000 && !giftInCart) {
+      } else if (cartTotal >= 800000 && !giftInCart) {
         addGiftToCart(checksRemaining);
-      } else if (cartTotal >= 80000 && giftInCart && giftInCart.quantity !== 1) {
+      } else if (cartTotal >= 800000 && giftInCart && giftInCart.quantity !== 1) {
         updateGiftQuantity(giftVariantId, 1, checksRemaining);
-      } else if (cartTotal < 80000 && giftInCart) {
+      } else if (cartTotal < 800000 && giftInCart) {
         removeGiftFromCart(checksRemaining);
       } else {
         console.log("Cart is in correct state.");
