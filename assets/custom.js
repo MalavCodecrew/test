@@ -558,9 +558,9 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-    // Select the Notify Me button and the Sold out button
-    var notifyButton = $('.klaviyo-bis-trigger');
-    var soldOutButton = $('.product-form__submit span');
+    // Select the Notify Me button and the Sold out button (using the class)
+    var notifyButton = $('a.klaviyo-bis-trigger');
+    var soldOutButton = $('button.product-form__submit');
 
     // Check if both elements exist
     if (notifyButton.length && soldOutButton.length) {
