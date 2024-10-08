@@ -313,24 +313,31 @@ $(document).ready(function() {
   }
 
   function addGiftToCart(checksRemaining) {
-    console.log("Adding gift product...");
-    $.ajax({
-      url: '/cart/add.js',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        id: giftVariantId,
-        quantity: 1
-      },
-      success: function(data) {
-        console.log('Gift added:', data);
-        updateCartUI();
-      },
-      error: function(xhr, status, error) {
-        console.error('Error adding gift:', xhr.responseText);
-        retryCheck(checksRemaining);
-      }
-    });
+   let variantId = 49055053381910; // Your variant ID
+
+console.log('Trying to add variant ID:', variantId);
+
+$.ajax({
+  type: 'POST',
+  url: '/cart/add.js',
+  data: {
+    items: [{
+      id: variantId,
+      quantity: 1
+    }]
+  },
+  dataType: 'json',
+  success: function(cart) {
+    console.log('Gift added successfully:', cart);
+  },
+  error: function(err) {
+    console.error('Error adding gift:', err);
+    if (err.responseJSON) {
+      console.error('Response error:', err.responseJSON);
+    }
+  }
+});
+
   }
 
   function updateGiftQuantity(variantId, quantity, checksRemaining) {
