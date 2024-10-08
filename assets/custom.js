@@ -315,7 +315,7 @@ $(document).ready(function() {
   function addGiftToCart(checksRemaining) {
     console.log("Adding gift product...");
     $.ajax({
-      url: '/cart/add-cart.js',
+      url: '/cart/add.js',
       type: 'POST',
       dataType: 'json',
       data: {
