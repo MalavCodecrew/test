@@ -560,7 +560,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     // Select the Notify Me button and the Sold out button
     var notifyButton = $('.klaviyo-bis-trigger');
-    var soldOutButton = $('.product-form__submit');
+    var soldOutButton = $('.product-form__submit span');
 
     // Check if both elements exist
     if (notifyButton.length && soldOutButton.length) {
