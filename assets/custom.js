@@ -313,13 +313,11 @@ $(document).ready(function() {
   }
 
   function addGiftToCart(checksRemaining) {
-   let variantId = 49055053381910; // Your variant ID
-
-console.log('Trying to add variant ID:', variantId);
+let variantId = 49055053381910; // Replace with your actual variant ID
 
 $.ajax({
   type: 'POST',
-  url: '/cart/add.js',
+  url: 'https://quickstart-06ab4342.myshopify.com/cart/add.js', // Full URL
   data: {
     items: [{
       id: variantId,
@@ -337,6 +335,7 @@ $.ajax({
     }
   }
 });
+
 
   }
 
