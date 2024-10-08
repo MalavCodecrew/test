@@ -555,3 +555,18 @@ $(document).ready(function() {
 });
 
 
+
+
+$(document).ready(function() {
+    // Select the Notify Me button and the Sold out button
+    var notifyButton = $('.klaviyo-bis-trigger');
+    var soldOutButton = $('.product-form__submit');
+
+    // Check if both elements exist
+    if (notifyButton.length && soldOutButton.length) {
+        // Move the Notify Me button after the Sold out button
+        notifyButton.insertAfter(soldOutButton);
+    }
+});
+
+
