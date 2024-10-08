@@ -280,7 +280,7 @@ $(document).ready(function() {
   var giftTitle = "Default title";
   var checkInterval = 500;
   var maxChecks = 5; 
-      'Access-Control-Allow-Origin': 'https://quickstart-06ab4342.myshopify.com/',
+  
 
   function checkCartAndAddGift(checksRemaining) {
     if (isUpdating) return;
