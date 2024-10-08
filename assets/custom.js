@@ -458,7 +458,7 @@ $(document).ready(function() {
   });  
   
 
-  $(document).on('cart:updated', initializeCartCheck);
+  $(document).on('cart:updated', initializeCartCheck)
 });
 
 
