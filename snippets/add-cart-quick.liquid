@@ -83,10 +83,8 @@
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
+            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} add-quick"
             {%- if product.variants.size > 1 -%}
-              class="add-quick"
-            {% else %}
-              class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} add-quick"
             {% endif %}
           >
             <span>
