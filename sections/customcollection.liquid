@@ -40,7 +40,12 @@
             {% endif %}
             <div class="quick-view-btn">
               <a class="button" id="{{ product.id }}">Quick View</a>
-              {%- render 'add-cart-quick' -%}
+              {%- render 'add-cart-quick',
+                block: block,
+                product: product,
+                product_form_id: product_form_id,
+                section_id: section.id
+              -%}
             </div>
           </div>
           <div class="collection-text">
