@@ -36,7 +36,7 @@ body.noscroll {
   display: none;
 }
 .collection-grid .image:hover .quick-view-btn {
-  display: block;
+  display: flex;
 }
 body {
   transition: overflow 0.3s;
