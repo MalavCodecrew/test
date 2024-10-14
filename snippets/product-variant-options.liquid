@@ -106,6 +106,7 @@
         class="disabled"
       {% endif %}
     >
+
     {% if product.variants[forloop.index0].image != blank and option.name == 'Color' %}
       <label
         for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
