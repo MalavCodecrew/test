@@ -90,14 +90,14 @@
           </div>
           <div class="popup2">
             <div class="ProductItem__Sizes">
-              {%- for variant in product.variants -%}
                 <a href="{{ product.url }}"
+              {%- for variant in product.variants -%}
                   >>
                   {%- if variant.available -%}
                     <span class="ProductItem__Size">{{ variant.title }}</span>
                   {%- endif -%}
-                </a>
               {%- endfor -%}
+                </a>
             </div>
             <div class="card__information">
               <h3
