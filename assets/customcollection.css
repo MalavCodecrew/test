@@ -167,6 +167,7 @@ img.secondary-image {
   left: 87%;
   top: 75%;
   min-width: auto;
+  --border-offset: 0;
 }
 .collection-grid .image:hover .add-quick {
   display: block;
