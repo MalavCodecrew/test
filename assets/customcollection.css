@@ -169,7 +169,7 @@ img.secondary-image {
   min-width: auto;
   --border-offset: 0;
 }
-.collection-grid .image:hover .add-quick {
+.collection-grid .add-quick:hover .add-quick {
   display: block;
   --border-offset: 0;
 }
