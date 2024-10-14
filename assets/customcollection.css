@@ -163,6 +163,7 @@ img.secondary-image {
   width: 10%;
   background-color: transparent !important;
   border: none !important;
+  display: none;
 }
 
 @media screen and (max-width: 1024px) {
