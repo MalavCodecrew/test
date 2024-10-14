@@ -153,6 +153,11 @@ img.secondary-image {
 .image:hover .secondary-image {
   opacity: 1;
 }
+
+.quick-view-btn svg {
+  position: inherit;
+}
+
 @media screen and (max-width: 1024px) {
   .item {
     width: 25%;
