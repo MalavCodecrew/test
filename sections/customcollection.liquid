@@ -90,44 +90,39 @@
           </div>
           <div class="popup2">
             <div class="ProductItem__Sizes">
-              <a href="{{ product.url }}">
-                {%- for variant in product.variants -%}
-                  {%- if variant.available -%}
-                    <span class="ProductItem__Size">{{ variant.title }}</span>
-                  {%- endif -%}
-                {%- endfor -%}
-              </a>
+              {%- for variant in product.variants -%}
+                {%- if variant.available -%}
+                  <span class="ProductItem__Size">{{ variant.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
             </div>
-
-            <a href="{{ product.url }}">
-              <div class="card__information">
-                <h3
-                  class="card__heading"
-                  {% if product.featured_media == null and settings.card_style == 'standard' %}
-                    id="title-{{ section_id }}-{{ product.id }}"
-                  {% endif %}
-                >
-                  <!--
-                    <a
-                      href="{{ product.url }}"
-                      id="StandardCardNoMediaLink-{{ section_id }}-{{ product.id }}"
-                      class="full--custom-unstyled-link"
-                      aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ product.id }} NoMediaStandardBadge-{{ section_id }}-{{ product.id }}"
-                    >
-                  -->
-                  {{ product.title | escape }}
-                  <!-- </a> -->
-                </h3>
-                <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
-                  {%- render 'price',
-                    product: product,
-                    use_variant: true,
-                    show_badges: true,
-                    price_class: 'price--large'
-                  -%}
-                </div>
+            <div class="card__information">
+              <h3
+                class="card__heading"
+                {% if product.featured_media == null and settings.card_style == 'standard' %}
+                  id="title-{{ section_id }}-{{ product.id }}"
+                {% endif %}
+              >
+                <!--
+                  <a
+                    href="{{ product.url }}"
+                    id="StandardCardNoMediaLink-{{ section_id }}-{{ product.id }}"
+                    class="full--custom-unstyled-link"
+                    aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ product.id }} NoMediaStandardBadge-{{ section_id }}-{{ product.id }}"
+                  >
+                -->
+                {{ product.title | escape }}
+                <!-- </a> -->
+              </h3>
+              <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                {%- render 'price',
+                  product: product,
+                  use_variant: true,
+                  show_badges: true,
+                  price_class: 'price--large'
+                -%}
               </div>
-            </a>
+            </div>
 
             <modal-opener
               class="product-popup-modal__opener quick-add-hidden"
