@@ -49,7 +49,7 @@
                   endif
                 endif
               -%}
-              {%- if picker_type == 'button' -%}
+              {%- if picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
                 <option
                   value="{{ value | escape }}"
                   {% if option.selected_value == value %}
