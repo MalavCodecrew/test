@@ -174,9 +174,6 @@ img.secondary-image {
   --border-offset: 0;
 }
 
-.collection-grid .add-quick :hover .add-quick {
-  --border-offset: 0;
-}
 @media screen and (max-width: 1024px) {
   .item {
     width: 25%;
