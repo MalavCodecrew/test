@@ -50,22 +50,15 @@
                 endif
               -%}
               {%- if picker_type == 'button' -%}
-                <option
-                  value="{{ value | escape }}"
-                  {% if option.selected_value == value %}
-                    selected="selected"
-                  {% endif %}
-                  data-option-swatch-value="{{ swatch_value }}"
-                  {% if swatch_focal_point %}
-                    data-option-swatch-focal-point="{{ swatch_focal_point }}"
-                  {% endif %}
-                >
-                  {% if option_disabled -%}
-                    {{- 'products.product.value_unavailable' | t: option_value: value -}}
-                  {%- else -%}
-                    {{- value -}}
-                  {%- endif %}
-                </option>
+                <fieldset class="js product-form__input product-form__input--pill">
+                  <legend class="form__label">{{ option.name }}</legend>
+                  {% render 'product-variant-options',
+                    product: product,
+                    option: option,
+                    block: block,
+                    picker_type: picker_type
+                  %}
+                </fieldset>
               {%- endif -%}
             {%- endfor -%}
             <script type="application/json">
