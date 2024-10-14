@@ -48,12 +48,14 @@
             -%}
           </div>
           <div class="collection-text">
-            {% if product.title != blank %}
-              <p>{{ product.title }}</p>
-            {% endif %}
-            {% if product.price != blank %}
-              <p>{{ product.price | money_with_currency }}</p>
-            {% endif %}
+            <a href="{{ product.url }}">
+              {% if product.title != blank %}
+                <p>{{ product.title }}</p>
+              {% endif %}
+              {% if product.price != blank %}
+                <p>{{ product.price | money_with_currency }}</p>
+              {% endif %}
+            </a>
           </div>
         </div>
       {% endfor %}
