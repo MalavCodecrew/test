@@ -51,9 +51,7 @@
               -%}
               {%- if picker_type == 'button' -%}
                 <fieldset class="js product-form__input product-form__input--pill">
-                  <a href="{{ option.url }}">
-                    <legend class="form__label">{{ option.name }}</legend>
-                  </a>
+                  <legend class="form__label">{{ option.name }}</legend>
                   {% render 'product-variant-options',
                     product: product,
                     option: option,
