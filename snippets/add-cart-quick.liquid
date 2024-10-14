@@ -50,7 +50,7 @@
                 endif
               -%}
               {%- if picker_type == 'button' -%}
-                <fieldset class="js product-form__input product-form__input--pill">
+                <option class="js product-form__input product-form__input--pill">
                   <legend class="form__label">{{ option.name }}</legend>
                   {% render 'product-variant-options',
                     product: product,
@@ -58,7 +58,7 @@
                     block: block,
                     picker_type: picker_type
                   %}
-                </fieldset>
+                </option>
               {%- endif -%}
             {%- endfor -%}
             <script type="application/json">
