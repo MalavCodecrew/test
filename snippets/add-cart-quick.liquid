@@ -1,131 +1,114 @@
-{%- if product.variants.size == 1 -%}
-  <div {{ block.shopify_attributes }}>
-    {%- if product != blank -%}
-      {%- liquid
-        assign gift_card_recipient_feature_active = false
-        if block.settings.show_gift_card_recipient and product.gift_card?
-          assign gift_card_recipient_feature_active = true
-        endif
+<div {{ block.shopify_attributes }}>
+  {%- if product != blank -%}
+    {%- liquid
+      assign gift_card_recipient_feature_active = false
+      if block.settings.show_gift_card_recipient and product.gift_card?
+        assign gift_card_recipient_feature_active = true
+      endif
 
-        assign show_dynamic_checkout = false
-        if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
-          assign show_dynamic_checkout = true
-        endif
-      -%}
+      assign show_dynamic_checkout = false
+      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
+        assign show_dynamic_checkout = true
+      endif
+    -%}
 
-      <product-form
-        class="product-form"
-        data-hide-errors="{{ gift_card_recipient_feature_active }}"
-        data-section-id="{{ section.id }}"
-      >
-        <form
-          id="product-form-{{ product.id }}"
-          class="form"
-          novalidate="novalidate"
-          action="/cart/add"
-          method="post"
-          enctype="multipart/form-data"
-          data-type="add-to-cart-form"
-        >
-          {%- unless product.has_only_default_variant -%}
-            <quick-info-variant-selects
-              id="variant-selects-{{ section.id }}"
-              data-section="{{ section.id }}"
-              data-url="{{ product.url }}"
-              {% if update_url == false %}
-                data-update-url="false"
-              {% endif %}
-              {{ block.shopify_attributes }}
-            >
-              {%- for option in product.options_with_values -%}
-                {%- liquid
-                  assign swatch_count = option.values | map: 'swatch' | compact | size
-                  assign picker_type = 'button'
-
-                  if swatch_count > 0 and block.settings.swatch_shape != 'none'
-                    if block.settings.picker_type == 'dropdown'
-                      assign picker_type = 'swatch_dropdown'
-                    else
-                      assign picker_type = 'swatch'
-                    endif
-                  endif
-                -%}
-                {%- if picker_type == 'button' -%}
-                  <fieldset class="js product-form__input product-form__input--pill">
-                    <legend class="form__label">{{ option.name }}</legend>
-                    {% render 'product-variant-options',
-                      product: product,
-                      option: option,
-                      block: block,
-                      picker_type: picker_type
-                    %}
-                  </fieldset>
-                {%- endif -%}
-              {%- endfor -%}
-              <script type="application/json">
-                {{ product.variants | json }}
-              </script>
-            </quick-info-variant-selects>
-          {%- endunless -%}
-          <input
-            type="hidden"
-            name="id"
-            value="{{ product.selected_or_first_available_variant.id }}"
-            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-              disabled
-            {% endif %}
-            class="product-variant-id"
-          >
-
-          {%- if gift_card_recipient_feature_active -%}
-            {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
-          {%- endif -%}
-
-          <div class="product-form__buttons">
-            {%- liquid
-              assign check_against_inventory = true
-              if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
-                assign check_against_inventory = false
-              endif
-              if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
-                assign quantity_rule_soldout = true
-              endif
-            -%}
-            <button
-              id="ProductSubmitButton-{{ section_id }}"
-              type="submit"
-              name="add"
-              class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} add-quick"
-            >
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-
-              {%- render 'loading-spinner' -%}
-            </button>
-            {%- if show_dynamic_checkout -%}
-              {{ form | payment_button }}
-            {%- endif -%}
-          </div>
-        </form>
-      </product-form>
-    {%- endif -%}
-  </div>
-{% else %}
-  <a href="{{ product.url }}">
-    <button
-      id="ProductSubmitButton-template--23129917096214__customcollection_tpcgTB"
-      type="submit"
-      name="add"
-      class="product-form__submit button button--full-width button--primary add-quick"
+    <product-form
+      class="product-form"
+      data-hide-errors="{{ gift_card_recipient_feature_active }}"
+      data-section-id="{{ section.id }}"
     >
-      <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
-          <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
-    </button>
-  </a>
-{% endif %}
+      <form
+        id="product-form-{{ product.id }}"
+        class="form"
+        novalidate="novalidate"
+        action="/cart/add"
+        method="post"
+        enctype="multipart/form-data"
+        data-type="add-to-cart-form"
+      >
+        {%- unless product.has_only_default_variant -%}
+          <quick-info-variant-selects
+            id="variant-selects-{{ section.id }}"
+            data-section="{{ section.id }}"
+            data-url="{{ product.url }}"
+            {% if update_url == false %}
+              data-update-url="false"
+            {% endif %}
+            {{ block.shopify_attributes }}
+          >
+            {%- for option in product.options_with_values -%}
+              {%- liquid
+                assign swatch_count = option.values | map: 'swatch' | compact | size
+                assign picker_type = 'button'
+
+                if swatch_count > 0 and block.settings.swatch_shape != 'none'
+                  if block.settings.picker_type == 'dropdown'
+                    assign picker_type = 'swatch_dropdown'
+                  else
+                    assign picker_type = 'swatch'
+                  endif
+                endif
+              -%}
+              {%- if picker_type == 'button' -%}
+                <fieldset class="js product-form__input product-form__input--pill">
+                  <legend class="form__label">{{ option.name }}</legend>
+                  {% render 'product-variant-options',
+                    product: product,
+                    option: option,
+                    block: block,
+                    picker_type: picker_type
+                  %}
+                </fieldset>
+              {%- endif -%}
+            {%- endfor -%}
+            <script type="application/json">
+              {{ product.variants | json }}
+            </script>
+          </quick-info-variant-selects>
+        {%- endunless -%}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+            disabled
+          {% endif %}
+          class="product-variant-id"
+        >
+
+        {%- if gift_card_recipient_feature_active -%}
+          {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+        {%- endif -%}
+
+        <div class="product-form__buttons">
+          {%- liquid
+            assign check_against_inventory = true
+            if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
+              assign check_against_inventory = false
+            endif
+            if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
+              assign quantity_rule_soldout = true
+            endif
+          -%}
+          <button
+            id="ProductSubmitButton-{{ section_id }}"
+            type="submit"
+            name="add"
+            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} add-quick"
+          >
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+                <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+
+            {%- render 'loading-spinner' -%}
+          </button>
+          {%- if show_dynamic_checkout -%}
+            {{ form | payment_button }}
+          {%- endif -%}
+        </div>
+      </form>
+    </product-form>
+  {%- endif -%}
+</div>
