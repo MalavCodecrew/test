@@ -160,6 +160,7 @@ img.secondary-image {
 
 .add-quick {
   padding: 0px !important;
+  width: 10%;
 }
 
 @media screen and (max-width: 1024px) {
