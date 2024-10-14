@@ -71,6 +71,28 @@
                     picker_type: picker_type
                   %}
                 </fieldset>
+              {% else %}
+                <option
+                  value="{{ value | escape }}"
+                  {% if option.selected_value == value %}
+                    selected="selected"
+                  {% endif %}
+                  {% if swatch_value and picker_type == 'swatch_dropdown' %}
+                    data-option-swatch-value="{{ swatch_value }}"
+                    {% if swatch_focal_point %}
+                      data-option-swatch-focal-point="{{ swatch_focal_point }}"
+                    {% endif %}
+                  {% endif %}
+                >
+                  <legend class="form__label">{{ option.name }}</legend>
+
+                  {% render 'product-variant-options',
+                    product: product,
+                    option: option,
+                    block: block,
+                    picker_type: picker_type
+                  %}
+                </option>
               {%- endif -%}
             {%- endfor -%}
             <script type="application/json">
@@ -160,11 +182,6 @@
         >
           {{ 'products.product.sold_out' | t }}
         </button>
-        <a
-          class="btn klaviyo-bis-trigger"
-          href="#"
-          >NOTIFY ME WHEN AVAILABLE
-        </a>
       </div>
     </div>
   {%- endif -%}
