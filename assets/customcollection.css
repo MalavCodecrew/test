@@ -188,6 +188,9 @@ img.secondary-image {
   z-index: 5;
   top: 1%;
 }
+.quickhide {
+  display: none;
+}
 @media screen and (max-width: 1024px) {
   .item {
     width: 25%;
