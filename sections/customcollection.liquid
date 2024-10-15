@@ -38,11 +38,13 @@
               {% if product.media.size > 1 %}
                 <img src="{{ product.media[1] | img_url: '' }}" class="secondary-image">
               {% endif %}
-              <!--
-                <div class="quick-view-btn">
-                  <a class="button" id="{{ product.id }}">Quick View</a>
-                </div>
-              -->
+              {%- for variant in card_product.variants -%}
+                {%- if variant.available -%}
+                  <a href="{{ variant.url }}" class="Prod-title">
+                    <span class="availabe-variant">{{ variant.title }}</span>
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
             </div>
             {%- render 'add-cart-quick',
               block: block,
