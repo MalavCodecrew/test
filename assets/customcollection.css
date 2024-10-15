@@ -42,6 +42,7 @@ body {
 }
 .collection-grid .quick-add-btn:hover .quick-view-btn {
   display: block;
+  margin-left: 56px;
 }
 .quick-view-btn .button {
   background-color: #ded2c6;
