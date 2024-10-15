@@ -182,9 +182,7 @@ img.secondary-image {
 .quick-btns svg {
   margin-right: 40px;
 }
-.quick-btns button:hover .add-quick {
-  --border-opacity: transparent !important;
-}
+
 @media screen and (max-width: 1024px) {
   .item {
     width: 25%;
