@@ -652,3 +652,18 @@ function moveNotifyMeButton() {
 $(document).ready(function() {
     moveNotifyMeButton(); // Call the function when the DOM is ready
 });
+
+
+// quick-shop--------------------------------------------------------------->
+document.addEventListener('DOMContentLoaded', function() {
+  const quickBlock = document.getElementById('quick-block');
+  const variantSelects = document.querySelector('variant-selects');
+
+  if (variantSelects) {
+    quickBlock.classList.add('with-variant-selects');
+    quickBlock.classList.remove('without-variant-selects');
+  } else {
+    quickBlock.classList.add('without-variant-selects');
+    quickBlock.classList.remove('with-variant-selects');
+  }
+});
