@@ -41,7 +41,7 @@
             </div>
             <div class="quick-variants">
               {%- for variant in product.variants -%}
-                {%- if variant.available -%}
+                {%- if variant.size > 1 -%}
                   <a href="{{ variant.url }}" class="Prod-title">
                     <span class="availabe-variant">{{ variant.title }}</span>
                   </a>
