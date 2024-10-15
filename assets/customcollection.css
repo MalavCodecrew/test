@@ -177,15 +177,16 @@ img.secondary-image {
 .quick-add-btn:hover .quick-block {
   display: block;
 }
+
 .without-variant-selects {
   position: absolute;
-  top: 30%;
-  background: #fff;
+  top: 55%;
   margin-left: 87px;
   width: 15%;
   padding: 9px 19px;
   display: none;
 }
+
 @media screen and (max-width: 1024px) {
   .item {
     width: 25%;
