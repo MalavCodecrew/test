@@ -27,13 +27,6 @@
 {%- if request.design_mode -%}
   <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
-{%- for variant in card_product.variants -%}
-  {%- if variant.available -%}
-    <a href="{{ variant.url }}" class="Prod-title">
-      <span class="availabe-variant">{{ variant.title }}</span>
-    </a>
-  {%- endif -%}
-{%- endfor -%}
 <div class="quick-main">
   {% if section.settings.collection != blank %}
     <div class="collection-grid">
@@ -45,6 +38,13 @@
               {% if product.media.size > 1 %}
                 <img src="{{ product.media[1] | img_url: '' }}" class="secondary-image">
               {% endif %}
+              {%- for variant in product.variants -%}
+                {%- if variant.available -%}
+                  <a href="{{ variant.url }}" class="Prod-title">
+                    <span class="availabe-variant">{{ variant.title }}</span>
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
             </div>
             {%- render 'add-cart-quick',
               block: block,
