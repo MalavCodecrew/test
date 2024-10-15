@@ -1,44 +1,43 @@
-<div class="quick-block">
-  <div {{ block.shopify_attributes }}>
-    {%- if product != blank -%}
-      {%- liquid
-        assign gift_card_recipient_feature_active = false
-        if block.settings.show_gift_card_recipient and product.gift_card?
-          assign gift_card_recipient_feature_active = true
-        endif
+<div {{ block.shopify_attributes }}>
+  {%- if product != blank -%}
+    {%- liquid
+      assign gift_card_recipient_feature_active = false
+      if block.settings.show_gift_card_recipient and product.gift_card?
+        assign gift_card_recipient_feature_active = true
+      endif
 
-        assign show_dynamic_checkout = false
-        if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
-          assign show_dynamic_checkout = true
-        endif
-      -%}
+      assign show_dynamic_checkout = false
+      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
+        assign show_dynamic_checkout = true
+      endif
+    -%}
 
-      <product-form
-        class="product-form"
-        data-hide-errors="{{ gift_card_recipient_feature_active }}"
-        data-section-id="{{ section.id }}"
+    <product-form
+      class="product-form"
+      data-hide-errors="{{ gift_card_recipient_feature_active }}"
+      data-section-id="{{ section.id }}"
+    >
+      <form
+        id="product-form-{{ product.id }}"
+        class="form"
+        novalidate="novalidate"
+        action="/cart/add"
+        method="post"
+        enctype="multipart/form-data"
+        data-type="add-to-cart-form"
       >
-        <form
-          id="product-form-{{ product.id }}"
-          class="form"
-          novalidate="novalidate"
-          action="/cart/add"
-          method="post"
-          enctype="multipart/form-data"
-          data-type="add-to-cart-form"
-        >
-          {% comment %}
-            Renders product variant-picker
+        {% comment %}
+          Renders product variant-picker
 
-            Accepts:
-            - product: {Object} product object.
-            - block: {Object} passing the block information.
-            - product_form_id: {String} Id of the product form to which the variant picker is associated.
-            - update_url: {Boolean} whether or not to update url when changing variants. If false, the url isn't updated. Default: true (optional).
-            Usage:
-            {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
-          {% endcomment %}
-
+          Accepts:
+          - product: {Object} product object.
+          - block: {Object} passing the block information.
+          - product_form_id: {String} Id of the product form to which the variant picker is associated.
+          - update_url: {Boolean} whether or not to update url when changing variants. If false, the url isn't updated. Default: true (optional).
+          Usage:
+          {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+        {% endcomment %}
+        <div class="quick-block">
           {%- unless product.has_only_default_variant -%}
             <variant-selects
               id="variant-selects-{{ section.id }}"
@@ -133,8 +132,8 @@
               {{ form | payment_button }}
             {%- endif -%}
           </div>
-        </form>
-      </product-form>
-    {%- endif -%}
-  </div>
+        </div>
+      </form>
+    </product-form>
+  {%- endif -%}
 </div>
