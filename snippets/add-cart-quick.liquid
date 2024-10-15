@@ -33,15 +33,18 @@
             data-url="{{ product.url }}"
           >
             {%- for option in product.options_with_values -%}
-              <div class="product-form__input product-form__input--checkbox">
+              <div class="product-form__input product-form__input--radio">
                 <label class="form__label">{{ option.name }}</label>
                 {%- for value in option.values -%}
-                  <div class="checkbox">
+                  <div class="radio">
                     <input
-                      type="checkbox"
+                      type="radio"
                       id="Option-{{ section.id }}-{{ forloop.index0 }}-{{ forloop.index }}"
                       name="options[{{ option.name | escape }}]"
                       value="{{ value }}"
+                      {% if forloop.first %}
+                        checked
+                      {% endif %}
                     >
                     <label for="Option-{{ section.id }}-{{ forloop.index0 }}-{{ forloop.index }}">
                       {{ value }}
