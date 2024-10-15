@@ -49,9 +49,12 @@ body {
   color: #fff;
   cursor: pointer;
   overflow: hidden;
-  padding: 0px 100px;
+  padding: 0 100px;
   text-align: center;
   z-index: 2;
+  position: absolute;
+  top: 71%;
+  left: 15%;
 }
 .textquick h1 {
   font-family: timesnewroman;
