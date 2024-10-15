@@ -37,22 +37,20 @@
             {{ block.shopify_attributes }}
           >
             {%- for option in product.options_with_values -%}
-              <!--
-                {%- liquid
-                  assign swatch_count = option.values | map: 'swatch' | compact | size
-                  assign picker_type = 'button'
+              {%- liquid
+                assign swatch_count = option.values | map: 'swatch' | compact | size
+                assign picker_type = 'button'
 
-                  if swatch_count > 0 and block.settings.swatch_shape != 'none'
-                    if block.settings.picker_type == 'dropdown'
-                      assign picker_type = 'swatch_dropdown'
-                    else
-                      assign picker_type = 'swatch'
-                    endif
+                if swatch_count > 0 and block.settings.swatch_shape != 'none'
+                  if block.settings.picker_type == 'dropdown'
+                    assign picker_type = 'swatch_dropdown'
+                  else
+                    assign picker_type = 'swatch'
                   endif
-                -%}
-              -->
+                endif
+              -%}
               {%- if picker_type == 'button' -%}
-                <option class="js product-form__input product-form__input--pill">
+                <fieldset class="js product-form__input product-form__input--pill">
                   <legend class="form__label">{{ option.name }}</legend>
                   {% render 'product-variant-options',
                     product: product,
@@ -60,7 +58,7 @@
                     block: block,
                     picker_type: picker_type
                   %}
-                </option>
+                </fieldset>
               {%- endif -%}
             {%- endfor -%}
             <script type="application/json">
