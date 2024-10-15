@@ -177,7 +177,9 @@ img.secondary-image {
 .quick-add-btn:hover .quick-block {
   display: block;
 }
-
+.without-variant-selects {
+  position: absolute;
+}
 @media screen and (max-width: 1024px) {
   .item {
     width: 25%;
