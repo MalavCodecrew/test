@@ -173,6 +173,12 @@ img.secondary-image {
   color: black;
 }
 
+.quick-btns {
+  display: flex;
+  position: absolute;
+  top: 45%;
+  /* margin-left: 52px; */
+}
 @media screen and (max-width: 1024px) {
   .item {
     width: 25%;
