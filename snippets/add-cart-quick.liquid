@@ -59,7 +59,6 @@
                     picker_type: picker_type
                   %}
                 </fieldset>
-              {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
                 <option
                   value="{{ value | escape }}"
                   {% if option.selected_value == value %}
@@ -72,11 +71,14 @@
                     {% endif %}
                   {% endif %}
                 >
-                  {% if option_disabled -%}
-                    {{- 'products.product.value_unavailable' | t: option_value: value -}}
-                  {%- else -%}
-                    {{- value -}}
-                  {%- endif %}
+                  <legend class="form__label">{{ option.name }}</legend>
+
+                  {% render 'product-variant-options',
+                    product: product,
+                    option: option,
+                    block: block,
+                    picker_type: picker_type
+                  %}
                 </option>
               {%- endif -%}
             {%- endfor -%}
