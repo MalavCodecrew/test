@@ -656,22 +656,22 @@ $(document).ready(function() {
 
 // quick-shop--------------------------------------------------------------->
 $(document).ready(function() {
-  // Delay the check to ensure the DOM is fully rendered
   setTimeout(function() {
-    const $quickBlock = $('#quick-block');
-    
-    // Check if there are any variant-selects elements in the DOM
-    const $variantSelects = $('variant-selects, [id^="variant-selects-"]');
-    
-    // Apply logic based on the presence of ANY variant-selects elements
-    if ($variantSelects.length > 0) {
-      // If any variant-selects exist, apply 'with-variant-selects' styles
-      $quickBlock.addClass('with-variant-selects').removeClass('without-variant-selects');
-    } else {
-      // If no variant-selects exist, apply 'without-variant-selects' styles
-      $quickBlock.addClass('without-variant-selects').removeClass('with-variant-selects');
-    }
-  }, 1000); // 1 second delay to ensure rendering
+    $('.quick-block').each(function() {
+      const $quickBlock = $(this);
+      
+      // Find the variant-selects within this quick-block's context
+      const $variantSelects = $quickBlock.find('variant-selects, [id^="variant-selects-"]');
+      
+      if ($variantSelects.length > 0) {
+        // Apply 'with-variant-selects' if variant-selects are found
+        $quickBlock.addClass('with-variant-selects').removeClass('without-variant-selects');
+      } else {
+        // Apply 'without-variant-selects' if no variant-selects are found
+        $quickBlock.addClass('without-variant-selects').removeClass('with-variant-selects');
+      }
+    });
+  }, 1000); // 1 second delay
 });
 
 
