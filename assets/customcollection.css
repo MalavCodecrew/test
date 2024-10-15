@@ -182,7 +182,7 @@ img.secondary-image {
   margin-right: 40px;
 }
 .quick-btns button:hover .add-quick {
-  --border-opacity: 0 !important;
+  --border-opacity: transparent !important;
 }
 @media screen and (max-width: 1024px) {
   .item {
