@@ -62,18 +62,19 @@
                       {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
                     </span>
                   {%- endif -%}
-
-                  <select
-                    id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                    class="select__select"
-                    name="options[{{ option.name | escape }}]"
-                    form="{{ product_form_id }}"
-                  >
-                    {% for i in option.values %}
-                      <option>{{ i }}</option>
-                    {% endfor %}
-                  </select>
-                  {% render 'icon-caret' %}
+                  <div class="var-dropdwn">
+                    <select
+                      id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                      class="select__select"
+                      name="options[{{ option.name | escape }}]"
+                      form="{{ product_form_id }}"
+                    >
+                      {% for i in option.values %}
+                        <option>{{ i }}</option>
+                      {% endfor %}
+                    </select>
+                    {% render 'icon-caret' %}
+                  </div>
                 </div>
               </div>
             {%- endfor -%}
