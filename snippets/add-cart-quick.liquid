@@ -59,7 +59,7 @@
                     picker_type: picker_type
                   %}
                 </fieldset>
-              {% else %}
+              {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
                 <option
                   value="{{ value | escape }}"
                   {% if option.selected_value == value %}
@@ -72,14 +72,11 @@
                     {% endif %}
                   {% endif %}
                 >
-                  <legend class="form__label">{{ option.name }}</legend>
-
-                  {% render 'product-variant-options',
-                    product: product,
-                    option: option,
-                    block: block,
-                    picker_type: picker_type
-                  %}
+                  {% if option_disabled -%}
+                    {{- 'products.product.value_unavailable' | t: option_value: value -}}
+                  {%- else -%}
+                    {{- value -}}
+                  {%- endif %}
                 </option>
               {%- endif -%}
             {%- endfor -%}
@@ -88,6 +85,19 @@
             </script>
           </quick-info-variant-selects>
         {%- endunless -%}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+            disabled
+          {% endif %}
+          class="product-variant-id"
+        >
+
+        {%- if gift_card_recipient_feature_active -%}
+          {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+        {%- endif -%}
 
         <div class="product-form__buttons">
           {%- liquid
@@ -103,18 +113,12 @@
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
-
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-              disabled
-            {% endif %}
+            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} add-quick"
           >
             <span>
-              {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                {{ 'products.product.sold_out' | t }}
-              {%- else -%}
-                {{ 'products.product.add_to_cart' | t }}
-              {%- endif -%}
+              <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+                <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </span>
 
             {%- render 'loading-spinner' -%}
@@ -125,18 +129,5 @@
         </div>
       </form>
     </product-form>
-  {%- else -%}
-    <div class="product-form">
-      <div class="product-form__buttons form">
-        <button
-          type="submit"
-          name="add"
-          class="product-form__submit button button--full-width button--primary"
-          disabled
-        >
-          {{ 'products.product.sold_out' | t }}
-        </button>
-      </div>
-    </div>
   {%- endif -%}
 </div>
