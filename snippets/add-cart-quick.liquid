@@ -108,6 +108,9 @@
               assign quantity_rule_soldout = true
             endif
           -%}
+          <div class="quick-view-btn">
+            <a class="button" id="{{ product.id }}">Quick View</a>
+          </div>
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
