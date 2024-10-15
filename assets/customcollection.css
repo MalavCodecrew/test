@@ -163,7 +163,7 @@ img.secondary-image {
 }
 .collection-grid .quick-add-btn:hover .add-quick {
   display: block !important;
-  min-width: 0;
+  min-width: 0 !important;
 }
 
 .collection-text a {
