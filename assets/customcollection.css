@@ -166,7 +166,6 @@ img.secondary-image {
   display: block !important;
   min-width: 0 !important;
   padding: 0 !important;
-  --border-opacity: 0 !important;
 }
 
 .collection-text a {
@@ -181,6 +180,9 @@ img.secondary-image {
 }
 .quick-btns svg {
   margin-right: 40px;
+}
+.quick-btns button {
+  --border-opacity: 0 !important;
 }
 @media screen and (max-width: 1024px) {
   .item {
