@@ -156,10 +156,6 @@ img.secondary-image {
   opacity: 1;
 }
 
-.quick-view-btn svg {
-  position: inherit;
-}
-
 .add-quick {
   background-color: transparent !important;
   display: block;
@@ -168,6 +164,14 @@ img.secondary-image {
 .collection-text a {
   text-decoration: none;
   color: black;
+}
+.quick-block {
+  position: absolute;
+  top: 50%;
+  background: white;
+  margin-left: 87px;
+  width: 15%;
+  padding: 9px 19px;
 }
 
 @media screen and (max-width: 1024px) {
