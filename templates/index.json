@@ -1,18 +1,18 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "bg_image_with_button_DMpwGM": {
       "type": "bg-imageWithButton",
       "settings": {
-        "image_with_text_image": "shopify:\/\/shop_images\/Aesthetic_Brown_Fashion_Collection_Blog_Banner_2.png",
+        "image_with_text_image": "shopify://shop_images/Aesthetic_Brown_Fashion_Collection_Blog_Banner_2.png",
         "image_overlay_opacity": 0,
         "desktop_image_width": "medium",
         "title": "NEW 19.99$ introductory price",
@@ -20,7 +20,7 @@
         "title3": "On the go",
         "textarea": "No mess, no stress with our NEW pre glued lash range.",
         "textarea2": "Just peel, place and pinch for 1-4 day lasting lashes.",
-        "button_link": "shopify:\/\/collections\/all",
+        "button_link": "shopify://collections/all",
         "button_text": "SHOP NOW"
       }
     },
@@ -29,15 +29,15 @@
       "settings": {
         "title": "Pre glued  : learn more",
         "Description": "Click to learn more about our latest lash style. The pre-glued. No bond, no seal and no remover needed. Just place, pinch and go!",
-        "button_link1": "shopify:\/\/collections\/ilash",
+        "button_link1": "shopify://collections/ilash",
         "button_text1": "SHOW ME MORE"
       }
     },
     "img_button_Phhx6a": {
       "type": "img-button",
       "settings": {
-        "image_with_text": "shopify:\/\/shop_images\/image_fb1e428a-3a96-435a-ace3-009745710bd4.png",
-        "btn_link": "shopify:\/\/pages\/creators",
+        "image_with_text": "shopify://shop_images/image_fb1e428a-3a96-435a-ace3-009745710bd4.png",
+        "btn_link": "shopify://pages/creators",
         "btn_text": "FIND YOUR PERFECT ILASH"
       }
     },
@@ -56,7 +56,7 @@
         "text_4cxL99": {
           "type": "text",
           "settings": {
-            "image_with_text_ilash": "shopify:\/\/shop_images\/step1.png",
+            "image_with_text_ilash": "shopify://shop_images/step1.png",
             "ilashuk-image-title": "STEP 1",
             "ilashuk-name": "CURL LASHES & APPLY BOND"
           }
@@ -64,7 +64,7 @@
         "text_4gBbyz": {
           "type": "text",
           "settings": {
-            "image_with_text_ilash": "shopify:\/\/shop_images\/step2.png",
+            "image_with_text_ilash": "shopify://shop_images/step2.png",
             "ilashuk-image-title": "STEP 2",
             "ilashuk-name": "APPLY SEGMENTS"
           }
@@ -72,7 +72,7 @@
         "text_dpDA9n": {
           "type": "text",
           "settings": {
-            "image_with_text_ilash": "shopify:\/\/shop_images\/step3.png",
+            "image_with_text_ilash": "shopify://shop_images/step3.png",
             "ilashuk-image-title": "STEP 3",
             "ilashuk-name": "SEAL YOUR LASHES"
           }
@@ -80,7 +80,7 @@
         "text_iUDjLa": {
           "type": "text",
           "settings": {
-            "image_with_text_ilash": "shopify:\/\/shop_images\/nstep4.png",
+            "image_with_text_ilash": "shopify://shop_images/nstep4.png",
             "ilashuk-image-title": "STEP 4",
             "ilashuk-name": "PINCH TOGETHER"
           }
@@ -102,18 +102,18 @@
         "text_wnWF7H": {
           "type": "text",
           "settings": {
-            "image_with_acc": "shopify:\/\/shop_images\/acc-1_43a24742-1b58-4c9f-a05f-5f61f3482a54.png",
+            "image_with_acc": "shopify://shop_images/acc-1_43a24742-1b58-4c9f-a05f-5f61f3482a54.png",
             "acc-title": "ALL LASHES",
-            "btn_link": "shopify:\/\/pages\/lashes",
+            "btn_link": "shopify://pages/lashes",
             "btn_text": "SHOP HERE"
           }
         },
         "text_YXLGWd": {
           "type": "text",
           "settings": {
-            "image_with_acc": "shopify:\/\/shop_images\/acc-2_9b8ec248-23ef-4531-b5ea-a87b667ab72c.png",
+            "image_with_acc": "shopify://shop_images/acc-2_9b8ec248-23ef-4531-b5ea-a87b667ab72c.png",
             "acc-title": "ACCESSORIES",
-            "btn_link": "shopify:\/\/pages\/glue-tools",
+            "btn_link": "shopify://pages/glue-tools",
             "btn_text": "SHOP HERE"
           }
         }
@@ -129,21 +129,22 @@
       "type": "btn-img-list",
       "settings": {
         "ilashuk-title": "Pre-cut lash segments",
-        "btn_link": "shopify:\/\/pages\/home1",
+        "btn_link": "shopify://pages/home1",
         "btn_text": "VIEW ALL"
       }
     },
     "customcollection_tpcgTB": {
       "type": "customcollection",
       "settings": {
-        "collection": "ilash"
+        "collection": "ilash",
+        "quickview": true
       }
     },
     "compare_images_UnfiQm": {
       "type": "compare-images",
       "settings": {
-        "compare_image": "shopify:\/\/shop_images\/lash2_ba573eb8-35f9-44b1-8513-028f48e62b8e.webp",
-        "compare_image2": "shopify:\/\/shop_images\/lassss.webp"
+        "compare_image": "shopify://shop_images/lash2_ba573eb8-35f9-44b1-8513-028f48e62b8e.webp",
+        "compare_image2": "shopify://shop_images/lassss.webp"
       }
     },
     "subscribe_save_KQxpU3": {
@@ -151,18 +152,18 @@
       "settings": {
         "title": "SUBSCRIBE & SAVE",
         "Description": "Love our lashes? Why not subscribe to our lash subscription for automatic lash deliveries, delivered straight to your door.",
-        "sub_button_link": "shopify:\/\/pages\/accessories",
+        "sub_button_link": "shopify://pages/accessories",
         "sub_button": "SUBSCRIBE HERE",
-        "image_1": "shopify:\/\/shop_images\/Subscription.jpg",
+        "image_1": "shopify://shop_images/Subscription.jpg",
         "discount-label": "Save 30%",
-        "image_2": "shopify:\/\/shop_images\/IMG-9482.jpg"
+        "image_2": "shopify://shop_images/IMG-9482.jpg"
       }
     },
     "scroll_video_DP6Ltj": {
       "type": "scroll-video",
       "settings": {
         "scroll-text": "DIY LASH EXTENSIONS IN 5 MINUTES  DIY LASH EXTENSIONS IN 5 MINUTES  DIY LASH EXTENSIONS IN 5 MINUTES",
-        "video": "shopify:\/\/files\/videos\/video.mp4"
+        "video": "shopify://files/videos/video.mp4"
       }
     },
     "reviews_WbATDB": {
@@ -205,7 +206,7 @@
             "card-title": "LOVE THEM!!",
             "card-reviews": "Absolutely beautiful lashes!! This is my second set of lashes that I have purchased. Wouldn’t use any other brand!!",
             "name": "Zoe",
-            "date_picker": "5\/12\/2023"
+            "date_picker": "5/12/2023"
           }
         },
         "text_LeCtXi": {
@@ -215,7 +216,7 @@
             "card-title": "Better than extensions",
             "card-reviews": "I LOVE these lashes. I have tried professional lash extensions a few times but have never been happy with the results. These lashes are amazing, long and wispy.",
             "name": "Emily.O",
-            "date_picker": "02\/02\/2024"
+            "date_picker": "02/02/2024"
           }
         }
       },
