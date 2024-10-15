@@ -166,6 +166,7 @@ img.secondary-image {
   display: block !important;
   min-width: 0 !important;
   padding: 0 !important;
+  --border-opacity: 0 !important;
 }
 
 .collection-text a {
