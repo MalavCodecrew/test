@@ -40,13 +40,13 @@
             <div class="quick-view-btn">
               <a class="button" id="{{ product.id }}">Quick View</a>
             </div>
-            {%- render 'add-cart-quick',
-              block: block,
-              product: product,
-              product_form_id: product_form_id,
-              section_id: section.id
-            -%}
           </div>
+          {%- render 'add-cart-quick',
+            block: block,
+            product: product,
+            product_form_id: product_form_id,
+            section_id: section.id
+          -%}
           <div class="collection-text">
             <a href="{{ product.url }}">
               {% if product.title != blank %}
