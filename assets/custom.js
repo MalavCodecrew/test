@@ -655,23 +655,21 @@ $(document).ready(function() {
 
 
 // quick-shop--------------------------------------------------------------->
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
+  // Delay the check to ensure the DOM is fully rendered
   setTimeout(function() {
-    const quickBlock = document.getElementById('quick-block');
-    const variantSelects = document.querySelector('variant-selects, [id^="variant-selects-"]');
+    const $quickBlock = $('#quick-block');
     
-    console.log(variantSelects); // Check if this is null or if it's found
+    // Try to find the variant-selects element
+    const $variantSelects = $('variant-selects, [id^="variant-selects-"]');
     
-    if (variantSelects) {
-      console.log("Variant selects found.");
-      quickBlock.classList.add('with-variant-selects');
-      quickBlock.classList.remove('without-variant-selects');
+    // Check if the variant-selects element exists and toggle classes accordingly
+    if ($variantSelects.length) {
+      $quickBlock.addClass('with-variant-selects').removeClass('without-variant-selects');
     } else {
-      console.log("Variant selects NOT found.");
-      quickBlock.classList.add('without-variant-selects');
-      quickBlock.classList.remove('with-variant-selects');
+      $quickBlock.addClass('without-variant-selects').removeClass('with-variant-selects');
     }
-  }, 1000); // 1 second delay to wait for rendering
+  }, 1000); // 1 second delay to ensure rendering
 });
 
 
