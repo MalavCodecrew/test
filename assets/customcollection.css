@@ -176,7 +176,9 @@ img.secondary-image {
   display: flex;
   position: absolute;
   top: 45%;
-  /* margin-left: 52px; */
+}
+.quick-btns svg {
+  margin-right: 40px;
 }
 @media screen and (max-width: 1024px) {
   .item {
