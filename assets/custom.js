@@ -660,13 +660,15 @@ $(document).ready(function() {
   setTimeout(function() {
     const $quickBlock = $('#quick-block');
     
-    // Try to find the variant-selects element
+    // Check if there are any variant-selects elements in the DOM
     const $variantSelects = $('variant-selects, [id^="variant-selects-"]');
     
-    // Check if the variant-selects element exists and toggle classes accordingly
-    if ($variantSelects.length) {
+    // Apply logic based on the presence of ANY variant-selects elements
+    if ($variantSelects.length > 0) {
+      // If any variant-selects exist, apply 'with-variant-selects' styles
       $quickBlock.addClass('with-variant-selects').removeClass('without-variant-selects');
     } else {
+      // If no variant-selects exist, apply 'without-variant-selects' styles
       $quickBlock.addClass('without-variant-selects').removeClass('with-variant-selects');
     }
   }, 1000); // 1 second delay to ensure rendering
