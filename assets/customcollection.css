@@ -168,7 +168,7 @@ img.secondary-image {
   margin-left: 313px;
   display: none;
 }
-.collection-grid .image:hover .add-quick {
+.collection-grid .quick-add-btn:hover .add-quick {
   display: block !important;
   --border-offset: 0;
 }
