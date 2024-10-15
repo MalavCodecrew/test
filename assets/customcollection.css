@@ -165,7 +165,7 @@ img.secondary-image {
   text-decoration: none;
   color: black;
 }
-.quick-block .quickhide {
+.quick-block {
   position: absolute;
   top: 30%;
   background: white;
