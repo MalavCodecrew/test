@@ -30,8 +30,6 @@ body.noscroll {
 }
 
 .quick-view-btn {
-  /* position: absolute; */
-  bottom: 7%;
   width: 100%;
   display: none;
 }
