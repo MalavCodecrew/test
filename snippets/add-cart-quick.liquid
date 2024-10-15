@@ -62,6 +62,22 @@
                   </fieldset>
                 {%- endif -%}
               -->
+              <option
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}
+                  selected="selected"
+                {% endif %}
+                {% if swatch_value and picker_type == 'swatch_dropdown' %}
+                  data-option-swatch-value="{{ swatch_value }}"
+                  {% if swatch_focal_point %}
+                    data-option-swatch-focal-point="{{ swatch_focal_point }}"
+                  {% endif %}
+                {% endif %}
+              >
+                <legend class="form__label">{{ option.name }}</legend>
+
+                {% render 'product-variant-options', product: product, option: option, block: block %}
+              </option>
             {%- endfor -%}
             <script type="application/json">
               {{ product.variants | json }}
