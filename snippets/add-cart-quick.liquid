@@ -62,13 +62,14 @@
                       {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
                     </span>
                   {%- endif -%}
+
                   <select
                     id="Option-{{ section.id }}-{{ forloop.index0 }}"
                     class="select__select"
                     name="options[{{ option.name | escape }}]"
                     form="{{ product_form_id }}"
                   >
-                    {{ option.value }}
+                    {{ option.values }}
                   </select>
                   {% render 'icon-caret' %}
                 </div>
