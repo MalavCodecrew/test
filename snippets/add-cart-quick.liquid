@@ -53,6 +53,9 @@
                 <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
                   {{ option.name }}
                 </label>
+                {% for i in option.values %}
+                  {{ i }}
+                {% endfor %}
                 <div class="select">
                   {%- if picker_type == 'swatch_dropdown' -%}
                     <span
