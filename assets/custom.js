@@ -657,8 +657,11 @@ $(document).ready(function() {
 // quick-shop--------------------------------------------------------------->
 document.addEventListener('DOMContentLoaded', function() {
   const quickBlock = document.getElementById('quick-block');
-  const variantSelects = document.querySelector('variant-selects');
+  
+  // Try to find the variant-selects element
+  const variantSelects = document.querySelector('variant-selects, [id^="variant-selects-"]'); // Adjust if variant-selects uses a specific id pattern
 
+  // Check if the element exists and toggle classes accordingly
   if (variantSelects) {
     quickBlock.classList.add('with-variant-selects');
     quickBlock.classList.remove('without-variant-selects');
@@ -667,3 +670,4 @@ document.addEventListener('DOMContentLoaded', function() {
     quickBlock.classList.remove('with-variant-selects');
   }
 });
+
