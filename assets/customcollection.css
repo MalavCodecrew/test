@@ -177,15 +177,6 @@ img.secondary-image {
   color: black;
 }
 
-.quick-btns {
-  display: flex;
-  position: absolute;
-  top: 57%;
-}
-.quick-btns svg {
-  margin-right: 40px;
-}
-
 @media screen and (max-width: 1024px) {
   .item {
     width: 25%;
