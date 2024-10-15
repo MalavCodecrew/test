@@ -179,6 +179,12 @@ img.secondary-image {
 }
 .without-variant-selects {
   position: absolute;
+  top: 30%;
+  background: #fff;
+  margin-left: 87px;
+  width: 15%;
+  padding: 9px 19px;
+  display: none;
 }
 @media screen and (max-width: 1024px) {
   .item {
