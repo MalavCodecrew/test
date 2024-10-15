@@ -26,56 +26,28 @@
         enctype="multipart/form-data"
         data-type="add-to-cart-form"
       >
-        {% comment %}
-          Renders product variant-picker
-
-          Accepts:
-          - product: {Object} product object.
-          - block: {Object} passing the block information.
-          - product_form_id: {String} Id of the product form to which the variant picker is associated.
-          - update_url: {Boolean} whether or not to update url when changing variants. If false, the url isn't updated. Default: true (optional).
-          Usage:
-          {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
-        {% endcomment %}
-
         {%- unless product.has_only_default_variant -%}
           <variant-selects
             id="variant-selects-{{ section.id }}"
             data-section="{{ section.id }}"
             data-url="{{ product.url }}"
-            {% if update_url == false %}
-              data-update-url="false"
-            {% endif %}
-            {{ block.shopify_attributes }}
           >
             {%- for option in product.options_with_values -%}
-              <div class="product-form__input product-form__input--dropdown">
-                <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-                  {{ option.name }}
-                </label>
-                <div class="select">
-                  {%- if picker_type == 'swatch_dropdown' -%}
-                    <span
-                      data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
-                      class="dropdown-swatch"
-                    >
-                      {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
-                    </span>
-                  {%- endif -%}
-                  <div class="var-dropdwn">
-                    <select
-                      id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                      class="select__select"
+              <div class="product-form__input product-form__input--checkbox">
+                <label class="form__label">{{ option.name }}</label>
+                {%- for value in option.values -%}
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="Option-{{ section.id }}-{{ forloop.index0 }}-{{ forloop.index }}"
                       name="options[{{ option.name | escape }}]"
-                      form="{{ product_form_id }}"
+                      value="{{ value }}"
                     >
-                      {% for i in option.values %}
-                        <option>{{ i }}</option>
-                      {% endfor %}
-                    </select>
-                    {% render 'icon-caret' %}
+                    <label for="Option-{{ section.id }}-{{ forloop.index0 }}-{{ forloop.index }}">
+                      {{ value }}
+                    </label>
                   </div>
-                </div>
+                {%- endfor -%}
               </div>
             {%- endfor -%}
             <script type="application/json">
@@ -99,15 +71,6 @@
         {%- endif -%}
 
         <div class="product-form__buttons">
-          {%- liquid
-            assign check_against_inventory = true
-            if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
-              assign check_against_inventory = false
-            endif
-            if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
-              assign quantity_rule_soldout = true
-            endif
-          -%}
           <div class="quick-btns">
             <div class="quick-view-btn">
               <a class="button" id="{{ product.id }}">Quick View</a>
