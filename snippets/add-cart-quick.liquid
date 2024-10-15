@@ -1,36 +1,20 @@
 <div {{ block.shopify_attributes }}>
   {%- if product != blank -%}
-    {%- liquid
-      assign gift_card_recipient_feature_active = false
-      if block.settings.show_gift_card_recipient and product.gift_card?
-        assign gift_card_recipient_feature_active = true
-      endif
-
-      assign show_dynamic_checkout = false
-      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
-        assign show_dynamic_checkout = true
-      endif
-    -%}
-
     <product-form
       class="product-form"
-      data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
     >
       <form
         id="product-form-{{ product.id }}"
         class="form"
-        novalidate="novalidate"
         action="/cart/add"
         method="post"
         enctype="multipart/form-data"
-        data-type="add-to-cart-form"
       >
         {%- unless product.has_only_default_variant -%}
           <variant-selects
             id="variant-selects-{{ section.id }}"
             data-section="{{ section.id }}"
-            data-url="{{ product.url }}"
           >
             {%- for option in product.options_with_values -%}
               <div class="product-form__input product-form__input--radio">
@@ -53,9 +37,6 @@
                 {%- endfor -%}
               </div>
             {%- endfor -%}
-            <script type="application/json">
-              {{ product.variants | json }}
-            </script>
           </variant-selects>
         {%- endunless -%}
 
@@ -63,39 +44,19 @@
           type="hidden"
           name="id"
           value="{{ product.selected_or_first_available_variant.id }}"
-          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-            disabled
-          {% endif %}
           class="product-variant-id"
         >
 
-        {%- if gift_card_recipient_feature_active -%}
-          {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
-        {%- endif -%}
-
+        <!-- Add to Cart Button -->
         <div class="product-form__buttons">
-          <div class="quick-btns">
-            <div class="quick-view-btn">
-              <a class="button" id="{{ product.id }}">Quick View</a>
-            </div>
-            <button
-              id="ProductSubmitButton-{{ section_id }}"
-              type="submit"
-              name="add"
-              class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} add-quick"
-            >
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-
-              {%- render 'loading-spinner' -%}
-            </button>
-          </div>
-          {%- if show_dynamic_checkout -%}
-            {{ form | payment_button }}
-          {%- endif -%}
+          <button
+            id="ProductSubmitButton-{{ section_id }}"
+            type="submit"
+            name="add"
+            class="product-form__submit button button--full-width button--primary"
+          >
+            Add to Cart
+          </button>
         </div>
       </form>
     </product-form>
