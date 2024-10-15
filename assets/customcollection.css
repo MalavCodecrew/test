@@ -30,12 +30,12 @@ body.noscroll {
 }
 
 .quick-view-btn {
-  position: absolute;
+  /* position: absolute; */
   bottom: 7%;
   width: 100%;
   display: none;
 }
-.collection-grid .image:hover .quick-view-btn {
+.collection-grid .quick-add-btn:hover .quick-view-btn {
   display: block;
 }
 body {
