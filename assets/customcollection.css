@@ -166,6 +166,7 @@ img.secondary-image {
   width: auto;
   background-color: transparent !important;
   margin-left: 313px;
+  display: none;
 }
 .collection-grid .image:hover .add-quick {
   display: block;
