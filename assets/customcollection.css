@@ -159,13 +159,8 @@ img.secondary-image {
 }
 
 .add-quick {
-  position: absolute;
-  top: 49%;
-  min-width: auto;
   --border-offset: 0;
-  width: auto;
   background-color: transparent !important;
-  margin-left: 313px;
   display: none;
 }
 .collection-grid .quick-add-btn:hover .add-quick {
