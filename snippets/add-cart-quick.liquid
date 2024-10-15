@@ -53,9 +53,6 @@
                 <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
                   {{ option.name }}
                 </label>
-                {% for i in option.values %}
-                  {{ i }}
-                {% endfor %}
                 <div class="select">
                   {%- if picker_type == 'swatch_dropdown' -%}
                     <span
@@ -65,7 +62,9 @@
                       {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
                     </span>
                   {%- endif -%}
-
+                  {% for i in option.values %}
+                    {{ i }}
+                  {% endfor %}
                   <select
                     id="Option-{{ section.id }}-{{ forloop.index0 }}"
                     class="select__select"
