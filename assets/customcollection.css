@@ -183,6 +183,11 @@ img.secondary-image {
   margin-right: 40px;
 }
 
+.quick-variants {
+  position: absolute;
+  z-index: 5;
+  top: 1%;
+}
 @media screen and (max-width: 1024px) {
   .item {
     width: 25%;
