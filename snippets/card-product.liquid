@@ -42,7 +42,7 @@
 
     <div class="ProductItem__Sizes">
       {%- for variant in card_product.variants -%}
-        {%- if variant.available or variant.title != 'Default Title' -%}
+        {%- if variant.available and variant.title != 'Default Title' -%}
           <a href="{{ variant.url }}" class="Prod-title">
             <span class="availabe-variant">{{ variant.title }}</span>
           </a>
