@@ -51,16 +51,17 @@
                   endif
                 -%}
               -->
-
-              <option class="js product-form__input product-form__input--pill">
-                <legend class="form__label">{{ option.name }}</legend>
-                {% render 'product-variant-options',
-                  product: product,
-                  option: option,
-                  block: block,
-                  picker_type: picker_type
-                %}
-              </option>
+              {%- if picker_type == 'button' -%}
+                <option class="js product-form__input product-form__input--pill">
+                  <legend class="form__label">{{ option.name }}</legend>
+                  {% render 'product-variant-options',
+                    product: product,
+                    option: option,
+                    block: block,
+                    picker_type: picker_type
+                  %}
+                </option>
+              {%- endif -%}
             {%- endfor -%}
             <script type="application/json">
               {{ product.variants | json }}
