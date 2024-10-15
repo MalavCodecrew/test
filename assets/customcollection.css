@@ -177,7 +177,7 @@ img.secondary-image {
 .quick-btns {
   display: flex;
   position: absolute;
-  top: 45%;
+  top: 57%;
 }
 .quick-btns svg {
   margin-right: 40px;
