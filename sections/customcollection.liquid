@@ -38,6 +38,8 @@
               {% if product.media.size > 1 %}
                 <img src="{{ product.media[1] | img_url: '' }}" class="secondary-image">
               {% endif %}
+            </div>
+            <div class="quick-variants">
               {%- for variant in product.variants -%}
                 {%- if variant.available -%}
                   <a href="{{ variant.url }}" class="Prod-title">
