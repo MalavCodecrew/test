@@ -38,6 +38,11 @@
               {% if product.media.size > 1 %}
                 <img src="{{ product.media[1] | img_url: '' }}" class="secondary-image">
               {% endif %}
+              {% if section.settings.quickview %}
+                <div class="quick-view-btn">
+                  <a class="button" id="{{ product.id }}">Quick View</a>
+                </div>
+              {% endif %}
             </div>
             {%- render 'add-cart-quick',
               block: block,
