@@ -49,8 +49,7 @@
                   endif
                 endif
               -%}
-              <!--
-                {%- if picker_type == 'button' -%}
+              {%- if picker_type == 'button' -%}
                 <fieldset class="js product-form__input product-form__input--pill">
                   <legend class="form__label">{{ option.name }}</legend>
                   {% render 'product-variant-options',
@@ -59,29 +58,8 @@
                     block: block,
                     picker_type: picker_type
                   %}
-                </fieldset>   {%- endif -%}
-              -->
-              <option
-                value="{{ value | escape }}"
-                {% if option.selected_value == value %}
-                  selected="selected"
-                {% endif %}
-                {% if swatch_value and picker_type == 'swatch_dropdown' %}
-                  data-option-swatch-value="{{ swatch_value }}"
-                  {% if swatch_focal_point %}
-                    data-option-swatch-focal-point="{{ swatch_focal_point }}"
-                  {% endif %}
-                {% endif %}
-              >
-                <legend class="form__label">{{ option.name }}</legend>
-
-                {% render 'product-variant-options',
-                  product: product,
-                  option: option,
-                  block: block,
-                  picker_type: picker_type
-                %}
-              </option>
+                </fieldset>
+              {%- endif -%}
             {%- endfor -%}
             <script type="application/json">
               {{ product.variants | json }}
