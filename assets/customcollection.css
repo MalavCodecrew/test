@@ -169,7 +169,7 @@ img.secondary-image {
   display: none;
 }
 .collection-grid .image:hover .add-quick {
-  display: block;
+  display: block !important;
   --border-offset: 0;
 }
 
