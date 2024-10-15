@@ -29,13 +29,6 @@ body.noscroll {
   line-height: normal;
 }
 
-.quick-view-btn {
-  width: 100%;
-  display: none;
-}
-.collection-grid .quick-add-btn:hover .quick-view-btn {
-  display: block;
-}
 body {
   transition: overflow 0.3s;
 }
@@ -43,6 +36,13 @@ body {
   overflow: hidden;
 }
 
+.quick-view-btn {
+  width: 100%;
+  display: none;
+}
+.collection-grid .quick-add-btn:hover .quick-view-btn {
+  display: block;
+}
 .quick-view-btn .button {
   background-color: #ded2c6;
   color: #fff;
