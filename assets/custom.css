@@ -780,7 +780,7 @@ td.cart-item__details {
 .count-down-timer {
   position: relative;
   z-index: 2;
-  border: solid white 5px;
+  border: solid white 1px;
   width: 25%;
   left: 40%;
   border-radius: 50px;
