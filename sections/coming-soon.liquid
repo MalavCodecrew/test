@@ -1,6 +1,34 @@
 {% schema %}
 {
   "name": "Coming-Soon",
-  "settings": []
+  "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+
+       {
+        "type": "text",
+        "id": "Description",
+        "label": "Description"
+      },
+     {
+     "type": "url",
+      "id": "signup_link",
+      "label": "Button link"
+   },
+   {
+     "type": "text",
+      "id": "signup_text",
+      "label": "Button link",
+     "default":"SUBSCRIBE"
+   }
+  ],
+  "presets": [
+    {
+      "name": "Coming-Soon"
+    }
+  ]
 }
 {% endschema %}
