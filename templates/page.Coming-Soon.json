@@ -19,15 +19,15 @@
     "count_down_timer_4i8wr8": {
       "type": "count-down-timer",
       "settings": {
-        "bg_color": "#ffffff",
+        "bg_color": "#000000",
         "timer_section_title": "Sign up to Get a Surprise!",
         "timer_section_subtitle": "A New and Exciting Collection is Coming Up!",
-        "title_text_color": "#000000",
-        "subtitle_text_color": "#000000",
+        "title_text_color": "#ffffff",
+        "subtitle_text_color": "#ffffff",
         "timer_title_size": 24,
         "timer_subtitle_size": 16,
         "date_picker": "01/01/2025",
-        "timer_color": "#000000",
+        "timer_color": "#ffffff",
         "timer_section_btn_link": "",
         "timer_section_btn_text": "",
         "cta_bg_color": "#4770db",
@@ -47,7 +47,7 @@
         "paragraph_iHmttU": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>Be the first to Grab the unique Products</p>",
+            "text": "<p>Be the first to Grab the unique Products.</p>",
             "text_style": "body"
           }
         },
