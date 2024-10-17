@@ -1,7 +1,9 @@
 <div class="coming-soon-title">
   <h1>{{ section.settings.title }}</h1>
 </div>
-{{ customer.tags }}
+{% if customer.tags contains 'Shop' %}
+  hello
+{% endif %}
 {% schema %}
 {
   "name": "Coming-Soon",
