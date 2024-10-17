@@ -42,11 +42,19 @@
       "type": "custom-related-collection",
       "settings": {
       }
+    },
+    "coming_soon_XjgLLR": {
+      "type": "coming-soon",
+      "settings": {
+        "title": "",
+        "collection": ""
+      }
     }
   },
   "order": [
     "banner",
     "product-grid",
-    "custom_related_collection_zewVKn"
+    "custom_related_collection_zewVKn",
+    "coming_soon_XjgLLR"
   ]
-}   
+}
