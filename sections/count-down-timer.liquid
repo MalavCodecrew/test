@@ -105,55 +105,56 @@
     {{ 'image' | placeholder_svg_tag }}
   {% endif %}
 </div>
-{% unless timer_section_title == blank or timer_section_subtitle == blank %}
-  <div style="margin: 10px 0">
-    <h2 class="timer-title" style="font-size: {{ timer_title_size }}px">{{ timer_section_title }}</h2>
-    <p class="timer-subtitle" style="font-size: {{ timer_subtitle_size }}px">{{ timer_section_subtitle }}</p>
-  </div>
-{% endunless %}
+<div class="count-down-timer">
+  {% unless timer_section_title == blank or timer_section_subtitle == blank %}
+    <div style="margin: 10px 0">
+      <h2 class="timer-title" style="font-size: {{ timer_title_size }}px">{{ timer_section_title }}</h2>
+      <p class="timer-subtitle" style="font-size: {{ timer_subtitle_size }}px">{{ timer_section_subtitle }}</p>
+    </div>
+  {% endunless %}
 
-{% unless date_picker_time == blank %}
-  <countdown-timer schema-time="{{ date_picker_time }}">
-    <div class="timer" style="visibility: hidden;">
-      <div class="timer-display">
-        <div class="timer-block">
-          <span class="timer-block__num js-timer-days">00</span>
-          <span class="timer-block__unit">Days</span>
-        </div>
+  {% unless date_picker_time == blank %}
+    <countdown-timer schema-time="{{ date_picker_time }}">
+      <div class="timer" style="visibility: hidden;">
+        <div class="timer-display">
+          <div class="timer-block">
+            <span class="timer-block__num js-timer-days">00</span>
+            <span class="timer-block__unit">Days</span>
+          </div>
 
-        <div class="colon">:</div>
+          <div class="colon">:</div>
 
-        <div class="timer-block">
-          <span class="timer-block__num js-timer-hours">00</span>
-          <span class="timer-block__unit">Hrs</span>
-        </div>
+          <div class="timer-block">
+            <span class="timer-block__num js-timer-hours">00</span>
+            <span class="timer-block__unit">Hrs</span>
+          </div>
 
-        <div class="colon">:</div>
+          <div class="colon">:</div>
 
-        <div class="timer-block">
-          <span class="timer-block__num js-timer-minutes">00</span>
-          <span class="timer-block__unit">Mins</span>
-        </div>
+          <div class="timer-block">
+            <span class="timer-block__num js-timer-minutes">00</span>
+            <span class="timer-block__unit">Mins</span>
+          </div>
 
-        <div class="colon">:</div>
+          <div class="colon">:</div>
 
-        <div class="timer-block">
-          <span class="timer-block__num js-timer-seconds">00</span>
-          <span class="timer-block__unit">Secs</span>
+          <div class="timer-block">
+            <span class="timer-block__num js-timer-seconds">00</span>
+            <span class="timer-block__unit">Secs</span>
+          </div>
         </div>
       </div>
+    </countdown-timer>
+  {% endunless %}
+
+  {% unless section.settings.timer_section_btn_link == blank and timer_section_btn_text == blank %}
+    <div style="text-align:center">
+      <a class="button timer-button" href="{{ section.settings.timer_section_btn_link }}">
+        {{ section.settings.timer_section_btn_text }}
+      </a>
     </div>
-  </countdown-timer>
-{% endunless %}
-
-{% unless section.settings.timer_section_btn_link == blank and timer_section_btn_text == blank %}
-  <div style="text-align:center">
-    <a class="button timer-button" href="{{ section.settings.timer_section_btn_link }}">
-      {{ section.settings.timer_section_btn_text }}
-    </a>
-  </div>
-{% endunless %}
-
+  {% endunless %}
+</div>
 {% schema %}
 {
     "name": "Countdown Timer Banner",
