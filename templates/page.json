@@ -18,7 +18,6 @@
     },
     "testimonial_TBVbbd": {
       "type": "testimonial",
-      "disabled": true,
       "settings": {
       }
     },
@@ -68,7 +67,6 @@
         "text_GR7cty",
         "text_AwVEKq"
       ],
-      "disabled": true,
       "settings": {
       }
     }
