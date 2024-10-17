@@ -20,7 +20,8 @@
     "coming_soon_JwkAYy": {
       "type": "coming-soon",
       "settings": {
-        "title": "Coming Soon!"
+        "title": "Coming Soon!",
+        "collection": ""
       }
     },
     "count_down_timer_4i8wr8": {
@@ -33,7 +34,7 @@
         "subtitle_text_color": "#ffffff",
         "timer_title_size": 24,
         "timer_subtitle_size": 16,
-        "date_picker": "01/01/2025",
+        "date_picker": "18/10/2024",
         "timer_color": "#ffffff",
         "timer_section_btn_link": "",
         "timer_section_btn_text": "",
