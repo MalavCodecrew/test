@@ -26,7 +26,7 @@
     "count_down_timer_4i8wr8": {
       "type": "count-down-timer",
       "settings": {
-        "bg_color": "#000000",
+        "bg_color": "#ffffff",
         "timer_section_title": "Sign up to Get a Surprise!",
         "timer_section_subtitle": "A New and Exciting Collection is Coming Up!",
         "title_text_color": "#ffffff",
