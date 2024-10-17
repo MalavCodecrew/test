@@ -33,10 +33,52 @@
         "cta_bg_color": "#4770db",
         "cta_text_color": "#ffffff"
       }
+    },
+    "special_signup_form_EjDfUq": {
+      "type": "special-signup-form",
+      "blocks": {
+        "heading_EnnhAC": {
+          "type": "heading",
+          "settings": {
+            "heading": "Coming Soon!",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_iHmttU": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be the first to Grab the unique Products</p>",
+            "text_style": "body"
+          }
+        },
+        "email_form_UcBYU4": {
+          "type": "email_form",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "heading_EnnhAC",
+        "paragraph_iHmttU",
+        "email_form_UcBYU4"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/47626.jpg",
+        "image_overlay_opacity": 0,
+        "show_background_image": true,
+        "image_height": "small",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     }
   },
   "order": [
     "main",
-    "count_down_timer_4i8wr8"
+    "count_down_timer_4i8wr8",
+    "special_signup_form_EjDfUq"
   ]
 }
