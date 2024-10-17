@@ -22,10 +22,29 @@
       "settings": {
         "title": "Coming Soon!"
       }
+    },
+    "count_down_timer_4i8wr8": {
+      "type": "count-down-timer",
+      "settings": {
+        "bg_color": "#fff",
+        "timer_section_title": "Hurry Up!",
+        "timer_section_subtitle": "Sale ends in:",
+        "title_text_color": "#000",
+        "subtitle_text_color": "#000",
+        "timer_title_size": 24,
+        "timer_subtitle_size": 16,
+        "date_picker": "01/01/2025",
+        "timer_color": "#000",
+        "timer_section_btn_link": "",
+        "timer_section_btn_text": "",
+        "cta_bg_color": "#4770db",
+        "cta_text_color": "#fff"
+      }
     }
   },
   "order": [
     "main",
-    "coming_soon_R7d7pa"
+    "coming_soon_R7d7pa",
+    "count_down_timer_4i8wr8"
   ]
 }
