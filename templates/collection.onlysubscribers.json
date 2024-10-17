@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "coming_soon_XjgLLR": {
+      "type": "coming-soon",
+      "settings": {
+        "title": "",
+        "collection": ""
+      }
+    },
     "banner": {
       "type": "main-collection-banner",
       "settings": {
@@ -42,19 +49,12 @@
       "type": "custom-related-collection",
       "settings": {
       }
-    },
-    "coming_soon_XjgLLR": {
-      "type": "coming-soon",
-      "settings": {
-        "title": "",
-        "collection": ""
-      }
     }
   },
   "order": [
+    "coming_soon_XjgLLR",
     "banner",
     "product-grid",
-    "custom_related_collection_zewVKn",
-    "coming_soon_XjgLLR"
+    "custom_related_collection_zewVKn"
   ]
 }
