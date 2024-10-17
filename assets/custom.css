@@ -784,4 +784,5 @@ td.cart-item__details {
   width: 25%;
   left: 40%;
   border-radius: 50px;
+  background: currentColor;
 }
