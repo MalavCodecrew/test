@@ -16,9 +16,16 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "coming_soon_R7d7pa": {
+      "type": "coming-soon",
+      "settings": {
+        "title": "Coming Soon!"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "coming_soon_R7d7pa"
   ]
 }
