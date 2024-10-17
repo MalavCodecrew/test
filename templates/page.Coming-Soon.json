@@ -27,8 +27,8 @@
       "type": "count-down-timer",
       "settings": {
         "bg_color": "#fff",
-        "timer_section_title": "Hurry Up!",
-        "timer_section_subtitle": "Sale ends in:",
+        "timer_section_title": "Sign up to Get a Surprise!",
+        "timer_section_subtitle": "A New and Exciting Collection is Coming Up!",
         "title_text_color": "#000",
         "subtitle_text_color": "#000",
         "timer_title_size": 24,
