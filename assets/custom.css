@@ -786,3 +786,6 @@ td.cart-item__details {
   border-radius: 50px;
   background: currentColor;
 }
+.coming-soon-title {
+  text-align: center;
+}
