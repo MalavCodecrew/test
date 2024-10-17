@@ -789,3 +789,6 @@ td.cart-item__details {
 .coming-soon-title {
   text-align: center;
 }
+.coming-soon-title h1 {
+  font-weight: bold;
+}
