@@ -11,9 +11,16 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
+      }
+    },
+    "coming_soon_JwkAYy": {
+      "type": "coming-soon",
+      "settings": {
+        "title": "Coming Soon!"
       }
     },
     "count_down_timer_4i8wr8": {
@@ -79,6 +86,7 @@
   },
   "order": [
     "main",
+    "coming_soon_JwkAYy",
     "count_down_timer_4i8wr8",
     "special_signup_form_EjDfUq"
   ]
