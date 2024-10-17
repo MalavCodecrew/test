@@ -11,69 +11,14 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
-    },
-    "testimonial_TBVbbd": {
-      "type": "testimonial",
-      "settings": {
-      }
-    },
-    "block_pagination_F9ew6q": {
-      "type": "block-pagination",
-      "blocks": {
-        "text_grmYXb": {
-          "type": "text",
-          "settings": {
-            "title_block": "title-1",
-            "desc_block": "i want to get the title 1"
-          }
-        },
-        "text_8fpUcy": {
-          "type": "text",
-          "settings": {
-            "title_block": "title2",
-            "desc_block": "i want to get the title"
-          }
-        },
-        "text_RixVe9": {
-          "type": "text",
-          "settings": {
-            "title_block": "title3",
-            "desc_block": "i want to get the title"
-          }
-        },
-        "text_GR7cty": {
-          "type": "text",
-          "settings": {
-            "title_block": "title4",
-            "desc_block": "i want to get the title"
-          }
-        },
-        "text_AwVEKq": {
-          "type": "text",
-          "settings": {
-            "title_block": "title5",
-            "desc_block": "i want to get title5"
-          }
-        }
-      },
-      "block_order": [
-        "text_grmYXb",
-        "text_8fpUcy",
-        "text_RixVe9",
-        "text_GR7cty",
-        "text_AwVEKq"
-      ],
-      "settings": {
-      }
     }
   },
   "order": [
-    "main",
-    "testimonial_TBVbbd",
-    "block_pagination_F9ew6q"
+    "main"
   ]
 }
