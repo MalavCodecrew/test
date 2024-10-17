@@ -143,6 +143,12 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "coming-soon": {
+        "type": "coming-soon",
+        "settings": {
+          "title": "Coming Soon!"
+        }
       }
     },
     "content_for_index": [
