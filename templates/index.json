@@ -12,15 +12,15 @@
     "bg_image_with_button_DMpwGM": {
       "type": "bg-imageWithButton",
       "settings": {
-        "image_with_text_image": "shopify://shop_images/Aesthetic_Brown_Fashion_Collection_Blog_Banner_2.png",
+        "image_with_text_image": "shopify://shop_images/personajes-de-marvel-10672.webp",
         "image_overlay_opacity": 0,
         "desktop_image_width": "medium",
-        "title": "NEW 19.99$ introductory price",
-        "title2": "iLASH PRO",
+        "title": "Super Heroes are Here !",
+        "title2": "Action Figures",
         "title3": "On the go",
-        "textarea": "No mess, no stress with our NEW pre glued lash range.",
-        "textarea2": "Just peel, place and pinch for 1-4 day lasting lashes.",
-        "button_link": "shopify://collections/all",
+        "textarea": "Unleash the hero within! We're thrilled to introduce our brand-new Avengers Toys Collection",
+        "textarea2": "",
+        "button_link": "shopify://collections/toys",
         "button_text": "SHOP NOW"
       }
     },
