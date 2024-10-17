@@ -98,7 +98,13 @@
       color: {{ timer_color }};
   }
 {% endstyle %}
-
+<div class="bg-timer">
+  {% if section.settings.bg_image != blank %}
+    <img src="{{ section.settings.bg_image | img_url: '' }}">
+  {% else %}
+    {{ 'image' | placeholder_svg_tag }}
+  {% endif %}
+</div>
 {% unless timer_section_title == blank or timer_section_subtitle == blank %}
   <div style="margin: 10px 0">
     <h2 class="timer-title" style="font-size: {{ timer_title_size }}px">{{ timer_section_title }}</h2>
