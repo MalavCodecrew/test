@@ -1,2 +1,4 @@
-{% section 'main-collection-banner' %}
-{% section 'main-collection-product-grid' %}
+{% if customer.accepts_marketing %}
+  {% section 'main-collection-banner' %}
+  {% section 'main-collection-product-grid' %}
+{% endif %}
