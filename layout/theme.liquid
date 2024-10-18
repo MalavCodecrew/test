@@ -15,9 +15,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
-    {% if product.tags contains 'Marvel' %}
-      <meta name="robots" content="noindex">
+
+    {% if customer.accepts_marketing %}
+      {% if product.tags contains 'Marvel' %}
+        <meta name="robots" content="index">
+      {% endif %}
+    {% else %}
+      {% if product.tags contains 'Marvel' %}
+        <meta name="robots" content="noindex">
+      {% endif %}
     {% endif %}
+
     <!-- Google Tag Manager -->
     <script>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
