@@ -16,10 +16,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
 
-    {% if customer.accepts_marketing == false %}
-      {% if product.tags contains 'Marvel' %}
-        <meta name="robots" content="noindex">
-      {% endif %}
+    {% if product.tags contains 'Marvel' %}
+      <meta name="robots" content="noindex">
     {% endif %}
 
     <!-- Google Tag Manager -->
