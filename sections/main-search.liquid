@@ -124,9 +124,9 @@
                 type="submit"
                 class="search__button field__button"
                 aria-label="{{ 'general.search.search' | t }}"
-                {% unless product.tags contains 'Toys' %}
+                {% if product.tags contains 'Toys' %}
                   disabled
-                {% endunless %}
+                {% endif %}
               >
                 <svg class="icon icon-search" aria-hidden="true" focusable="false">
                   <use xlink:href="#icon-search">
