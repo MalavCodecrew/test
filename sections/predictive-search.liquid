@@ -131,8 +131,6 @@
               aria-labelledby="predictive-search-products"
             >
               {%- for product in predictive_search.resources.products -%}
-                {{ product.tags }}
-
                 {% unless product.tags contains 'Toys' %}
                   <li
                     id="predictive-search-option-product-{{ forloop.index }}"
