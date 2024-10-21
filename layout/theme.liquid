@@ -692,9 +692,11 @@ document.addEventListener('DOMContentLoaded', function () {
       };
     </script>
 
-    {%- if settings.predictive_search_enabled -%}
-      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
+    {% unless product.tags contains 'Toys' %}
+      {%- if settings.predictive_search_enabled -%}
+        <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+      {%- endif -%}
+    {% endunless %}
 
     <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
     <script>
