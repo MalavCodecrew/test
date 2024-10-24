@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "vat_tax": 55,
     "enable-wishlist": true,
     "wishlist-floating-button-position": true,
     "logo": "shopify://shop_images/ilashlogo1.png",
