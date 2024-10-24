@@ -47,7 +47,7 @@
         "price": {
           "type": "price",
           "settings": {
-            "vat_rate": "10"
+            "vat_rate": "50"
           }
         },
         "variant_picker": {
