@@ -37,12 +37,10 @@
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
 -%}
-{%- for block in section.blocks -%}
-  {% assign vat_rate = block.settings.vat_rate | times: 0.01 %}
-  {% if vat_rate > 0 %}
-    {{ vat_rate -}}
-  {%- endif %}
-{% endfor %}
+
+{% assign vat_rate = settings.vat_tax | times: 0.01 %}
+{{ vat_rate -}}
+
 <div
   class="
     price
