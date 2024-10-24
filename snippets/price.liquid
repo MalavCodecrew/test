@@ -38,8 +38,8 @@
   endif
 -%}
 
-{% assign vat_rate = section.settings.vat_rate | times: 0.01 %}
-{{ vat_rate }}
+{% assign vat_rate = block.settings.vat_rate | times: 0.01 %}
+{{  }}
 <div
   class="
     price
