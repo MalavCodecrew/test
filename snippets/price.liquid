@@ -39,7 +39,9 @@
 -%}
 {%- for block in section.blocks -%}
   {% assign vat_rate = block.settings.vat_rate | times: 0.01 %}
-  {{ vat_rate }}
+  {% if vat_rate > 0 %}
+    {{ vat_rate -}}
+  {%- endif %}
 {% endfor %}
 <div
   class="
