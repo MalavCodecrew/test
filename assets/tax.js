@@ -1,4 +1,4 @@
-// sett storage by cookies for toggle button
+// store data by cookies for toggle button
 // $(document).ready(function() {
 //             function setCookie(name, value) {
 //                 document.cookie = name + "=" + value + "; path=/";
@@ -50,9 +50,9 @@
 //                 updateDisplay();
 //             });
 //         });
-// end code sett storage by cookies for toggle button
+// end code store data by cookies for toggle button
 
-// sett storage by localstorage for toggle button
+//  store data by localstorage for toggle button
 $(document).ready(function() {
     function setVatToggle(value) {
         localStorage.setItem("vatToggle", value);
@@ -97,6 +97,6 @@ $(document).ready(function() {
         updateDisplay();
     });
 });
-// sett storage by localstorage for toggle button
+// store data by localstorage for toggle button
 
 
