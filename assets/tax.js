@@ -1,4 +1,4 @@
-// store data by cookies for toggle button
+// store data by cookies for toggle button ---------------working 
 // $(document).ready(function() {
 //             function setCookie(name, value) {
 //                 document.cookie = name + "=" + value + "; path=/";
