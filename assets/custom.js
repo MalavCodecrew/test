@@ -26,6 +26,12 @@ if (true) {
   
   alert(message);  // Output: "Hello, World!"
 })();
+
+// Hoisting example
+console.log(sayHi); // ReferenceError: Cannot access 'sayHi' before initialization
+let sayHi = function() {
+  console.log("Hi from let function expression!");
+};
 // ===========================================================================================
 
 
