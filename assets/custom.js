@@ -1,26 +1,21 @@
-// Global Scope Example
-const globalTitle = document.querySelector('.product__title h1'); // Globally scoped title element
 
-// Global function to change the title color to blue
+const globalTitle = document.querySelector('.product__title h1'); 
+
 function changeGlobalTitleColor() {
   globalTitle.style.color = 'blue';
 }
-
-// Call the global function to change the title color on page load
 changeGlobalTitleColor();
 
-// Local Scope Example: Scoped within a button click event
+
 document.querySelector('.product__title h1').addEventListener('click', () => {
-  const localTitle = document.querySelector('.product__title h1'); // Local variable within this event listener
-  localTitle.style.color = 'red'; // Change the title color to red on button click
+  const localTitle = document.querySelector('.product__title h1'); 
+  localTitle.style.color = 'red'; 
 });
 
 
-if (true) { // This block creates a scope for variables defined with let or const
-  let blockScopedTitle = document.querySelector('svg.icon.icon-share'); // Block-scoped variable
-  blockScopedTitle.style.color = 'purple'; // Change the title color to purple within this block
-
-  // blockScopedTitle is only accessible here inside the block
+if (true) { 
+  let blockScopedTitle = document.querySelector('svg.icon.icon-share');
+  blockScopedTitle.style.color = 'purple'; 
 }
 // ===========================================================================================
 
