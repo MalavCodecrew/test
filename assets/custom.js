@@ -2,12 +2,12 @@
 (function () {
   // Variables and functions defined here are scoped to this function only
   const productTitle = document.querySelector(".product__title")?.innerText;
-  const addToCartButtons = document.querySelector(".product-form__submit.button.button--full-width.button--secondary");
-  addToCartButtons.forEach((addToCartButton) => {
-    addToCartButton.addEventListener("click", function () {
-      console.log(`Added ${productTitle} to the cart.`);
-      alert(`Product "${productTitle}" has been added to your cart.`);
-    });
+  const addToCartButton = document.querySelector(
+    ".product-form__submit.button.button--full-width.button--secondary"
+  );
+  addToCartButton.addEventListener("click", function () {
+    console.log(`Added ${productTitle} to the cart.`);
+    alert(`Product "${productTitle}" has been added to your cart.`);
   });
 })();
 
