@@ -2,7 +2,7 @@
 (function() {
   // Variables and functions defined here are scoped to this function only
   const productTitle = document.querySelector('.product__title').innerText;
-  const addToCartButton = document.querySelector('#add-to-cart');
+  const addToCartButton = document.querySelector('.product-form__submit');
 
   addToCartButton.addEventListener('click', function() {
     console.log(`Added ${productTitle} to the cart.`);
