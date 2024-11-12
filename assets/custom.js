@@ -19,8 +19,9 @@ document.querySelector('.product__title h1').addEventListener('click', () => {
 if (true) { // This block creates a scope for variables defined with let or const
   let blockScopedTitle = document.querySelector('span.price-item.price-item--regular.taax'); // Block-scoped variable
   blockScopedTitle.style.color = 'purple'; // Change the title color to purple within this block
-   // blockScopedTitle is only accessible here inside the block
- }
+
+  // blockScopedTitle is only accessible here inside the block
+}
 // ===========================================================================================
 
 
