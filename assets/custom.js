@@ -2,7 +2,7 @@
 function setupAddToCart() {
   // Variables and functions defined here are scoped to this function only
   const productTitle = document.querySelector('.product__title')?.innerText;
-  const addToCartButton = document.querySelector('.product-form__submit');
+  const addToCartButton = document.querySelector('.quick-add__submit button');
 
   addToCartButton.addEventListener('click', function() {
     console.log(`Added ${productTitle} to the cart.`);
