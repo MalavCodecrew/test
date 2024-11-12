@@ -28,10 +28,11 @@ if (true) {
 })();
 
 // Hoisting example
-console.log(sayHi); // ReferenceError: Cannot access 'sayHi' before initialization
-let sayHi = function() {
-  console.log("Hi from let function expression!");
-};
+cowSays('moo');
+
+function cowSays(sound) {
+    console.log(sound);
+}
 // ===========================================================================================
 
 
