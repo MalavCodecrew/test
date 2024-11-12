@@ -28,8 +28,6 @@ if (true) {
 })();
 
 // Hoisting example
-// Call the function to show a greeting message
-// Call the function to show a greeting message
 showWelcomeMessage();
 
 function showWelcomeMessage() {
