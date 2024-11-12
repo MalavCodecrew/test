@@ -1,4 +1,4 @@
-// scope exaple
+// 1.scope exaple
 const globalTitle = document.querySelector('.product__title h1'); 
 
 function changeGlobalTitleColor() {
@@ -18,7 +18,7 @@ if (true) {
   blockScopedTitle.style.color = 'purple'; 
 }
 
-// iife example
+// 2.iife example
 (function() {
   const greeting = 'Welcome to ';
   const name = 'CricStore';
@@ -27,7 +27,7 @@ if (true) {
   alert(message);  // Output: "Hello, World!"
 })();
 
-// Hoisting example
+//3. Hoisting example
 showWelcomeMessage();
 
 function showWelcomeMessage() {
