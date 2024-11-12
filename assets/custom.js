@@ -1,6 +1,8 @@
 // Local Scope using an IIFE (Immediately Invoked Function Expression)
 (function() {
   // Variables and functions defined here are scoped to this function only
+  document.querySelector('.product__title');
+  debugger;
   const productTitle = document.querySelector('.product__title').innerText;
   const addToCartButton = document.querySelector('.product-form__submit');
 
