@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "vat_tax": 19,
+    "vat_tax": 20,
     "enable-wishlist": true,
     "wishlist-floating-button-position": true,
     "logo": "shopify://shop_images/ilashlogo1.png",
@@ -114,7 +114,7 @@
     "brand_description": "<p><a href=\"https://www.instagram.com/ilashuk.co.uk\" title=\"https://www.instagram.com/ilashuk.co.uk\">Instagram</a></p><p><a href=\"https://www.tiktok.com/@ilashuk\" title=\"https://www.tiktok.com/@ilashuk\">TikTok</a></p><p><a href=\"https://www.facebook.com/iLashuk.co.uk/\" title=\"https://www.facebook.com/iLashuk.co.uk/\">Facebook</a></p><p><a href=\"https://www.youtube.com/channel/UCeWIfCjX1sw6xUjVqVjvd9Q\" title=\"https://www.youtube.com/channel/UCeWIfCjX1sw6xUjVqVjvd9Q\">Youtube</a></p>",
     "brand_image": "shopify://shop_images/ilashlogo1_d47f093e-0c3d-437d-a251-ed443893dbe9.png",
     "brand_image_width": 100,
-    "social_facebook_link": "facebook.com",
+    "social_facebook_link": "",
     "social_instagram_link": "",
     "social_youtube_link": "",
     "social_tiktok_link": "",
@@ -199,8 +199,7 @@
           },
           "email_form_tdYzDR": {
             "type": "email_form",
-            "settings": {
-            }
+            "settings": {}
           }
         },
         "block_order": [
@@ -222,15 +221,12 @@
         }
       }
     },
-    "content_for_index": [
-
-    ],
+    "content_for_index": [],
     "blocks": {
       "16216491870256628967": {
         "type": "shopify://apps/bss-labels-badges/blocks/bss-pl-config-data/91bfe765-b604-49a1-805e-3599fa600b24",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "16477348613150133823": {
         "type": "shopify://apps/unlimited-bundles/blocks/script-app-block/d33d0f48-dee0-42a0-b156-2a5dce91814a",
@@ -247,8 +243,7 @@
       "855628211100114053": {
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "4571859552318407796": {
         "type": "shopify://apps/glo-color-swatch/blocks/app-embed-block/4394f710-096c-4021-bbde-8ebb26057c11",
@@ -270,44 +265,37 @@
       "7916451724185839711": {
         "type": "shopify://apps/product-options-variant-option/blocks/avisplus-product-options/e076618e-4c9c-447f-ad6d-4f1577799c29",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       },
       "7908887715985482762": {
         "type": "shopify://apps/metaobj-api/blocks/star_rating/8ceab114-8995-44c7-b825-bf01c2914373",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       },
       "3847134708050210359": {
         "type": "shopify://apps/transcy/blocks/switcher_embed_block/bce4f1c0-c18c-43b0-b0b2-a1aefaa44573",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       },
       "10533623496951086041": {
         "type": "shopify://apps/criteo-sales-growth-ads/blocks/theme-extension/b74e0e19-7ecc-4a61-b469-888ea2cdf8f5",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       },
       "16257672959480466561": {
         "type": "shopify://apps/chatnest-stay-in-touch/blocks/whatsapp_chat_icon/2cf195f2-d40f-4ac1-bfb3-67027dc724f5",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       },
       "12995158295224700252": {
         "type": "shopify://apps/insureful-shipping-protection/blocks/app-embed/9d68bce0-511b-458e-a75c-59b30247783c",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "3720565183479497137": {
         "type": "shopify://apps/globo-product-option/blocks/app-embed-block/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       }
     },
     "color_schemes": {
