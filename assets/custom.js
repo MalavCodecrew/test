@@ -51,7 +51,7 @@ function showWelcomeMessage() {
 
 // 7. closures
 const showPosts = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const response = await fetch('https://quickstart-06ab4342.myshopify.com/admin/api/2023-10/products.json');
     const posts = await response.json();
     console.log(posts) ;
   }
