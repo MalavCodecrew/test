@@ -29,7 +29,6 @@ if (true) {
 
 // Hoisting example
 cowSays('moo');
-
 function cowSays(sound) {
     console.log(sound);
 }
