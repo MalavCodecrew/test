@@ -14,6 +14,17 @@ document.querySelector('.product__title h1').addEventListener('click', () => {
   const localTitle = document.querySelector('.product__title h1'); // Local variable within this event listener
   localTitle.style.color = 'red'; // Change the title color to red on button click
 });
+
+
+if (true) { // This block creates a scope for variables defined with let or const
+  let blockScopedTitle = document.querySelector('.product-title'); // Block-scoped variable
+  blockScopedTitle.style.color = 'purple'; // Change the title color to purple within this block
+
+  // blockScopedTitle is only accessible here inside the block
+}
+// ===========================================================================================
+
+
 // 4th level megamenu dropdown js-------------------------------------------------
 $(document).ready(function () {
   $(".icon-caret").click(function (event) {
