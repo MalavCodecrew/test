@@ -1,5 +1,5 @@
 // Global Scope Example
-const globalTitle = document.querySelector('.product-title'); // Globally scoped title element
+const globalTitle = document.querySelector('.product__title'); // Globally scoped title element
 
 // Global function to change the title color to blue
 function changeGlobalTitleColor() {
