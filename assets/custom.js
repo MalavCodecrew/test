@@ -20,8 +20,8 @@ if (true) {
 
 // iife example
 (function() {
-  const greeting = 'Hello';
-  const name = 'World';
+  const greeting = 'Welcome to ';
+  const name = 'CricStore';
   const message = greeting + ', ' + name + '!';
   
   alert(message);  // Output: "Hello, World!"
