@@ -30,7 +30,6 @@ if (true) {
 // Hoisting example
 // Call the function to show a greeting message
 showWelcomeMessage();
-
 function showWelcomeMessage() {
   const welcomeMessage = document.querySelector('.welcome-message');
   
