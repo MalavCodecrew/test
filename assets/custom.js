@@ -28,10 +28,20 @@ if (true) {
 })();
 
 // Hoisting example
-cowSays('moo');
-function cowSays(sound) {
-    console.log(sound);
+// Call the function to show a greeting message
+showWelcomeMessage();
+
+function showWelcomeMessage() {
+  const welcomeMessage = document.querySelector('.welcome-message');
+  
+  let currentHour = new Date().getHours();
+  let greeting = currentHour < 12 ? "Good morning!" : "Welcome!";
+  
+  if (welcomeMessage) {
+    welcomeMessage.textContent = greeting;
+  }
 }
+
 // ===========================================================================================
 
 
