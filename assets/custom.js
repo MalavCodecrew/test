@@ -1,5 +1,4 @@
 // Local Scope using an IIFE (Immediately Invoked Function Expression)
-$(document).ready(function () {
 (function() {
   // Variables and functions defined here are scoped to this function only
   const productTitle = document.querySelector('.product__title')?.innerText;
@@ -13,7 +12,7 @@ $(document).ready(function () {
 
 
 // 4th level megamenu dropdown js-------------------------------------------------
-// $(document).ready(function () {
+$(document).ready(function () {
   $(".icon-caret").click(function (event) {
     // Prevent the document click event from firing
     event.stopPropagation();
