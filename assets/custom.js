@@ -1,4 +1,4 @@
-
+// scope exaple
 const globalTitle = document.querySelector('.product__title h1'); 
 
 function changeGlobalTitleColor() {
@@ -17,6 +17,15 @@ if (true) {
   let blockScopedTitle = document.querySelector('svg.icon.icon-share');
   blockScopedTitle.style.color = 'purple'; 
 }
+
+// iife example
+(function() {
+  const greeting = 'Hello';
+  const name = 'World';
+  const message = greeting + ', ' + name + '!';
+  
+  alert(message);  // Output: "Hello, World!"
+})();
 // ===========================================================================================
 
 
