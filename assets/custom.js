@@ -50,22 +50,23 @@ function showWelcomeMessage() {
 }
 
 // 4. closures
-function createCartCounter() {
-  let count = 0; // This count variable is "closed over" by the addToCart function
-  
-  return function addToCart() {
-    count++;
-    console.log(`Items added to cart: ${count}`);
+function createPageViewTracker(productName) {
+  let viewCount = 0;
+
+  return function incrementViewCount() {
+    viewCount++;
+    console.log(`The ${productName} has been viewed ${viewCount} times.`);
   };
 }
 
-// Initialize the counter
-const cartCounter = createCartCounter();
+const trackProductAViews = createPageViewTracker("Product A");
+const trackProductBViews = createPageViewTracker("Product B");
 
-// Simulate adding items to cart
-cartCounter(); // "Items added to cart: 1"
-cartCounter(); // "Items added to cart: 2"
-cartCounter(); // "Items added to cart: 3"
+// Simulate page views
+trackProductAViews(); // "The Product A has been viewed 1 times."
+trackProductAViews(); // "The Product A has been viewed 2 times."
+trackProductBViews(); // "The Product B has been viewed 1 times."
+
 
 
 // ===========================================================================================
