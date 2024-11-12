@@ -29,17 +29,28 @@ if (true) {
 
 // Hoisting example
 // Call the function to show a greeting message
+// Call the function to show a greeting message
 showWelcomeMessage();
+
 function showWelcomeMessage() {
   const welcomeMessage = document.querySelector('.welcome-message');
   
   let currentHour = new Date().getHours();
-  let greeting = currentHour < 12 ? "Good morning!" : "Welcome!";
-  
+  let greeting;
+
+  if (currentHour < 12) {
+    greeting = "Good morning!";
+  } else if (currentHour < 18) {
+    greeting = "Good afternoon!";
+  } else {
+    greeting = "Good evening!";
+  }
+
   if (welcomeMessage) {
     welcomeMessage.textContent = greeting;
   }
 }
+
 
 // ===========================================================================================
 
