@@ -50,22 +50,30 @@ function showWelcomeMessage() {
 }
 
 // 4. closures
-function createPageViewTracker(productName) {
-  let viewCount = 0;
-
-  return function incrementViewCount() {
-    viewCount++;
-    console.log(`The ${productName} has been viewed ${viewCount} times.`);
+function createAuthStatus() {
+  let loggedIn = false; // Private variable to track login status
+  return {
+    login: function() {
+      loggedIn = true;
+      console.log("User logged in.");
+    },
+    logout: function() {
+      loggedIn = false;
+      console.log("User logged out.");
+    },
+    checkStatus: function() {
+      console.log(loggedIn ? "User is logged in." : "User is not logged in.");
+    }
   };
 }
 
-const trackProductAViews = createPageViewTracker("Product A");
-const trackProductBViews = createPageViewTracker("Product B");
+const authStatus = createAuthStatus();
 
-// Simulate page views
-trackProductAViews(); // "The Product A has been viewed 1 times."
-trackProductAViews(); // "The Product A has been viewed 2 times."
-trackProductBViews(); // "The Product B has been viewed 1 times."
+authStatus.checkStatus(); // "User is not logged in."
+authStatus.login(); // "User logged in."
+authStatus.checkStatus(); // "User is logged in."
+authStatus.logout(); // "User logged out."
+
 
 
 
