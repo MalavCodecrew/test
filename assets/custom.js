@@ -1,3 +1,16 @@
+// Local Scope using an IIFE (Immediately Invoked Function Expression)
+(function() {
+  // Variables and functions defined here are scoped to this function only
+  const productTitle = document.querySelector('.product-title').innerText;
+  const addToCartButton = document.querySelector('#add-to-cart');
+
+  addToCartButton.addEventListener('click', function() {
+    console.log(`Added ${productTitle} to the cart.`);
+    alert(`Product "${productTitle}" has been added to your cart.`);
+  });
+})();
+
+
 // 4th level megamenu dropdown js-------------------------------------------------
 $(document).ready(function () {
   $(".icon-caret").click(function (event) {
