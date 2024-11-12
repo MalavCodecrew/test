@@ -50,6 +50,23 @@ function showWelcomeMessage() {
 }
 
 // 4. closures
+function createCartCounter() {
+  let count = 0; // This count variable is "closed over" by the addToCart function
+  
+  return function addToCart() {
+    count++;
+    console.log(`Items added to cart: ${count}`);
+  };
+}
+
+// Initialize the counter
+const cartCounter = createCartCounter();
+
+// Simulate adding items to cart
+cartCounter(); // "Items added to cart: 1"
+cartCounter(); // "Items added to cart: 2"
+cartCounter(); // "Items added to cart: 3"
+
 
 // ===========================================================================================
 
