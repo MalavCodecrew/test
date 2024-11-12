@@ -1,3 +1,19 @@
+// Global Scope Example
+const globalTitle = document.querySelector('.product-title'); // Globally scoped title element
+
+// Global function to change the title color to blue
+function changeGlobalTitleColor() {
+  globalTitle.style.color = 'blue';
+}
+
+// Call the global function to change the title color on page load
+changeGlobalTitleColor();
+
+// Local Scope Example: Scoped within a button click event
+document.querySelector('#change-color-button').addEventListener('click', () => {
+  const localTitle = document.querySelector('.product-title'); // Local variable within this event listener
+  localTitle.style.color = 'red'; // Change the title color to red on button click
+});
 // 4th level megamenu dropdown js-------------------------------------------------
 $(document).ready(function () {
   $(".icon-caret").click(function (event) {
