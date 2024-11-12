@@ -49,31 +49,13 @@ function showWelcomeMessage() {
   }
 }
 
-// 4. closures
-function createAuthStatus() {
-  let loggedIn = false; // Private variable to track login status
-  return {
-    login: function() {
-      loggedIn = true;
-      console.log("User logged in.");
-    },
-    logout: function() {
-      loggedIn = false;
-      console.log("User logged out.");
-    },
-    checkStatus: function() {
-      console.log(loggedIn ? "User is logged in." : "User is not logged in.");
-    }
-  };
-}
-
-const authStatus = createAuthStatus();
-
-authStatus.checkStatus(); // "User is not logged in."
-authStatus.login(); // "User logged in."
-authStatus.checkStatus(); // "User is logged in."
-authStatus.logout(); // "User logged out."
-
+// 7. closures
+const showPosts = async () => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const posts = await response.json();
+    console.log(posts) ;
+  }
+  showPosts();
 
 
 
