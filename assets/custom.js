@@ -51,7 +51,7 @@ function showWelcomeMessage() {
 
 // 7.  Async & Await
 const showPosts = async () => {
-    const response = await fetch('https://quickstart-06ab4342.myshopify.com/admin/api/2024-10/product');
+    const response = await fetch('https://quickstart-06ab4342.myshopify.com/admin/api/2024-10/products.json');
     const posts = await response.json();
     console.log(posts) ;
   }
