@@ -49,7 +49,7 @@ function showWelcomeMessage() {
   }
 }
 
-// 7. closures
+// 7.  Async & Await
 const showPosts = async () => {
     const response = await fetch('https://quickstart-06ab4342.myshopify.com/admin/api/2023-10/products.json');
     const posts = await response.json();
