@@ -893,7 +893,7 @@ td.cart-item__details {
 /* Prize Result */
 .prize-result {
   position: absolute;
-  bottom: -80px;
+  bottom: 80%;
   left: 50%;
   transform: translateX(-50%);
   color: white;
