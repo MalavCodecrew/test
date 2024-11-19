@@ -809,13 +809,21 @@ td.cart-item__details {
 }
 /*spin to win css  */
 
-
-  /* Popup styling */
+/* Popup Styling */
 .spin-popup {
-  display: flex; /* Always visible when the popup is shown */
-  visibility: hidden; /* Hide with visibility initially */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 999;
 }
 
 .spin-popup.active {
@@ -823,74 +831,70 @@ td.cart-item__details {
   opacity: 1;
 }
 
+/* Wheel Container */
+.wheel-container {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
 
-  /* Wheel container */
-  .wheel-container {
-    position: relative;
-    text-align: center;
-    width: 500px;
-    height: 500px;
-  }
-
-  /* Canvas for the wheel */
-  #wheel-canvas {
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  }
-
-  /* Pin (selector) styling */
-  .wheel-pin {
+/* Wheel Pin */
+.wheel-pin {
   position: absolute;
-  top: -15px; /* Adjusted to sit above the wheel */
+  top: -15px;
   left: 50%;
   transform: translateX(-50%);
   width: 10px;
   height: 30px;
   background: red;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle shape */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   z-index: 2;
 }
 
+/* Spin Button */
+.spin-button {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  /* Spin button */
-  #spin-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.spin-button:hover {
+  background-color: #218838;
+}
 
-  #spin-button:hover {
-    background-color: #218838;
-  }
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #dc3545;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
 
-  /* Result message */
-  .result {
-    margin-top: 20px;
-    color: white;
-    font-size: 18px;
-    text-align: center;
-  }
+.close-button:hover {
+  background-color: #c82333;
+}
 
-  /* Close button */
-  #close-popup {
-    margin-top: 10px;
-    padding: 5px 10px;
-    font-size: 16px;
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  #close-popup:hover {
-    background-color: #c82333;
-  }
-
+/* Prize Result */
+.prize-result {
+  position: absolute;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
