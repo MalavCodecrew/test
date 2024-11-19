@@ -850,6 +850,7 @@ td.cart-item__details {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   z-index: 2;
   display: block !important;
+  transform: rotate(180deg);
 }
 
 /* Spin Button */
