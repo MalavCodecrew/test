@@ -1,12 +1,13 @@
 <div id="spin-to-win" class="spin-popup">
   <div class="wheel-container">
-    <div class="wheel-pin"></div> <!-- The pin/selector -->
+    <div class="wheel-pin"></div>
     <canvas id="wheel-canvas" width="500" height="500"></canvas>
-    <button id="spin-button">Spin</button>
+    <button id="spin-button" class="spin-button">Spin</button>
   </div>
-  <div id="prize-result" class="result"></div>
-  <button id="close-popup">Close</button>
+  <button id="close-button" class="close-button">Close</button>
+  <div id="prize-result" class="prize-result"></div>
 </div>
+
 <script>
   $(document).ready(function () {
     const prizes = [
