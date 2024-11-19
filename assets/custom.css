@@ -841,17 +841,17 @@ td.cart-item__details {
 
   /* Pin (selector) styling */
   .wheel-pin {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    background: red;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-  }
+  position: absolute;
+  top: -15px; /* Adjusted to sit above the wheel */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 30px;
+  background: red;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle shape */
+  z-index: 2;
+}
+
 
   /* Spin button */
   #spin-button {
