@@ -809,7 +809,7 @@ td.cart-item__details {
 }
 /*spin to win css  */
 
- <style>
+
   /* Popup styling */
   .spin-popup {
     position: fixed;
@@ -894,4 +894,4 @@ td.cart-item__details {
   #close-popup:hover {
     background-color: #c82333;
   }
-</style>
+
