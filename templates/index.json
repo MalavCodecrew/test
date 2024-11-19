@@ -122,8 +122,7 @@
         "text_wnWF7H",
         "text_YXLGWd"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "btn_img_list_UKQa7e": {
       "type": "btn-img-list",
@@ -233,8 +232,11 @@
     },
     "testimonial_ttBf6A": {
       "type": "testimonial",
-      "settings": {
-      }
+      "settings": {}
+    },
+    "spin_to_win_kmAraf": {
+      "type": "spin-to-win",
+      "settings": {}
     }
   },
   "order": [
@@ -250,6 +252,7 @@
     "subscribe_save_KQxpU3",
     "scroll_video_DP6Ltj",
     "reviews_WbATDB",
-    "testimonial_ttBf6A"
+    "testimonial_ttBf6A",
+    "spin_to_win_kmAraf"
   ]
 }

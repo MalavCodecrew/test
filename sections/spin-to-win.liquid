@@ -7,6 +7,96 @@ heyy
   <div id="prize-result" class="result"></div>
   <button id="close-popup">Close</button>
 </div>
+<script>
+  $(document).ready(function () {
+    const prizes = [
+      "10% Off",
+      "20% Off",
+      "Free Shipping",
+      "50% Off",
+      "No Prize",
+      "15% Off",
+      "Buy 1 Get 1 Free",
+      "25% Off",
+    ];
+    let spinning = false;
+
+    function drawWheel() {
+      const canvas = document.getElementById("wheel-canvas");
+      const ctx = canvas.getContext("2d");
+      const segments = prizes.length;
+      const arc = (2 * Math.PI) / segments;
+
+      prizes.forEach((prize, i) => {
+        const startAngle = i * arc;
+        const endAngle = startAngle + arc;
+
+        ctx.beginPath();
+        ctx.moveTo(250, 250); // Center of the canvas
+        ctx.arc(250, 250, 250, startAngle, endAngle);
+        ctx.fillStyle = i % 2 === 0 ? "#f4c542" : "#ff6f61";
+        ctx.fill();
+
+        ctx.save();
+        ctx.translate(
+          250 + Math.cos(startAngle + arc / 2) * 200,
+          250 + Math.sin(startAngle + arc / 2) * 200
+        );
+        ctx.rotate(startAngle + arc / 2);
+        ctx.fillStyle = "#fff";
+        ctx.font = "16px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText(prize, 0, 0);
+        ctx.restore();
+      });
+    }
+
+    function spinWheel() {
+      if (spinning) return;
+      spinning = true;
+
+      let spinAngle = Math.floor(Math.random() * 360 + 360 * 5); // Add extra rotations for effect
+      const canvas = document.getElementById("wheel-canvas");
+      const ctx = canvas.getContext("2d");
+      const segments = prizes.length;
+      const arc = (2 * Math.PI) / segments;
+
+      let currentAngle = 0;
+      const spinInterval = setInterval(() => {
+        currentAngle += 10;
+        ctx.clearRect(0, 0, 500, 500);
+        ctx.save();
+        ctx.translate(250, 250);
+        ctx.rotate((currentAngle * Math.PI) / 180);
+        ctx.translate(-250, -250);
+        drawWheel();
+        ctx.restore();
+
+        if (currentAngle >= spinAngle) {
+          clearInterval(spinInterval);
+          const finalAngle = (360 - (currentAngle % 360)) * (Math.PI / 180);
+          const index = Math.floor(
+            (segments - Math.floor((finalAngle / (2 * Math.PI)) * segments)) %
+              segments
+          );
+          $("#prize-result").text(`You won: ${prizes[index]}!`);
+          spinning = false;
+        }
+      }, 10);
+    }
+
+    $("#spin-button").click(spinWheel);
+
+    $("#close-popup").click(() => {
+      $("#spin-to-win").hide();
+    });
+
+    // Show popup after a delay
+    setTimeout(() => {
+      $("#spin-to-win").fadeIn();
+    }, 3000);
+  });
+</script>
 
 {% schema %}
   {
