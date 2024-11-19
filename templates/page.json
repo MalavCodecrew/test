@@ -18,8 +18,7 @@
     },
     "testimonial_TBVbbd": {
       "type": "testimonial",
-      "settings": {
-      }
+      "settings": {}
     },
     "block_pagination_F9ew6q": {
       "type": "block-pagination",
@@ -67,13 +66,17 @@
         "text_GR7cty",
         "text_AwVEKq"
       ],
-      "settings": {
-      }
+      "settings": {}
+    },
+    "spin_to_win_cbcVtz": {
+      "type": "spin-to-win",
+      "settings": {}
     }
   },
   "order": [
     "main",
     "testimonial_TBVbbd",
-    "block_pagination_F9ew6q"
+    "block_pagination_F9ew6q",
+    "spin_to_win_cbcVtz"
   ]
 }
