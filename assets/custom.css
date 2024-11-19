@@ -809,6 +809,8 @@ td.cart-item__details {
 }
 /*spin to win css  */
 
+ <style>
+  /* Popup styling */
   .spin-popup {
     position: fixed;
     top: 0;
@@ -822,25 +824,74 @@ td.cart-item__details {
     z-index: 9999;
     display: none;
   }
+
+  /* Wheel container */
   .wheel-container {
     position: relative;
     text-align: center;
+    width: 500px;
+    height: 500px;
   }
+
+  /* Canvas for the wheel */
   #wheel-canvas {
     border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
-  #spin-button {
+
+  /* Pin (selector) styling */
+  .wheel-pin {
     position: absolute;
-    bottom: 20px;
+    top: -10px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
   }
+
+  /* Spin button */
+  #spin-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #spin-button:hover {
+    background-color: #218838;
+  }
+
+  /* Result message */
   .result {
     margin-top: 20px;
     color: white;
     font-size: 18px;
+    text-align: center;
   }
 
+  /* Close button */
+  #close-popup {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #close-popup:hover {
+    background-color: #c82333;
+  }
+</style>
