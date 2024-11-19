@@ -849,7 +849,7 @@ td.cart-item__details {
   background: red;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   z-index: 2;
-  display: block;
+  display: block !important;
 }
 
 /* Spin Button */
