@@ -910,3 +910,7 @@ td.cart-item__details {
     padding: 5px 10px;
     border: none;
 }
+.spin-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
