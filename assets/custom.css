@@ -867,7 +867,10 @@ td.cart-item__details {
   border-radius: 5px;
   cursor: pointer;
 }
-
+.spin-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
 .spin-button:hover {
   background-color: #218838;
 }
@@ -910,7 +913,4 @@ td.cart-item__details {
     padding: 5px 10px;
     border: none;
 }
-.spin-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
+
