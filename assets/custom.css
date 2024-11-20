@@ -900,3 +900,8 @@ td.cart-item__details {
   font-size: 20px;
   text-align: center;
 }
+.spin-email {
+    position: relative;
+    top: 13%;
+    left: 17%;
+}
