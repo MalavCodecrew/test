@@ -3,10 +3,185 @@
     <div class="wheel-pin"></div>
     <canvas id="wheel-canvas" width="500" height="500"></canvas>
     <button id="spin-button" class="spin-button">Spin</button>
+    <label for="email">Enter your email:</label>
+    <input type="email" id="email" name="email">
   </div>
   <button id="close-button" class="close-button">Close</button>
   <div id="prize-result" class="prize-result"></div>
 </div>
+
+<script>
+const prizes = [
+    "10% Off",
+    "20% Off",
+    "Free Shipping",
+    "5% Off",
+    "15% Off",
+    "Buy 1 Get 1 Free",
+    "25% Off",
+    "50% Off"
+];
+
+let spinning = false;
+
+function drawWheel() {
+    const canvas = document.getElementById("wheel-canvas");
+    const ctx = canvas.getContext("2d");
+    const segments = prizes.length;
+    const arc = (2 * Math.PI) / segments;
+
+    ctx.clearRect(0, 0, 500, 500);
+
+    ctx.beginPath();
+    ctx.arc(250, 250, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = "#000";
+    ctx.fill();
+
+    prizes.forEach((prize, i) => {
+        const startAngle = i * arc;
+        const endAngle = startAngle + arc;
+
+        ctx.beginPath();
+        ctx.moveTo(250, 250);
+        ctx.arc(250, 250, 250, startAngle, endAngle);
+        ctx.fillStyle = i % 2 === 0 ? "#f4c542" : "#ff6f61";
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.moveTo(250, 250);
+        ctx.arc(250, 250, 250, startAngle, endAngle);
+        ctx.strokeStyle = "#333";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.save();
+        ctx.translate(
+            250 + Math.cos(startAngle + arc / 2) * 160,
+            250 + Math.sin(startAngle + arc / 2) * 160
+        );
+        ctx.rotate(startAngle + arc / 2 + Math.PI / 2);
+        ctx.fillStyle = "#000";
+        ctx.font = "bold 16px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(prize, 0, 0);
+        ctx.restore();
+    });
+}
+
+function determinePrize(angle) {
+    const normalizedAngle = angle < 0 ? angle + 360 : angle;
+    const segments = prizes.length;
+    const degreesPerSegment = 360 / segments;
+    
+
+    const index = Math.floor(normalizedAngle / degreesPerSegment);
+
+    const adjustedIndex = (segments - index - 2) % segments;
+    
+
+    const xfinalIndex = adjustedIndex >= 0 ? adjustedIndex : adjustedIndex + segments;
+    const finalIndex = xfinalIndex - 1;
+    
+
+    console.log(`Angle: ${normalizedAngle}, Raw Index: ${index}, Adjusted: ${adjustedIndex}, Final: ${finalIndex}, Prize: ${prizes[finalIndex]}`);
+    
+    return prizes[finalIndex];
+}
+
+
+function spinWheel() {
+    if (spinning) return;
+    spinning = true;
+
+    const canvas = document.getElementById("wheel-canvas");
+    const ctx = canvas.getContext("2d");
+
+    document.getElementById("prize-result").textContent = "Spinning...";
+
+
+    const minSpins = 5;
+    const randomSpins = minSpins + Math.random() * 5; 
+    const targetRotation = randomSpins * 360 + Math.random() * 360;
+
+    let currentRotation = 0;
+    let spinSpeed = 0;
+    const maxSpeed = 25;
+    const acceleration = 2;
+    const deceleration = 0.992;
+    let isAccelerating = true;
+
+    function animate() {
+        if (isAccelerating) {
+            spinSpeed = Math.min(spinSpeed + acceleration, maxSpeed);
+            if (currentRotation > targetRotation * 0.3) {
+                isAccelerating = false;
+            }
+        } else {
+            spinSpeed *= deceleration;
+        }
+
+  
+        currentRotation += spinSpeed;
+
+      
+        ctx.clearRect(0, 0, 500, 500);
+        ctx.save();
+        ctx.translate(250, 250);
+        ctx.rotate((currentRotation * Math.PI) / 180);
+        ctx.translate(-250, -250);
+        drawWheel();
+        ctx.restore();
+
+
+        if (!isAccelerating && spinSpeed < 0.01) {
+            const finalAngle = currentRotation % 360;
+            const prize = determinePrize(finalAngle);
+            
+            
+            document.getElementById("prize-result").textContent = `Congratulations! You won: ${prize}!`;
+            spinning = false;
+            return;
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+}
+
+function addPointer() {
+    const pointer = document.createElement('div');
+    pointer.style.position = 'absolute';
+    pointer.style.top = '50%';
+    pointer.style.left = '50%';
+    pointer.style.transform = 'translateX(210px) translateY(-50%)';
+    pointer.style.width = '40px';
+    pointer.style.height = '40px';
+    pointer.style.backgroundColor = '#333';
+    pointer.style.clipPath = 'polygon(0 50%, 100% 0, 100% 100%)';
+    pointer.style.zIndex = '1000';
+    document.getElementById('wheel-container').appendChild(pointer);
+}
+
+
+document.getElementById("spin-button").addEventListener("click", spinWheel);
+
+document.getElementById("close-button").addEventListener("click", () => {
+    document.getElementById("spin-to-win").classList.remove("active");
+});
+
+setTimeout(() => {
+    document.getElementById("spin-to-win").classList.add("active");
+}, 3000);
+
+
+drawWheel();
+addPointer();
+</script>
+
 
 {% schema %}
   {
