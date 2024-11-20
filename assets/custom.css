@@ -869,7 +869,7 @@ td.cart-item__details {
 }
 .spin-button:disabled {
     background-color: #ccc;
-    cursor: not-allowed;
+    cursor: no-drop;
 }
 .spin-button:hover {
   background-color: #218838;
