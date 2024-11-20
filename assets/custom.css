@@ -901,8 +901,11 @@ td.cart-item__details {
   text-align: center;
 }
 .spin-email {
-    position: relative;
-    top: 13%;
-    left: 17%;
+   position: relative;
+   top: 13%;
+   left: 17%;
    color: #ffffff;
+}
+.spin-email input{
+    padding: 5px 10px;
 }
