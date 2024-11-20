@@ -182,31 +182,7 @@ setTimeout(() => {
 
 drawWheel();
 addPointer();
-
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const emailInput = document.getElementById('email');
-    const spinButton = document.getElementById('spin-button');
-
-    // Disable spin button initially
-    spinButton.disabled = true;
-
-    // Validate email address using a regular expression
-    const isValidEmail = (email) => {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailPattern.test(email);
-    };
-
-    // Add event listener for input in email field
-    emailInput.addEventListener('input', () => {
-        if (isValidEmail(emailInput.value)) {
-            spinButton.disabled = false; // Enable spin button
-        } else {
-            spinButton.disabled = true; // Disable spin button
-        }
-    });
-});
-
+  
 </script>
 
 
