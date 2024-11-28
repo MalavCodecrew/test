@@ -11,7 +11,6 @@
   "current": {
     "vat_tax": 20,
     "enable-wishlist": true,
-    "wishlist-floating-button-position": true,
     "logo": "shopify://shop_images/ilashlogo1.png",
     "logo_width": 300,
     "favicon": "shopify://shop_images/images.png",
@@ -23,7 +22,7 @@
     "spacing_sections": 0,
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
-    "animations_reveal_on_scroll": true,
+    "animations_reveal_on_scroll": false,
     "animations_hover_elements": "none",
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
@@ -114,8 +113,8 @@
     "brand_description": "<p><a href=\"https://www.instagram.com/ilashuk.co.uk\" title=\"https://www.instagram.com/ilashuk.co.uk\">Instagram</a></p><p><a href=\"https://www.tiktok.com/@ilashuk\" title=\"https://www.tiktok.com/@ilashuk\">TikTok</a></p><p><a href=\"https://www.facebook.com/iLashuk.co.uk/\" title=\"https://www.facebook.com/iLashuk.co.uk/\">Facebook</a></p><p><a href=\"https://www.youtube.com/channel/UCeWIfCjX1sw6xUjVqVjvd9Q\" title=\"https://www.youtube.com/channel/UCeWIfCjX1sw6xUjVqVjvd9Q\">Youtube</a></p>",
     "brand_image": "shopify://shop_images/ilashlogo1_d47f093e-0c3d-437d-a251-ed443893dbe9.png",
     "brand_image_width": 100,
-    "social_facebook_link": "www.facebook.com",
-    "social_instagram_link": "www.instagram.com",
+    "social_facebook_link": "",
+    "social_instagram_link": "",
     "social_youtube_link": "",
     "social_tiktok_link": "",
     "social_twitter_link": "",
@@ -132,6 +131,7 @@
     "show_cart_note": true,
     "cart_drawer_collection": "frontpage",
     "cart_color_scheme": "scheme-1",
+    "wishlist-floating-button-position": true,
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
