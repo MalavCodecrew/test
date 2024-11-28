@@ -404,17 +404,20 @@
 
     <!-- // wishlist js------------------------------------------------------- -->
     <script>
+// Wishlist Functionality
 function createWishlistToggleHandler() {
+    // Helper to get product data from the button element
     function getProductDataFromElement(element) {
         return {
             productTitle: element.getAttribute('data-product-title'),
             productImg: element.getAttribute('data-product-img'),
             productPrice: element.getAttribute('data-product-price'),
             productUrl: element.getAttribute('data-product-url'),
-            productId: element.getAttribute('data-product-id')
+            productId: element.getAttribute('data-product-id'),
         };
     }
 
+    // Add/Remove product from the wishlist
     function toggleWishlistForProduct(wishlistButton) {
         const pdpData = getProductDataFromElement(wishlistButton);
         let wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -434,7 +437,6 @@ function createWishlistToggleHandler() {
             localStorage.setItem('wishlist', JSON.stringify(wishlistData));
             wishlistButton.innerHTML = `
                 <svg class="heart-outline" width="35px" height="35px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" fill="none" width="24" height="24"/>
                     <g>
                         <path d="M16.5 4.5c2.206 0 4 1.794 4 4 0 4.67-5.543 8.94-8.5 11.023C9.043 17.44 3.5 13.17 3.5 8.5c0-2.206 1.794-4 4-4 1.298 0 2.522.638 3.273 1.706L12 7.953l1.227-1.746c.75-1.07 1.975-1.707 3.273-1.707m0-1.5c-1.862 0-3.505.928-4.5 2.344C11.005 3.928 9.362 3 7.5 3 4.462 3 2 5.462 2 8.5c0 5.72 6.5 10.438 10 12.85 3.5-2.412 10-7.13 10-12.85C22 5.462 19.538 3 16.5 3z"/>
                     </g>
@@ -445,31 +447,74 @@ function createWishlistToggleHandler() {
         displayWishlist();
     }
 
+    // Display wishlist content
+    function displayWishlist() {
+        const wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const wishlistBlock = document.querySelector('.js-wishlistBlock');
+
+        if (wishlistData.length === 0) {
+            if (wishlistBlock) {
+                wishlistBlock.innerHTML = `
+                    <div class="empty-wishlist">
+                        <p>Love it? Add to my wishlist</p>
+                        <a href="/collections">
+                            <button class="button">Continue Shopping</button>
+                        </a>
+                    </div>
+                `;
+            }
+            return;
+        }
+
+        const wishlistHtml = wishlistData.map(item => `
+            <div class="wishlist-product__list">
+                <div class="c-product">
+                    <a href="${item.productUrl}">
+                        <img src="${item.productImg}" alt="${item.productTitle}">
+                    </a>
+                    <h3 class="c-product__title card__heading h5">
+                        <a class="full-unstyled-link" href="${item.productUrl}">${item.productTitle}</a>
+                    </h3>
+                    <p>${item.productPrice}</p>
+                    <div class="wishlist-button">
+                        <button onclick="removeFromWishlist('${item.productTitle}')" class="wishlist-remove-btn">Remove</button>
+                        <button onclick="addToCart('${item.productId}')" class="wishlist-add-to-cart">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        if (wishlistBlock) {
+            wishlistBlock.innerHTML = wishlistHtml;
+        } else {
+            console.error('Element with class "js-wishlistBlock" not found');
+        }
+    }
+
+    // Initialize buttons
     function initWishlistButtons() {
         const wishlistButtons = document.querySelectorAll('.wishlist_button[data-product-title]');
         wishlistButtons.forEach(button => {
-            button.removeEventListener('click', handleWishlistClick);
-            button.addEventListener('click', handleWishlistClick);
+            const productTitle = button.getAttribute('data-product-title');
+            const wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const isAlreadyInWishlist = wishlistData.some(item => item.productTitle === productTitle);
+
+            button.innerHTML = isAlreadyInWishlist
+                ? `<svg class="heart-filled"></svg> <p class="wishlist_text">In Your Wishlist</p>`
+                : `<svg class="heart-outline"></svg> <p class="wishlist_text">Not In Wishlist</p>`;
+            button.addEventListener('click', () => toggleWishlistForProduct(button));
         });
     }
 
-    function handleWishlistClick(event) {
-        toggleWishlistForProduct(event.currentTarget);
-    }
+    // Monitor DOM for dynamically added content
+    const observer = new MutationObserver(() => {
+        initWishlistButtons(); // Reinitialize buttons
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
 
+    // Initial load
     document.addEventListener('DOMContentLoaded', () => {
         initWishlistButtons();
         displayWishlist();
-
-        // Reinitialize wishlist buttons for dynamically loaded products
-        const observer = new MutationObserver(() => {
-            initWishlistButtons();
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-        });
     });
 }
 createWishlistToggleHandler();
