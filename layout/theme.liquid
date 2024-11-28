@@ -404,9 +404,15 @@
 
     <!-- // wishlist js------------------------------------------------------- -->
     <script>
-// Enhanced Wishlist Script with Debugging
+// Enhanced Wishlist Script with Debugging and Error Handling
 
-function createWishlistToggleHandler() {
+(function() {
+    // Ensure jQuery is available for AJAX calls
+    if (typeof jQuery === 'undefined') {
+        console.error('jQuery is required for this wishlist script. Please include jQuery before this script.');
+        return;
+    }
+
     // Helper function to get product data from data attributes
     function getProductDataFromElement(element) {
         console.log('Getting product data from element:', element);
@@ -422,12 +428,14 @@ function createWishlistToggleHandler() {
     }
 
     // Toggle wishlist for a specific product
-    function toggleWishlistForProduct(wishlistButton) {
+    function toggleWishlist(wishlistButton, event) {
         console.log('Toggle wishlist clicked', wishlistButton);
 
         // Prevent default behavior and stop propagation
-        event.preventDefault();
-        event.stopPropagation();
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
 
         // Get product data from the button's data attributes
         const pdpData = getProductDataFromElement(wishlistButton);
@@ -439,7 +447,7 @@ function createWishlistToggleHandler() {
         }
 
         // Retrieve existing wishlist data
-        let wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let wishlistData = JSON.parse(localStorage.getItem('wishlist') || '[]');
         
         // Check if product is already in wishlist
         const isAlreadyInWishlist = wishlistData.some(item => item.productTitle === pdpData.productTitle);
@@ -500,6 +508,10 @@ function createWishlistToggleHandler() {
             },
             success: function () {
                 location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error adding to cart:", error);
+                alert("Unable to add product to cart. Please try again.");
             }
         });
     }
@@ -507,7 +519,7 @@ function createWishlistToggleHandler() {
     // Remove from wishlist function
     function removeFromWishlist(productTitle) {
         console.log('Removing from wishlist:', productTitle);
-        let wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let wishlistData = JSON.parse(localStorage.getItem('wishlist') || '[]');
         wishlistData = wishlistData.filter(item => item.productTitle !== productTitle);
         localStorage.setItem('wishlist', JSON.stringify(wishlistData));
         displayWishlist();
@@ -523,11 +535,25 @@ function createWishlistToggleHandler() {
 
     // Display wishlist function
     function displayWishlist() {
-        const wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const wishlistData = JSON.parse(localStorage.getItem('wishlist') || '[]');
         const wishlistBlock = document.querySelector('.js-wishlistBlock');
         
         console.log('Current wishlist data:', wishlistData);
 
+        // Create wishlist block if it doesn't exist
+        if (!wishlistBlock) {
+            const wishlistContainer = document.createElement('div');
+            wishlistContainer.classList.add('js-wishlistBlock');
+            
+            // Try to find a suitable place to insert the wishlist
+            const insertLocation = document.querySelector('.wishlist-page') || 
+                                   document.querySelector('#wishlist-container') || 
+                                   document.body;
+            insertLocation.appendChild(wishlistContainer);
+        }
+
+        // Update wishlist content
+        const wishlistBlock = document.querySelector('.js-wishlistBlock');
         if (wishlistData.length === 0) {
             if (wishlistBlock) {
                 wishlistBlock.innerHTML = `
@@ -553,8 +579,8 @@ function createWishlistToggleHandler() {
                     </h3>
                     <p>${item.productPrice}</p>
                     <div class="wishlist-button">
-                        <button onclick="removeFromWishlist('${item.productTitle}')" class="wishlist-remove-btn">Remove</button> 
-                        <button onclick="addToCart('${item.productId}')" class="wishlist-add-to-cart">Add To Cart</button> 
+                        <button onclick="window.removeFromWishlist('${item.productTitle}')" class="wishlist-remove-btn">Remove</button> 
+                        <button onclick="window.addToCart('${item.productId}')" class="wishlist-add-to-cart">Add To Cart</button> 
                     </div>
                 </div>
             </div>
@@ -564,7 +590,7 @@ function createWishlistToggleHandler() {
         if (wishlistBlock) {
             wishlistBlock.innerHTML = wishlistHtml;
         } else {
-            console.error('Element with class "js-wishlistBlock" not found');
+            console.error('Unable to find or create wishlist block');
         }
     }
 
@@ -580,7 +606,7 @@ function createWishlistToggleHandler() {
         wishlistButtons.forEach(button => {
             // Check if this product is already in the wishlist
             const productTitle = button.getAttribute('data-product-title');
-            const wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistData = JSON.parse(localStorage.getItem('wishlist') || '[]');
             const isAlreadyInWishlist = wishlistData.some(item => item.productTitle === productTitle);
 
             console.log(`Button for ${productTitle} is ${isAlreadyInWishlist ? 'in' : 'not in'} wishlist`);
@@ -598,7 +624,7 @@ function createWishlistToggleHandler() {
         // Event handler function to allow removal of event listener
         function wishlistClickHandler(event) {
             console.log('Wishlist button clicked', this);
-            toggleWishlistForProduct(this);
+            toggleWishlist(this, event);
         }
     }
 
@@ -631,6 +657,7 @@ function createWishlistToggleHandler() {
     // Expose functions globally
     window.removeFromWishlist = removeFromWishlist;
     window.addToCart = addToCart;
+    window.toggleWishlist = toggleWishlist;
 
     // Initialize on DOM content loaded
     document.addEventListener('DOMContentLoaded', () => {
@@ -639,10 +666,7 @@ function createWishlistToggleHandler() {
         displayWishlist();
         setupMutationObserver();
     });
-}
-
-// Initialize the wishlist functionality
-createWishlistToggleHandler();
+})(); // Wrapped in an IIFE to avoid global scope pollution
     </script>
     <!-- //END  wishlist js------------------------------------------------------- -->
 
