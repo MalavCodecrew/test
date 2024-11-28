@@ -183,11 +183,6 @@
           <div class="card__information">
             <h3
               class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %} collection-page-card"
-              data-product-title="{{ card_product.title }}"
-              data-product-img="{{ card_product.featured_image | img_url: '400x400' }}"
-              data-product-price="{{ card_product.price | money | remove_first: '' }}"
-              data-product-url="{{ card_product.url }}"
-              data-product-id="{{ card_product.selected_or_first_available_variant.id  }}"
               {% if card_product.featured_media or settings.card_style == 'card' %}
                 id="title-{{ section_id }}-{{ card_product.id }}"
               {% endif %}
