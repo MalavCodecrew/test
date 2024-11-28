@@ -182,7 +182,7 @@
         <div class="card__content">
           <div class="card__information">
             <h3
-              class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
+              class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %} collection-page-card"
               data-product-title="{{ card_product.title }}"
               data-product-img="{{ card_product.featured_image | img_url: '400x400' }}"
               data-product-price="{{ card_product.price | money | remove_first: '' }}"
