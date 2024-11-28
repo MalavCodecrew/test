@@ -404,14 +404,13 @@
 
     <!-- // wishlist js------------------------------------------------------- -->
     <script>
-        function toggleWishlist(button) {
-           const productCard = button.closest('.card__heading h5');
+        function toggleWishlist() {
         const pdpData = {
             productTitle: "{{ product.title }}",
             productImg: "{{ product.featured_image | img_url: '' }}",
             productPrice: "{{ product.price | money | remove_first: '' }}",
             productUrl: "{{ product.url }}",
-            productId:"{{ product.selected_or_first_available_variant.id }}"
+            productId:"{{ product.selected_or_first_available_variant.id }}",
         };
  
         let wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
