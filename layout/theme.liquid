@@ -405,9 +405,8 @@
     <!-- // wishlist js------------------------------------------------------- -->
     <script>
 // Enhanced Wishlist Script with Improved Collection Page Compatibility
-toggleWishlist
+
 function createWishlistToggleHandler() {
-    // Helper function to get product data from data attributes
     function getProductDataFromElement(element) {
         return {
             productTitle: element.getAttribute('data-product-title'),
@@ -417,39 +416,22 @@ function createWishlistToggleHandler() {
             productId: element.getAttribute('data-product-id')
         };
     }
-
-    // Toggle wishlist for a specific product
-    function toggleWishlistForProduct(wishlistButton) {
-        // Get product data from the button's data attributes
+    function toggleWishlist(wishlistButton) {
         const pdpData = getProductDataFromElement(wishlistButton);
-
-        // Retrieve existing wishlist data
         let wishlistData = JSON.parse(localStorage.getItem('wishlist')) || [];
-        
-        // Check if product is already in wishlist
         const isAlreadyInWishlist = wishlistData.some(item => item.productTitle === pdpData.productTitle);
 
         if (!isAlreadyInWishlist) {
-            // Add to wishlist
             wishlistData.push(pdpData);
             localStorage.setItem('wishlist', JSON.stringify(wishlistData));
-            
-            // Update button to show it's in wishlist
             updateWishlistButtonState(wishlistButton, true);
         } else {
-            // Remove from wishlist
             wishlistData = wishlistData.filter(item => item.productTitle !== pdpData.productTitle);
             localStorage.setItem('wishlist', JSON.stringify(wishlistData));
-            
-            // Update button to show it's not in wishlist
             updateWishlistButtonState(wishlistButton, false);
         }
-
-        // Update wishlist display
         displayWishlist();
     }
-
-    // Update wishlist button state
     function updateWishlistButtonState(button, isInWishlist) {
         if (isInWishlist) {
             button.innerHTML = `
