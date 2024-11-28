@@ -404,8 +404,7 @@
 
     <!-- // wishlist js------------------------------------------------------- -->
     <script>
-        function toggleWishlist(element) {
-            const productCard = element.closest('.collection-page-card');
+        function toggleWishlist() {
         const pdpData = {
             productTitle: "{{ product.title }}",
             productImg: "{{ product.featured_image | img_url: '' }}",
