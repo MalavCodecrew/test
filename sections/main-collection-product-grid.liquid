@@ -177,7 +177,9 @@
                     quick_add: section.settings.quick_add,
                     section_id: section.id
                   -%}
-                  {% render 'wishlist-button' %}
+                  {% comment %}
+                    {% render 'wishlist-button' %}
+                  {% endcomment %}
                 </li>
               {%- endfor -%}
             </ul>
