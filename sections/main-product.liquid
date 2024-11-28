@@ -228,7 +228,7 @@
                 </div>
                 {% if settings['enable-wishlist'] %}
                   <button
-                    onclick="toggleWishlist()"
+                    onclick="toggleWishlistForProduct()"
                     class="wishlist_button"
                     data-product-title="{{ product.title }}"
                     data-product-img="{{ product.featured_image | img_url: '400x400' }}"
