@@ -528,6 +528,16 @@ function createWishlistToggleHandler() {
             button.addEventListener('click', () => toggleWishlistForProduct(button));
         });
     }
+  // Listen for the event when new products are loaded
+document.addEventListener('newProductsLoaded', () => {
+    initWishlistButtons();
+});
+
+// Trigger the custom event after new products are dynamically loaded
+function onNewProductsLoaded() {
+    const event = new Event('newProductsLoaded');
+    document.dispatchEvent(event);
+}
     window.removeFromWishlist = removeFromWishlist;
     window.addToCart = addToCart;
     document.addEventListener('DOMContentLoaded', () => {
