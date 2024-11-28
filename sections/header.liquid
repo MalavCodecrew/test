@@ -302,7 +302,7 @@
       </a>
        {% if settings['enable-wishlist'] %}
       <a href="/pages/wishlist" class="button-floating">
-      {{ settings.icon-fill-heart }}
+   {% render 'icon-fill-heart' %}
          <p class="wishlist_text">Wishlist</p> 
       </a>{% endif %}
     </div>
