@@ -91,7 +91,7 @@
                 {% endfor %}
               </div>
 
-              <!-- {% render 'product-media-gallery', product: product ,variant_images %} -->
+              <!-- {% render 'product-media-gallery', product: product %} -->
             </div>
           </div>
           <div class="popup2">
@@ -186,3 +186,13 @@
 ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'product-media-gallery', product: product ,variant_images %}"
+  to: "{% render 'product-media-gallery', product: product %}"
+  position: 4285..4339
+{% endcomment %}
